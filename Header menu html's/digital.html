@@ -1,0 +1,992 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Digital Ministry - Explore the intersection of technology and spirituality, digital sacred spaces, and online spiritual communities. Discover how faith meets innovation in the modern world.">
+    <meta name="keywords" content="digital ministry, spiritual technology, online spirituality, digital sacred spaces, faith technology, spiritual communities, cyber spirituality, digital enlightenment">
+    <meta name="author" content="Sacred Codex Universe">
+    <meta name="language" content="English">
+    <title>Digital Ministry - Faith Meets Technology | Sacred Codex Universe</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sacredcodexuniverse.com/digital.html">
+    <meta property="og:title" content="Digital Ministry - Faith Meets Technology | Sacred Codex Universe">
+    <meta property="og:description" content="Digital Ministry - Explore the intersection of technology and spirituality, digital sacred spaces, and online spiritual communities. Discover how faith meets innovation in the modern world.">
+    <meta property="og:image" content="https://sacredcodexuniverse.com/favicon-3d-mantra.svg">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="Digital Ministry - Faith Meets Technology">
+    <meta property="og:site_name" content="Sacred Codex Universe">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sacredcodexuniverse.com/digital.html">
+    <meta property="twitter:title" content="Digital Ministry - Faith Meets Technology | Sacred Codex Universe">
+    <meta property="twitter:description" content="Digital Ministry - Explore the intersection of technology and spirituality, digital sacred spaces, and online spiritual communities. Discover how faith meets innovation in the modern world.">
+    <meta property="twitter:image" content="https://sacredcodexuniverse.com/favicon-3d-mantra.svg">
+    <meta property="twitter:image:alt" content="Digital Ministry - Faith Meets Technology">
+    <meta name="twitter:creator" content="@Philipp36533206">
+    <meta name="twitter:site" content="@Philipp36533206">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sacredcodexuniverse.com/digital.html">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Digital Ministry - Faith Meets Technology",
+        "description": "Digital Ministry - Explore the intersection of technology and spirituality, digital sacred spaces, and online spiritual communities. Discover how faith meets innovation in the modern world.",
+        "url": "https://sacredcodexuniverse.com/digital.html",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Sacred Codex Universe",
+            "url": "https://sacredcodexuniverse.com/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Sacred Codex Universe",
+            "url": "https://sacredcodexuniverse.com/"
+        },
+        "about": {
+            "@type": "Thing",
+            "name": "Digital Ministry",
+            "description": "The intersection of technology and spirituality in the modern world"
+        },
+        "mainEntity": {
+            "@type": "CreativeWork",
+            "name": "Digital Ministry",
+            "description": "Exploration of how faith and technology intersect in spiritual communities"
+        }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Orbitron:wght@400;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared-styles.css">
+    <style>
+        :root {
+            --divine-gold: #FFD700;
+            --sacred-purple: #9932CC;
+            --celestial-blue: #4169E1;
+            --emerald-wisdom: #50C878;
+            --crimson-passion: #DC143C;
+            --mystic-silver: #C0C0C0;
+            --star-white: #FFFACD;
+            --shadow-deep: #000000;
+            --cosmic-gradient: linear-gradient(135deg, #000428 0%, #004e92 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--cosmic-gradient);
+            color: var(--star-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Cosmic Background Animation */
+        .cosmic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: 
+                radial-gradient(2px 2px at 20px 30px, var(--divine-gold), transparent),
+                radial-gradient(2px 2px at 40px 70px, var(--sacred-purple), transparent),
+                radial-gradient(1px 1px at 90px 40px, var(--celestial-blue), transparent),
+                radial-gradient(1px 1px at 130px 80px, var(--emerald-wisdom), transparent),
+                radial-gradient(2px 2px at 160px 30px, var(--crimson-passion), transparent);
+            background-repeat: repeat;
+            background-size: 200px 100px;
+            animation: sparkle 20s linear infinite;
+        }
+
+        @keyframes sparkle {
+            from { transform: translateX(0); }
+            to { transform: translateX(200px); }
+        }
+
+        /* Scroll Progress */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--divine-gold), var(--sacred-purple), var(--celestial-blue));
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* Navigation */
+        .sacred-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid var(--divine-gold);
+            border-radius: 15px;
+            padding: 20px;
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-link {
+            display: block;
+            color: var(--divine-gold);
+            text-decoration: none;
+            margin: 10px 0;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link:hover {
+            color: var(--sacred-purple);
+            text-shadow: 0 0 10px var(--sacred-purple);
+            transform: translateX(5px);
+        }
+
+        /* Header */
+        .sacred-header {
+            text-align: center;
+            padding: 100px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .cosmic-weather {
+            position: absolute;
+            top: 20px;
+            left: 20px;
+            background: rgba(0, 0, 0, 0.7);
+            padding: 15px;
+            border-radius: 10px;
+            border: 2px solid var(--celestial-blue);
+            font-size: 0.9rem;
+            color: var(--celestial-blue);
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: 4rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, var(--divine-gold), var(--sacred-purple), var(--celestial-blue));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+            animation: titleGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 20px var(--divine-gold)); }
+            to { filter: drop-shadow(0 0 40px var(--sacred-purple)); }
+        }
+
+        .subtitle {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.5rem;
+            color: var(--mystic-silver);
+            margin-bottom: 30px;
+        }
+
+        .sacred-mandala {
+            width: 200px;
+            height: 200px;
+            margin: 40px auto;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .sacred-mandala:hover {
+            transform: scale(1.1);
+        }
+
+        .mandala-ring {
+            position: absolute;
+            border: 3px solid var(--divine-gold);
+            border-radius: 50%;
+            animation: mandalaRotate 20s linear infinite;
+        }
+
+        .mandala-ring:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 0;
+            left: 0;
+        }
+
+        .mandala-ring:nth-child(2) {
+            width: 150px;
+            height: 150px;
+            top: 25px;
+            left: 25px;
+            border-color: var(--sacred-purple);
+            animation-direction: reverse;
+        }
+
+        .mandala-ring:nth-child(3) {
+            width: 100px;
+            height: 100px;
+            top: 50px;
+            left: 50px;
+            border-color: var(--celestial-blue);
+            animation-duration: 15s;
+        }
+
+        @keyframes mandalaRotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        /* Main Content */
+        .main-content {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .sacred-section {
+            margin: 100px 0;
+            padding: 60px 40px;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 20px;
+            border: 2px solid var(--divine-gold);
+            position: relative;
+            -webkit-backdrop-filter: blur(5px);
+            backdrop-filter: blur(5px);
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--divine-gold);
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        .section-subtitle {
+            font-size: 1.2rem;
+            color: var(--mystic-silver);
+            text-align: center;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Sacred Grid */
+        .sacred-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .sacred-card {
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(153,50,204,0.1));
+            border: 2px solid var(--divine-gold);
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sacred-card::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255,215,0,0.1), transparent);
+            transition: all 0.5s ease;
+            transform: rotate(-90deg);
+        }
+
+        .sacred-card:hover::before {
+            transform: rotate(90deg);
+        }
+
+        .sacred-card:hover {
+            transform: translateY(-10px);
+            border-color: var(--sacred-purple);
+            box-shadow: 0 20px 40px rgba(153,50,204,0.3);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            display: block;
+            margin-bottom: 20px;
+            color: var(--divine-gold);
+        }
+
+        .card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--divine-gold);
+            margin-bottom: 15px;
+        }
+
+        .card-content {
+            color: var(--star-white);
+            position: relative;
+            z-index: 1;
+        }
+
+        /* Code Block */
+        .code-block {
+            background: rgba(0,0,0,0.8);
+            border: 2px solid var(--celestial-blue);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+            font-family: 'Orbitron', monospace;
+            font-size: 0.9rem;
+            color: var(--mystic-silver);
+            overflow-x: auto;
+        }
+
+        /* Equations */
+        .equation-box {
+            background: rgba(0,0,0,0.5);
+            border: 3px solid var(--sacred-purple);
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+        }
+
+        .equation {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: var(--divine-gold);
+            margin-bottom: 20px;
+        }
+
+        .equation-explanation {
+            font-size: 1.1rem;
+            color: var(--star-white);
+            line-height: 1.8;
+        }
+
+        /* Quotes */
+        .sacred-quote {
+            background: rgba(153,50,204,0.2);
+            border-left: 5px solid var(--sacred-purple);
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 10px;
+        }
+
+        .quote-text {
+            font-size: 1.3rem;
+            font-style: italic;
+            color: var(--star-white);
+            margin-bottom: 15px;
+            line-height: 1.8;
+        }
+
+        .quote-author {
+            color: var(--divine-gold);
+            font-weight: 600;
+            text-align: right;
+        }
+
+        /* Sacred Table */
+        .sacred-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 40px 0;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            overflow: hidden;
+        }
+
+        .sacred-table th,
+        .sacred-table td {
+            padding: 20px;
+            text-align: left;
+            border-bottom: 1px solid var(--divine-gold);
+        }
+
+        .sacred-table th {
+            background: linear-gradient(45deg, var(--divine-gold), var(--sacred-purple));
+            color: var(--shadow-deep);
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+        }
+
+        /* Case Study */
+        .case-study {
+            background: linear-gradient(135deg, rgba(65,105,225,0.1), rgba(255,215,0,0.1));
+            border: 2px solid var(--celestial-blue);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 40px 0;
+            position: relative;
+        }
+
+        .case-study::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, transparent, rgba(65,105,225,0.1), transparent);
+            transition: all 0.5s ease;
+            transform: rotate(-90deg);
+        }
+
+        .case-study:hover::before {
+            transform: rotate(90deg);
+        }
+
+        .case-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--celestial-blue);
+            text-align: center;
+            margin-bottom: 30px;
+        }
+
+        .case-section {
+            margin: 30px 0;
+        }
+
+        .case-section h4 {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--divine-gold);
+            margin-bottom: 10px;
+        }
+
+        .case-section p {
+            color: var(--star-white);
+            line-height: 1.6;
+        }
+
+        /* Particle System */
+        .particle-system {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .divine-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--divine-gold);
+            border-radius: 50%;
+            animation: particleFloat 8s linear infinite;
+        }
+
+        @keyframes particleFloat {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) scale(1);
+                opacity: 0;
+            }
+        }
+
+        /* Footer */
+        .sacred-footer {
+            background: rgba(0,0,0,0.8);
+            padding: 60px 40px 40px;
+            text-align: center;
+            border-top: 3px solid var(--divine-gold);
+            margin-top: 100px;
+        }
+
+        .footer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--divine-gold);
+            margin-bottom: 20px;
+        }
+
+        .footer-content {
+            color: var(--mystic-silver);
+            line-height: 1.8;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 2.5rem;
+            }
+            
+            .sacred-nav {
+                position: static;
+                margin: 20px auto;
+                max-width: 300px;
+            }
+            
+            .sacred-section {
+                padding: 30px 20px;
+                margin: 50px 0;
+            }
+            
+            .sacred-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Sacred Dot Menu Navigation */
+        .sacred-dot-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+
+        .nav-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.9), rgba(153,50,204,0.9));
+            border: 3px solid var(--divine-gold);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255,215,0,0.5);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255,215,0,0.8);
+        }
+
+        .nav-toggle.active {
+            background: linear-gradient(135deg, rgba(153,50,204,0.9), rgba(255,215,0,0.9));
+            box-shadow: 0 0 40px rgba(153,50,204,0.8);
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--star-white);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--divine-gold);
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active .nav-dot {
+            box-shadow: 0 0 20px var(--sacred-purple);
+        }
+
+        .nav-content {
+            position: absolute;
+            top: 80px;
+            right: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(20,20,20,0.95));
+            border: 2px solid var(--divine-gold);
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.95);
+            transition: all 0.3s ease;
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .nav-content.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .nav-portal-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .portal-link {
+            color: var(--mystic-silver);
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portal-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .portal-link:hover::before {
+            left: 100%;
+        }
+
+        .portal-link:hover {
+            color: var(--divine-gold);
+            background: rgba(255,215,0,0.1);
+            border-color: var(--divine-gold);
+            transform: translateX(5px);
+            box-shadow: 0 0 15px rgba(255,215,0,0.3);
+        }
+
+        .portal-link.active {
+            color: var(--divine-gold);
+            background: rgba(255,215,0,0.1);
+            border-color: var(--divine-gold);
+            box-shadow: 0 0 15px rgba(255,215,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .sacred-dot-nav {
+                top: 15px;
+                right: 15px;
+            }
+
+            .nav-toggle {
+                width: 50px;
+                height: 50px;
+            }
+
+            .nav-content {
+                min-width: 200px;
+                padding: 15px;
+                top: 65px;
+            }
+
+            .portal-link {
+                padding: 10px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="cosmic-background"></div>
+    <div class="particle-system" id="particleSystem"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+    
+    <!-- Sacred Dot Menu Navigation -->
+    <nav class="sacred-dot-nav">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation Menu">
+            <div class="nav-dot"></div>
+        </button>
+        <div class="nav-content" id="nav-content">
+            <div class="nav-portal-links">
+                <a href="index.html" class="portal-link">🏠 Home</a>
+                <a href="genesis.html" class="portal-link">🌟 Genesis</a>
+                <a href="geometry.html" class="portal-link">📐 Geometry</a>
+                <a href="mathematics.html" class="portal-link">🔢 Mathematics</a>
+                <a href="masters.html" class="portal-link">🎨 Masters</a>
+                <a href="alchemy.html" class="portal-link">⚗️ Alchemy</a>
+                <a href="library.html" class="portal-link">📚 Library</a>
+                <a href="digital.html" class="portal-link active">💻 Digital Ministry</a>
+                <a href="wisdom.html" class="portal-link">🧠 Wisdom Portal</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="main-content">
+        <!-- Digital Ministry Section -->
+        <section id="digital-ministry" class="sacred-section">
+            <h2 class="section-title">Digital Ministry & Sacred Technology</h2>
+            <p class="section-subtitle">Bridging ancient wisdom and modern innovation</p>
+            
+            <div class="sacred-quote">
+                <div class="quote-text">"The medium is not the message—the divine is the message. The medium merely determines how widely and effectively that message can spread."</div>
+                <div class="quote-author">— Digital Ministry Principle #1 🌐</div>
+            </div>
+
+            <div class="sacred-grid">
+                <div class="sacred-card">
+                    <span class="card-icon">🌐</span>
+                    <h3 class="card-title">Sacred Digital Spaces</h3>
+                    <div class="card-content">
+                        <p>Digital environments can be consecrated and designed with the same intentionality as physical temples and sacred spaces. Through careful attention to design, interaction patterns, and energetic principles, online spaces can facilitate genuine spiritual connection.</p>
+                        <div class="sacred-quote" style="margin: 15px 0; padding: 15px; background: rgba(255,215,0,0.1);">
+                            <div class="quote-text" style="font-size: 0.9rem;">The internet is not merely a tool but a dimension of consciousness that can be infused with sacred intention.</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sacred-card">
+                    <span class="card-icon">⚙️</span>
+                    <h3 class="card-title">Conscious Technology</h3>
+                    <div class="card-content">
+                        <p>Technology designed with awareness of its impact on human consciousness, society, and the planet. Conscious technology serves human flourishing and spiritual evolution rather than exploiting attention or reinforcing separation.</p>
+                        <ul style="text-align: left; margin-top: 15px; color: var(--mystic-silver);">
+                            <li>Respects user agency and attention</li>
+                            <li>Promotes meaningful connection</li>
+                            <li>Supports contemplative practices</li>
+                            <li>Minimizes environmental impact</li>
+                            <li>Embodies ethical principles</li>
+                        </ul>
+                    </div>
+                </div>
+
+                <div class="sacred-card">
+                    <span class="card-icon">🧩</span>
+                    <h3 class="card-title">Digital Discipleship</h3>
+                    <div class="card-content">
+                        <p>The practice of spiritual mentorship and community-building through digital channels. Digital discipleship recognizes that authentic spiritual formation can occur through thoughtfully designed online experiences and relationships.</p>
+                    </div>
+                </div>
+            </div>
+
+            <div class="code-block">
+// Digital Discipleship Framework<br>
+const discipleshipJourney = {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;awareness: "Initial contact with sacred content",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;engagement: "Active participation in digital community",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;transformation: "Personal application of teachings",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;contribution: "Creating and sharing with others",<br>
+&nbsp;&nbsp;&nbsp;&nbsp;mentorship: "Guiding newer community members"<br>
+};
+            </div>
+
+            <h3 style="color: var(--divine-gold); text-align: center; margin: 60px 0 30px; font-family: 'Cinzel', serif; font-size: 2rem;">The Seven Principles of Digital Ministry</h3>
+
+            <div class="sacred-grid">
+                <div class="sacred-card">
+                    <h4 class="card-title" style="font-size: 1.2rem;">Principle 1: The Principle of Sacred Intention</h4>
+                    <div class="card-content">
+                        <p>Every digital creation begins with consecrated purpose. Before writing a single line of code or creating any content, clarify and sanctify your intention. Technology without sacred purpose becomes merely a tool for distraction or exploitation.</p>
+                        <div class="sacred-quote" style="margin: 15px 0; padding: 15px; background: rgba(255,215,0,0.1);">
+                            <div class="quote-text" style="font-size: 0.9rem;">"The quality of your intention determines the quality of your digital ministry."</div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="sacred-card">
+                    <h4 class="card-title" style="font-size: 1.2rem;">Principle 2: The Principle of Attention Stewardship</h4>
+                    <div class="card-content">
+                        <p>Human attention is sacred and finite. Digital ministry respects this truth by creating experiences that honor attention rather than exploiting it. Design patterns should foster presence, mindfulness, and meaningful engagement rather than addiction or distraction.</p>
+                    </div>
+                </div>
+
+                <div class="sacred-card">
+                    <h4 class="card-title" style="font-size: 1.2rem;">Principle 3: The Principle of Embodied Virtuality</h4>
+                    <div class="card-content">
+                        <p>Digital experiences should support—never replace—embodied human connection. Effective digital ministry creates bridges between virtual and physical reality, encouraging practices that integrate spiritual insights into daily life and community.</p>
+                    </div>
+                </div>
+
+                <div class="sacred-card">
+                    <h4 class="card-title" style="font-size: 1.2rem;">Principle 4: The Principle of Technological Discernment</h4>
+                    <div class="card-content">
+                        <p>Not all technological capabilities serve spiritual flourishing. Digital ministers must discern which technologies and features align with sacred values and which create barriers to authentic connection. Sometimes the most powerful choice is technological restraint.</p>
+                    </div>
+                </div>
+
+                <div class="sacred-card">
+                    <h4 class="card-title" style="font-size: 1.2rem;">Principle 5: The Principle of Digital Hospitality</h4>
+                    <div class="card-content">
+                        <p>Sacred digital spaces welcome all seekers with accessibility, inclusivity, and warmth. Digital hospitality means creating environments where diverse people feel genuinely seen, heard, and valued—regardless of their technical expertise or spiritual background.</p>
+                    </div>
+                </div>
+
+                <div class="sacred-card">
+                    <h4 class="card-title" style="font-size: 1.2rem;">Principle 6: The Principle of Transformative Design</h4>
+                    <div class="card-content">
+                        <p>Digital experiences can be designed to facilitate genuine spiritual transformation. Through intentional user journeys, contemplative interactions, and progressive revelation, technology can support the stages of spiritual growth and awakening.</p>
+                    </div>
+                </div>
+
+                <div class="sacred-card">
+                    <h4 class="card-title" style="font-size: 1.2rem;">Principle 7: The Principle of Digital Sabbath</h4>
+                    <div class="card-content">
+                        <p>Even the most sacred digital ministry must honor the wisdom of periodic disconnection. Building rhythms of technological rest and digital sabbath into both the design of platforms and the practices of communities ensures balanced engagement.</p>
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: var(--divine-gold); text-align: center; margin: 60px 0 30px; font-family: 'Cinzel', serif; font-size: 2rem;">Sacred Digital Tools</h3>
+
+            <table class="sacred-table">
+                <thead>
+                    <tr>
+                        <th>Tool Category</th>
+                        <th>Purpose</th>
+                        <th>Examples</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Contemplative Apps</td>
+                        <td>Support meditation, prayer, and mindfulness practices</td>
+                        <td>Timer apps with sacred sounds, guided meditation platforms, prayer journals</td>
+                    </tr>
+                    <tr>
+                        <td>Sacred Text Interfaces</td>
+                        <td>Provide interactive access to wisdom literature</td>
+                        <td>Searchable scripture databases, interactive commentaries, comparative study tools</td>
+                    </tr>
+                    <tr>
+                        <td>Digital Ritual Spaces</td>
+                        <td>Create environments for shared sacred experience</td>
+                        <td>Virtual sanctuaries, online ceremony platforms, livestreamed rituals</td>
+                    </tr>
+                    <tr>
+                        <td>Community Platforms</td>
+                        <td>Foster meaningful connection among spiritual seekers</td>
+                        <td>Sacred discussion forums, practice accountability groups, mentorship matching</td>
+                    </tr>
+                    <tr>
+                        <td>Wisdom Algorithms</td>
+                        <td>Curate content based on spiritual growth rather than engagement</td>
+                        <td>Transformative content recommendation systems, spiritual practice sequencing</td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="sacred-card" style="margin: 40px 0;">
+                <span class="card-icon">🧠</span>
+                <h3 class="card-title">AI & Consciousness</h3>
+                <div class="card-content">
+                    <p>The emergence of artificial intelligence raises profound questions about consciousness, ethics, and the nature of mind. Digital ministry engages thoughtfully with these technologies, exploring their potential for spiritual service while maintaining critical discernment.</p>
+                    <div class="sacred-quote" style="margin: 15px 0; padding: 15px; background: rgba(255,215,0,0.1);">
+                        <div class="quote-text" style="font-size: 0.9rem;">AI can serve as a mirror reflecting our own consciousness and as a tool for expanding human potential—but never as a replacement for embodied wisdom.</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="case-study">
+                <h3 class="case-title">Case Study: The Sacred Codex Digital Experience</h3>
+                
+                <div class="case-section">
+                    <h4>🎯 Challenge</h4>
+                    <p>Create a digital experience that transmits authentic spiritual wisdom while engaging modern users accustomed to high-quality digital interfaces and interactive experiences.</p>
+                </div>
+                
+                <div class="case-section">
+                    <h4>💡 Approach</h4>
+                    <p>Apply sacred design principles to create a progressive revelation experience that adapts to the user's spiritual readiness and interests, gradually unveiling deeper layers of wisdom.</p>
+                </div>
+                
+                <div class="case-section">
+                    <h4>⚙️ Implementation</h4>
+                    <p>Developed an interactive web application with sacred geometry animations, wisdom-based navigation, contemplative interactions, and community integration—all designed to facilitate genuine spiritual experience.</p>
+                </div>
+                
+                <div class="case-section">
+                    <h4>✨ Results</h4>
+                    <p>Users report meaningful spiritual insights, increased practice consistency, and authentic community connection—demonstrating that thoughtfully designed digital experiences can indeed support genuine spiritual transformation.</p>
+                </div>
+            </div>
+
+            <div class="equation-box">
+                <div class="equation">DM = (S × T × I) / D</div>
+                <div class="equation-explanation">
+                    Digital Ministry equals Sacred Intention multiplied by Technological Skill multiplied by Interpersonal Connection, divided by Distraction Potential. This equation reveals that effective digital ministry requires the integration of spiritual purpose, technical capability, and authentic human connection, while minimizing elements that fragment attention or awareness.
+                </div>
+            </div>
+
+            <div class="code-block">
+/* Sacred Website Animation */<br>
+const createSacredParticles = () => {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;const particleSystem = document.getElementById('particleSystem');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;const particleCount = 21; // Sacred number<br>
+&nbsp;&nbsp;&nbsp;&nbsp;for (let i = 0; i < particleCount; i++) {<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;const particle = document.createElement('div');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;particle.classList.add('divine-particle');<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Position randomly<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;particle.style.left = `${Math.random() * 100}%`;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;// Stagger animation<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;particle.style.animationDelay = `${Math.random() * 8}s`;<br>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;particleSystem.appendChild(particle);<br>
+&nbsp;&nbsp;&nbsp;&nbsp;}<br>
+};<br>
+// Invoke with sacred intention<br>
+createSacredParticles();
+            </div>
+        </section>
+    </main>
+
+    <footer class="sacred-footer">
+        <div class="footer-title">The Sacred Codex Universe</div>
+        <div class="footer-content">
+            <p>Embark on a journey of spiritual discovery and digital innovation. May your path be illuminated by divine wisdom.</p>
+        </div>
+    </footer>
+
+    <script src="sacred_codex_scripts.min.js"></script>
+    <script>
+        // Sacred Navigation Menu Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navContent = document.getElementById('nav-content');
+
+        if (navToggle && navContent) {
+            navToggle.addEventListener('click', function() {
+                navToggle.classList.toggle('active');
+                navContent.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!navToggle.contains(event.target) && !navContent.contains(event.target)) {
+                    navToggle.classList.remove('active');
+                    navContent.classList.remove('active');
+                }
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    navToggle.classList.remove('active');
+                    navContent.classList.remove('active');
+                }
+            });
+        }
+    </script>
+</body>
+</html>

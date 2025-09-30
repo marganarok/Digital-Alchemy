@@ -1,0 +1,1519 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>MASTER VISUAL BLUEPRINT - AI Communication Tool</title>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600&family=Courier+Prime&display=swap');
+        
+        :root {
+            --cosmic-purple: #667eea;
+            --cosmic-blue: #764ba2;
+            --divine-gold: #f39c12;
+            --sacred-red: #e74c3c;
+            --holy-green: #27ae60;
+            --primary-dark: #2c3e50;
+            --surface-light: #ecf0f1;
+            --text-color: #2c3e50;
+            --accent-orange: #e67e22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: linear-gradient(135deg, var(--cosmic-purple) 0%, var(--cosmic-blue) 100%);
+            color: var(--text-color);
+            min-height: 100vh;
+            overflow-x: hidden;
+        }
+
+        /* Starfield Background */
+        .starfield {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: radial-gradient(ellipse at bottom, #1b2735 0%, #090a0f 100%);
+        }
+
+        .star {
+            position: absolute;
+            width: 2px;
+            height: 2px;
+            background: white;
+            border-radius: 50%;
+            animation: twinkle 3s infinite;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { opacity: 0.3; }
+            50% { opacity: 1; }
+        }
+
+        /* Main Layout */
+        .blueprint-container {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            grid-template-rows: auto 1fr;
+            grid-template-areas: 
+                "header header"
+                "sidebar main";
+            min-height: 100vh;
+        }
+
+        .master-header {
+            grid-area: header;
+            background: linear-gradient(135deg, var(--primary-dark) 0%, var(--cosmic-purple) 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 20px rgba(0,0,0,0.3);
+        }
+
+        .master-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5em;
+            margin-bottom: 10px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .master-subtitle {
+            font-size: 1.2em;
+            opacity: 0.9;
+            font-style: italic;
+        }
+
+        .control-panel {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 15px;
+        }
+
+        .control-btn {
+            background: rgba(255,255,255,0.2);
+            border: 1px solid rgba(255,255,255,0.3);
+            color: white;
+            padding: 8px 16px;
+            border-radius: 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+        }
+
+        .control-btn:hover {
+            background: rgba(255,255,255,0.3);
+            transform: translateY(-2px);
+        }
+
+        .control-btn.active {
+            background: var(--divine-gold);
+            border-color: var(--divine-gold);
+        }
+
+        /* Sidebar Navigation */
+        .blueprint-sidebar {
+            grid-area: sidebar;
+            background: rgba(255,255,255,0.95);
+            backdrop-filter: blur(10px);
+            overflow-y: auto;
+            border-right: 2px solid var(--cosmic-purple);
+        }
+
+        .nav-section {
+            margin: 20px 0;
+        }
+
+        .nav-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3em;
+            color: var(--cosmic-purple);
+            padding: 15px 20px 10px 20px;
+            border-bottom: 2px solid var(--surface-light);
+        }
+
+        .nav-item {
+            display: block;
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: 15px 20px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: inherit;
+            font-size: 1em;
+            border-bottom: 1px solid rgba(0,0,0,0.1);
+        }
+
+        .nav-item:hover {
+            background: linear-gradient(90deg, var(--cosmic-purple), var(--cosmic-blue));
+            color: white;
+            transform: translateX(5px);
+        }
+
+        .nav-item.active {
+            background: var(--divine-gold);
+            color: white;
+            font-weight: 600;
+        }
+
+        .nav-description {
+            font-size: 0.85em;
+            opacity: 0.7;
+            margin-top: 5px;
+        }
+
+        /* Main Content Area */
+        .blueprint-main {
+            grid-area: main;
+            position: relative;
+            overflow: auto;
+            background: rgba(255,255,255,0.9);
+            backdrop-filter: blur(10px);
+        }
+
+        .content-section {
+            display: none;
+            padding: 30px;
+        }
+
+        .content-section.active {
+            display: block;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5em;
+            color: var(--cosmic-purple);
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 3px solid var(--cosmic-purple);
+            padding-bottom: 15px;
+        }
+
+        /* Gallery Grid */
+        .gallery-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .gallery-card {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            border: 3px solid var(--cosmic-purple);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .gallery-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 5px;
+            background: linear-gradient(90deg, var(--cosmic-purple), var(--cosmic-blue));
+        }
+
+        .gallery-card:hover {
+            transform: translateY(-10px) rotateX(5deg);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.3);
+        }
+
+        .card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4em;
+            color: var(--primary-dark);
+            margin-bottom: 15px;
+        }
+
+        .card-visual {
+            height: 200px;
+            background: var(--surface-light);
+            border-radius: 10px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid var(--cosmic-purple);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 3em;
+            color: var(--cosmic-purple);
+        }
+
+        .tech-specs {
+            background: linear-gradient(135deg, #ffecd2 0%, #fcb69f 100%);
+            padding: 15px;
+            border-radius: 10px;
+            margin-top: 15px;
+            border-left: 4px solid var(--divine-gold);
+        }
+
+        .specs-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 10px;
+        }
+
+        .specs-list {
+            list-style: none;
+        }
+
+        .specs-item {
+            display: flex;
+            justify-content: space-between;
+            margin: 5px 0;
+            font-size: 0.9em;
+        }
+
+        .specs-label {
+            color: var(--text-color);
+        }
+
+        .specs-value {
+            font-weight: 600;
+            color: var(--cosmic-purple);
+        }
+
+        /* Special Sections */
+        .godot-showcase {
+            background: linear-gradient(135deg, var(--holy-green) 0%, #2ecc71 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .html-collection {
+            background: linear-gradient(135deg, var(--sacred-red) 0%, #c0392b 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        .ai-instructions {
+            background: linear-gradient(135deg, var(--divine-gold) 0%, #d68910 100%);
+            color: white;
+            padding: 30px;
+            border-radius: 20px;
+            margin: 30px 0;
+        }
+
+        .code-example {
+            background: var(--primary-dark);
+            color: #ecf0f1;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'Courier Prime', monospace;
+            font-size: 14px;
+            line-height: 1.6;
+            margin: 15px 0;
+            overflow-x: auto;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .blueprint-container {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "sidebar"
+                    "main";
+                grid-template-rows: auto auto 1fr;
+            }
+
+            .blueprint-sidebar {
+                max-height: 200px;
+            }
+
+            .master-title {
+                font-size: 2em;
+            }
+
+            .gallery-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Particle Effects */
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--divine-gold);
+            border-radius: 50%;
+            pointer-events: none;
+            animation: particleFade 2s ease-out forwards;
+        }
+
+        @keyframes particleFade {
+            0% {
+                opacity: 1;
+                transform: scale(1);
+            }
+            100% {
+                opacity: 0;
+                transform: scale(0) translateY(-50px);
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Starfield Background -->
+    <div class="starfield" id="starfield"></div>
+
+    <div class="blueprint-container">
+        <!-- Header -->
+        <header class="master-header">
+            <h1 class="master-title">🌟 MASTER VISUAL BLUEPRINT 🌟</h1>
+            <p class="master-subtitle">Ultimate AI Communication & Reference Tool</p>
+            <div class="control-panel">
+                <button class="control-btn active" data-view="overview">Overview</button>
+                <button class="control-btn" data-view="godot">Godot Game</button>
+                <button class="control-btn" data-view="html">HTML Collection</button>
+                <button class="control-btn" data-view="ai-guide">AI Instructions</button>
+            </div>
+        </header>
+
+        <!-- Sidebar Navigation -->
+        <aside class="blueprint-sidebar">
+            <nav>
+                <div class="nav-section">
+                    <h3 class="nav-title">🎮 GODOT PROJECTS</h3>
+                    <button class="nav-item" data-section="godot-overview">
+                        <div>Game Overview</div>
+                        <div class="nav-description">Desert world with floating platforms</div>
+                    </button>
+                    <button class="nav-item" data-section="game-mechanics">
+                        <div>Core Mechanics</div>
+                        <div class="nav-description">Movement, combat, progression</div>
+                    </button>
+                    <button class="nav-item" data-section="visual-style">
+                        <div>Visual Style Guide</div>
+                        <div class="nav-description">Art direction and aesthetics</div>
+                    </button>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-title">🌐 HTML TEMPLATES</h3>
+                    <button class="nav-item" data-section="divine-blueprint">
+                        <div>Divine Blueprint</div>
+                        <div class="nav-description">Spiritual book-style layout</div>
+                    </button>
+                    <button class="nav-item" data-section="blueprint-viewer">
+                        <div>Technical Viewer</div>
+                        <div class="nav-description">Professional grid interface</div>
+                    </button>
+                    <button class="nav-item" data-section="leonardo-pages">
+                        <div>Leonardo Gallery</div>
+                        <div class="nav-description">Interactive card system</div>
+                    </button>
+                </div>
+
+                <div class="nav-section">
+                    <h3 class="nav-title">🤖 AI INSTRUCTIONS</h3>
+                    <button class="nav-item" data-section="visual-commands">
+                        <div>Visual Commands</div>
+                        <div class="nav-description">How to reference this blueprint</div>
+                    </button>
+                    <button class="nav-item" data-section="style-guide">
+                        <div>Style Guidelines</div>
+                        <div class="nav-description">Design principles and patterns</div>
+                    </button>
+                </div>
+            </nav>
+        </aside>
+
+        <!-- Main Content -->
+        <main class="blueprint-main">
+            <!-- OVERVIEW SECTION -->
+            <section class="content-section active" id="overview">
+                <h2 class="section-title">🏗️ PROJECT ARCHITECTURE OVERVIEW</h2>
+                
+                <div class="godot-showcase">
+                    <h3>🎮 PRIMARY FOCUS: GODOT GAME PROJECT</h3>
+                    <p>Desert world adventure with spiritual themes, floating platforms, and cosmic elements. Reference this blueprint when discussing game development, visual design, or technical implementation.</p>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <h4 class="card-title">🌅 Game World Overview</h4>
+                        <div class="card-visual">🏜️</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Technical Specs</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Engine:</span>
+                                    <span class="specs-value">Godot 4.x</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Graphics:</span>
+                                    <span class="specs-value">3D with 2D Elements</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Theme:</span>
+                                    <span class="specs-value">Desert + Cosmic</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="html-collection">
+                    <h3>💡 HOW TO REFERENCE THESE TEMPLATES</h3>
+                    <p><strong>Tell any AI assistant:</strong></p>
+                    <div class="code-example">
+"Look at my Master Visual Blueprint HTML, specifically the HTML Template Collection section. 
+I want you to recreate the [DIVINE BLUEPRINT / TECHNICAL VIEWER / LEONARDO GALLERY] 
+layout structure but adapt it for my [specific project]."</div>
+                    <p>This gives instant context for layout preferences, styling approaches, and interaction patterns!</p>
+                </div>
+            </section>
+
+            <!-- AI INSTRUCTIONS SECTION -->
+            <section class="content-section" id="ai-guide">
+                <h2 class="section-title">🤖 AI COMMUNICATION GUIDE</h2>
+                
+                <div class="ai-instructions">
+                    <h3>🎯 PRIMARY PURPOSE OF THIS BLUEPRINT</h3>
+                    <p>This HTML file serves as a <strong>visual vocabulary</strong> for communicating with AI assistants. Instead of describing layouts, styles, or functionality in words, you can reference specific sections of this blueprint for instant understanding.</p>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <h4 class="card-title">📋 Quick Reference Commands</h4>
+                        <div class="card-visual">💬</div>
+                        <div class="code-example">
+<!-- For Godot Projects -->
+"Reference my Master Blueprint Godot section - 
+create desert world with floating platforms"
+
+<!-- For HTML Projects -->
+"Copy the Divine Blueprint layout from my Master Blueprint - 
+book-style with gradient boxes"
+
+<!-- For UI Design -->
+"Use the card grid system shown in my Master Blueprint 
+Leonardo section"
+
+<!-- For Color Schemes -->
+"Apply the cosmic purple gradient theme from 
+my Master Blueprint header"</div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🎨 Visual Style Guidelines</h4>
+                        <div class="card-visual">🎭</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Design Principles</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Theme:</span>
+                                    <span class="specs-value">Cosmic + Spiritual + Technical</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Layout:</span>
+                                    <span class="specs-value">Grid-based + Card systems</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Colors:</span>
+                                    <span class="specs-value">Purple gradients + gold accents</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Typography:</span>
+                                    <span class="specs-value">Cinzel + Crimson Text + Courier</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">⚡ Interactive Elements</h4>
+                        <div class="card-visual">🔄</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Standard Interactions</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Hover Effects:</span>
+                                    <span class="specs-value">translateY + scale transforms</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Transitions:</span>
+                                    <span class="specs-value">0.3s ease for smoothness</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Particle Effects:</span>
+                                    <span class="specs-value">Click explosions with gold particles</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Navigation:</span>
+                                    <span class="specs-value">Sidebar + main content switching</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">📐 Technical Specifications</h4>
+                        <div class="card-visual">📊</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Implementation Details</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Grid System:</span>
+                                    <span class="specs-value">CSS Grid + Flexbox hybrid</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Responsive:</span>
+                                    <span class="specs-value">Mobile-first breakpoints</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Animations:</span>
+                                    <span class="specs-value">CSS transforms + keyframes</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Background:</span>
+                                    <span class="specs-value">Animated starfield + gradients</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="godot-showcase">
+                    <h3>🚀 IMPLEMENTATION STRATEGY</h3>
+                    <p><strong>Step 1:</strong> Show this blueprint to any AI assistant<br>
+                    <strong>Step 2:</strong> Reference the specific section that matches your needs<br>
+                    <strong>Step 3:</strong> Ask for adaptation/recreation of that exact layout<br>
+                    <strong>Step 4:</strong> Specify your content while keeping the visual structure</p>
+                </div>
+
+                <div class="html-collection">
+                    <h3>📚 EXAMPLE USAGE SCENARIOS</h3>
+                    <div class="code-example">
+// For Game Development
+"I need a Godot script that matches the desert world specs 
+in my Master Blueprint - floating platforms with cosmic themes"
+
+// For Web Development  
+"Create an HTML page using the card grid layout from my 
+Master Blueprint Leonardo section"
+
+// For UI Design
+"Design a dashboard interface copying the sidebar navigation 
+from my Master Blueprint Technical Viewer section"
+
+// For Color Schemes
+"Apply the gradient color system shown in my Master Blueprint 
+to this new project"</div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script>
+        // Initialize starfield
+        function createStarfield() {
+            const starfield = document.getElementById('starfield');
+            const numStars = 100;
+            
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = 'star';
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                star.style.animationDelay = Math.random() * 3 + 's';
+                starfield.appendChild(star);
+            }
+        }
+
+        // Navigation functionality
+        function initNavigation() {
+            // Control panel buttons
+            const controlBtns = document.querySelectorAll('.control-btn');
+            const sections = document.querySelectorAll('.content-section');
+            
+            controlBtns.forEach(btn => {
+                btn.addEventListener('click', () => {
+                    // Remove active class from all buttons and sections
+                    controlBtns.forEach(b => b.classList.remove('active'));
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // Add active class to clicked button
+                    btn.classList.add('active');
+                    
+                    // Show corresponding section
+                    const targetView = btn.dataset.view;
+                    let targetSection;
+                    
+                    switch(targetView) {
+                        case 'overview':
+                            targetSection = document.getElementById('overview');
+                            break;
+                        case 'godot':
+                            targetSection = document.getElementById('godot');
+                            break;
+                        case 'html':
+                            targetSection = document.getElementById('html');
+                            break;
+                        case 'ai-guide':
+                            targetSection = document.getElementById('ai-guide');
+                            break;
+                    }
+                    
+                    if (targetSection) {
+                        targetSection.classList.add('active');
+                    }
+                });
+            });
+
+            // Sidebar navigation - NOW PROPERLY CONNECTED
+            const navItems = document.querySelectorAll('.nav-item');
+            
+            navItems.forEach(item => {
+                item.addEventListener('click', () => {
+                    // Remove active class from all nav items
+                    navItems.forEach(i => i.classList.remove('active'));
+                    
+                    // Add active class to clicked item
+                    item.classList.add('active');
+                    
+                    // Hide all content sections
+                    sections.forEach(s => s.classList.remove('active'));
+                    
+                    // Show the target section based on data-section attribute
+                    const targetSection = item.dataset.section;
+                    const sectionElement = document.getElementById(targetSection);
+                    
+                    if (sectionElement) {
+                        sectionElement.classList.add('active');
+                        
+                        // Update control panel to reflect current view
+                        controlBtns.forEach(b => b.classList.remove('active'));
+                        
+                        // Determine which control button should be active
+                        if (targetSection.includes('godot') || targetSection.includes('game') || targetSection.includes('visual-style')) {
+                            document.querySelector('[data-view="godot"]').classList.add('active');
+                        } else if (targetSection.includes('divine') || targetSection.includes('blueprint-viewer') || targetSection.includes('leonardo')) {
+                            document.querySelector('[data-view="html"]').classList.add('active');
+                        } else if (targetSection.includes('visual-commands') || targetSection.includes('style-guide')) {
+                            document.querySelector('[data-view="ai-guide"]').classList.add('active');
+                        } else {
+                            document.querySelector('[data-view="overview"]').classList.add('active');
+                        }
+                    }
+                });
+            });
+        }
+
+        // Particle explosion effect
+        function createParticleExplosion(x, y) {
+            const particleCount = Math.floor(Math.random() * 15) + 10;
+            
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                
+                // Random velocity
+                const angle = Math.random() * Math.PI * 2;
+                const speed = Math.random() * 100 + 50;
+                const vx = Math.cos(angle) * speed;
+                const vy = Math.sin(angle) * speed;
+                
+                document.body.appendChild(particle);
+                
+                // Animate particle
+                particle.animate([
+                    { transform: 'translate(0, 0) scale(1)', opacity: 1 },
+                    { transform: `translate(${vx}px, ${vy}px) scale(0)`, opacity: 0 }
+                ], {
+                    duration: 2000,
+                    easing: 'ease-out'
+                }).onfinish = () => {
+                    particle.remove();
+                };
+            }
+        }
+
+        // Click effects
+        function initClickEffects() {
+            document.addEventListener('click', (e) => {
+                createParticleExplosion(e.clientX, e.clientY);
+            });
+        }
+
+        // Initialize everything when DOM loads
+        document.addEventListener('DOMContentLoaded', () => {
+            createStarfield();
+            initNavigation();
+            initClickEffects();
+        });
+
+        // Keyboard shortcuts
+        document.addEventListener('keydown', (e) => {
+            if (e.ctrlKey || e.metaKey) {
+                switch(e.key) {
+                    case '1':
+                        e.preventDefault();
+                        document.querySelector('[data-view="overview"]').click();
+                        break;
+                    case '2':
+                        e.preventDefault();
+                        document.querySelector('[data-view="godot"]').click();
+                        break;
+                    case '3':
+                        e.preventDefault();
+                        document.querySelector('[data-view="html"]').click();
+                        break;
+                    case '4':
+                        e.preventDefault();
+                        document.querySelector('[data-view="ai-guide"]').click();
+                        break;
+                }
+            }
+        });
+    </script>
+</body>
+</html>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🏗️ HTML Templates Library</h4>
+                        <div class="card-visual">📄</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Available Templates</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Divine Blueprint:</span>
+                                    <span class="specs-value">Book Layout</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Technical Viewer:</span>
+                                    <span class="specs-value">Grid Interface</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Leonardo Pages:</span>
+                                    <span class="specs-value">Card Gallery</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🎨 Visual Style Reference</h4>
+                        <div class="card-visual">🌟</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Color Palette</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Primary:</span>
+                                    <span class="specs-value">#667eea → #764ba2</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Accent:</span>
+                                    <span class="specs-value">#f39c12 (Divine Gold)</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Sacred:</span>
+                                    <span class="specs-value">#e74c3c (Holy Red)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🤖 AI Communication Protocol</h4>
+                        <div class="card-visual">🧠</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Usage Instructions</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Reference:</span>
+                                    <span class="specs-value">"Like the Master Blueprint"</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Style:</span>
+                                    <span class="specs-value">"Copy this exact layout"</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Function:</span>
+                                    <span class="specs-value">Visual vocabulary tool</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="ai-instructions">
+                    <h3>🎯 HOW TO USE THIS BLUEPRINT WITH AI ASSISTANTS</h3>
+                    <p><strong>Instead of explaining with words, just say:</strong></p>
+                    <div class="code-example">
+"Look at my Master Visual Blueprint HTML. I want you to create 
+something with the same layout structure as the [SPECIFIC SECTION]. 
+Copy the grid system, color scheme, and card-based approach exactly."</div>
+                    <p>This gives any AI assistant instant visual context for your requirements!</p>
+                </div>
+            </section>
+
+            <!-- GODOT OVERVIEW SUBSECTION -->
+            <section class="content-section" id="godot-overview">
+                <h2 class="section-title">🎮 GODOT GAME OVERVIEW</h2>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <h4 class="card-title">🏜️ Your Desert World (From Screenshot)</h4>
+                        <div class="card-visual">🌅</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">What I Can See</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Terrain:</span>
+                                    <span class="specs-value">Sandy yellow/beige landscape</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Platforms:</span>
+                                    <span class="specs-value">Green floating circular platforms</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Sky:</span>
+                                    <span class="specs-value">Clear atmospheric background</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">UI Elements:</span>
+                                    <span class="specs-value">Angel/spiritual imagery panels</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🎯 Core Game Concept</h4>
+                        <div class="card-visual">🎮</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Game Vision</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Genre:</span>
+                                    <span class="specs-value">3D Adventure/Platformer</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Setting:</span>
+                                    <span class="specs-value">Mystical desert realm</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Theme:</span>
+                                    <span class="specs-value">Spiritual journey/exploration</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Mechanics:</span>
+                                    <span class="specs-value">Platform traversal + discovery</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- GAME MECHANICS SUBSECTION -->
+            <section class="content-section" id="game-mechanics">
+                <h2 class="section-title">⚙️ CORE GAME MECHANICS</h2>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <h4 class="card-title">🏃‍♂️ Player Movement System</h4>
+                        <div class="card-visual">🎯</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Movement Mechanics</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Basic Movement:</span>
+                                    <span class="specs-value">WASD + Mouse look</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Jump:</span>
+                                    <span class="specs-value">Space bar + double jump</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Platform Interaction:</span>
+                                    <span class="specs-value">Auto-grab ledges</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Speed:</span>
+                                    <span class="specs-value">Variable pace + sprint</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🌊 Platform Physics</h4>
+                        <div class="card-visual">⚡</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Platform Behavior</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Floating Platforms:</span>
+                                    <span class="specs-value">Green circular platforms</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Physics:</span>
+                                    <span class="specs-value">Gentle bobbing motion</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Interaction:</span>
+                                    <span class="specs-value">Solid collision detection</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Visual Effect:</span>
+                                    <span class="specs-value">Slight glow/energy aura</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VISUAL STYLE SUBSECTION -->
+            <section class="content-section" id="visual-style">
+                <h2 class="section-title">🎨 VISUAL STYLE GUIDE</h2>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <h4 class="card-title">🏜️ Desert World Aesthetic</h4>
+                        <div class="card-visual">🌅</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Environment Colors</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Primary Terrain:</span>
+                                    <span class="specs-value">#D4AF37 (Golden sand)</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Platform Green:</span>
+                                    <span class="specs-value">#228B22 (Forest green)</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Sky Background:</span>
+                                    <span class="specs-value">#87CEEB (Sky blue)</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Accent Elements:</span>
+                                    <span class="specs-value">#DDA0DD (Spiritual purple)</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">👼 Spiritual UI Elements</h4>
+                        <div class="card-visual">✨</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Interface Design</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Angel Imagery:</span>
+                                    <span class="specs-value">Wing motifs + halos</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Panel Style:</span>
+                                    <span class="specs-value">Floating translucent windows</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Typography:</span>
+                                    <span class="specs-value">Clean, readable fonts</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Animation:</span>
+                                    <span class="specs-value">Gentle fade in/out effects</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- DIVINE BLUEPRINT SUBSECTION -->
+            <section class="content-section" id="divine-blueprint">
+                <h2 class="section-title">📖 DIVINE BLUEPRINT TEMPLATE</h2>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <h4 class="card-title">📚 Book-Style Layout</h4>
+                        <div class="card-visual">📜</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Layout Structure</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Container:</span>
+                                    <span class="specs-value">max-width: 900px, centered</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Pages:</span>
+                                    <span class="specs-value">Full height sections</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Typography:</span>
+                                    <span class="specs-value">Cinzel + Crimson Text</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Spacing:</span>
+                                    <span class="specs-value">60px padding, generous line-height</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🎨 Gradient Box System</h4>
+                        <div class="card-visual">🌈</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Box Types</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Verse Box:</span>
+                                    <span class="specs-value">Purple gradient, centered text</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Insight Box:</span>
+                                    <span class="specs-value">Orange gradient, left border</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Success Box:</span>
+                                    <span class="specs-value">Aqua gradient, green border</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Warning Box:</span>
+                                    <span class="specs-value">Pink gradient, red border</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- BLUEPRINT VIEWER SUBSECTION -->
+            <section class="content-section" id="blueprint-viewer">
+                <h2 class="section-title">🔧 TECHNICAL VIEWER TEMPLATE</h2>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <h4 class="card-title">📐 Grid Layout System</h4>
+                        <div class="card-visual">⚙️</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Grid Structure</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Main Grid:</span>
+                                    <span class="specs-value">300px sidebar + 1fr main</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Header:</span>
+                                    <span class="specs-value">Full width, dark background</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Sidebar:</span>
+                                    <span class="specs-value">Fixed width, scrollable</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Main Area:</span>
+                                    <span class="specs-value">Flexible content space</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🎛️ Control Panel Design</h4>
+                        <div class="card-visual">🔄</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Interface Controls</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Toggle Buttons:</span>
+                                    <span class="specs-value">Layer visibility controls</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Navigation:</span>
+                                    <span class="specs-value">Component list with descriptions</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Specs Panel:</span>
+                                    <span class="specs-value">Technical information display</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Grid Background:</span>
+                                    <span class="specs-value">Technical blueprint aesthetic</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- LEONARDO PAGES SUBSECTION -->
+            <section class="content-section" id="leonardo-pages">
+                <h2 class="section-title">🎨 LEONARDO GALLERY TEMPLATE</h2>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <h4 class="card-title">🖼️ Card Gallery System</h4>
+                        <div class="card-visual">🃏</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Card Layout</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Grid:</span>
+                                    <span class="specs-value">auto-fit, minmax(400px, 1fr)</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Card Style:</span>
+                                    <span class="specs-value">White background, rounded corners</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Visual Demo:</span>
+                                    <span class="specs-value">200px height demonstration area</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Interactions:</span>
+                                    <span class="specs-value">Hover lift effect, button toggles</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🎭 Interactive Elements</h4>
+                        <div class="card-visual">⚡</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Interaction Design</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Mirror Text:</span>
+                                    <span class="specs-value">scaleX(-1) for da Vinci effect</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Typography Focus:</span>
+                                    <span class="specs-value">Highlight technique demonstrations</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Visual Effects:</span>
+                                    <span class="specs-value">Geometric shapes, rotating elements</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Color Scheme:</span>
+                                    <span class="specs-value">Renaissance brown/gold palette</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- VISUAL COMMANDS SUBSECTION -->
+            <section class="content-section" id="visual-commands">
+                <h2 class="section-title">💬 VISUAL COMMAND REFERENCE</h2>
+                
+                <div class="ai-instructions">
+                    <h3>🎯 QUICK REFERENCE COMMANDS</h3>
+                    <p>Use these exact phrases when working with AI assistants:</p>
+                </div>
+
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <h4 class="card-title">🎮 For Godot Projects</h4>
+                        <div class="card-visual">🎯</div>
+                        <div class="code-example">
+"Reference my Master Blueprint Godot Overview section - 
+create desert world with green floating platforms"
+
+"Copy the game mechanics from my Master Blueprint - 
+WASD movement with double jump on floating platforms"
+
+"Use the visual style from my Master Blueprint - 
+golden sand terrain with spiritual UI elements"</div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🌐 For HTML Projects</h4>
+                        <div class="card-visual">📄</div>
+                        <div class="code-example">
+"Copy the Divine Blueprint layout from my Master Blueprint - 
+book-style with gradient boxes and Cinzel typography"
+
+"Use the Technical Viewer grid system from my Master Blueprint - 
+300px sidebar with main content area"
+
+"Recreate the Leonardo Gallery cards from my Master Blueprint - 
+auto-fit grid with hover effects"</div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🎨 For UI Design</h4>
+                        <div class="card-visual">🖌️</div>
+                        <div class="code-example">
+"Apply the cosmic purple gradient theme from 
+my Master Blueprint header section"
+
+"Use the card system from my Master Blueprint - 
+white background, rounded corners, shadow effects"
+
+"Copy the sidebar navigation style from my Master Blueprint - 
+section titles with clickable items"</div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">⚡ For Interactive Elements</h4>
+                        <div class="card-visual">🔄</div>
+                        <div class="code-example">
+"Include particle explosion effects like my Master Blueprint - 
+click anywhere for gold particle bursts"
+
+"Add the starfield background from my Master Blueprint - 
+animated twinkling stars on dark gradient"
+
+"Use the hover effects from my Master Blueprint - 
+translateY lift with smooth transitions"</div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- STYLE GUIDE SUBSECTION -->
+            <section class="content-section" id="style-guide">
+                <h2 class="section-title">📏 COMPLETE STYLE GUIDELINES</h2>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <h4 class="card-title">🎨 Color Palette Reference</h4>
+                        <div class="card-visual">🌈</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Master Color System</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Cosmic Purple:</span>
+                                    <span class="specs-value">#667eea → #764ba2</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Divine Gold:</span>
+                                    <span class="specs-value">#f39c12</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Sacred Red:</span>
+                                    <span class="specs-value">#e74c3c</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Holy Green:</span>
+                                    <span class="specs-value">#27ae60</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">📝 Typography System</h4>
+                        <div class="card-visual">📖</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Font Hierarchy</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Titles:</span>
+                                    <span class="specs-value">Cinzel (serif, decorative)</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Body Text:</span>
+                                    <span class="specs-value">Crimson Text (serif, readable)</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Code:</span>
+                                    <span class="specs-value">Courier Prime (monospace)</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Sizes:</span>
+                                    <span class="specs-value">2.5em titles, 1.1em body</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">📐 Spacing & Layout</h4>
+                        <div class="card-visual">📏</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Design System</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Container Max:</span>
+                                    <span class="specs-value">1200px centered</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Card Padding:</span>
+                                    <span class="specs-value">25px all sides</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Grid Gap:</span>
+                                    <span class="specs-value">25px between items</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Border Radius:</span>
+                                    <span class="specs-value">15px for cards, 10px for elements</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">⚡ Animation Standards</h4>
+                        <div class="card-visual">🎬</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Motion Design</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Transition Duration:</span>
+                                    <span class="specs-value">0.3s ease for standard</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Hover Lift:</span>
+                                    <span class="specs-value">translateY(-10px) + shadow</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Particle Life:</span>
+                                    <span class="specs-value">2s fade with upward motion</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Star Twinkle:</span>
+                                    <span class="specs-value">3s infinite opacity cycle</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- MAIN GODOT SECTION (OVERVIEW) -->
+            <section class="content-section" id="godot">
+                
+
+            <!-- HTML COLLECTION SECTION -->
+            <section class="content-section" id="html">
+                <h2 class="section-title">🌐 HTML TEMPLATE COLLECTION</h2>
+                
+                <div class="gallery-grid">
+                    <div class="gallery-card">
+                        <h4 class="card-title">📖 Divine Blueprint Website</h4>
+                        <div class="card-visual">📜</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Layout Features</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Structure:</span>
+                                    <span class="specs-value">Book-style chapters + pages</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Styling:</span>
+                                    <span class="specs-value">Gradient boxes + spiritual themes</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Typography:</span>
+                                    <span class="specs-value">Cinzel + Crimson Text fonts</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Best For:</span>
+                                    <span class="specs-value">Documentation + content sites</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🔧 Technical Blueprint Viewer</h4>
+                        <div class="card-visual">⚙️</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Interface Features</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Layout:</span>
+                                    <span class="specs-value">Sidebar + main content grid</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Controls:</span>
+                                    <span class="specs-value">Layer toggles + navigation</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Style:</span>
+                                    <span class="specs-value">Professional technical interface</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Best For:</span>
+                                    <span class="specs-value">Dashboards + admin panels</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🎨 Leonardo Five Pages</h4>
+                        <div class="card-visual">🖼️</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Gallery Features</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Layout:</span>
+                                    <span class="specs-value">Card-based gallery grid</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Interaction:</span>
+                                    <span class="specs-value">Hover effects + animations</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Style:</span>
+                                    <span class="specs-value">Renaissance aesthetic</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Best For:</span>
+                                    <span class="specs-value">Portfolios + showcase sites</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <div class="gallery-card">
+                        <h4 class="card-title">🌟 This Master Blueprint</h4>
+                        <div class="card-visual">🎯</div>
+                        <div class="tech-specs">
+                            <div class="specs-title">Combination Features</div>
+                            <ul class="specs-list">
+                                <li class="specs-item">
+                                    <span class="specs-label">Divine:</span>
+                                    <span class="specs-value">Spiritual themes + gradients</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Technical:</span>
+                                    <span class="specs-value">Grid layout + sidebar nav</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Leonardo:</span>
+                                    <span class="specs-value">Card system + interactions</span>
+                                </li>
+                                <li class="specs-item">
+                                    <span class="specs-label">Purpose:</span>
+                                    <span class="specs-value">AI communication tool</span>
+                                </li>
+                            

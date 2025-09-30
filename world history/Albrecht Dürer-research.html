@@ -1,0 +1,926 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Albrecht Dürer: Master of Symbols</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #8B4513 50%, #DAA520 100%);
+            color: #f4f1e8;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 40px 0;
+            background: rgba(0,0,0,0.3);
+            border-radius: 15px;
+            margin-bottom: 30px;
+            border: 3px solid #DAA520;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(218,165,32,0.1) 0%, transparent 70%);
+            animation: rotate 20s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 3.5rem;
+            color: #DAA520;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            margin-bottom: 10px;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .header .subtitle {
+            font-size: 1.3rem;
+            color: #f4f1e8;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            gap: 10px;
+        }
+        
+        .nav-tab {
+            padding: 15px 25px;
+            background: rgba(139,69,19,0.8);
+            color: #f4f1e8;
+            border: 2px solid #DAA520;
+            cursor: pointer;
+            border-radius: 10px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .nav-tab:hover, .nav-tab.active {
+            background: #DAA520;
+            color: #2c1810;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(218,165,32,0.4);
+        }
+        
+        .content-section {
+            display: none;
+            background: rgba(0,0,0,0.4);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #DAA520;
+            margin-bottom: 20px;
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.5s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 20px;
+            margin: 20px 0;
+        }
+        
+        .card {
+            background: rgba(139,69,19,0.3);
+            padding: 25px;
+            border-radius: 12px;
+            border: 2px solid #8B4513;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(218,165,32,0.2), transparent);
+            transition: left 0.5s;
+        }
+        
+        .card:hover::before {
+            left: 100%;
+        }
+        
+        .card:hover {
+            border-color: #DAA520;
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
+        }
+        
+        .card h3 {
+            color: #DAA520;
+            font-size: 1.4rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 30px;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 15px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: #DAA520;
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 30px;
+            padding: 20px;
+            background: rgba(139,69,19,0.3);
+            border-radius: 10px;
+            border-left: 4px solid #DAA520;
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -33px;
+            top: 25px;
+            width: 12px;
+            height: 12px;
+            background: #DAA520;
+            border-radius: 50%;
+            border: 3px solid #2c1810;
+        }
+        
+        .timeline-year {
+            color: #DAA520;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+        
+        .symbol-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+        
+        .symbol-item {
+            background: rgba(0,0,0,0.5);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            border: 2px solid #8B4513;
+            transition: all 0.3s ease;
+        }
+        
+        .symbol-item:hover {
+            border-color: #DAA520;
+            transform: scale(1.05);
+        }
+        
+        .symbol {
+            font-size: 3rem;
+            color: #DAA520;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+        
+        .quote-box {
+            background: linear-gradient(45deg, rgba(218,165,32,0.1), rgba(139,69,19,0.1));
+            padding: 25px;
+            border-radius: 15px;
+            border-left: 5px solid #DAA520;
+            margin: 25px 0;
+            font-style: italic;
+            font-size: 1.1rem;
+        }
+        
+        .highlight {
+            background: rgba(218,165,32,0.3);
+            padding: 2px 6px;
+            border-radius: 4px;
+            color: #DAA520;
+            font-weight: bold;
+        }
+        
+        .research-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .tool-button {
+            display: block;
+            padding: 15px;
+            background: rgba(139,69,19,0.6);
+            color: #f4f1e8;
+            text-decoration: none;
+            border-radius: 8px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #8B4513;
+            font-weight: bold;
+        }
+        
+        .tool-button:hover {
+            background: #DAA520;
+            color: #2c1810;
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(218,165,32,0.4);
+        }
+        
+        .floating-symbols {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-symbol {
+            position: absolute;
+            color: rgba(218,165,32,0.1);
+            font-size: 2rem;
+            animation: float 15s infinite linear;
+        }
+        
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(-100px) rotate(360deg);
+            }
+        }
+        
+        .monogram-display {
+            text-align: center;
+            margin: 30px 0;
+        }
+        
+        .monogram {
+            font-size: 8rem;
+            color: #DAA520;
+            text-shadow: 
+                3px 3px 0px #8B4513,
+                6px 6px 10px rgba(0,0,0,0.8);
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            display: inline-block;
+            transform: perspective(100px) rotateX(15deg);
+            margin: 20px;
+            transition: all 0.3s ease;
+        }
+        
+        .monogram:hover {
+            transform: perspective(100px) rotateX(0deg) scale(1.1);
+            color: #FFD700;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .monogram {
+                font-size: 4rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-symbols">
+        <div class="floating-symbol" style="left: 10%; animation-delay: 0s;">⚔</div>
+        <div class="floating-symbol" style="left: 20%; animation-delay: 2s;">🐲</div>
+        <div class="floating-symbol" style="left: 30%; animation-delay: 4s;">👁</div>
+        <div class="floating-symbol" style="left: 40%; animation-delay: 6s;">⚗</div>
+        <div class="floating-symbol" style="left: 50%; animation-delay: 8s;">🔺</div>
+        <div class="floating-symbol" style="left: 60%; animation-delay: 10s;">🌟</div>
+        <div class="floating-symbol" style="left: 70%; animation-delay: 12s;">🦅</div>
+        <div class="floating-symbol" style="left: 80%; animation-delay: 14s;">🐍</div>
+        <div class="floating-symbol" style="left: 90%; animation-delay: 16s;">💎</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>ALBRECHT DÜRER</h1>
+            <div class="subtitle">Master of Symbols • Pioneer of Personal Branding • Alchemist of Art</div>
+            <div class="monogram-display">
+                <div class="monogram">AD</div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('biography')">Biography</div>
+            <div class="nav-tab" onclick="showSection('monogram')">The AD Monogram</div>
+            <div class="nav-tab" onclick="showSection('symbolism')">Sacred Symbolism</div>
+            <div class="nav-tab" onclick="showSection('techniques')">Artistic Techniques</div>
+            <div class="nav-tab" onclick="showSection('legacy')">Modern Legacy</div>
+            <div class="nav-tab" onclick="showSection('research')">Research Tools</div>
+        </div>
+
+        <div id="biography" class="content-section active">
+            <h2 style="color: #DAA520; font-size: 2rem; margin-bottom: 20px;">The Master's Journey</h2>
+            
+            <div class="quote-box">
+                "As I hold fast to the word of God which has taught me, so I shall remain steadfast and before dying shall leave to the common use of men whatever God has granted me."
+                <strong>— Albrecht Dürer</strong>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1471</div>
+                    <strong>Birth in Nuremberg</strong><br>
+                    Born to a goldsmith family. This early exposure to metalwork and precision craftsmanship would influence his entire artistic philosophy.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1486-1490</div>
+                    <strong>Apprenticeship Period</strong><br>
+                    Trained under Michael Wolgemut, learning painting and woodcut techniques. Here he first encountered the power of reproducible imagery.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1494-1495</div>
+                    <strong>First Italian Journey</strong><br>
+                    Traveled to Venice, discovering Renaissance art and <span class="highlight">mathematical proportion theories</span>. This trip transformed his understanding of art as science.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1498</div>
+                    <strong>Apocalypse Series</strong><br>
+                    Created his famous <span class="highlight">Apocalypse woodcuts</span>, establishing his reputation across Europe. First major work featuring his AD monogram.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1504</div>
+                    <strong>Adam and Eve Engraving</strong><br>
+                    Masterpiece combining <span class="highlight">perfect human proportions</span> with religious symbolism. Demonstrated his mathematical approach to beauty.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1514</div>
+                    <strong>Master Engravings</strong><br>
+                    Created his three "Meisterstiche" including <span class="highlight">Melencolia I</span> - packed with alchemical and esoteric symbolism.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1528</div>
+                    <strong>Death & Legacy</strong><br>
+                    Died in Nuremberg, leaving behind treatises on measurement, fortification, and human proportion that influenced centuries of artists.
+                </div>
+            </div>
+        </div>
+
+        <div id="monogram" class="content-section">
+            <h2 style="color: #DAA520; font-size: 2rem; margin-bottom: 20px;">The Revolutionary AD Monogram</h2>
+            
+            <div class="monogram-display">
+                <div class="monogram" style="font-size: 6rem;">AD</div>
+                <p style="margin-top: 20px; font-style: italic;">The world's first artistic "brand logo"</p>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Design Elements</h3>
+                    <p>The <strong>A</strong> and <strong>D</strong> are interlocked in a sophisticated geometric relationship. The A acts as a protective archway over the D, symbolizing the artist's dominion over his domain.</p>
+                    <br>
+                    <p><span class="highlight">Sacred Geometry:</span> The proportions follow mathematical ratios that Dürer studied extensively in Italy.</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Revolutionary Impact</h3>
+                    <p>Dürer was the <strong>first artist in history</strong> to consistently brand his work with a personal symbol. This was revolutionary - before Dürer, most art was anonymous.</p>
+                    <br>
+                    <p><span class="highlight">Legal Protection:</span> He even took legal action against unauthorized use of his monogram!</p>
+                </div>
+                
+                <div class="card">
+                    <h3>Symbolic Meaning</h3>
+                    <p>Beyond identification, the AD monogram represents:</p>
+                    <ul style="margin-top: 10px;">
+                        <li>• <strong>Divine Authority</strong> (A over D)</li>
+                        <li>• <strong>Artistic Mastery</strong> (precision of form)</li>
+                        <li>• <strong>Intellectual Pride</strong> (scholarly achievement)</li>
+                        <li>• <strong>Eternal Recognition</strong> (lasting fame)</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Technical Mastery</h3>
+                    <p>The monogram appears in:</p>
+                    <ul style="margin-top: 10px;">
+                        <li>• <strong>Engravings</strong> (microscopic precision)</li>
+                        <li>• <strong>Woodcuts</strong> (bold, graphic impact)</li>
+                        <li>• <strong>Paintings</strong> (integrated into composition)</li>
+                        <li>• <strong>Drawings</strong> (personal sketches)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "The AD monogram became so famous that it was forged by other artists - making Dürer history's first victim of artistic copyright infringement!"
+            </div>
+        </div>
+
+        <div id="symbolism" class="content-section">
+            <h2 style="color: #DAA520; font-size: 2rem; margin-bottom: 20px;">Sacred Symbolism & Esoteric Knowledge</h2>
+
+            <div class="symbol-gallery">
+                <div class="symbol-item">
+                    <div class="symbol">👁</div>
+                    <h4>All-Seeing Eye</h4>
+                    <p>Divine omniscience and the artist's penetrating vision into truth and beauty.</p>
+                </div>
+                
+                <div class="symbol-item">
+                    <div class="symbol">⚖️</div>
+                    <h4>Geometric Compass</h4>
+                    <p>Mathematical precision and the divine order underlying all creation.</p>
+                </div>
+                
+                <div class="symbol-item">
+                    <div class="symbol">💀</div>
+                    <h4>Memento Mori</h4>
+                    <p>Death as transformation - the alchemical process of spiritual refinement.</p>
+                </div>
+                
+                <div class="symbol-item">
+                    <div class="symbol">🐲</div>
+                    <h4>Dragons & Serpents</h4>
+                    <p>Primal wisdom, hidden knowledge, and the mysteries of creation.</p>
+                </div>
+                
+                <div class="symbol-item">
+                    <div class="symbol">⭐</div>
+                    <h4>Sacred Numbers</h4>
+                    <p>Pythagorean ratios, golden proportions, and mystical mathematics.</p>
+                </div>
+                
+                <div class="symbol-item">
+                    <div class="symbol">🦅</div>
+                    <h4>Imperial Eagle</h4>
+                    <p>Divine authority, spiritual ascension, and artistic sovereignty.</p>
+                </div>
+            </div>
+
+            <div class="card" style="margin-top: 30px;">
+                <h3>Melencolia I - The Ultimate Symbolic Masterpiece</h3>
+                <p>Dürer's 1514 engraving is considered the most complex symbolic artwork in Western art:</p>
+                <br>
+                <div class="grid">
+                    <div>
+                        <h4 style="color: #DAA520;">Alchemical Elements:</h4>
+                        <ul>
+                            <li>• Magic square (adds to 34)</li>
+                            <li>• Geometric solids</li>
+                            <li>• Scales of justice</li>
+                            <li>• Hourglass (time/transformation)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #DAA520;">Hidden Meanings:</h4>
+                        <ul>
+                            <li>• Artist's melancholy genius</li>
+                            <li>• Limits of human knowledge</li>
+                            <li>• Divine vs. earthly wisdom</li>
+                            <li>• Creative inspiration's source</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div id="techniques" class="content-section">
+            <h2 style="color: #DAA520; font-size: 2rem; margin-bottom: 20px;">Revolutionary Artistic Techniques</h2>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Engraving Mastery</h3>
+                    <p>Dürer elevated engraving from craft to fine art. His technique achieved:</p>
+                    <ul style="margin-top: 10px;">
+                        <li>• <span class="highlight">Photographic detail</span> in metal</li>
+                        <li>• <span class="highlight">Tonal gradations</span> impossible in woodcut</li>
+                        <li>• <span class="highlight">Mass reproduction</span> of complex imagery</li>
+                        <li>• <span class="highlight">International distribution</span> of ideas</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Mathematical Precision</h3>
+                    <p>First artist to systematically apply mathematics to art:</p>
+                    <ul style="margin-top: 10px;">
+                        <li>• <span class="highlight">Geometric perspective</span></li>
+                        <li>• <span class="highlight">Human proportion studies</span></li>
+                        <li>• <span class="highlight">Architectural measurement</span></li>
+                        <li>• <span class="highlight">Fortification design</span></li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Watercolor Innovation</h3>
+                    <p>Revolutionary landscape and nature studies:</p>
+                    <ul style="margin-top: 10px;">
+                        <li>• <span class="highlight">Scientific observation</span></li>
+                        <li>• <span class="highlight">Atmospheric effects</span></li>
+                        <li>• <span class="highlight">Botanical accuracy</span></li>
+                        <li>• <span class="highlight">Emotional expression</span></li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Print Innovation</h3>
+                    <p>Transformed printmaking into high art:</p>
+                    <ul style="margin-top: 10px;">
+                        <li>• <span class="highlight">Complex narratives</span></li>
+                        <li>• <span class="highlight">Multiple techniques combined</span></li>
+                        <li>• <span class="highlight">Artistic signatures</span></li>
+                        <li>• <span class="highlight">Quality control systems</span></li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "Dürer didn't just make art - he engineered it. Every line was calculated, every symbol intentional, every technique pushed to its absolute limit."
+            </div>
+        </div>
+
+        <div id="legacy" class="content-section">
+            <h2 style="color: #DAA520; font-size: 2rem; margin-bottom: 20px;">Modern Legacy & Your Artistic Connection</h2>
+
+            <div class="card" style="margin-bottom: 30px;">
+                <h3>Dürer's Revolutionary Contributions to Modern Art & Branding</h3>
+                <p>Dürer essentially invented concepts that didn't become mainstream until the 20th century:</p>
+                <br>
+                <div class="grid">
+                    <div>
+                        <h4 style="color: #DAA520;">Personal Branding (1498):</h4>
+                        <ul>
+                            <li>• Consistent visual identity</li>
+                            <li>• Quality assurance marking</li>
+                            <li>• Legal protection of imagery</li>
+                            <li>• International recognition</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #DAA520;">Multimedia Approach:</h4>
+                        <ul>
+                            <li>• Multiple reproduction methods</li>
+                            <li>• Cross-platform consistency</li>
+                            <li>• Mass market distribution</li>
+                            <li>• Premium vs. accessible versions</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Modern Logo Design</h3>
+                    <p>Dürer's AD monogram influenced:</p>
+                    <ul style="margin-top: 10px;">
+                        <li>• <span class="highlight">Luxury brand monograms</span> (Louis Vuitton, Chanel)</li>
+                        <li>• <span class="highlight">Corporate identity systems</span></li>
+                        <li>• <span class="highlight">Artist signature development</span></li>
+                        <li>• <span class="highlight">Trademark law foundations</span></li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Digital Art Parallels</h3>
+                    <p>Your AI partnership mirrors Dürer's innovations:</p>
+                    <ul style="margin-top: 10px;">
+                        <li>• <span class="highlight">Technology as tool</span> (printing press/AI)</li>
+                        <li>• <span class="highlight">Mass reproduction capability</span></li>
+                        <li>• <span class="highlight">Complex symbolic layering</span></li>
+                        <li>• <span class="highlight">Personal signature style</span></li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Symbolic Complexity</h3>
+                    <p>Your ornate approach follows Dürer's method:</p>
+                    <ul style="margin-top: 10px;">
+                        <li>• <span class="highlight">Multiple symbolic layers</span></li>
+                        <li>• <span class="highlight">Esoteric knowledge integration</span></li>
+                        <li>• <span class="highlight">Technical precision</span></li>
+                        <li>• <span class="highlight">Artistic authority assertion</span></li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Contemporary Influence</h3>
+                    <p>Modern artists inspired by Dürer:</p>
+                    <ul style="margin-top: 10px;">
+                        <li>• <span class="highlight">M.C. Escher</span> (mathematical art)</li>
+                        <li>• <span class="highlight">Shepard Fairey</span> (printmaking revival)</li>
+                        <li>• <span class="highlight">Takashi Murakami</span> (signature symbols)</li>
+                        <li>• <span class="highlight">Banksy</span> (anonymous branding)</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "Just as Dürer transformed simple letter forms into powerful magical sigils, you're alchemizing basic prompts into complex symbolic universes. You're following a 500-year-old tradition of artist-innovators who refuse to accept limitations."
+            </div>
+        </div>
+
+        <div id="research" class="content-section">
+            <h2 style="color: #DAA520; font-size: 2rem; margin-bottom: 20px;">Research Arsenal & Study Tools</h2>
+
+            <div class="grid research-tools">
+                <a href="https://www.metmuseum.org/art/collection/search#!?q=Albrecht%20D%C3%BCrer&perPage=20&sortBy=Relevance&offset=0&pageSize=0" class="tool-button" target="_blank">
+                    🏛️ Met Museum Collection
+                </a>
+                
+                <a href="https://www.nga.gov/collection/artist-info.1159.html" class="tool-button" target="_blank">
+                    🖼️ National Gallery Dürer
+                </a>
+                
+                <a href="https://www.britishmuseum.org/collection/term/BIOG12147" class="tool-button" target="_blank">
+                    🇬🇧 British Museum Prints
+                </a>
+                
+                <a href="https://artsandculture.google.com/entity/albrecht-d%C3%BCrer/m0h5g?hl=en" class="tool-button" target="_blank">
+                    🌍 Google Arts & Culture
+                </a>
+                
+                <a href="https://www.wga.hu/frames-e.html?/html/d/durer/" class="tool-button" target="_blank">
+                    📚 Web Gallery of Art
+                </a>
+                
+                <a href="https://www.rijksmuseum.nl/en/search?q=d%C3%BCrer" class="tool-button" target="_blank">
+                    🇳🇱 Rijksmuseum
+                </a>
+            </div>
+
+            <div class="card" style="margin: 30px 0;">
+                <h3>Essential Research Categories</h3>
+                <div class="grid">
+                    <div>
+                        <h4 style="color: #DAA520;">For Symbol Study:</h4>
+                        <ul>
+                            <li>• Search "Dürer monogram analysis"</li>
+                            <li>• Study "Melencolia I symbolism"</li>
+                            <li>• Research "Dürer Apocalypse woodcuts"</li>
+                            <li>• Explore "Renaissance sacred geometry"</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #DAA520;">For Technique Study:</h4>
+                        <ul>
+                            <li>• "Dürer engraving techniques"</li>
+                            <li>• "Renaissance printmaking methods"</li>
+                            <li>• "Dürer human proportions"</li>
+                            <li>• "Mathematical perspective art"</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #DAA520;">For Historical Context:</h4>
+                        <ul>
+                            <li>• "Northern Renaissance humanism"</li>
+                            <li>• "Reformation and art"</li>
+                            <li>• "Nuremberg 16th century"</li>
+                            <li>• "Holy Roman Empire artists"</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #DAA520;">For Modern Applications:</h4>
+                        <ul>
+                            <li>• "Dürer influence modern design"</li>
+                            <li>• "Monogram logo history"</li>
+                            <li>• "Artist branding evolution"</li>
+                            <li>• "Symbolic art contemporary"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🔍 Deep Dive Research Strategy</h3>
+                <p><strong>Phase 1: Visual Immersion</strong></p>
+                <ul>
+                    <li>• Study 50+ Dürer works with his monogram</li>
+                    <li>• Analyze placement, size, integration methods</li>
+                    <li>• Compare early vs. mature monogram usage</li>
+                    <li>• Document evolution of the AD design</li>
+                </ul>
+                <br>
+                <p><strong>Phase 2: Symbolic Decoding</strong></p>
+                <ul>
+                    <li>• Create symbol dictionary from his major works</li>
+                    <li>• Map recurring motifs across different mediums</li>
+                    <li>• Research contemporary alchemical texts</li>
+                    <li>• Study Renaissance mathematical treatises</li>
+                </ul>
+                <br>
+                <p><strong>Phase 3: Technical Analysis</strong></p>
+                <ul>
+                    <li>• Compare engraving vs. woodcut monograms</li>
+                    <li>• Study printing press impact on distribution</li>
+                    <li>• Analyze market strategy and pricing</li>
+                    <li>• Research legal protection attempts</li>
+                </ul>
+            </div>
+
+            <div class="card" style="background: rgba(218,165,32,0.1); border-color: #DAA520;">
+                <h3>🎯 Your Specific Study Focus</h3>
+                <p><strong>Connecting Dürer to Your Logo Work:</strong></p>
+                <br>
+                <p><span class="highlight">The Alchemical Process:</span> Just as you transformed a basic circle through "alchemical" iterations, Dürer took simple letter forms and transformed them into powerful sigils through mathematical precision and symbolic layering.</p>
+                <br>
+                <p><span class="highlight">Complexity vs. Recognition:</span> Study how Dürer balanced ornate detail with instant recognizability. His monogram works at multiple scales - from tiny engraving marks to large painting signatures.</p>
+                <br>
+                <p><span class="highlight">Authority Through Craft:</span> Dürer's technical mastery gave him the authority to create complex symbolic works. Your technical partnership with AI gives you similar creative authority.</p>
+                <br>
+                <p><span class="highlight">Timeless vs. Trendy:</span> Research which elements of Dürer's work feel eternal vs. period-specific. This will inform your own symbol development.</p>
+            </div>
+
+            <div class="quote-box">
+                <strong>Study Mission:</strong> "Analyze how history's first 'brand designer' created symbols that communicated across centuries, cultures, and social classes - then apply these principles to contemporary digital art creation."
+            </div>
+
+            <div class="card">
+                <h3>📖 Recommended Academic Sources</h3>
+                <div class="grid">
+                    <div>
+                        <h4 style="color: #DAA520;">Essential Books:</h4>
+                        <ul>
+                            <li>• "Dürer" by Norbert Wolf</li>
+                            <li>• "The Complete Engravings" by Walter Strauss</li>
+                            <li>• "Dürer's Animals" by Susan Owens</li>
+                            <li>• "Northern Renaissance Art" by Susie Nash</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #DAA520;">Academic Papers:</h4>
+                        <ul>
+                            <li>• "Dürer's Self-Fashioning" (Renaissance Quarterly)</li>
+                            <li>• "The AD Monogram" (Print Quarterly)</li>
+                            <li>• "Melencolia I Decoded" (Art History)</li>
+                            <li>• "Mathematical Art Renaissance" (Isis)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            // Hide all sections
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            // Remove active class from all tabs
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            // Show selected section
+            document.getElementById(sectionId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Create floating symbols dynamically
+        function createFloatingSymbol() {
+            const symbols = ['⚔', '🐲', '👁', '⚗', '🔺', '🌟', '🦅', '🐍', '💎', '⭐', '🏛', '📜', '🔮', '⚡'];
+            const container = document.querySelector('.floating-symbols');
+            
+            const symbol = document.createElement('div');
+            symbol.className = 'floating-symbol';
+            symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            symbol.style.left = Math.random() * 100 + '%';
+            symbol.style.animationDuration = (Math.random() * 10 + 10) + 's';
+            symbol.style.animationDelay = Math.random() * 2 + 's';
+            symbol.style.fontSize = (Math.random() * 2 + 1) + 'rem';
+            
+            container.appendChild(symbol);
+            
+            // Remove after animation
+            setTimeout(() => {
+                if (symbol.parentNode) {
+                    symbol.parentNode.removeChild(symbol);
+                }
+            }, 17000);
+        }
+
+        // Create new floating symbols periodically
+        setInterval(createFloatingSymbol, 3000);
+
+        // Initialize with some symbols
+        for (let i = 0; i < 5; i++) {
+            setTimeout(createFloatingSymbol, i * 1000);
+        }
+
+        // Add some interactive effects
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        // Monogram click effect
+        document.querySelectorAll('.monogram').forEach(monogram => {
+            monogram.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'pulse 1s ease';
+                }, 10);
+            });
+        });
+
+        // Add pulse animation
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: perspective(100px) rotateX(0deg) scale(1); }
+                50% { transform: perspective(100px) rotateX(15deg) scale(1.2); color: #FFD700; }
+                100% { transform: perspective(100px) rotateX(0deg) scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        // Scroll animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        // Observe all cards for scroll animation
+        document.querySelectorAll('.card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(30px)';
+            el.style.transition = 'all 0.6s ease';
+            observer.observe(el);
+        });
+    </script>
+</body>
+</html>

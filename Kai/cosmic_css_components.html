@@ -1,0 +1,569 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic CSS Components Pack</title>
+    <style>
+        /* ==== COSMIC BACKGROUND SYSTEM ==== */
+        .cosmic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: 
+                radial-gradient(ellipse at 30% 20%, #2a0845 0%, transparent 50%),
+                radial-gradient(ellipse at 70% 80%, #1a0533 0%, transparent 50%),
+                radial-gradient(ellipse at center, #0d0020 0%, #000 70%);
+            overflow: hidden;
+        }
+
+        /* Enhanced Milky Way with Sacred Geometry */
+        .cosmic-background::before {
+            content: '';
+            position: absolute;
+            top: -30%;
+            left: -40%;
+            width: 180%;
+            height: 160%;
+            background: 
+                linear-gradient(45deg, 
+                    transparent 15%, 
+                    rgba(138, 43, 226, 0.15) 25%,
+                    rgba(255, 215, 0, 0.12) 30%,
+                    rgba(255, 255, 255, 0.08) 35%,
+                    rgba(30, 144, 255, 0.12) 40%,
+                    rgba(255, 20, 147, 0.1) 45%,
+                    rgba(0, 255, 255, 0.08) 50%,
+                    rgba(255, 165, 0, 0.1) 55%,
+                    rgba(50, 205, 50, 0.06) 60%,
+                    transparent 75%
+                ),
+                repeating-conic-gradient(from 0deg at 40% 50%, 
+                    transparent 0deg, 
+                    rgba(255, 255, 255, 0.02) 20deg, 
+                    transparent 40deg
+                );
+            transform: rotate(-25deg);
+            animation: cosmic-spiral 200s linear infinite;
+        }
+
+        /* Multiple Star Layers with Colors */
+        .cosmic-stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                /* Large colorful stars */
+                radial-gradient(3px 3px at 100px 50px, rgba(255, 255, 255, 0.9), transparent),
+                radial-gradient(2px 2px at 200px 150px, rgba(255, 215, 0, 0.8), transparent),
+                radial-gradient(4px 4px at 350px 80px, rgba(30, 144, 255, 0.7), transparent),
+                radial-gradient(3px 3px at 450px 120px, rgba(255, 69, 0, 0.8), transparent),
+                radial-gradient(2px 2px at 600px 200px, rgba(255, 20, 147, 0.6), transparent),
+                /* Medium stars */
+                radial-gradient(2px 2px at 150px 300px, rgba(255, 255, 255, 0.7), transparent),
+                radial-gradient(1px 1px at 300px 250px, rgba(0, 255, 255, 0.6), transparent),
+                radial-gradient(2px 2px at 500px 350px, rgba(138, 43, 226, 0.5), transparent),
+                /* Small twinkling stars */
+                radial-gradient(1px 1px at 75px 175px, rgba(255, 255, 255, 0.5), transparent),
+                radial-gradient(1px 1px at 225px 75px, rgba(255, 215, 0, 0.4), transparent),
+                radial-gradient(1px 1px at 375px 275px, rgba(30, 144, 255, 0.4), transparent),
+                radial-gradient(1px 1px at 525px 175px, rgba(255, 20, 147, 0.3), transparent);
+            background-size: 700px 400px, 800px 500px, 600px 350px;
+            background-repeat: repeat;
+            animation: cosmic-twinkle 8s ease-in-out infinite alternate;
+        }
+
+        /* Floating Sacred Mandalas */
+        .sacred-mandala {
+            position: absolute;
+            border-radius: 50%;
+            border: 2px solid;
+            opacity: 0.15;
+            animation: mandala-drift 60s ease-in-out infinite;
+        }
+
+        .mandala-1 {
+            top: 20%;
+            left: 15%;
+            width: 200px;
+            height: 200px;
+            border-color: rgba(138, 43, 226, 0.4);
+            animation-duration: 80s;
+        }
+
+        .mandala-1::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 150px;
+            height: 150px;
+            border: 2px solid rgba(255, 215, 0, 0.3);
+            border-radius: 50%;
+            animation: mandala-rotation 40s linear infinite reverse;
+        }
+
+        .mandala-1::after {
+            content: '';
+            position: absolute;
+            top: 50px;
+            left: 50px;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(0, 255, 255, 0.35);
+            border-radius: 50%;
+            animation: mandala-rotation 30s linear infinite;
+        }
+
+        .mandala-2 {
+            top: 60%;
+            right: 20%;
+            width: 150px;
+            height: 150px;
+            border-color: rgba(255, 20, 147, 0.3);
+            animation-duration: 100s;
+            animation-direction: reverse;
+        }
+
+        .mandala-2::before {
+            content: '';
+            position: absolute;
+            top: 25px;
+            left: 25px;
+            width: 100px;
+            height: 100px;
+            border: 2px solid rgba(30, 144, 255, 0.25);
+            border-radius: 50%;
+            animation: mandala-rotation 50s linear infinite;
+        }
+
+        /* Geometric Shapes Floating */
+        .cosmic-triangle {
+            position: absolute;
+            top: 30%;
+            right: 30%;
+            width: 0;
+            height: 0;
+            border-left: 40px solid transparent;
+            border-right: 40px solid transparent;
+            border-bottom: 70px solid rgba(255, 215, 0, 0.2);
+            animation: shape-float 45s ease-in-out infinite;
+            opacity: 0.1;
+        }
+
+        .cosmic-hexagon {
+            position: absolute;
+            top: 10%;
+            right: 10%;
+            width: 60px;
+            height: 104px;
+            background: rgba(30, 144, 255, 0.15);
+            margin: 52px 0;
+            animation: shape-spin 70s linear infinite;
+            opacity: 0.12;
+        }
+
+        .cosmic-hexagon::before,
+        .cosmic-hexagon::after {
+            content: "";
+            position: absolute;
+            width: 0;
+            border-left: 30px solid transparent;
+            border-right: 30px solid transparent;
+        }
+
+        .cosmic-hexagon::before {
+            bottom: 100%;
+            border-bottom: 52px solid rgba(30, 144, 255, 0.15);
+        }
+
+        .cosmic-hexagon::after {
+            top: 100%;
+            border-top: 52px solid rgba(30, 144, 255, 0.15);
+        }
+
+        /* ==== GLASS MORPHISM COMPONENTS ==== */
+        .glass-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(255, 255, 255, 0.2);
+            border-radius: 20px;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.3),
+                inset 0 1px 0 rgba(255, 255, 255, 0.2);
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+
+        .glass-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 
+                0 20px 40px rgba(0, 0, 0, 0.4),
+                inset 0 1px 0 rgba(255, 255, 255, 0.3);
+            border-color: rgba(138, 43, 226, 0.5);
+        }
+
+        .glass-nav {
+            background: rgba(255, 255, 255, 0.08);
+            backdrop-filter: blur(25px);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            border-radius: 50px;
+            padding: 1rem 2rem;
+            box-shadow: 
+                0 8px 32px rgba(0, 0, 0, 0.2),
+                inset 0 1px 0 rgba(255, 255, 255, 0.1);
+        }
+
+        /* ==== COSMIC BUTTONS ==== */
+        .cosmic-btn {
+            position: relative;
+            background: linear-gradient(45deg, #8A2BE2, #4169E1, #FFD700);
+            background-size: 300% 300%;
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            overflow: hidden;
+            animation: cosmic-pulse 4s ease-in-out infinite;
+        }
+
+        .cosmic-btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.4), transparent);
+            transition: left 0.6s ease;
+        }
+
+        .cosmic-btn:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 
+                0 15px 35px rgba(138, 43, 226, 0.4),
+                0 0 30px rgba(255, 215, 0, 0.3);
+            animation-duration: 2s;
+        }
+
+        .cosmic-btn:hover::before {
+            left: 100%;
+        }
+
+        .cosmic-btn:active {
+            transform: translateY(-1px) scale(1.02);
+        }
+
+        /* ==== ENERGY FIELDS ==== */
+        .energy-orb {
+            position: absolute;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle at 30% 30%, 
+                rgba(138, 43, 226, 0.3) 0%,
+                rgba(255, 215, 0, 0.2) 30%,
+                rgba(30, 144, 255, 0.1) 60%,
+                transparent 100%);
+            animation: energy-pulse 6s ease-in-out infinite;
+            filter: blur(2px);
+        }
+
+        .energy-orb.primary {
+            top: 20%;
+            left: 60%;
+            animation-delay: 0s;
+        }
+
+        .energy-orb.secondary {
+            top: 70%;
+            left: 20%;
+            animation-delay: -2s;
+            width: 200px;
+            height: 200px;
+        }
+
+        .energy-orb.tertiary {
+            top: 40%;
+            right: 15%;
+            animation-delay: -4s;
+            width: 150px;
+            height: 150px;
+        }
+
+        /* ==== MYSTICAL TEXT EFFECTS ==== */
+        .cosmic-title {
+            font-size: clamp(2rem, 8vw, 6rem);
+            font-weight: 700;
+            background: linear-gradient(45deg, 
+                #8A2BE2, #4169E1, #FFD700, #FF1493, #00FFFF);
+            background-size: 400% 400%;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: cosmic-flow 8s ease-in-out infinite;
+            text-shadow: 0 0 30px rgba(138, 43, 226, 0.5);
+            filter: drop-shadow(0 0 20px rgba(255, 215, 0, 0.3));
+        }
+
+        .glowing-text {
+            color: #FFD700;
+            text-shadow: 
+                0 0 10px #FFD700,
+                0 0 20px #FFD700,
+                0 0 30px #FFD700,
+                0 0 40px #8A2BE2;
+            animation: text-glow 4s ease-in-out infinite alternate;
+        }
+
+        /* ==== SACRED SYMBOLS ==== */
+        .sacred-symbol {
+            display: inline-block;
+            font-size: 4rem;
+            animation: symbol-rotation 20s linear infinite;
+            filter: drop-shadow(0 0 20px currentColor);
+            transition: all 0.3s ease;
+        }
+
+        .sacred-symbol:hover {
+            transform: scale(1.2);
+            animation-duration: 5s;
+        }
+
+        /* ==== COSMIC ANIMATIONS ==== */
+        @keyframes cosmic-spiral {
+            0% { transform: rotate(-25deg) scale(1); }
+            50% { transform: rotate(-23deg) scale(1.05); }
+            100% { transform: rotate(-25deg) scale(1); }
+        }
+
+        @keyframes cosmic-twinkle {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes mandala-drift {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.1;
+            }
+            25% { 
+                transform: translateY(-20px) rotate(90deg);
+                opacity: 0.2;
+            }
+            50% { 
+                transform: translateY(-10px) rotate(180deg);
+                opacity: 0.15;
+            }
+            75% { 
+                transform: translateY(-30px) rotate(270deg);
+                opacity: 0.25;
+            }
+        }
+
+        @keyframes mandala-rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        @keyframes shape-float {
+            0%, 100% { 
+                transform: translateY(0) rotate(0deg);
+                opacity: 0.1;
+            }
+            50% { 
+                transform: translateY(-40px) rotate(180deg);
+                opacity: 0.2;
+            }
+        }
+
+        @keyframes shape-spin {
+            0% { transform: rotate(0deg) scale(1); }
+            50% { transform: rotate(180deg) scale(1.1); }
+            100% { transform: rotate(360deg) scale(1); }
+        }
+
+        @keyframes cosmic-pulse {
+            0%, 100% { 
+                background-position: 0% 50%;
+                box-shadow: 0 5px 20px rgba(138, 43, 226, 0.3);
+            }
+            50% { 
+                background-position: 100% 50%;
+                box-shadow: 0 10px 30px rgba(255, 215, 0, 0.4);
+            }
+        }
+
+        @keyframes energy-pulse {
+            0%, 100% { 
+                transform: scale(1);
+                opacity: 0.3;
+            }
+            50% { 
+                transform: scale(1.2);
+                opacity: 0.1;
+            }
+        }
+
+        @keyframes cosmic-flow {
+            0%, 100% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+        }
+
+        @keyframes text-glow {
+            0% { 
+                text-shadow: 
+                    0 0 10px #FFD700,
+                    0 0 20px #FFD700,
+                    0 0 30px #FFD700;
+            }
+            100% { 
+                text-shadow: 
+                    0 0 20px #FFD700,
+                    0 0 30px #FFD700,
+                    0 0 40px #FFD700,
+                    0 0 50px #8A2BE2;
+            }
+        }
+
+        @keyframes symbol-rotation {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* ==== PARTICLE EFFECTS ==== */
+        .cosmic-particles {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            overflow: hidden;
+            z-index: -1;
+        }
+
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: radial-gradient(circle, #FFD700, transparent);
+            border-radius: 50%;
+            animation: particle-float 15s linear infinite;
+        }
+
+        .particle:nth-child(1) { left: 10%; animation-delay: 0s; }
+        .particle:nth-child(2) { left: 20%; animation-delay: -2s; }
+        .particle:nth-child(3) { left: 30%; animation-delay: -4s; }
+        .particle:nth-child(4) { left: 40%; animation-delay: -6s; }
+        .particle:nth-child(5) { left: 50%; animation-delay: -8s; }
+        .particle:nth-child(6) { left: 60%; animation-delay: -10s; }
+        .particle:nth-child(7) { left: 70%; animation-delay: -12s; }
+        .particle:nth-child(8) { left: 80%; animation-delay: -14s; }
+        .particle:nth-child(9) { left: 90%; animation-delay: -16s; }
+
+        @keyframes particle-float {
+            0% {
+                transform: translateY(100vh) rotate(0deg);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-100px) rotate(360deg);
+                opacity: 0;
+            }
+        }
+
+        /* ==== RESPONSIVE & PERFORMANCE ==== */
+        @media (max-width: 768px) {
+            .mandala-1, .mandala-2 { display: none; }
+            .cosmic-triangle, .cosmic-hexagon { display: none; }
+            .energy-orb { width: 150px; height: 150px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after {
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+        }
+
+        /* Make all animated elements hardware accelerated */
+        .cosmic-background,
+        .cosmic-stars,
+        .sacred-mandala,
+        .cosmic-triangle,
+        .cosmic-hexagon,
+        .energy-orb,
+        .particle {
+            will-change: transform, opacity;
+            backface-visibility: hidden;
+            perspective: 1000px;
+        }
+    </style>
+</head>
+<body style="margin: 0; padding: 0; background: #000; color: white; font-family: Arial, sans-serif; min-height: 100vh;">
+
+    <!-- Demo Usage Examples -->
+    <div style="position: relative; z-index: 10; padding: 2rem;">
+        
+        <!-- Cosmic Background System -->
+        <div class="cosmic-background">
+            <div class="cosmic-stars"></div>
+            <div class="sacred-mandala mandala-1"></div>
+            <div class="sacred-mandala mandala-2"></div>
+            <div class="cosmic-triangle"></div>
+            <div class="cosmic-hexagon"></div>
+            <div class="energy-orb primary"></div>
+            <div class="energy-orb secondary"></div>
+            <div class="energy-orb tertiary"></div>
+            <div class="cosmic-particles">
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+                <div class="particle"></div>
+            </div>
+        </div>
+
+        <!-- Example Usage -->
+        <div style="text-align: center; padding: 4rem 2rem;">
+            <h1 class="cosmic-title">Cosmic CSS Components</h1>
+            <p class="glowing-text" style="font-size: 1.2rem; margin: 2rem 0;">Ready to use with your AI worker</p>
+            
+            <div class="sacred-symbol" style="margin: 2rem 0;">🕉️</div>
+            
+            <div style="display: flex; gap: 2rem; justify-content: center; flex-wrap: wrap; margin: 3rem 0;">
+                <button class="cosmic-btn">Cosmic Button</button>
+                <button class="cosmic-btn" style="background: linear-gradient(45deg, #FF1493, #00FFFF, #8A2BE2);">Another Style</button>
+            </div>
+
+            <div class="glass-nav" style="display: inline-block; margin: 2rem 0;">
+                <span style="padding: 0 1rem;">Glass Nav Example</span>
+            </div>
+
+            <div style="max-width: 800px; margin: 3rem auto;">
+                <div class="glass-card" style="padding: 2rem;">
+                    <h3 style="margin: 0 0 1rem 0; color: #FFD700;">Glass Morphism Card</h3>
+                    <p style="margin: 0; opacity: 0.9;">This card uses glass morphism effects with cosmic styling. Perfect for content sections, forms, or feature highlights.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

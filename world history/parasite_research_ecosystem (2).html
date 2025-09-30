@@ -1,0 +1,701 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Parasite Chronicles: An Interactive Research Ecosystem</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d1b2e 50%, #1a1a1a 100%);
+            color: #e8e8e8;
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+
+        /* Navigation System */
+        .nav-system {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 1000;
+            background: rgba(0,0,0,0.8);
+            padding: 15px;
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-button {
+            display: block;
+            margin: 5px 0;
+            padding: 8px 15px;
+            background: #8b0000;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+            transition: all 0.3s ease;
+            font-size: 12px;
+        }
+
+        .nav-button:hover {
+            background: #b30000;
+            transform: translateX(-5px);
+        }
+
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            position: relative;
+        }
+
+        .title {
+            font-size: 3.5rem;
+            color: #cc4444;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            color: #999;
+            font-style: italic;
+        }
+
+        /* Section Styling */
+        .section {
+            margin-bottom: 80px;
+            padding: 40px;
+            background: rgba(40, 40, 40, 0.8);
+            border-radius: 15px;
+            border-left: 5px solid #8b0000;
+            backdrop-filter: blur(10px);
+            position: relative;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            color: #cc4444;
+            margin-bottom: 30px;
+            text-align: center;
+            border-bottom: 2px solid #8b0000;
+            padding-bottom: 15px;
+        }
+
+        /* Literary Section */
+        .literary-content {
+            font-size: 1.1rem;
+            line-height: 1.8;
+            margin-bottom: 30px;
+        }
+
+        .perspective-title {
+            font-size: 1.8rem;
+            color: #cc6666;
+            margin: 30px 0 15px 0;
+            text-align: center;
+            background: rgba(139, 0, 0, 0.2);
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        /* Scientific Data Cards */
+        .data-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+
+        .data-card {
+            background: linear-gradient(135deg, #2a2a2a 0%, #3a2a3a 100%);
+            padding: 25px;
+            border-radius: 12px;
+            border: 1px solid #444;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .data-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(204, 68, 68, 0.3);
+            border-color: #8b0000;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: #cc6666;
+            margin-bottom: 15px;
+            font-weight: bold;
+        }
+
+        .card-content {
+            font-size: 1rem;
+            line-height: 1.6;
+        }
+
+        /* Interactive Elements */
+        .toggle-content {
+            max-height: 100px;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+        }
+
+        .toggle-content.expanded {
+            max-height: 1000px;
+        }
+
+        .expand-btn {
+            background: #8b0000;
+            color: white;
+            border: none;
+            padding: 8px 15px;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 10px;
+            transition: background 0.3s ease;
+        }
+
+        .expand-btn:hover {
+            background: #b30000;
+        }
+
+        /* Lifecycle Visualization */
+        .lifecycle-container {
+            background: rgba(20, 20, 20, 0.9);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .lifecycle-stage {
+            display: inline-block;
+            width: 120px;
+            height: 120px;
+            background: radial-gradient(circle, #8b0000 0%, #440000 100%);
+            border-radius: 50%;
+            margin: 20px;
+            position: relative;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            font-size: 0.9rem;
+            font-weight: bold;
+        }
+
+        .lifecycle-stage:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(204, 68, 68, 0.6);
+        }
+
+        .lifecycle-arrow {
+            display: inline-block;
+            width: 50px;
+            height: 20px;
+            background: linear-gradient(90deg, transparent 0%, #8b0000 50%, transparent 100%);
+            margin: 0 10px;
+            position: relative;
+        }
+
+        .lifecycle-arrow::after {
+            content: '→';
+            position: absolute;
+            right: -10px;
+            top: -5px;
+            color: #8b0000;
+            font-size: 1.5rem;
+        }
+
+        /* Research Statistics */
+        .stats-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .stat-box {
+            background: linear-gradient(135deg, #8b0000 0%, #440000 100%);
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: white;
+            display: block;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #ccc;
+            margin-top: 5px;
+        }
+
+        /* Species Gallery */
+        .species-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+            gap: 20px;
+            margin: 30px 0;
+        }
+
+        .species-card {
+            background: rgba(30, 30, 30, 0.9);
+            border-radius: 12px;
+            overflow: hidden;
+            border: 1px solid #444;
+            transition: all 0.3s ease;
+        }
+
+        .species-card:hover {
+            transform: translateY(-5px);
+            border-color: #8b0000;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.5);
+        }
+
+        .species-header {
+            background: linear-gradient(135deg, #8b0000 0%, #440000 100%);
+            padding: 15px;
+            text-align: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .species-content {
+            padding: 20px;
+            font-size: 0.95rem;
+        }
+
+        /* Research Methods Section */
+        .method-timeline {
+            position: relative;
+            padding: 20px 0;
+        }
+
+        .timeline-item {
+            background: rgba(40, 40, 40, 0.8);
+            margin: 20px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid #8b0000;
+            position: relative;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -8px;
+            top: 20px;
+            width: 16px;
+            height: 16px;
+            background: #8b0000;
+            border-radius: 50%;
+        }
+
+        /* Quotes and Citations */
+        .quote-box {
+            background: rgba(139, 0, 0, 0.1);
+            border-left: 4px solid #8b0000;
+            padding: 20px;
+            margin: 20px 0;
+            font-style: italic;
+            position: relative;
+        }
+
+        .quote-box::before {
+            content: '"';
+            font-size: 4rem;
+            color: #8b0000;
+            position: absolute;
+            top: -10px;
+            left: 10px;
+            opacity: 0.3;
+        }
+
+        .citation {
+            font-size: 0.85rem;
+            color: #999;
+            margin-top: 10px;
+            text-align: right;
+        }
+
+        /* Interactive Tabs */
+        .tab-container {
+            margin: 30px 0;
+        }
+
+        .tab-buttons {
+            display: flex;
+            background: rgba(20, 20, 20, 0.8);
+            border-radius: 10px 10px 0 0;
+            overflow: hidden;
+        }
+
+        .tab-button {
+            flex: 1;
+            padding: 15px;
+            background: transparent;
+            border: none;
+            color: #ccc;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .tab-button.active {
+            background: #8b0000;
+            color: white;
+        }
+
+        .tab-content {
+            background: rgba(40, 40, 40, 0.8);
+            padding: 30px;
+            border-radius: 0 0 10px 10px;
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .nav-system {
+                position: relative;
+                margin-bottom: 20px;
+            }
+
+            .title {
+                font-size: 2.5rem;
+            }
+
+            .section {
+                padding: 20px;
+                margin-bottom: 40px;
+            }
+
+            .data-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .lifecycle-stage {
+                width: 80px;
+                height: 80px;
+                font-size: 0.7rem;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        /* Search Functionality */
+        .search-container {
+            margin: 20px 0;
+            text-align: center;
+        }
+
+        .search-input {
+            padding: 12px 20px;
+            width: 300px;
+            border: 2px solid #444;
+            border-radius: 25px;
+            background: rgba(40, 40, 40, 0.8);
+            color: white;
+            font-size: 1rem;
+        }
+
+        .search-input:focus {
+            outline: none;
+            border-color: #8b0000;
+        }
+
+        /* Hidden class for search functionality */
+        .hidden {
+            display: none !important;
+        }
+    </style>
+</head>
+<body>
+    <div class="nav-system">
+        <a href="#narrative" class="nav-button">Literary Narrative</a>
+        <a href="#lifecycle" class="nav-button">Life Cycles</a>
+        <a href="#species" class="nav-button">Species Database</a>
+        <a href="#manipulation" class="nav-button">Host Manipulation</a>
+        <a href="#research" class="nav-button">Current Research</a>
+        <a href="#methods" class="nav-button">Methods</a>
+        <a href="#statistics" class="nav-button">Global Impact</a>
+    </div>
+
+    <div class="container">
+        <div class="header animate-in">
+            <h1 class="title">The Parasite Chronicles</h1>
+            <p class="subtitle">An Interactive Research Ecosystem: Where Literature Meets Science</p>
+            
+            <div class="search-container">
+                <input type="text" id="searchInput" class="search-input" placeholder="Search the ecosystem...">
+            </div>
+        </div>
+
+        <!-- Literary Narrative Section -->
+        <section id="narrative" class="section animate-in">
+            <h2 class="section-title">The Literary Gateway: Elizabeth's Descent</h2>
+            
+            <div class="literary-content">
+                <div class="perspective-title">Part I: The Perspective of the Countess (The God in Decay)</div>
+                <p>The air in the chamber is thick, cloying, a humid mixture of cooling blood, expensive perfume, and the sweet, metallic tang of death. The last of the blood gurgles down the drain, leaving a slick, crimson film on the bottom of the great tub.</p>
+                
+                <p><strong>Elizabeth</strong> rises. Her skin is alabaster, save for the streaks of drying, darkening red that cling to her like a second, grotesque skin. She looks at her reflection in the polished silver mirror her handmaidens hold before her. Her eyes, wide and manic, search for the result of her ritual.</p>
+                
+                <p>She sees what she wants to see. The faint lines around her eyes, she imagines, have softened. The pale canvas of her skin, she believes, has a new, youthful luminescence, a vibrant glow that was not there before. This is not a fact; it is an act of will. She has willed herself to be younger, and so, in her own mind, she is.</p>
+                
+                <div class="toggle-content" id="elizabeth-content">
+                    <p>She feels a surge of absolute, intoxicating power. She has defied God. She has defied nature. She has turned back time with the sheer force of her own will and the blood of lesser beings. She is not a woman; she is a force, an alchemist who has transmuted the brief, pathetic lives of peasant girls into another precious day of her own immortal beauty.</p>
+                    
+                    <p>But as her handmaidens begin to wash her with rosewater, a subtle, persistent <strong>itch</strong> begins on her scalp. A tiny, almost imperceptible irritation. She dismisses it. A trifle.</p>
+                    
+                    <p>Later, as she lies in her great bed, wrapped in silk, the feeling of triumph is accompanied by a new, unfamiliar sensation. A faint, deep cramping in her belly. A dull, shifting ache that is not the familiar pain of hunger or age. She dismisses it as well. The cost of the ritual, perhaps. A small price to pay for divinity.</p>
+                    
+                    <p>She drifts to sleep, convinced of her victory, utterly blind to the fact that the payload has been delivered, and the quiet, microscopic, and macroscopic work of her own slow, internal decay has already begun. She has bathed in corruption, and now, the corruption has begun to bathe in her.</p>
+                </div>
+                <button class="expand-btn" onclick="toggleContent('elizabeth-content', this)">Read More</button>
+            </div>
+
+            <div class="literary-content">
+                <div class="perspective-title">Part II: The Perspective of the Tapeworm (The God in the Gut)</div>
+                <p>For the <strong>Tapeworm</strong>, there is no Elizabeth. There is no castle, no power, no ritual. There is only the sudden, violent, and glorious end of one world, and the beginning of another.</p>
+                
+                <p>The world was the warm, dark, and predictable intestine of the peasant girl. It was a simple existence: cling to the wall, absorb the passing nutrients, and grow, segment by segment, in the eternal, rhythmic darkness.</p>
+                
+                <div class="toggle-content" id="tapeworm-content">
+                    <p>Then, chaos. A blade. A scream. The world is torn apart. The warm, dark river of the gut is replaced by a tidal wave of hot, metallic fluid. The Tapeworm, or more likely, one of its thousands of microscopic, resilient <strong>eggs</strong> or a detached, still-living <strong>proglottid</strong> (a segment of its body, filled with eggs), is washed out of its dying universe and into a new one.</p>
+                    
+                    <p>This new world is a vast, cooling, crimson ocean. It is a chaotic banquet, a nutrient-rich soup of dying cells and other, stranger organisms. Survival is the only imperative.</p>
+                    
+                    <p>And then, salvation. A new god descends into the crimson sea. A great, warm, living mountain of flesh. The Tapeworm egg, invisible, infinitesimal, clings to the surface of this new god, caught in a droplet of blood on a strand of hair, or perhaps, in the most direct and perfect of transfers, it is on the rim of the cup from which the goddess drinks, "tasting some."</p>
+                    
+                    <p>The journey is swift. Through the gates of the mouth, down the warm, dark river of the esophagus, past the churning acid sea of the stomach—a dangerous passage, but the egg is designed for this, a perfect, resilient vessel of life—and then, finally, into the promised land.</p>
+                    
+                    <p>The new world. The royal gut. The intestine of the Countess. It is a paradise. Richer, warmer, and infinitely more bountiful than the meager gut of the peasant girl. The Tapeworm hatches. It unfurls its scolex, the crown of hooks and suckers at its head, and it latches onto the wall of its new kingdom.</p>
+                    
+                    <p>It feels no malice. It feels no triumph. It feels only the simple, perfect, and absolute fulfillment of its own divine purpose: to attach, to absorb, and to grow. The great, thinking, feeling goddess who rules the world outside is completely unaware that a new, far more ancient and patient god has just taken up residence in the throne room of her own body. And he has just begun to feed.</p>
+                </div>
+                <button class="expand-btn" onclick="toggleContent('tapeworm-content', this)">Read More</button>
+            </div>
+        </section>
+
+        <!-- Life Cycles Section -->
+        <section id="lifecycle" class="section animate-in">
+            <h2 class="section-title">Parasitic Life Cycles: The Endless Dance</h2>
+            
+            <div class="tab-container">
+                <div class="tab-buttons">
+                    <button class="tab-button active" onclick="showTab('taenia-lifecycle')">Taenia Species</button>
+                    <button class="tab-button" onclick="showTab('diphyllobothrium-lifecycle')">Fish Tapeworm</button>
+                    <button class="tab-button" onclick="showTab('hymenolepis-lifecycle')">Dwarf Tapeworm</button>
+                </div>
+                
+                <div id="taenia-lifecycle" class="tab-content active">
+                    <h3>Taenia solium & T. saginata Life Cycle</h3>
+                    <div class="lifecycle-container">
+                        <div class="lifecycle-stage" title="Eggs released in feces">
+                            <span>Eggs in<br>Feces</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Intermediate host ingestion">
+                            <span>Intermediate<br>Host</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Cysticercoid development">
+                            <span>Cysticercoid<br>Formation</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Human consumption of infected meat">
+                            <span>Human<br>Ingestion</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Adult tapeworm in intestine">
+                            <span>Adult<br>Tapeworm</span>
+                        </div>
+                    </div>
+                    <div class="quote-box">
+                        Adult tapeworms of T. solium and T. asiatica species reside in the human intestine for several years and cause taeniasis. Among these two, T. solium infection is more detrimental to the host as it may cause neurocysticercosis.
+                        <div class="citation">— Recent Taenia Research, 2024</div>
+                    </div>
+                </div>
+                
+                <div id="diphyllobothrium-lifecycle" class="tab-content">
+                    <h3>Diphyllobothrium latum (Fish Tapeworm)</h3>
+                    <div class="lifecycle-container">
+                        <div class="lifecycle-stage" title="Eggs in water">
+                            <span>Aquatic<br>Eggs</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Copepod infection">
+                            <span>Copepod<br>Host</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Fish secondary host">
+                            <span>Fish<br>Infection</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Human consumption">
+                            <span>Human<br>Consumption</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Adult development">
+                            <span>Intestinal<br>Maturation</span>
+                        </div>
+                    </div>
+                    <p>The fish tapeworm requires aquatic environments and multiple hosts. Humans become infected by consuming undercooked fish containing plerocercoid larvae. The adult worm can reach lengths of up to 12 meters in the human intestine.</p>
+                </div>
+                
+                <div id="hymenolepis-lifecycle" class="tab-content">
+                    <h3>Hymenolepis nana (Dwarf Tapeworm)</h3>
+                    <div class="lifecycle-container">
+                        <div class="lifecycle-stage" title="Direct human-to-human transmission">
+                            <span>Direct<br>Transmission</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Internal autoinfection possible">
+                            <span>Internal<br>Cycle</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Alternative beetle host">
+                            <span>Beetle<br>Host</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Cysticercoid types">
+                            <span>Tailed/Tailless<br>Cysticercoids</span>
+                        </div>
+                        <div class="lifecycle-arrow"></div>
+                        <div class="lifecycle-stage" title="Adult formation">
+                            <span>Adult<br>Worm</span>
+                        </div>
+                    </div>
+                    <div class="quote-box">
+                        H. nana appears to be unique in that it can complete its entire life-cycle within a single mammalian host, and cysticercoids that develop in beetle intermediate hosts are tailed, while those that develop in the intestinal tissue of mammals are tailless.
+                        <div class="citation">— Hymenolepis Research, 2021</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Species Database -->
+        <section id="species" class="section animate-in">
+            <h2 class="section-title">Species Database: The Parasitic Kingdom</h2>
+            
+            <div class="species-gallery">
+                <div class="species-card">
+                    <div class="species-header">Taenia solium (Pork Tapeworm)</div>
+                    <div class="species-content">
+                        <strong>Length:</strong> 2-7 meters<br>
+                        <strong>Host:</strong> Humans (definitive), Pigs (intermediate)<br>
+                        <strong>Disease:</strong> Taeniasis, Neurocysticercosis<br>
+                        <strong>Distribution:</strong> Global, endemic in developing regions<br>
+                        <strong>Transmission:</strong> Undercooked pork consumption<br>
+                        <strong>Significance:</strong> Can cause severe neurological complications when larvae migrate to the brain.
+                    </div>
+                </div>
+                
+                <div class="species-card">
+                    <div class="species-header">Taenia saginata (Beef Tapeworm)</div>
+                    <div class="species-content">
+                        <strong>Length:</strong> 4-12 meters<br>
+                        <strong>Host:</strong> Humans (definitive), Cattle (intermediate)<br>
+                        <strong>Disease:</strong> Taeniasis<br>
+                        <strong>Distribution:</strong> Worldwide<br>
+                        <strong>Transmission:</strong> Undercooked beef consumption<br>
+                        <strong>Significance:</strong> Longest human tapeworm, generally less pathogenic than T. solium.
+                    </div>
+                </div>
+                
+                <div class="species-card">
+                    <div class="species-header">Diphyllobothrium latum (Fish Tapeworm)</div>
+                    <div class="species-content">
+                        <strong>Length:</strong> 3-15 meters<br>
+                        <strong>Host:</strong> Humans, fish-eating mammals<br>
+                        <strong>Disease:</strong> Diphyllobothriasis<br>
+                        <strong>Distribution:</strong> Northern temperate regions<br>
+                        <strong>Transmission:</strong> Raw/undercooked fish<br>
+                        <strong>Significance:</strong> Can cause vitamin B12 deficiency and megaloblastic anemia.
+                    </div>
+                </div>
+                
+                <div class="species-card">
+                    <div class="species-header">Hymenolepis nana (Dwarf Tapeworm)</div>
+                    <div class="species-content">
+                        <strong>Length:</strong> 15-40 mm<br>
+                        <strong>Host:</strong> Humans, rodents<br>
+                        <strong>Disease:</strong> Hymenolepiasis<br>
+                        <strong>Distribution:</strong> Worldwide, especially warm climates<br>
+                        <strong>Transmission:</strong> Direct human-to-human<br>
+                        <strong>Significance:</strong> Most common tapeworm in humans, especially children.
+                    </div>
+                </div>
+                
+                <div class="species-card">
+                    <div class="species-header">Echinococcus multilocularis</div>
+                    <div class="species-content">
+                        <strong>Length:</strong> 1.2-4.5 mm<br>
+                        <strong>Host:</strong> Foxes, dogs (definitive), humans (accidental)<br>
+                        <strong>Disease:</strong> Alveolar echinococcosis<br>
+                        <strong>Distribution:</strong> Northern hemisphere<br>
+                        <strong>Transmission:</strong> Contaminated food/water<br>
+                        <strong>Significance:</strong> Highly lethal if untreated, creates tumor-like cysts.
+                    </div>
+                </div>
+                
+                <div class="species-card">
+                    <div class="species-header">Spirometra erinaceieuropaei</div>
+                    <div class="species-content">
+                        <strong>Length:</strong> Variable (larval form)<br>
+                        <strong>Host:</strong> Carnivorous mammals<br>
+                        <strong>Disease:</strong> Sparganosis<br>
+                        <strong>Distribution:</strong> Asia, North America<br>
+                        <strong>Transmission:</strong> Contaminated water, raw meat<br>
+                        <strong>Significance:</strong> Plerocercoid larvae can migrate throughout body tissues.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Host Manipulation Section -->
+        <section id="manipulation" class="section animate-in">
+            <h2 class="section-title">Host Manipulation: The Puppet Masters</h2>
+            
+            <div class="data-grid">
+                

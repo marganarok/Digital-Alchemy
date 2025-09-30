@@ -1,0 +1,565 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archetypal Music Analyzer & Name Generator</title>
+    <style>
+        :root {
+            --primary-color: #1a1a2e;
+            --secondary-color: #16213e;
+            --accent-color: #e94560;
+            --gold-color: #ffd700;
+            --text-light: #f0f3bd;
+            --text-muted: #a8a8a8;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, var(--primary-color) 0%, var(--secondary-color) 100%);
+            color: var(--text-light);
+            margin: 0;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 20px 0;
+            border-bottom: 2px solid var(--gold-color);
+            margin-bottom: 30px;
+        }
+        
+        .header h1 {
+            color: var(--gold-color);
+            font-size: 2.5em;
+            margin-bottom: 10px;
+        }
+        
+        .upload-section {
+            background: rgba(255,255,255,0.05);
+            padding: 30px;
+            border-radius: 10px;
+            margin-bottom: 30px;
+            border: 2px dashed var(--accent-color);
+        }
+        
+        .file-input-wrapper {
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+        
+        #audioFiles {
+            width: 100%;
+            padding: 15px;
+            background: var(--secondary-color);
+            border: 2px solid var(--gold-color);
+            border-radius: 8px;
+            color: var(--text-light);
+            font-size: 16px;
+        }
+        
+        .analysis-controls {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .control-group {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+        }
+        
+        .control-group label {
+            display: block;
+            color: var(--gold-color);
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+        
+        .control-group select, .control-group input {
+            width: 100%;
+            padding: 8px;
+            background: var(--secondary-color);
+            border: 1px solid var(--accent-color);
+            border-radius: 4px;
+            color: var(--text-light);
+        }
+        
+        .analyze-btn {
+            background: linear-gradient(45deg, var(--accent-color), var(--gold-color));
+            color: white;
+            border: none;
+            padding: 15px 30px;
+            font-size: 18px;
+            border-radius: 8px;
+            cursor: pointer;
+            width: 100%;
+            margin: 20px 0;
+            transition: transform 0.3s ease;
+        }
+        
+        .analyze-btn:hover {
+            transform: translateY(-2px);
+        }
+        
+        .results-section {
+            margin-top: 30px;
+        }
+        
+        .track-card {
+            background: rgba(255,255,255,0.05);
+            margin: 15px 0;
+            padding: 20px;
+            border-radius: 10px;
+            border-left: 4px solid var(--accent-color);
+        }
+        
+        .track-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        
+        .track-name {
+            color: var(--gold-color);
+            font-size: 1.3em;
+            font-weight: bold;
+        }
+        
+        .track-details {
+            color: var(--text-muted);
+            font-size: 0.9em;
+        }
+        
+        .track-description {
+            margin-top: 10px;
+            line-height: 1.6;
+        }
+        
+        .archetypal-name {
+            color: var(--accent-color);
+            font-size: 1.1em;
+            font-weight: bold;
+            margin: 5px 0;
+        }
+        
+        .progress-bar {
+            width: 100%;
+            height: 8px;
+            background: var(--secondary-color);
+            border-radius: 4px;
+            margin: 20px 0;
+            overflow: hidden;
+        }
+        
+        .progress-fill {
+            height: 100%;
+            background: linear-gradient(90deg, var(--accent-color), var(--gold-color));
+            width: 0%;
+            transition: width 0.3s ease;
+        }
+        
+        .export-btn {
+            background: var(--secondary-color);
+            color: var(--text-light);
+            border: 2px solid var(--gold-color);
+            padding: 12px 25px;
+            border-radius: 6px;
+            cursor: pointer;
+            margin: 10px 5px;
+        }
+        
+        .status {
+            text-align: center;
+            padding: 15px;
+            margin: 10px 0;
+            border-radius: 6px;
+        }
+        
+        .status.processing {
+            background: rgba(255, 193, 7, 0.2);
+            color: #ffc107;
+        }
+        
+        .status.complete {
+            background: rgba(40, 167, 69, 0.2);
+            color: #28a745;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>Archetypal Music Analyzer</h1>
+            <p>Transform your 88 tracks into named archetypal manifestations</p>
+        </div>
+        
+        <div class="upload-section">
+            <h3>Upload Your 88 Tracks</h3>
+            <input type="file" id="audioFiles" multiple accept="audio/*">
+            
+            <div class="analysis-controls">
+                <div class="control-group">
+                    <label>Archetypal Theme</label>
+                    <select id="themeSelect">
+                        <option value="sovereign">Sovereign Authority</option>
+                        <option value="adversary">Holy Adversary</option>
+                        <option value="trinity">Trinity Manifestation</option>
+                        <option value="chaos">Controlled Chaos</option>
+                        <option value="transformation">Alchemical Transformation</option>
+                        <option value="cosmic">Cosmic Trickster</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label>Naming Style</label>
+                    <select id="namingStyle">
+                        <option value="mystical">Mystical/Esoteric</option>
+                        <option value="military">Military/Command</option>
+                        <option value="elemental">Elemental Forces</option>
+                        <option value="geometric">Sacred Geometry</option>
+                        <option value="ritual">Ritual/Ceremonial</option>
+                        <option value="joker">Cosmic Joker</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label>Description Length</label>
+                    <select id="descLength">
+                        <option value="short">Short (1-2 lines)</option>
+                        <option value="medium">Medium (3-4 lines)</option>
+                        <option value="detailed">Detailed (5+ lines)</option>
+                    </select>
+                </div>
+                
+                <div class="control-group">
+                    <label>Include Technical Data</label>
+                    <select id="includeTech">
+                        <option value="yes">Yes - Include BPM, Key, etc.</option>
+                        <option value="no">No - Archetypal only</option>
+                    </select>
+                </div>
+            </div>
+            
+            <button class="analyze-btn" onclick="analyzeAllTracks()">
+                Analyze & Generate Names
+            </button>
+        </div>
+        
+        <div id="progressSection" style="display: none;">
+            <div class="progress-bar">
+                <div class="progress-fill" id="progressFill"></div>
+            </div>
+            <div id="statusText" class="status processing">Processing tracks...</div>
+        </div>
+        
+        <div class="results-section" id="resultsSection" style="display: none;">
+            <h3>Generated Archetypal Names & Descriptions</h3>
+            <div style="text-align: center; margin: 20px 0;">
+                <button class="export-btn" onclick="exportAsJSON()">Export as JSON</button>
+                <button class="export-btn" onclick="exportAsText()">Export as Text</button>
+                <button class="export-btn" onclick="exportAsHTML()">Export as HTML</button>
+            </div>
+            <div id="tracksContainer"></div>
+        </div>
+    </div>
+
+    <script>
+        let audioFiles = [];
+        let analysisResults = [];
+        
+        document.getElementById('audioFiles').addEventListener('change', function(e) {
+            audioFiles = Array.from(e.target.files);
+            console.log(`${audioFiles.length} files selected`);
+        });
+        
+        async function analyzeAllTracks() {
+            if (audioFiles.length === 0) {
+                alert('Please select audio files first!');
+                return;
+            }
+            
+            const progressSection = document.getElementById('progressSection');
+            const resultsSection = document.getElementById('resultsSection');
+            const progressFill = document.getElementById('progressFill');
+            const statusText = document.getElementById('statusText');
+            
+            progressSection.style.display = 'block';
+            resultsSection.style.display = 'none';
+            analysisResults = [];
+            
+            const theme = document.getElementById('themeSelect').value;
+            const namingStyle = document.getElementById('namingStyle').value;
+            const descLength = document.getElementById('descLength').value;
+            const includeTech = document.getElementById('includeTech').value === 'yes';
+            
+            for (let i = 0; i < audioFiles.length; i++) {
+                const file = audioFiles[i];
+                const progress = ((i + 1) / audioFiles.length) * 100;
+                
+                progressFill.style.width = progress + '%';
+                statusText.textContent = `Processing ${file.name} (${i + 1}/${audioFiles.length})`;
+                
+                try {
+                    const analysis = await analyzeAudioFile(file);
+                    const generated = generateArchetypalName(analysis, theme, namingStyle, descLength, includeTech);
+                    
+                    analysisResults.push({
+                        filename: file.name,
+                        analysis: analysis,
+                        generated: generated
+                    });
+                    
+                    // Add a small delay to prevent browser overwhelm
+                    await new Promise(resolve => setTimeout(resolve, 100));
+                    
+                } catch (error) {
+                    console.error(`Error analyzing ${file.name}:`, error);
+                    analysisResults.push({
+                        filename: file.name,
+                        analysis: { error: error.message },
+                        generated: generateFallbackName(file.name, theme, namingStyle)
+                    });
+                }
+            }
+            
+            statusText.textContent = 'Analysis complete!';
+            statusText.className = 'status complete';
+            
+            displayResults();
+            resultsSection.style.display = 'block';
+        }
+        
+        async function analyzeAudioFile(file) {
+            return new Promise((resolve, reject) => {
+                const audio = new Audio(URL.createObjectURL(file));
+                const audioContext = new (window.AudioContext || window.webkitAudioContext)();
+                
+                audio.addEventListener('loadedmetadata', () => {
+                    const analysis = {
+                        duration: audio.duration,
+                        filename: file.name,
+                        filesize: file.size,
+                        // Basic analysis - could be extended with Web Audio API
+                        estimatedTempo: estimateTempo(file.name),
+                        estimatedMood: estimateMood(file.name),
+                        estimatedEnergy: estimateEnergy(file.name)
+                    };
+                    
+                    URL.revokeObjectURL(audio.src);
+                    resolve(analysis);
+                });
+                
+                audio.addEventListener('error', () => {
+                    reject(new Error('Could not load audio file'));
+                });
+            });
+        }
+        
+        function estimateTempo(filename) {
+            // Simple heuristic based on filename patterns
+            const name = filename.toLowerCase();
+            if (name.includes('slow') || name.includes('ambient')) return 'Slow (60-90 BPM)';
+            if (name.includes('fast') || name.includes('rapid')) return 'Fast (140+ BPM)';
+            if (name.includes('dance') || name.includes('techno')) return 'Dance (120-140 BPM)';
+            return 'Medium (90-120 BPM)';
+        }
+        
+        function estimateMood(filename) {
+            const name = filename.toLowerCase();
+            if (name.includes('dark') || name.includes('shadow')) return 'Dark/Mysterious';
+            if (name.includes('light') || name.includes('bright')) return 'Bright/Uplifting';
+            if (name.includes('ritual') || name.includes('sacred')) return 'Ritualistic/Sacred';
+            if (name.includes('chaos') || name.includes('void')) return 'Chaotic/Intense';
+            return 'Neutral/Balanced';
+        }
+        
+        function estimateEnergy(filename) {
+            const name = filename.toLowerCase();
+            if (name.includes('pulse') || name.includes('energy')) return 'High Energy';
+            if (name.includes('echo') || name.includes('ambient')) return 'Low Energy';
+            return 'Medium Energy';
+        }
+        
+        function generateArchetypalName(analysis, theme, namingStyle, descLength, includeTech) {
+            const nameElements = getNameElements(theme, namingStyle);
+            const descriptors = getDescriptors(theme, analysis.estimatedMood, analysis.estimatedEnergy);
+            
+            const name = generateName(nameElements, analysis);
+            const description = generateDescription(descriptors, analysis, descLength, includeTech);
+            
+            return { name, description };
+        }
+        
+        function generateFallbackName(filename, theme, namingStyle) {
+            const cleanName = filename.replace(/\.[^/.]+$/, "").replace(/[_-]/g, ' ');
+            return {
+                name: `${cleanName} - ${theme} manifestation`,
+                description: `Archetypal ${theme} energy captured in sonic form.`
+            };
+        }
+        
+        function getNameElements(theme, style) {
+            const elements = {
+                sovereign: ['Throne', 'Crown', 'Scepter', 'Dominion', 'Empire', 'Reign'],
+                adversary: ['Shadow', 'Void', 'Abyss', 'Rebellion', 'Opposition', 'Challenge'],
+                trinity: ['Triad', 'Trinity', 'Three', 'Union', 'Convergence', 'Synthesis'],
+                chaos: ['Chaos', 'Storm', 'Tempest', 'Maelstrom', 'Turbulence', 'Discord'],
+                transformation: ['Forge', 'Transmute', 'Phoenix', 'Metamorphosis', 'Ascension'],
+                cosmic: ['Cosmos', 'Star', 'Galaxy', 'Infinite', 'Eternal', 'Universal']
+            };
+            
+            const styles = {
+                mystical: ['of the', 'Sacred', 'Divine', 'Ethereal', 'Mystical', 'Arcane'],
+                military: ['Command', 'Legion', 'Battalion', 'Strike', 'March', 'Victory'],
+                elemental: ['Fire', 'Water', 'Earth', 'Air', 'Lightning', 'Ice'],
+                geometric: ['Circle', 'Triangle', 'Spiral', 'Hexagon', 'Fractal', 'Pattern'],
+                ritual: ['Ritual', 'Ceremony', 'Invocation', 'Blessing', 'Sanctification'],
+                joker: ['Jest', 'Paradox', 'Riddle', 'Trickster', 'Illusion', 'Enigma']
+            };
+            
+            return {
+                themeWords: elements[theme] || elements.sovereign,
+                styleWords: styles[style] || styles.mystical
+            };
+        }
+        
+        function getDescriptors(theme, mood, energy) {
+            return {
+                themeDesc: {
+                    sovereign: 'commanding authority and divine rulership',
+                    adversary: 'sacred opposition and transformative challenge',
+                    trinity: 'threefold unity and balanced power',
+                    chaos: 'controlled disorder and creative destruction',
+                    transformation: 'alchemical change and spiritual evolution',
+                    cosmic: 'universal consciousness and infinite wisdom'
+                }[theme],
+                moodDesc: mood,
+                energyDesc: energy
+            };
+        }
+        
+        function generateName(elements, analysis) {
+            const theme = elements.themeWords[Math.floor(Math.random() * elements.themeWords.length)];
+            const style = elements.styleWords[Math.floor(Math.random() * elements.styleWords.length)];
+            
+            const patterns = [
+                `${theme} ${style}`,
+                `${style} ${theme}`,
+                `The ${theme} of ${style}`,
+                `${style} ${theme} Rising`,
+                `${theme}: ${style} Protocol`
+            ];
+            
+            return patterns[Math.floor(Math.random() * patterns.length)];
+        }
+        
+        function generateDescription(descriptors, analysis, length, includeTech) {
+            let desc = `A sonic manifestation of ${descriptors.themeDesc}, resonating with ${descriptors.moodDesc.toLowerCase()} energy.`;
+            
+            if (length === 'medium' || length === 'detailed') {
+                desc += ` This archetypal frequency carries ${descriptors.energyDesc.toLowerCase()} vibrations, perfect for meditation, ritual work, or deep contemplation.`;
+            }
+            
+            if (length === 'detailed') {
+                desc += ` The sonic architecture builds bridges between conscious and unconscious realms, facilitating transformation through harmonic resonance. Each frequency is carefully calibrated to activate specific archetypal patterns within the listener's psyche.`;
+            }
+            
+            if (includeTech) {
+                desc += `\n\nTechnical: Duration: ${Math.round(analysis.duration || 180)}s, Estimated Tempo: ${analysis.estimatedTempo}, Energy: ${analysis.estimatedEnergy}`;
+            }
+            
+            return desc;
+        }
+        
+        function displayResults() {
+            const container = document.getElementById('tracksContainer');
+            container.innerHTML = '';
+            
+            analysisResults.forEach((result, index) => {
+                const trackCard = document.createElement('div');
+                trackCard.className = 'track-card';
+                
+                trackCard.innerHTML = `
+                    <div class="track-header">
+                        <div class="track-name">${result.filename}</div>
+                        <div class="track-details">${index + 1} of ${analysisResults.length}</div>
+                    </div>
+                    <div class="archetypal-name">${result.generated.name}</div>
+                    <div class="track-description">${result.generated.description}</div>
+                `;
+                
+                container.appendChild(trackCard);
+            });
+        }
+        
+        function exportAsJSON() {
+            const data = JSON.stringify(analysisResults, null, 2);
+            downloadFile(data, 'archetypal-music-analysis.json', 'application/json');
+        }
+        
+        function exportAsText() {
+            let text = 'ARCHETYPAL MUSIC COLLECTION\n';
+            text += '=' .repeat(50) + '\n\n';
+            
+            analysisResults.forEach((result, index) => {
+                text += `${index + 1}. ${result.filename}\n`;
+                text += `Archetypal Name: ${result.generated.name}\n`;
+                text += `Description: ${result.generated.description}\n`;
+                text += '-'.repeat(30) + '\n\n';
+            });
+            
+            downloadFile(text, 'archetypal-music-collection.txt', 'text/plain');
+        }
+        
+        function exportAsHTML() {
+            let html = `
+            <!DOCTYPE html>
+            <html><head><title>Archetypal Music Collection</title>
+            <style>
+                body { font-family: Georgia, serif; background: #1a1a2e; color: #f0f3bd; padding: 20px; }
+                .track { background: rgba(255,255,255,0.05); margin: 15px 0; padding: 20px; border-radius: 10px; }
+                .name { color: #ffd700; font-size: 1.3em; font-weight: bold; }
+                .title { color: #e94560; font-size: 1.1em; margin: 5px 0; }
+            </style></head><body>
+            <h1 style="color: #ffd700; text-align: center;">Archetypal Music Collection</h1>
+            `;
+            
+            analysisResults.forEach(result => {
+                html += `
+                <div class="track">
+                    <div class="name">${result.filename}</div>
+                    <div class="title">${result.generated.name}</div>
+                    <div>${result.generated.description}</div>
+                </div>
+                `;
+            });
+            
+            html += '</body></html>';
+            downloadFile(html, 'archetypal-music-collection.html', 'text/html');
+        }
+        
+        function downloadFile(content, filename, contentType) {
+            const blob = new Blob([content], { type: contentType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            document.body.appendChild(a);
+            a.click();
+            document.body.removeChild(a);
+            URL.revokeObjectURL(url);
+        }
+    </script>
+</body>
+</html>

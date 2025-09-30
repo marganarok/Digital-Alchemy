@@ -1,0 +1,246 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Divine Revelation: The Invisible Axis – Habsburgs, Báthory, Jesuits, & French Shadows in Catholic Empire Wars.">
+    <title>Invisible Axis: Habsburg Catholic Dynasty & Báthory's Fall</title>
+    <style>
+        /* Gothic-Divine CSS: Crimson Faith & Shadow Empires */
+        :root {
+            --empire-bg: #1a0000; /* Deep crimson-black */
+            --holy-gold: #d4af37;
+            --jesuit-red: #8b0000;
+            --protestant-blue: #000080;
+            --divine-hue: 0deg; /* Blood-red shift */
+        }
+        body { 
+            margin: 0; font-family: 'Georgia', serif; background: var(--empire-bg); color: #fff; overflow-x: hidden; 
+            transition: filter 0.5s;
+        }
+        .divine-mode { filter: hue-rotate(var(--divine-hue)); }
+        canvas { position: fixed; top: 0; left: 0; z-index: -1; pointer-events: none; }
+        #hud { position: fixed; top: 10px; right: 10px; background: rgba(139,0,0,0.7); padding: 10px; border-radius: 5px; font-size: 12px; border: 1px solid var(--holy-gold); }
+        header { text-align: center; padding: 20px; background: linear-gradient(to bottom, var(--jesuit-red), var(--empire-bg)); }
+        nav ul { list-style: none; display: flex; justify-content: center; gap: 15px; flex-wrap: wrap; background: rgba(0,0,0,0.5); padding: 10px; }
+        section { padding: 40px; max-width: 1200px; margin: auto; }
+        .timeline { position: relative; max-width: 1000px; margin: auto; }
+        .timeline-item { margin: 20px 0; padding: 10px; background: rgba(212,175,55,0.1); border-left: 4px solid var(--holy-gold); transition: transform 0.3s; cursor: pointer; }
+        .timeline-item:hover { transform: scale(1.05); box-shadow: 0 0 20px var(--holy-gold); }
+        .dynasty-card { display: inline-block; width: 200px; margin: 10px; padding: 15px; background: rgba(0,0,128,0.2); border: 1px solid var(--protestant-blue); transform: perspective(800px) rotateY(0deg); transition: transform 0.3s; }
+        .dynasty-card:hover { transform: perspective(800px) rotateY(15deg); box-shadow: 0 0 15px var(--jesuit-red); }
+        #map-svg { width: 100%; height: 400px; background: #000; }
+        .modal { display: none; position: fixed; top: 50%; left: 50%; transform: translate(-50%, -50%); background: rgba(26,0,0,0.9); padding: 20px; border-radius: 10px; z-index: 1000; border: 2px solid var(--holy-gold); max-width: 80%; }
+        .modal.show { display: block; animation: fadeIn 0.5s; }
+        @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
+        .scripture { font-style: italic; color: var(--holy-gold); text-align: center; font-size: 1.2em; margin: 20px 0; }
+        @media (max-width: 768px) { nav ul { flex-direction: column; } section { padding: 20px; } }
+    </style>
+</head>
+<body class="divine-mode">
+
+    <!-- HUD: Empire Monitoring -->
+    <div id="hud">
+        <div>Revelations: <span id="rev-count">0</span></div>
+        <div>Shadows: <span id="shadow-count">0</span></div>
+        <div>Status: <span id="status">UNVEILED</span></div>
+        <div>Mode: <span id="mode">DIVINE</span></div>
+    </div>
+
+    <!-- Shadow Canvases: Blood Particles & Empire Stars -->
+    <canvas id="shadow-canvas"></canvas>
+
+    <!-- Header: The Invisible Axis -->
+    <header>
+        <h1>🛡️ THE INVISIBLE AXIS 🗡️</h1>
+        <h2>Habsburg Catholic Empire, Báthory's Protestant Thorn, Jesuit Daggers, & French Gambits</h2>
+        <div class="scripture" id="rotating-scripture">"The kings of the earth set themselves... but the One enthroned in heaven laughs." - Psalm 2:2-4</div>
+    </header>
+
+    <!-- Navigation: Portals to Shadows -->
+    <nav>
+        <ul>
+            <li><a href="#dynasty">👑 Habsburg Dynasty</a></li>
+            <li><a href="#rivalry">⚔️ French Rivalry</a></li>
+            <li><a href="#bathory">🩸 Elizabeth Báthory</a></li>
+            <li><a href="#trial">📜 The Trial Conspiracy</a></li>
+            <li><a href="#timeline">⏳ Interactive Timeline</a></li>
+            <li><a href="#map">🗺️ Empire Map</a></li>
+        </ul>
+    </nav>
+
+    <!-- Main Revelations -->
+    <main>
+        <section id="dynasty">
+            <h3>👑 The Catholic Habsburg Dynasty: Defenders of the Faith</h3>
+            <p>The Habsburgs, Europe's iron eagle, ruled from 15th-20th centuries: Holy Roman Emperors, Spanish kings, Austrian archdukes. Staunch Catholics, they wielded the Counter-Reformation sword against Protestant tempests, under Charles V eradicating heresies across Spain, Netherlands, and Bohemia.</p>
+            <div class="dynasty-grid">
+                <div class="dynasty-card" onclick="revealModal('Charles V: Zenith of Power – United empires under one Catholic crown. Territories: Spain, HRE, Americas.')">
+                    <h4>Charles V (1500-1558)</h4>
+                    <p>Emperor who split the dynasty: Spanish & Austrian branches.</p>
+                </div>
+                <div class="dynasty-card" onclick="revealModal('Ferdinand II: Counter-Reformation Fire – Led Thirty Years\' War charge.')">
+                    <h4>Ferdinand II (1578-1637)</h4>
+                    <p>Holy Roman Emperor, Bohemia\'s Catholic enforcer.</p>
+                </div>
+                <div class="dynasty-card" onclick="revealModal('Maximilian I: Marital Web Weaver – Married Mary of Burgundy (1477), snaring Netherlands.')">
+                    <h4>Maximilian I (1459-1519)</h4>
+                    <p>Dynastic marriages built the empire without ceaseless war.</p>
+                </div>
+            </div>
+            <button onclick="toggleDivineMode()">Toggle Divine Mode: Crimson Revelation</button>
+        </section>
+
+        <section id="rivalry">
+            <h3>⚔️ Habsburg-French Rivalry: The Encircling Eagle</h3>
+            <p>Catholic France, under Richelieu, loathed Habsburg encirclement (Spain south, HRE east). Their "Grand Design": Back Protestant rebels to bleed the eagle—Thirty Years' War (1618-1648) as proxy chaos, allying with Sweden & Ottomans against Catholic kin.</p>
+            <p>Key Flashpoint: Italian Wars; Sully's strategy: Support any anti-Habsburg thorn, from Bohemian Protestants to... Eastern shadows.</p>
+        </section>
+
+        <section id="bathory">
+            <h3>🩸 Elizabeth Báthory: The Protestant Phoenix</h3>
+            <p>Calvinist countess (1560-1614), wealthiest in Hungary/Transylvania. Vast lands, fortresses—perfect for nephew Gábor's Ottoman-backed anti-Habsburg plots. A defiant thorn in the Catholic eagle's side, her power a potential French asset: Destabilize from within without direct war.</p>
+            <p>Rumors of "blood baths"? Perhaps Jesuit-forged shadows to justify the strike.</p>
+            <button onclick="triggerBloodExplosion()">Unleash Báthory's Shadow</button>
+        </section>
+
+        <section id="trial">
+            <h3>📜 The Trial: Jesuit Dagger in the Dark</h3>
+            <p>1610: No public trial—lest Protestant fury ignite civil war, gifting France the chaos it craved. György Thurzó (Palatine, Habsburg ally) raids; servants executed, Báthory bricked alive. Assets seized, Protestant power crushed. Jesuits? Legends bloom in their 1729 texts—Counter-Reformation checkmate, veiled as scandal.</p>
+            <p>Inadvertent French win: Habsburg resources drained, no full rebellion sparked.</p>
+        </section>
+
+        <section id="timeline">
+            <h3>⏳ Interactive Timeline: Forging the Axis</h3>
+            <div class="timeline" id="timeline-container">
+                <div class="timeline-item" data-year="1477" onclick="scrollToYear(1477)">1477: Maximilian weds Mary of Burgundy—Habsburg web begins.</div>
+                <div class="timeline-item" data-year="1519" onclick="scrollToYear(1519)">1519: Charles V crowned—Catholic zenith, Protestant storm brews.</div>
+                <div class="timeline-item" data-year="1560" onclick="scrollToYear(1560)">1560: Báthory born—Calvinist heir to thorny lands.</div>
+                <div class="timeline-item" data-year="1610" onclick="scrollToYear(1610)">1610: Báthory arrested—Jesuit shadows fall, French smiles hidden.</div>
+                <div class="timeline-item" data-year="1618" onclick="scrollToYear(1618)">1618: Thirty Years' War erupts—French gambit pays dividends.</div>
+                <div class="timeline-item" data-year="1648" onclick="scrollToYear(1648)">1648: Peace of Westphalia—Habsburg eagle clipped.</div>
+            </div>
+            <input type="range" id="timeline-slider" min="1400" max="1700" value="1500" oninput="updateTimeline(this.value)">
+        </section>
+
+        <section id="map">
+            <h3>🗺️ Empire Encirclement Map</h3>
+            <svg id="map-svg" viewBox="0 0 800 400">
+                <!-- Simplified Europe: Habsburg (red), France (blue), Báthory lands (purple) -->
+                <rect x="100" y="100" width="200" height="150" fill="var(--jesuit-red)" opacity="0.5" onclick="revealModal('Habsburg HRE: Catholic Heartland')"/>
+                <rect x="50" y="200" width="100" height="100" fill="var(--protestant-blue)" opacity="0.5" onclick="revealModal('France: Shadowy Rival')"/>
+                <circle cx="600" cy="150" r="50" fill="purple" opacity="0.5" onclick="revealModal('Báthory Transylvania: Protestant Thorn')"/>
+                <text x="200" y="280" fill="white">Habsburg Empire</text>
+                <text x="80" y="320" fill="white">France</text>
+                <text x="580" y="220" fill="white">Báthory Lands</text>
+            </svg>
+        </section>
+    </main>
+
+    <!-- Footer: Eternal Vigil -->
+    <footer style="text-align: center; padding: 20px; background: var(--jesuit-red);">
+        <p>© Divine Revelations – Unveiling Shadows | Blessed by Historical Truth | Explore, Unravel, Transcend</p>
+    </footer>
+
+    <!-- Revelation Modal -->
+    <div id="revelation-modal" class="modal">
+        <h3>Shadow Unveiled</h3>
+        <p id="modal-content">Loading eternal secrets...</p>
+        <button onclick="closeModal()">Seal the Scroll</button>
+    </div>
+
+    <!-- Shadow JS: Particles, Timeline, Revelations -->
+    <script>
+        // Empire Blessing Console
+        console.log(`
+   _____ _    _ _____  _      ______  _____  _   _ 
+  / ____| |  | |  __ \\| |    |  ____|/ ____|/ \\ | |
+ | |  __| |  | | |__) | |    | |__  | (___ / /\\| |
+ | | |_ | |  | |  ___/| |    |  __|  \\___ \\\\/  \\ |
+ | |__| | |__| | |    | |____| |____ ____) | () | |
+  \\_____|\\____/|_|    |______|______|_____/ \\_/|_|
+Unveiled by Divine Will - Psalm 2:4
+        `);
+
+        let particles = []; const maxParticles = 500; let revelationCount = 0; let shadowCount = 0;
+        let divineMode = true; let scriptureIndex = 0;
+        const scriptures = ["The kings of the earth set themselves... - Psalm 2:2-4", "The heart is deceitful... - Jeremiah 17:9", "What is hidden will be revealed... - Luke 12:2"];
+        const canvas = document.getElementById('shadow-canvas'); const ctx = canvas.getContext('2d');
+
+        function init() {
+            canvas.width = window.innerWidth; canvas.height = window.innerHeight;
+            window.addEventListener('resize', () => { canvas.width = window.innerWidth; canvas.height = window.innerHeight; });
+            setupEvents(); startLoop(); rotateScriptures();
+            document.getElementById('rotating-scripture').textContent = scriptures[0];
+        }
+
+        function setupEvents() {
+            document.addEventListener('click', e => triggerBloodExplosion(e.clientX, e.clientY));
+            document.addEventListener('mousemove', e => { /* Trail stub */ });
+            document.addEventListener('keydown', e => { if (e.key === ' ') triggerBloodExplosion(); });
+            // Konami for Ultimate Mode
+            let konami = [38,38,40,40,37,39,37,39,66,65]; let input = [];
+            document.addEventListener('keydown', e => { input.push(e.keyCode); input = input.slice(-konami.length); if (JSON.stringify(input) === JSON.stringify(konami)) { toggleDivineMode(); alert('Ultimate Conspiracy Mode: All Shadows Unveiled!'); } });
+        }
+
+        function startLoop() {
+            function loop() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles = particles.filter(p => p.life > 0);
+                particles.forEach(p => {
+                    p.x += p.vx; p.y += p.vy; p.life--;
+                    ctx.fillStyle = `rgba(139,0,0,${p.life / 100})`; ctx.fillRect(p.x, p.y, 3, 3);
+                });
+                updateHUD();
+                requestAnimationFrame(loop);
+            }
+            loop();
+        }
+
+        function triggerBloodExplosion(x = canvas.width / 2, y = canvas.height / 2) {
+            for (let i = 0; i < 50; i++) {
+                particles.push({ x, y, vx: (Math.random() - 0.5) * 4, vy: (Math.random() - 0.5) * 4, life: 100 });
+            }
+            shadowCount++; updateHUD();
+        }
+
+        function toggleDivineMode() {
+            divineMode = !divineMode; document.body.classList.toggle('divine-mode');
+            document.getElementById('mode').textContent = divineMode ? 'DIVINE' : 'SHADOW';
+        }
+
+        function rotateScriptures() {
+            setInterval(() => {
+                scriptureIndex = (scriptureIndex + 1) % scriptures.length;
+                document.getElementById('rotating-scripture').textContent = scriptures[scriptureIndex];
+            }, 12000);
+        }
+
+        function updateHUD() {
+            document.getElementById('rev-count').textContent = revelationCount;
+            document.getElementById('shadow-count').textContent = shadowCount;
+            document.getElementById('status').textContent = particles.length > 100 ? 'CHAOS UNLEASHED' : 'VEILED';
+        }
+
+        function revealModal(content) {
+            document.getElementById('modal-content').textContent = content; document.getElementById('revelation-modal').classList.add('show'); revelationCount++; updateHUD();
+        }
+
+        function closeModal() { document.getElementById('revelation-modal').classList.remove('show'); }
+
+        function scrollToYear(year) {
+            const items = document.querySelectorAll('.timeline-item');
+            items.forEach(item => item.style.background = 'rgba(212,175,55,0.1)');
+            const target = Array.from(items).find(item => item.dataset.year == year);
+            if (target) { target.style.background = 'rgba(212,175,55,0.5)'; target.scrollIntoView({ behavior: 'smooth' }); }
+        }
+
+        function updateTimeline(value) {
+            scrollToYear(value);
+        }
+
+        init();
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,535 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Alchemist Stones - Research Framework</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Courier New', monospace;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #e0e0e0;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            background: rgba(0, 0, 0, 0.8);
+            border: 2px solid #4a5568;
+            border-radius: 10px;
+            padding: 30px;
+            box-shadow: 0 0 30px rgba(0, 0, 0, 0.5);
+        }
+        
+        h1 {
+            text-align: center;
+            color: #ffd700;
+            font-size: 2.5em;
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            border-bottom: 3px solid #4a5568;
+            padding-bottom: 15px;
+        }
+        
+        .research-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .section {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 20px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+        }
+        
+        .section-title {
+            color: #ffd700;
+            font-size: 1.3em;
+            font-weight: bold;
+            margin-bottom: 15px;
+            border-bottom: 1px solid #4a5568;
+            padding-bottom: 8px;
+        }
+        
+        .claim-item {
+            background: rgba(45, 55, 72, 0.9);
+            margin: 10px 0;
+            padding: 15px;
+            border-left: 4px solid #ed8936;
+            border-radius: 4px;
+        }
+        
+        .claim-header {
+            color: #ed8936;
+            font-weight: bold;
+            margin-bottom: 8px;
+        }
+        
+        .verification-status {
+            display: inline-block;
+            padding: 4px 8px;
+            border-radius: 15px;
+            font-size: 0.8em;
+            font-weight: bold;
+            margin-left: 10px;
+        }
+        
+        .unverified {
+            background: #e53e3e;
+            color: white;
+        }
+        
+        .investigating {
+            background: #d69e2e;
+            color: white;
+        }
+        
+        .verified {
+            background: #38a169;
+            color: white;
+        }
+        
+        .debunked {
+            background: #8b5cf6;
+            color: white;
+        }
+        
+        .research-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            background: rgba(45, 55, 72, 0.9);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+        
+        .research-table th,
+        .research-table td {
+            border: 1px solid #4a5568;
+            padding: 12px;
+            text-align: left;
+        }
+        
+        .research-table th {
+            background: #2d3748;
+            color: #ffd700;
+            font-weight: bold;
+        }
+        
+        .research-table tr:nth-child(even) {
+            background: rgba(55, 65, 81, 0.5);
+        }
+        
+        .timeline {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            grid-column: 1 / -1;
+        }
+        
+        .timeline-item {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(45, 55, 72, 0.9);
+            border-left: 4px solid #4299e1;
+            border-radius: 4px;
+            position: relative;
+        }
+        
+        .timeline-date {
+            color: #4299e1;
+            font-weight: bold;
+            font-size: 1.1em;
+        }
+        
+        .verification-checklist {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            grid-column: 1 / -1;
+        }
+        
+        .checklist-item {
+            display: flex;
+            align-items: center;
+            margin: 10px 0;
+            padding: 8px;
+            background: rgba(45, 55, 72, 0.5);
+            border-radius: 4px;
+        }
+        
+        .checklist-item input[type="checkbox"] {
+            margin-right: 10px;
+            transform: scale(1.2);
+        }
+        
+        .priority-high {
+            border-left-color: #e53e3e;
+        }
+        
+        .priority-medium {
+            border-left-color: #d69e2e;
+        }
+        
+        .priority-low {
+            border-left-color: #38a169;
+        }
+        
+        .notes-section {
+            background: rgba(30, 41, 59, 0.8);
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            grid-column: 1 / -1;
+        }
+        
+        .notes-area {
+            width: 100%;
+            height: 150px;
+            background: rgba(45, 55, 72, 0.9);
+            border: 1px solid #4a5568;
+            border-radius: 4px;
+            padding: 10px;
+            color: #e0e0e0;
+            font-family: 'Courier New', monospace;
+            resize: vertical;
+        }
+        
+        .research-links {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 15px;
+            margin: 20px 0;
+        }
+        
+        .link-category {
+            background: rgba(45, 55, 72, 0.9);
+            border: 1px solid #4a5568;
+            border-radius: 8px;
+            padding: 15px;
+        }
+        
+        .link-category h4 {
+            color: #ffd700;
+            margin-bottom: 10px;
+        }
+        
+        .link-category a {
+            color: #4299e1;
+            text-decoration: none;
+            display: block;
+            margin: 5px 0;
+        }
+        
+        .link-category a:hover {
+            color: #63b3ed;
+            text-decoration: underline;
+        }
+        
+        .methodology-box {
+            background: rgba(30, 41, 59, 0.8);
+            border: 2px solid #4a5568;
+            border-radius: 8px;
+            padding: 20px;
+            margin: 20px 0;
+            grid-column: 1 / -1;
+        }
+        
+        .methodology-step {
+            margin: 10px 0;
+            padding: 10px;
+            background: rgba(45, 55, 72, 0.7);
+            border-radius: 4px;
+            border-left: 3px solid #9f7aea;
+        }
+        
+        @media (max-width: 768px) {
+            .research-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .container {
+                padding: 15px;
+            }
+            
+            h1 {
+                font-size: 2em;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>🔬 THE ALCHEMIST STONES 🔬<br>Research & Verification Framework</h1>
+        
+        <div class="methodology-box">
+            <div class="section-title">🎯 RESEARCH METHODOLOGY</div>
+            <div class="methodology-step"><strong>PHASE 1:</strong> Document & catalog all claims without judgment</div>
+            <div class="methodology-step"><strong>PHASE 2:</strong> Identify verifiable elements (dates, places, people, institutions)</div>
+            <div class="methodology-step"><strong>PHASE 3:</strong> Cross-reference with multiple independent sources</div>
+            <div class="methodology-step"><strong>PHASE 4:</strong> Apply scientific scrutiny to extraordinary claims</div>
+            <div class="methodology-step"><strong>PHASE 5:</strong> Document findings with evidence trail</div>
+        </div>
+        
+        <div class="research-grid">
+            <div class="section">
+                <div class="section-title">📋 CLAIMS INVENTORY</div>
+                
+                <div class="claim-item priority-high">
+                    <div class="claim-header">Historical Presence - Rudolf II Court (16th Century)
+                        <span class="verification-status unverified">UNVERIFIED</span>
+                    </div>
+                    <div><strong>Source:</strong> Obscure History Forum Post</div>
+                    <div><strong>Claim:</strong> "Stones" advised Rudolf II in Prague</div>
+                    <div><strong>Verifiable Elements:</strong> Rudolf II (1552-1612), Prague court records, alchemist patronage</div>
+                </div>
+                
+                <div class="claim-item priority-high">
+                    <div class="claim-header">Colonial America Incident - Sea Serpent Ship
+                        <span class="verification-status unverified">UNVERIFIED</span>
+                    </div>
+                    <div><strong>Source:</strong> Same forum post</div>
+                    <div><strong>Claim:</strong> Ship found empty, silver cargo fused into worthless block</div>
+                    <div><strong>Verifiable Elements:</strong> Ship manifests, colonial port records, maritime disasters</div>
+                </div>
+                
+                <div class="claim-item priority-medium">
+                    <div class="claim-header">Modern Transmutation - Market Video
+                        <span class="verification-status investigating">INVESTIGATING</span>
+                    </div>
+                    <div><strong>Source:</strong> YouTube (48s, grainy)</div>
+                    <div><strong>Claim:</strong> Sand transformed to salt crystals</div>
+                    <div><strong>Verifiable Elements:</strong> Video metadata, location, witness accounts</div>
+                </div>
+                
+                <div class="claim-item priority-high">
+                    <div class="claim-header">Intelligence Report - London Underground
+                        <span class="verification-status unverified">UNVERIFIED</span>
+                    </div>
+                    <div><strong>Source:</strong> Alleged MI6 Declassified Document</div>
+                    <div><strong>Claim:</strong> Subject "phased" through wall, molecular alteration to sandstone</div>
+                    <div><strong>Verifiable Elements:</strong> Document authenticity, classification protocols, thermal imaging</div>
+                </div>
+            </div>
+            
+            <div class="section">
+                <div class="section-title">🔍 VERIFICATION PRIORITIES</div>
+                
+                <table class="research-table">
+                    <thead>
+                        <tr>
+                            <th>Priority</th>
+                            <th>Research Target</th>
+                            <th>Method</th>
+                            <th>Status</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>🔴 HIGH</td>
+                            <td>MI6 Document Authenticity</td>
+                            <td>FOIA requests, format analysis</td>
+                            <td>Pending</td>
+                        </tr>
+                        <tr>
+                            <td>🔴 HIGH</td>
+                            <td>Rudolf II Court Records</td>
+                            <td>Prague Archives, academic sources</td>
+                            <td>Pending</td>
+                        </tr>
+                        <tr>
+                            <td>🟡 MED</td>
+                            <td>Sea Serpent Ship Records</td>
+                            <td>Colonial maritime archives</td>
+                            <td>Pending</td>
+                        </tr>
+                        <tr>
+                            <td>🟡 MED</td>
+                            <td>YouTube Video Analysis</td>
+                            <td>Metadata extraction, location ID</td>
+                            <td>In Progress</td>
+                        </tr>
+                        <tr>
+                            <td>🟢 LOW</td>
+                            <td>Forum Post Origins</td>
+                            <td>User history, posting patterns</td>
+                            <td>Scheduled</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        
+        <div class="timeline">
+            <div class="section-title">📅 CHRONOLOGICAL TIMELINE</div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">~1590s - 1610s</div>
+                <div><strong>Alleged:</strong> "Stones" advising Rudolf II in Prague during height of alchemical patronage</div>
+                <div><strong>Historical Context:</strong> Rudolf II known for supporting John Dee, Edward Kelly, Tycho Brahe</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Colonial Period (Date Unknown)</div>
+                <div><strong>Alleged:</strong> Sea Serpent ship incident, silver transmutation</div>
+                <div><strong>Research Need:</strong> Identify specific timeframe, port of origin/destination</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Modern Era (Date Unknown)</div>
+                <div><strong>Alleged:</strong> London Underground incident documented by MI6</div>
+                <div><strong>Research Need:</strong> Determine classification level, operation timeframe</div>
+            </div>
+            
+            <div class="timeline-item">
+                <div class="timeline-date">Recent (Date Unknown)</div>
+                <div><strong>Alleged:</strong> Market transmutation caught on tourist video</div>
+                <div><strong>Research Need:</strong> Video upload date, location identification</div>
+            </div>
+        </div>
+        
+        <div class="verification-checklist">
+            <div class="section-title">✅ DOCUMENT AUTHENTICATION CHECKLIST</div>
+            
+            <div class="checklist-item">
+                <input type="checkbox" id="check1">
+                <label for="check1">Verify MI6 document formatting matches authentic declassified materials</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check2">
+                <label for="check2">Check classification markings and redaction patterns</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check3">
+                <label for="check3">Cross-reference "Operation Bedrock" with known MI6 operations</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check4">
+                <label for="check4">Verify declassification date and process legitimacy</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check5">
+                <label for="check5">Analyze thermal imaging claim for technical feasibility</label>
+            </div>
+            <div class="checklist-item">
+                <input type="checkbox" id="check6">
+                <label for="check6">Research London Underground molecular composition testing capabilities</label>
+            </div>
+        </div>
+        
+        <div class="research-links">
+            <div class="link-category">
+                <h4>🏛️ Historical Archives</h4>
+                <a href="#" onclick="alert('Research Prague State Archives - Rudolf II collections')">Prague State Archives</a>
+                <a href="#" onclick="alert('Contact Czech Academy of Sciences')">Czech Academy of Sciences</a>
+                <a href="#" onclick="alert('Search National Archives (UK)')">UK National Archives</a>
+                <a href="#" onclick="alert('Access JSTOR academic database')">JSTOR Historical Research</a>
+            </div>
+            
+            <div class="link-category">
+                <h4>🛡️ Intelligence Sources</h4>
+                <a href="#" onclick="alert('Submit FOIA request to UK government')">UK FOIA Portal</a>
+                <a href="#" onclick="alert('Contact declassified document experts')">Declassification Specialists</a>
+                <a href="#" onclick="alert('Research MI6 document formats')">Intelligence Document Analysis</a>
+            </div>
+            
+            <div class="link-category">
+                <h4>🌊 Maritime History</h4>
+                <a href="#" onclick="alert('Search colonial shipping records')">Colonial Port Archives</a>
+                <a href="#" onclick="alert('Contact maritime archaeology experts')">Maritime Archaeological Society</a>
+                <a href="#" onclick="alert('Research shipwreck databases')">Shipwreck Databases</a>
+            </div>
+            
+            <div class="link-category">
+                <h4>🔬 Scientific Analysis</h4>
+                <a href="#" onclick="alert('Consult materials science experts')">Materials Science Consultation</a>
+                <a href="#" onclick="alert('Research molecular transmutation theories')">Transmutation Research</a>
+                <a href="#" onclick="alert('Video forensics analysis')">Digital Forensics Labs</a>
+            </div>
+        </div>
+        
+        <div class="notes-section">
+            <div class="section-title">📝 RESEARCH NOTES & OBSERVATIONS</div>
+            <textarea class="notes-area" placeholder="Document your findings, observations, and questions here as you progress through your research...
+
+Key Questions to Address:
+- What makes these claims extraordinary vs. mundane?
+- Are there patterns suggesting coordinated disinformation?
+- What would constitute sufficient evidence for extraordinary claims?
+- Are there simpler explanations for the reported phenomena?
+
+Research Standards:
+- Multiple independent sources required for verification
+- Primary sources preferred over secondary accounts
+- Technical claims must be reviewed by relevant experts
+- Maintain chain of evidence documentation"></textarea>
+        </div>
+        
+        <div class="section" style="grid-column: 1 / -1; text-align: center; background: rgba(45, 55, 72, 0.9); border: 2px solid #ffd700;">
+            <div class="section-title">⚠️ CRITICAL RESEARCH PRINCIPLES</div>
+            <div style="font-size: 1.1em; line-height: 1.8;">
+                <strong>EXTRAORDINARY CLAIMS REQUIRE EXTRAORDINARY EVIDENCE</strong><br>
+                Maintain rigorous skepticism • Verify through multiple channels • Document everything<br>
+                <em>"The absence of evidence is not evidence of absence, but it's also not evidence of presence"</em>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Add some interactive functionality
+        document.addEventListener('DOMContentLoaded', function() {
+            // Auto-save notes
+            const notesArea = document.querySelector('.notes-area');
+            if (notesArea) {
+                notesArea.addEventListener('input', function() {
+                    console.log('Notes updated - remember to save externally');
+                });
+            }
+            
+            // Checklist progress tracking
+            const checkboxes = document.querySelectorAll('input[type="checkbox"]');
+            checkboxes.forEach(checkbox => {
+                checkbox.addEventListener('change', function() {
+                    const completed = document.querySelectorAll('input[type="checkbox"]:checked').length;
+                    const total = checkboxes.length;
+                    console.log(`Authentication Progress: ${completed}/${total} completed`);
+                });
+            });
+            
+            // Highlight high priority items
+            const highPriorityItems = document.querySelectorAll('.priority-high');
+            highPriorityItems.forEach(item => {
+                item.style.animation = 'pulse 2s infinite';
+            });
+        });
+        
+        // Add CSS animation for high priority items
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { border-left-color: #e53e3e; }
+                50% { border-left-color: #ff6b6b; }
+                100% { border-left-color: #e53e3e; }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

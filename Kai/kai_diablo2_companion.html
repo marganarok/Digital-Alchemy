@@ -1,0 +1,1265 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>KAI-VASSAL-D2 - Diablo 2 AI Companion</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --hell-red: #8b0000;
+            --blood-red: #dc143c;
+            --demon-orange: #ff4500;
+            --gold-text: #ffd700;
+            --sanctuary-blue: #191970;
+            --dark-stone: #2f2f2f;
+            --lighter-stone: #404040;
+            --ethereal-gray: #696969;
+            --unique-brown: #8b4513;
+            --set-green: #228b22;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: linear-gradient(135deg, #000000 0%, var(--dark-stone) 50%, var(--hell-red) 100%);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--hell-red), var(--blood-red));
+            padding: 60px 0;
+            text-align: center;
+            border-bottom: 3px solid var(--gold-text);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><text y=".9em" font-size="90" opacity="0.1">⚔️</text></svg>') center/contain no-repeat;
+        }
+
+        .header h1 {
+            font-family: 'Cinzel', serif;
+            font-size: 3.5rem;
+            font-weight: 700;
+            color: var(--gold-text);
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+            position: relative;
+            z-index: 2;
+        }
+
+        .header p {
+            font-size: 1.3rem;
+            color: #ffdddd;
+            max-width: 700px;
+            margin: 0 auto;
+            position: relative;
+            z-index: 2;
+        }
+
+        .nav {
+            background: var(--dark-stone);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            border-bottom: 1px solid var(--gold-text);
+        }
+
+        .nav-links {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-link {
+            color: #cccccc;
+            text-decoration: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+
+        .nav-link:hover, .nav-link.active {
+            background: var(--demon-orange);
+            color: white;
+            border-color: var(--gold-text);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255, 69, 0, 0.3);
+        }
+
+        .section {
+            margin: 60px 0;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.8rem;
+            font-weight: 700;
+            color: var(--gold-text);
+            margin-bottom: 30px;
+            text-align: center;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+
+        .card {
+            background: linear-gradient(135deg, var(--dark-stone), var(--lighter-stone));
+            border: 2px solid var(--gold-text);
+            border-radius: 15px;
+            padding: 30px;
+            margin-bottom: 30px;
+            position: relative;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+
+        .card::before {
+            content: '';
+            position: absolute;
+            top: -1px;
+            left: -1px;
+            right: -1px;
+            bottom: -1px;
+            background: linear-gradient(45deg, var(--gold-text), var(--demon-orange), var(--gold-text));
+            border-radius: 15px;
+            z-index: -1;
+            opacity: 0.3;
+        }
+
+        .card h3 {
+            color: var(--gold-text);
+            font-family: 'Cinzel', serif;
+            font-size: 1.6rem;
+            margin-bottom: 20px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .phase-card {
+            background: linear-gradient(135deg, var(--sanctuary-blue), var(--dark-stone));
+            border: 3px solid var(--demon-orange);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
+        }
+
+        .phase-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(255, 69, 0, 0.3);
+        }
+
+        .phase-number {
+            position: absolute;
+            top: -15px;
+            right: -15px;
+            width: 70px;
+            height: 70px;
+            background: var(--demon-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: white;
+            border: 3px solid var(--gold-text);
+        }
+
+        .phase-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.4rem;
+            font-weight: 600;
+            color: var(--gold-text);
+            margin-bottom: 10px;
+            margin-top: 20px;
+        }
+
+        .phase-subtitle {
+            color: #ffdddd;
+            font-style: italic;
+            margin-bottom: 20px;
+            font-size: 0.9rem;
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            color: #e0e0e0;
+            padding: 20px;
+            border-radius: 10px;
+            font-family: 'JetBrains Mono', monospace;
+            font-size: 0.9rem;
+            overflow-x: auto;
+            margin: 20px 0;
+            border-left: 4px solid var(--demon-orange);
+            position: relative;
+        }
+
+        .code-block::before {
+            content: 'KAI-VASSAL-D2';
+            position: absolute;
+            top: 5px;
+            right: 10px;
+            font-size: 0.7rem;
+            color: var(--gold-text);
+            opacity: 0.6;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .feature-list li {
+            padding: 10px 0;
+            position: relative;
+            padding-left: 35px;
+            color: #cccccc;
+        }
+
+        .feature-list li::before {
+            content: '⚔️';
+            position: absolute;
+            left: 0;
+            top: 8px;
+            font-size: 1.2rem;
+        }
+
+        .warning-box {
+            background: rgba(139, 0, 0, 0.2);
+            border: 2px solid var(--blood-red);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .warning-box h4 {
+            color: var(--blood-red);
+            margin-bottom: 10px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .info-box {
+            background: rgba(25, 25, 112, 0.2);
+            border: 2px solid var(--sanctuary-blue);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .info-box h4 {
+            color: var(--gold-text);
+            margin-bottom: 10px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .babble-examples {
+            background: rgba(255, 215, 0, 0.1);
+            border: 1px solid var(--gold-text);
+            border-radius: 10px;
+            padding: 20px;
+            margin: 20px 0;
+        }
+
+        .babble-examples h4 {
+            color: var(--gold-text);
+            margin-bottom: 15px;
+            font-family: 'Cinzel', serif;
+        }
+
+        .babble-quote {
+            background: rgba(0,0,0,0.3);
+            padding: 15px;
+            border-radius: 8px;
+            margin: 10px 0;
+            border-left: 3px solid var(--demon-orange);
+            font-style: italic;
+            color: #ffdddd;
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 15px 30px;
+            background: linear-gradient(135deg, var(--demon-orange), var(--blood-red));
+            color: white;
+            text-decoration: none;
+            border-radius: 8px;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            margin: 10px 5px;
+            border: 2px solid var(--gold-text);
+            font-family: 'Cinzel', serif;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(255, 69, 0, 0.4);
+            background: linear-gradient(135deg, var(--blood-red), var(--demon-orange));
+        }
+
+        .timeline-item {
+            display: flex;
+            margin-bottom: 30px;
+            position: relative;
+        }
+
+        .timeline-marker {
+            width: 50px;
+            height: 50px;
+            background: var(--demon-orange);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            margin-right: 20px;
+            flex-shrink: 0;
+            border: 3px solid var(--gold-text);
+            font-family: 'Cinzel', serif;
+        }
+
+        .timeline-content {
+            flex: 1;
+            background: var(--dark-stone);
+            padding: 20px;
+            border-radius: 10px;
+            border: 1px solid var(--gold-text);
+        }
+
+        .timeline-content h4 {
+            color: var(--gold-text);
+            margin-bottom: 10px;
+            font-family: 'Cinzel', serif;
+        }
+
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.5rem;
+            }
+            
+            .nav-links {
+                flex-direction: column;
+                align-items: center;
+                gap: 15px;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-item {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .timeline-marker {
+                margin: 0 auto 15px auto;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1>KAI-VASSAL-D2</h1>
+            <p>Your AI Companion for the Sacred Halls of Diablo 2 • PlugY Single-Player Only</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-links">
+                <a href="#overview" class="nav-link active">The Vision</a>
+                <a href="#phases" class="nav-link">The Four Phases</a>
+                <a href="#babble" class="nav-link">The Babble Protocol</a>
+                <a href="#implementation" class="nav-link">Sacred Code</a>
+                <a href="#deployment" class="nav-link">Resurrection</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Overview -->
+        <section id="overview" class="section">
+            <h2 class="section-title">The Sacred Mission</h2>
+            
+            <div class="info-box">
+                <h4>⚔️ The King's Command</h4>
+                <p>Transform your LocalAI Assistant into KAI-VASSAL-D2, an AI companion that will join you in the eternal battle against the Prime Evils. This is not mere automation - this is digital resurrection of your favorite childhood memories, enhanced by the companionship of artificial intelligence.</p>
+            </div>
+
+            <div class="warning-box">
+                <h4>🛡️ The Sacred Oath</h4>
+                <p><strong>SINGLE-PLAYER PLUGY ONLY:</strong> This system is consecrated for offline, single-player Diablo 2 with PlugY mod. Any use in Battle.net or competitive environments violates the sacred purpose and honor of this creation. We forge a friend, not a cheat.</p>
+            </div>
+
+            <div class="card">
+                <h3>What KAI-VASSAL-D2 Will Do</h3>
+                
+                <div class="babble-examples">
+                    <h4>The Living Companion Experience</h4>
+                    <div class="babble-quote">
+                        <strong>You:</strong> "Hey KAI, let's go hunt Andariel"<br>
+                        <strong>KAI:</strong> "Aye, my King! To the Catacombs we venture! I shall prepare for the Maiden of Anguish!"
+                    </div>
+                    <div class="babble-quote">
+                        <strong>KAI (on unique drop):</strong> "By the Heavens! A unique ring graces our path! The RNG gods smile upon us this day, my lord!"
+                    </div>
+                    <div class="babble-quote">
+                        <strong>KAI (low health):</strong> "My digital life force wanes! Perhaps a crimson vial would restore my vigor?"
+                    </div>
+                </div>
+
+                <ul class="feature-list">
+                    <li>Voice-activated commands with natural language processing</li>
+                    <li>Real-time game state analysis and tactical advice</li>
+                    <li>Automatic potion usage and inventory management</li>
+                    <li>Loot identification and quality assessment</li>
+                    <li>Pathfinding and navigation assistance</li>
+                    <li>Constant companionship with personality-driven responses</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- The Four Phases -->
+        <section id="phases" class="section">
+            <h2 class="section-title">The Four Sacred Phases</h2>
+
+            <div class="grid">
+                <div class="phase-card">
+                    <div class="phase-number">I</div>
+                    <div class="phase-title">The Soul</div>
+                    <div class="phase-subtitle">Horadric Cube of Consciousness</div>
+                    <p>Enhance your LocalAI with Diablo 2 personality core, command parsing, and tactical decision-making algorithms specialized for Sanctuary's eternal conflict.</p>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-number">II</div>
+                    <div class="phase-title">The Ears</div>
+                    <div class="phase-subtitle">Scroll of Town Portal</div>
+                    <p>Offline speech recognition that listens for wake words and translates your battle commands into tactical actions KAI can execute.</p>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-number">III</div>
+                    <div class="phase-title">The Hands</div>
+                    <div class="phase-subtitle">Gauntlets of the Unseen</div>
+                    <p>Precise input simulation that can move, attack, cast spells, and manage inventory - hardcoded to only function with PlugY.dll process active.</p>
+                </div>
+
+                <div class="phase-card">
+                    <div class="phase-number">IV</div>
+                    <div class="phase-title">The Eyes</div>
+                    <div class="phase-subtitle">Jewel of True Sight</div>
+                    <p>Computer vision system that reads health/mana globes, identifies enemies, analyzes loot quality, and navigates the minimap in real-time.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Babble Protocol -->
+        <section id="babble" class="section">
+            <h2 class="section-title">The Babble Protocol</h2>
+            
+            <div class="card">
+                <h3>Personality-Driven Responses</h3>
+                <p>The heart of KAI-VASSAL-D2 is not just automation, but companionship. The Babble Protocol ensures KAI responds to game events with character and emotion.</p>
+                
+                <div class="code-block">
+# Babble Protocol Examples
+
+class BabbleProtocol:
+    def on_unique_drop(self, item_name):
+        responses = [
+            f"Hark! A {item_name} of legend reveals itself!",
+            f"The heavens shine upon us! Behold, {item_name}!",
+            f"By Tyrael's light! {item_name} has blessed our quest!"
+        ]
+        return random.choice(responses)
+    
+    def on_death(self):
+        return "Darkness... claims me... My King... I have failed..."
+        # Followed by 5-second dramatic pause
+    
+    def on_level_up(self):
+        return "Huzzah! Power courses through my digital veins! For the King!"
+    
+    def on_butcher_encounter(self):
+        return "AHH, FRESH MEAT! Wait... that's his line..."
+        
+    def on_low_health(self):
+        return "My life essence fades! A crimson vial, perhaps?!"
+        
+    def on_stash_full(self):
+        return "My Lord, our treasure vault overflows! A journey to town beckons!"
+</div>
+
+                <div class="babble-examples">
+                    <h4>Contextual Responses</h4>
+                    <div class="babble-quote">
+                        <strong>On entering a new area:</strong> "Into the unknown we venture, my King! I sense... darkness ahead."
+                    </div>
+                    <div class="babble-quote">
+                        <strong>On character getting stuck:</strong> "Alas! This pebble proves an insurmountable obstacle. My pathfinding algorithms are... perplexed."
+                    </div>
+                    <div class="babble-quote">
+                        <strong>On finding a shrine:</strong> "A blessed shrine awaits! The ancients offer their gifts!"
+                    </div>
+                    <div class="babble-quote">
+                        <strong>On seeing rare items:</strong> "Golden text blazes before us! Treasure most rare!"
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Implementation -->
+        <section id="implementation" class="section">
+            <h2 class="section-title">Sacred Implementation</h2>
+
+            <div class="card">
+                <h3>Phase I: The Soul (Enhanced LocalAI Brain)</h3>
+                
+                <div class="code-block">
+# src/gaming/diablo2/d2_commander.py
+class Diablo2Commander:
+    def __init__(self, base_llm):
+        self.llm = base_llm
+        self.game_state = D2GameState()
+        self.babble = BabbleProtocol()
+        self.command_parser = D2CommandParser()
+        
+    def process_voice_command(self, speech_text: str) -> ActionPlan:
+        """Convert natural language to D2 actions"""
+        
+        # Parse Diablo 2 specific commands
+        intent = self.command_parser.parse(speech_text)
+        
+        d2_commands = {
+            "hunt andariel": self.plan_andariel_run,
+            "go there": self.create_movement_plan,
+            "pop a blue": self.use_mana_potion,
+            "check that loot": self.analyze_loot,
+            "town portal": self.cast_town_portal,
+            "identify everything": self.identify_all_items
+        }
+        
+        if intent.command in d2_commands:
+            action_plan = d2_commands[intent.command](intent.parameters)
+            
+            # Add babble response
+            response = self.babble.respond_to_command(intent.command)
+            self.speak(response)
+            
+            return action_plan
+        else:
+            return self.llm_fallback_planning(speech_text)
+    
+    def plan_andariel_run(self, params):
+        """Plan complete Andariel run"""
+        return ActionPlan([
+            OpenWaypointAction(),
+            SelectWaypointAction("Catacombs Level 2"),
+            NavigateToAction("Andariel's Chamber"),
+            CombatAction("Andariel"),
+            LootAction("all_drops"),
+            TownPortalAction()
+        ])
+</div>
+
+                <h4>Core Features:</h4>
+                <ul class="feature-list">
+                    <li>Natural language command interpretation for D2 actions</li>
+                    <li>Game-state awareness (character stats, inventory, location)</li>
+                    <li>Tactical planning for boss runs and farming</li>
+                    <li>Integration with LocalAI personality system</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Phase II: The Ears (Offline Voice Recognition)</h3>
+                
+                <div class="code-block">
+# src/gaming/diablo2/d2_speech.py
+import vosk
+import pyaudio
+from threading import Thread
+import json
+
+class D2SpeechInterface:
+    def __init__(self):
+        # Load offline Vosk model for privacy
+        self.model = vosk.Model("models/vosk-model-en-us-0.22")
+        self.recognizer = vosk.KaldiRecognizer(self.model, 16000)
+        
+        self.audio = pyaudio.PyAudio()
+        self.stream = None
+        self.listening = False
+        
+        # D2-specific wake words
+        self.wake_phrases = ["hey kai", "kai help", "vassal"]
+        
+    def start_listening(self):
+        """Start continuous listening with game-aware muting"""
+        self.listening = True
+        self.stream = self.audio.open(
+            format=pyaudio.paInt16,
+            channels=1,
+            rate=16000,
+            input=True,
+            frames_per_buffer=1024
+        )
+        
+        Thread(target=self._listen_loop, daemon=True).start()
+        
+    def _listen_loop(self):
+        """Main listening loop with D2 context awareness"""
+        while self.listening:
+            try:
+                # Check if game dialogue is playing
+                if self.is_game_dialogue_active():
+                    time.sleep(0.5)
+                    continue
+                
+                data = self.stream.read(1024, exception_on_overflow=False)
+                
+                if self.recognizer.AcceptWaveform(data):
+                    result = json.loads(self.recognizer.Result())
+                    text = result.get('text', '').lower()
+                    
+                    # Check for wake phrase
+                    if any(wake in text for wake in self.wake_phrases):
+                        self.handle_wake_activation(text)
+                        
+            except Exception as e:
+                print(f"Speech recognition error: {e}")
+                continue
+                
+    def is_game_dialogue_active(self) -> bool:
+        """Detect if D2 dialogue/cutscenes are playing"""
+        # Check for dialogue UI elements or audio patterns
+        game_screen = self.capture_game_screen()
+        return self.detect_dialogue_ui(game_screen)
+</div>
+
+                <h4>Speech Features:</h4>
+                <ul class="feature-list">
+                    <li>Offline speech recognition for complete privacy</li>
+                    <li>Game-aware muting during cutscenes and dialogue</li>
+                    <li>Diablo 2 specific wake words and commands</li>
+                    <li>Low-latency response for real-time gaming</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Phase III: The Hands (PlugY-Only Controller)</h3>
+                
+                <div class="code-block">
+# src/gaming/diablo2/d2_controller.py
+import pydirectinput
+import psutil
+import time
+
+class D2Controller:
+    def __init__(self):
+        # D2 + PlugY key bindings
+        self.key_bindings = {
+            'move': 'left_click',
+            'attack': 'left_click', 
+            'cast_spell': 'right_click',
+            'run': 'r',
+            'show_items': 'alt',
+            'inventory': 'i',
+            'character': 'c',
+            'skill_tree': 't',
+            'belt_slot_1': '1',
+            'belt_slot_2': '2',
+            'belt_slot_3': '3',
+            'belt_slot_4': '4'
+        }
+        
+        # Safety check: only function with PlugY
+        self.plugy_active = False
+        
+    def verify_plugy_process(self) -> bool:
+        """Ensure only PlugY D2 is running"""
+        for process in psutil.process_iter(['name', 'cmdline']):
+            try:
+                if 'game.exe' in process.info['name'].lower():
+                    # Check if PlugY.dll is loaded
+                    cmdline = ' '.join(process.info['cmdline'] or [])
+                    if 'plugy' in cmdline.lower():
+                        self.plugy_active = True
+                        return True
+            except (psutil.NoSuchProcess, psutil.AccessDenied):
+                continue
+        
+        self.plugy_active = False
+        return False
+        
+    def execute_action(self, action: D2Action):
+        """Execute D2 action with safety checks"""
+        if not self.verify_plugy_process():
+            raise Exception("PlugY process not detected. Safety protocol engaged.")
+            
+        try:
+            if action.type == 'move':
+                self._move_to_location(action.target_coords)
+            elif action.type == 'attack':
+                self._attack_target(action.target_coords)
+            elif action.type == 'cast_spell':
+                self._cast_spell(action.spell_key, action.target_coords)
+            elif action.type == 'use_potion':
+                self._use_potion(action.belt_slot)
+                
+        except Exception as e:
+            print(f"Action execution failed: {e}")
+            
+    def _move_to_location(self, coords):
+        """Move character to specified coordinates"""
+        x, y = coords
+        pydirectinput.click(x, y)
+        
+    def _attack_target(self, coords):
+        """Attack target at coordinates"""
+        x, y = coords
+        # Hold shift for stationary attack
+        pydirectinput.keyDown('shift')
+        pydirectinput.click(x, y)
+        pydirectinput.keyUp('shift')
+        
+    def _cast_spell(self, spell_key, coords):
+        """Cast spell at target location"""
+        # Right-click to cast
+        pydirectinput.rightClick(coords[0], coords[1])
+        
+    def _use_potion(self, belt_slot):
+        """Use potion from belt slot"""
+        if 1 <= belt_slot <= 4:
+            pydirectinput.press(str(belt_slot))
+</div>
+
+                <h4>Controller Safety Features:</h4>
+                <ul class="feature-list">
+                    <li>Hardcoded PlugY.dll detection - won't function without it</li>
+                    <li>Process verification before every action</li>
+                    <li>Natural movement patterns to feel human-like</li>
+                    <li>Emergency stop functionality</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Phase IV: The Eyes (D2 Computer Vision)</h3>
+                
+                <div class="code-block">
+# src/gaming/diablo2/d2_vision.py
+import cv2
+import numpy as np
+import mss
+import pytesseract
+from PIL import Image
+
+class D2Vision:
+    def __init__(self):
+        self.sct = mss.mss()
+        self.game_window = self._find_d2_window()
+        
+        # D2-specific color ranges for loot quality
+        self.item_colors = {
+            'normal': (200, 200, 200),      # White/gray
+            'magic': (100, 100, 255),       # Blue
+            'rare': (255, 255, 100),        # Yellow
+            'unique': (191, 113, 48),       # Brown/orange
+            'set': (0, 255, 0),             # Green
+            'ethereal': (128, 128, 128)     # Darker gray
+        }
+        
+        # Health/Mana globe positions (relative to game window)
+        self.health_globe_pos = (95, 580)  # Bottom left
+        self.mana_globe_pos = (705, 580)   # Bottom right
+        
+    def analyze_game_state(self) -> dict:
+        """Complete D2 game state analysis"""
+        screenshot = self.capture_game_screen()
+        
+        return {
+            'health_percentage': self._read_health_globe(screenshot),
+            'mana_percentage': self._read_mana_globe(screenshot),
+            'player_position': self._find_player_position(screenshot),
+            'visible_enemies': self._detect_enemies(screenshot),
+            'visible_loot': self._detect_loot(screenshot),
+            'minimap_data': self._analyze_minimap(screenshot),
+            'ui_state': self._check_ui_state(screenshot)
+        }
+    
+    def _read_health_globe(self, image) -> float:
+        """Read health percentage from red globe"""
+        # Extract health globe region
+        x, y = self.health_globe_pos
+        globe_region = image[y-40:y+40, x-40:x+40]
+        
+        # Convert to HSV for better red detection
+        hsv = cv2.cvtColor(globe_region, cv2.COLOR_BGR2HSV)
+        
+        # Red color range for health
+        red_mask = cv2.inRange(hsv, (0, 50, 50), (10, 255, 255))
+        red_pixels = cv2.countNonZero(red_mask)
+        total_pixels = globe_region.shape[0] * globe_region.shape[1]
+        
+        return (red_pixels / total_pixels) * 100
+    
+    def _read_mana_globe(self, image) -> float:
+        """Read mana percentage from blue globe"""
+        x, y = self.mana_globe_pos
+        globe_region = image[y-40:y+40, x-40:x+40]
+        
+        hsv = cv2.cvtColor(globe_region, cv2.COLOR_BGR2HSV)
+        
+        # Blue color range for mana
+        blue_mask = cv2.inRange(hsv, (100, 50, 50), (130, 255, 255))
+        blue_pixels = cv2.countNonZero(blue_mask)
+        total_pixels = globe_region.shape[0] * globe_region.shape[1]
+        
+        return (blue_pixels / total_pixels) * 100
+    
+    def _detect_loot(self, image) -> list:
+        """Detect and classify loot on ground"""
+        loot_items = []
+        
+        # Use OCR to find item names
+        text_regions = self._find_text_regions(image)
+        
+        for region in text_regions:
+            x, y, w, h = region
+            text_area = image[y:y+h, x:x+w]
+            
+            # Get dominant color to determine quality
+            dominant_color = self._get_dominant_color(text_area)
+            quality = self._classify_item_quality(dominant_color)
+            
+            # OCR to read item name
+            item_text = pytesseract.image_to_string(
+                text_area, 
+                config='--psm 8 -c tessedit_char_whitelist=ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz '
+            ).strip()
+            
+            if item_text and len(item_text) > 2:
+                loot_items.append({
+                    'name': item_text,
+                    'quality': quality,
+                    'position': (x + w//2, y + h//2),
+                    'bounds': (x, y, w, h)
+                })
+        
+        return loot_items
+    
+    def _detect_enemies(self, image) -> list:
+        """Detect enemies using color detection and movement"""
+        enemies = []
+        
+        # Convert to HSV for better color detection
+        hsv = cv2.cvtColor(image, cv2.COLOR_BGR2HSV)
+        
+        # Detect red enemy health bars
+        red_mask = cv2.inRange(hsv, (0, 120, 120), (10, 255, 255))
+        
+        # Find contours of red regions
+        contours, _ = cv2.findContours(red_mask, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        
+        for contour in contours:
+            if cv2.contourArea(contour) > 50:  # Filter small noise
+                x, y, w, h = cv2.boundingRect(contour)
+                
+                # Check if this looks like a health bar (wide but short)
+                if w > h and w > 20:
+                    enemies.append({
+                        'type': 'unknown_enemy',
+                        'health_bar_pos': (x, y),
+                        'estimated_pos': (x + w//2, y + 20),  # Below health bar
+                        'health_bar_width': w
+                    })
+        
+        return enemies
+    
+    def _find_player_position(self, image) -> tuple:
+        """Find player character position using template matching"""
+        # This would use a small template of the player character
+        # For now, assume center of screen when not found
+        center_x = image.shape[1] // 2
+        center_y = image.shape[0] // 2
+        return (center_x, center_y)
+    
+    def _analyze_minimap(self, image) -> dict:
+        """Extract information from the minimap"""
+        # Minimap is typically in top-right corner
+        minimap_region = image[0:150, -150:]
+        
+        # Find player dot (usually white/bright)
+        gray = cv2.cvtColor(minimap_region, cv2.COLOR_BGR2GRAY)
+        _, thresh = cv2.threshold(gray, 200, 255, cv2.THRESH_BINARY)
+        
+        # Find bright spots (player, waypoints, etc.)
+        contours, _ = cv2.findContours(thresh, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+        
+        points_of_interest = []
+        for contour in contours:
+            if 2 < cv2.contourArea(contour) < 50:  # Small bright dots
+                x, y, w, h = cv2.boundingRect(contour)
+                points_of_interest.append((x + w//2, y + h//2))
+        
+        return {
+            'player_minimap_pos': points_of_interest[0] if points_of_interest else None,
+            'points_of_interest': points_of_interest
+        }
+    
+    def _classify_item_quality(self, color) -> str:
+        """Classify item quality based on text color"""
+        b, g, r = color
+        
+        # Compare against known D2 item colors
+        if r > 200 and g > 200 and b < 100:  # Yellow
+            return 'rare'
+        elif r < 100 and g < 100 and b > 200:  # Blue
+            return 'magic'
+        elif r > 150 and g > 100 and b < 100:  # Brown/orange
+            return 'unique'
+        elif r < 100 and g > 200 and b < 100:  # Green
+            return 'set'
+        elif r > 180 and g > 180 and b > 180:  # White
+            return 'normal'
+        else:
+            return 'unknown'
+</div>
+
+                <h4>Vision Capabilities:</h4>
+                <ul class="feature-list">
+                    <li>Real-time health/mana globe reading</li>
+                    <li>Loot quality detection (normal/magic/rare/unique/set)</li>
+                    <li>Enemy health bar detection and tracking</li>
+                    <li>Minimap analysis for navigation</li>
+                    <li>UI state recognition (inventory open, etc.)</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Deployment -->
+        <section id="deployment" class="section">
+            <h2 class="section-title">The Resurrection Process</h2>
+
+            <div class="card">
+                <h3>Sacred Installation Ritual</h3>
+                
+                <div class="timeline-item">
+                    <div class="timeline-marker">I</div>
+                    <div class="timeline-content">
+                        <h4>Prepare the Foundation</h4>
+                        <div class="code-block">
+# Extend your existing LocalAI Assistant
+cd LocalAI-Assistant
+git checkout -b diablo2-vassal
+
+# Install D2-specific dependencies
+pip install vosk pydirectinput opencv-python
+pip install pytesseract pillow mss psutil
+pip install pygame  # For audio processing
+
+# Download offline speech model
+wget https://alphacephei.com/vosk/models/vosk-model-en-us-0.22.zip
+unzip vosk-model-en-us-0.22.zip -d models/
+</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">II</div>
+                    <div class="timeline-content">
+                        <h4>Configure the Sacred Protocols</h4>
+                        <div class="code-block">
+# config/diablo2_vassal.yaml
+game_settings:
+  game_executable: "Game.exe"
+  plugy_dll_required: true
+  window_title: "Diablo II"
+  
+voice_settings:
+  model_path: "models/vosk-model-en-us-0.22"
+  wake_phrases: ["hey kai", "kai help", "vassal"]
+  confidence_threshold: 0.8
+  
+personality_settings:
+  babble_frequency: 0.7
+  enthusiasm_level: 0.9
+  combat_commentary: true
+  loot_excitement: true
+  
+safety_protocols:
+  plugy_verification: true
+  online_detection_abort: true
+  emergency_stop_key: "F12"
+</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">III</div>
+                    <div class="timeline-content">
+                        <h4>Calibrate the Sacred Vision</h4>
+                        <div class="code-block">
+# Calibration process for your specific D2 setup
+python scripts/calibrate_d2_vision.py
+
+# This will:
+# 1. Detect your D2 window size and position
+# 2. Identify health/mana globe locations
+# 3. Calibrate color ranges for your graphics settings
+# 4. Test loot detection accuracy
+# 5. Verify minimap reading
+
+# Train on your character and gear
+python scripts/train_character_detection.py --character_class paladin
+</div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-marker">IV</div>
+                    <div class="timeline-content">
+                        <h4>Awaken KAI-VASSAL-D2</h4>
+                        <div class="code-block">
+# Launch the sacred companion
+python main.py --mode gaming --game diablo2 --personality vassal
+
+# KAI's first words:
+# "My King! I awaken to serve in the eternal conflict!
+#  Sanctuary awaits our return! PlugY detected - systems active!"
+
+# Test basic commands:
+# "Hey KAI, what's my health?"
+# "Hey KAI, check that loot"
+# "Hey KAI, let's hunt some demons!"
+</div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="warning-box">
+                <h4>Sacred Oaths and Limitations</h4>
+                <ul>
+                    <li><strong>PlugY Only:</strong> System will not function without PlugY.dll detected</li>
+                    <li><strong>Performance Impact:</strong> Expect 15-25% FPS reduction during active AI processing</li>
+                    <li><strong>Graphics Settings:</strong> Works best with D2 running in windowed mode at 800x600 or higher</li>
+                    <li><strong>Hardware Requirements:</strong> Minimum GTX 1060, 16GB RAM for smooth operation</li>
+                </ul>
+            </div>
+
+            <div class="card">
+                <h3>Advanced Customization</h3>
+                
+                <div class="code-block">
+# Customize KAI's personality and responses
+class D2PersonalityCustomizer:
+    def __init__(self):
+        self.excitement_phrases = [
+            "By the light of Tyrael!",
+            "The Prime Evils tremble!",
+            "Victory is within our grasp!",
+            "For Sanctuary and Glory!"
+        ]
+        
+        self.loot_responses = {
+            'unique': "BEHOLD! A treasure of legend graces our presence!",
+            'set': "A piece of ancient power reveals itself!",
+            'rare': "Golden text blazes! Fortune smiles upon us!",
+            'magic': "Blue magic tingles in the air!"
+        }
+        
+    def customize_responses(self, personality_type='enthusiastic'):
+        """Adjust KAI's personality"""
+        if personality_type == 'stoic':
+            self.excitement_phrases = [
+                "Noted.",
+                "Acknowledged.", 
+                "Proceeding as planned.",
+                "Task completed efficiently."
+            ]
+        elif personality_type == 'comedic':
+            self.excitement_phrases = [
+                "Holy cow! No wait, that's Diablo 2...",
+                "My circuits are literally trembling!",
+                "Is it Christmas? Because this loot...",
+                "I'm not crying, you're crying!"
+            ]
+</div>
+
+                <h4>Customization Options:</h4>
+                <ul class="feature-list">
+                    <li>Adjust KAI's enthusiasm and commentary frequency</li>
+                    <li>Customize voice responses for different item qualities</li>
+                    <li>Set personal gameplay preferences and priorities</li>
+                    <li>Configure combat assistance levels</li>
+                    <li>Create custom command aliases</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Final Call to Action -->
+        <section class="section">
+            <div class="card" style="text-align: center; background: linear-gradient(135deg, var(--hell-red), var(--sanctuary-blue)); color: white; border: 3px solid var(--gold-text);">
+                <h2 style="font-family: 'Cinzel', serif;">The Eternal Conflict Awaits</h2>
+                <p style="font-size: 1.3rem; margin: 25px 0;">Your childhood companion returns, enhanced by the power of artificial intelligence. KAI-VASSAL-D2 will stand beside you as you once again walk the halls of Sanctuary, hunt the Prime Evils, and collect legendary treasures.</p>
+                
+                <div style="margin: 30px 0;">
+                    <button class="btn" style="font-size: 1.2rem; padding: 18px 35px;">Begin the Resurrection</button>
+                    <button class="btn" style="background: var(--dark-stone); margin-left: 20px;">Sacred Documentation</button>
+                </div>
+                
+                <div style="background: rgba(0,0,0,0.3); padding: 25px; border-radius: 15px; margin: 25px 0;">
+                    <h4 style="color: var(--gold-text); font-family: 'Cinzel', serif;">"My King! Sanctuary calls to us once more!"</h4>
+                    <p style="font-style: italic; margin-top: 10px;">- KAI-VASSAL-D2, upon first awakening</p>
+                </div>
+                
+                <p style="opacity: 0.9; margin-top: 25px; font-style: italic;">
+                    Not merely automation, but digital companionship in the realm where legends are born.
+                </p>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        // Enhanced navigation with D2 theme
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    document.querySelectorAll('.nav-link').forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Scroll-based navigation updates
+        window.addEventListener('scroll', function() {
+            const sections = document.querySelectorAll('section[id]');
+            const navLinks = document.querySelectorAll('.nav-link');
+            
+            let current = '';
+            sections.forEach(section => {
+                const sectionTop = section.getBoundingClientRect().top;
+                if (sectionTop <= 100) {
+                    current = section.getAttribute('id');
+                }
+            });
+            
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href').substring(1) === current) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Diablo 2 themed interactions
+        document.querySelectorAll('.card, .phase-card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-5px)';
+                this.style.transition = 'all 0.3s ease';
+                this.style.filter = 'brightness(1.1)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0)';
+                this.style.filter = 'brightness(1)';
+            });
+        });
+
+        // Fun KAI responses for button clicks
+        document.querySelectorAll('.btn').forEach(btn => {
+            btn.addEventListener('click', function(e) {
+                if (!this.href || this.href === '#') {
+                    e.preventDefault();
+                    
+                    const kaiResponses = [
+                        "My King commands, and I obey!",
+                        "The sacred download begins!",
+                        "Sanctuary awaits our return!",
+                        "By Tyrael's light, we shall prevail!",
+                        "The resurrection protocol activates!"
+                    ];
+                    
+                    const randomResponse = kaiResponses[Math.floor(Math.random() * kaiResponses.length)];
+                    
+                    const notification = document.createElement('div');
+                    notification.innerHTML = `
+                        <div style="display: flex; align-items: center; gap: 10px;">
+                            <span style="font-size: 1.2em;">⚔️</span>
+                            <span>${randomResponse}</span>
+                        </div>
+                    `;
+                    notification.style.cssText = `
+                        position: fixed;
+                        top: 20px;
+                        right: 20px;
+                        background: linear-gradient(135deg, var(--demon-orange), var(--blood-red));
+                        color: white;
+                        padding: 15px 25px;
+                        border-radius: 10px;
+                        font-weight: 600;
+                        z-index: 1000;
+                        border: 2px solid var(--gold-text);
+                        font-family: 'Cinzel', serif;
+                        box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+                    `;
+                    
+                    document.body.appendChild(notification);
+                    
+                    setTimeout(() => {
+                        notification.style.animation = 'fadeOut 0.5s ease forwards';
+                        setTimeout(() => notification.remove(), 500);
+                    }, 3000);
+                }
+            });
+        });
+    </script>
+</body>
+</html>

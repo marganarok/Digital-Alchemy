@@ -1,0 +1,1053 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Higgs Boson Research Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --primary-color: #2563eb;
+            --secondary-color: #1e40af;
+            --accent-color: #f59e0b;
+            --success-color: #10b981;
+            --danger-color: #ef4444;
+            --dark-bg: #0f172a;
+            --card-bg: #1e293b;
+            --border-color: #334155;
+            --text-primary: #f8fafc;
+            --text-secondary: #94a3b8;
+            --text-muted: #64748b;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background: var(--dark-bg);
+            color: var(--text-primary);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--primary-color), var(--secondary-color));
+            padding: 60px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="particle-grid" width="10" height="10" patternUnits="userSpaceOnUse"><circle cx="5" cy="5" r="1" fill="rgba(255,255,255,0.1)"/></pattern></defs><rect width="100" height="100" fill="url(%23particle-grid)"/></svg>');
+            opacity: 0.3;
+        }
+
+        .header-content {
+            position: relative;
+            z-index: 2;
+        }
+
+        .main-title {
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            opacity: 0.9;
+            margin-bottom: 30px;
+        }
+
+        .header-stats {
+            display: flex;
+            justify-content: center;
+            gap: 40px;
+            flex-wrap: wrap;
+            margin-top: 40px;
+        }
+
+        .stat-item {
+            text-align: center;
+        }
+
+        .stat-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--accent-color);
+        }
+
+        .stat-label {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Navigation */
+        .nav {
+            background: var(--card-bg);
+            padding: 20px 0;
+            border-bottom: 1px solid var(--border-color);
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            color: var(--text-secondary);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            color: var(--text-primary);
+            background: var(--primary-color);
+            transform: translateY(-2px);
+        }
+
+        /* Main Content */
+        .main-content {
+            padding: 60px 0;
+        }
+
+        .section {
+            margin-bottom: 80px;
+        }
+
+        .section-title {
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 30px;
+            color: var(--primary-color);
+            text-align: center;
+        }
+
+        .section-subtitle {
+            font-size: 1.1rem;
+            color: var(--text-secondary);
+            text-align: center;
+            margin-bottom: 50px;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* Card Grid */
+        .card-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--primary-color);
+            box-shadow: 0 10px 30px rgba(37, 99, 235, 0.2);
+        }
+
+        .card-icon {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, var(--primary-color), var(--accent-color));
+            border-radius: 12px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 20px;
+            font-size: 1.5rem;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            font-weight: 600;
+            margin-bottom: 15px;
+            color: var(--text-primary);
+        }
+
+        .card-content {
+            color: var(--text-secondary);
+            line-height: 1.7;
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, var(--primary-color), var(--accent-color));
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 50px 0;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 40px;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 40px;
+        }
+
+        .timeline-content {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+        }
+
+        .timeline-date {
+            font-size: 0.9rem;
+            color: var(--accent-color);
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border: 4px solid var(--dark-bg);
+            border-radius: 50%;
+            top: 30px;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -14px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -14px;
+        }
+
+        /* Interactive Elements */
+        .interactive-section {
+            background: var(--card-bg);
+            border-radius: 16px;
+            padding: 40px;
+            margin: 60px 0;
+            border: 1px solid var(--border-color);
+        }
+
+        .tabs {
+            display: flex;
+            gap: 10px;
+            margin-bottom: 30px;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .tab {
+            padding: 12px 24px;
+            background: none;
+            border: none;
+            color: var(--text-secondary);
+            cursor: pointer;
+            font-weight: 500;
+            border-radius: 8px 8px 0 0;
+            transition: all 0.3s ease;
+        }
+
+        .tab.active {
+            color: var(--text-primary);
+            background: var(--primary-color);
+        }
+
+        .tab-content {
+            display: none;
+        }
+
+        .tab-content.active {
+            display: block;
+        }
+
+        /* Key Concepts */
+        .concept-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .concept-item {
+            background: linear-gradient(135deg, var(--card-bg), rgba(37, 99, 235, 0.1));
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+        }
+
+        .concept-item::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--primary-color), var(--accent-color));
+            border-radius: 12px 12px 0 0;
+        }
+
+        .concept-title {
+            font-size: 1.2rem;
+            font-weight: 600;
+            margin-bottom: 12px;
+            color: var(--primary-color);
+        }
+
+        /* Research Tools */
+        .tools-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .tool-card {
+            background: var(--card-bg);
+            border: 1px solid var(--border-color);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .tool-card:hover {
+            transform: scale(1.02);
+            border-color: var(--success-color);
+        }
+
+        .tool-icon {
+            font-size: 2.5rem;
+            margin-bottom: 15px;
+            color: var(--success-color);
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--card-bg);
+            border-top: 1px solid var(--border-color);
+            padding: 40px 0;
+            text-align: center;
+            margin-top: 80px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 60px !important;
+                padding-right: 20px !important;
+                text-align: left !important;
+            }
+            
+            .timeline-item::after {
+                left: 6px !important;
+            }
+
+            .header-stats {
+                gap: 20px;
+            }
+
+            .nav-container {
+                gap: 15px;
+            }
+        }
+
+        /* Animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .animate-in {
+            animation: fadeInUp 0.6s ease-out forwards;
+        }
+
+        /* Research Notes Styling */
+        .research-note {
+            background: rgba(245, 158, 11, 0.1);
+            border-left: 4px solid var(--accent-color);
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .research-note-title {
+            font-weight: 600;
+            color: var(--accent-color);
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <h1 class="main-title">Higgs Boson Research Portal</h1>
+                <p class="subtitle">Comprehensive research into the "God Particle" and fundamental physics</p>
+                
+                <div class="header-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">125.1</div>
+                        <div class="stat-label">GeV/c² Mass</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">2012</div>
+                        <div class="stat-label">Discovery Year</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">48</div>
+                        <div class="stat-label">Years Theorized</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">$13B</div>
+                        <div class="stat-label">LHC Investment</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#overview" class="nav-item active">Overview</a>
+                <a href="#theory" class="nav-item">Theory</a>
+                <a href="#discovery" class="nav-item">Discovery</a>
+                <a href="#implications" class="nav-item">Implications</a>
+                <a href="#research" class="nav-item">Current Research</a>
+                <a href="#tools" class="nav-item">Research Tools</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <div class="container">
+            
+            <!-- Overview Section -->
+            <section id="overview" class="section">
+                <h2 class="section-title">What is the Higgs Boson?</h2>
+                <p class="section-subtitle">
+                    The Higgs boson is a fundamental particle that provides evidence for the Higgs field, 
+                    which gives mass to other particles in the universe.
+                </p>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">⚛️</div>
+                        <h3 class="card-title">Fundamental Particle</h3>
+                        <div class="card-content">
+                            The Higgs boson is an elementary particle in the Standard Model of particle physics. 
+                            Unlike other particles, it has zero spin and is the only scalar boson known to exist.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🌌</div>
+                        <h3 class="card-title">Mass Generation</h3>
+                        <div class="card-content">
+                            The Higgs field permeates all of space and gives mass to particles through their 
+                            interaction with this field. The Higgs boson is the quantum excitation of this field.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🔬</div>
+                        <h3 class="card-title">Experimental Proof</h3>
+                        <div class="card-content">
+                            Discovered at CERN's Large Hadron Collider in 2012, the Higgs boson's detection 
+                            confirmed the Standard Model's predictions about mass generation.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🏆</div>
+                        <h3 class="card-title">Nobel Prize</h3>
+                        <div class="card-content">
+                            Peter Higgs and François Englert received the 2013 Nobel Prize in Physics for 
+                            theoretically predicting the Higgs mechanism in 1964.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="research-note">
+                    <div class="research-note-title">Key Research Note:</div>
+                    The Higgs boson's discovery was one of the most significant scientific achievements of the 21st century, 
+                    validating decades of theoretical work and completing the Standard Model of particle physics.
+                </div>
+            </section>
+
+            <!-- Theory Section -->
+            <section id="theory" class="section">
+                <h2 class="section-title">Theoretical Foundation</h2>
+                <p class="section-subtitle">
+                    Understanding the theoretical framework that predicted the Higgs boson's existence
+                </p>
+
+                <div class="interactive-section">
+                    <div class="tabs">
+                        <button class="tab active" onclick="showTab('higgs-mechanism')">Higgs Mechanism</button>
+                        <button class="tab" onclick="showTab('symmetry-breaking')">Symmetry Breaking</button>
+                        <button class="tab" onclick="showTab('standard-model')">Standard Model</button>
+                        <button class="tab" onclick="showTab('field-theory')">Quantum Field Theory</button>
+                    </div>
+
+                    <div id="higgs-mechanism" class="tab-content active">
+                        <h3>The Higgs Mechanism</h3>
+                        <p>The Higgs mechanism explains how particles acquire mass through spontaneous symmetry breaking. 
+                        In the early universe, particles were massless and traveled at the speed of light. As the universe 
+                        cooled, the Higgs field developed a non-zero vacuum expectation value, breaking electroweak symmetry 
+                        and giving mass to particles that interact with this field.</p>
+                        
+                        <div class="concept-grid">
+                            <div class="concept-item">
+                                <h4 class="concept-title">Vacuum State</h4>
+                                <p>The Higgs field has a non-zero value even in empty space, creating a "Mexican hat" potential.</p>
+                            </div>
+                            <div class="concept-item">
+                                <h4 class="concept-title">Coupling Strength</h4>
+                                <p>Different particles have different coupling strengths to the Higgs field, determining their masses.</p>
+                            </div>
+                            <div class="concept-item">
+                                <h4 class="concept-title">Gauge Invariance</h4>
+                                <p>The mechanism preserves gauge invariance while allowing for mass generation.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="symmetry-breaking" class="tab-content">
+                        <h3>Spontaneous Symmetry Breaking</h3>
+                        <p>Spontaneous symmetry breaking occurs when a system that is symmetric under a group of transformations 
+                        has a ground state that is not symmetric. In the case of the Higgs mechanism, electroweak symmetry is 
+                        broken, leading to the separation of electromagnetic and weak nuclear forces.</p>
+                        
+                        <div class="research-note">
+                            <div class="research-note-title">Mathematical Framework:</div>
+                            The Higgs potential V(φ) = μ²φ²/2 + λφ⁴/4 has a minimum at φ = ±√(-μ²/λ) when μ² < 0, 
+                            breaking the original symmetry of the Lagrangian.
+                        </div>
+                    </div>
+
+                    <div id="standard-model" class="tab-content">
+                        <h3>Role in the Standard Model</h3>
+                        <p>The Standard Model of particle physics describes the fundamental particles and their interactions. 
+                        The Higgs boson is the final piece of this model, explaining how the W and Z bosons acquire mass 
+                        while the photon remains massless.</p>
+                        
+                        <div class="concept-grid">
+                            <div class="concept-item">
+                                <h4 class="concept-title">Electroweak Unification</h4>
+                                <p>Unifies electromagnetic and weak nuclear forces at high energies.</p>
+                            </div>
+                            <div class="concept-item">
+                                <h4 class="concept-title">Mass Hierarchy</h4>
+                                <p>Explains why particles have different masses through varying field interactions.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div id="field-theory" class="tab-content">
+                        <h3>Quantum Field Theory Context</h3>
+                        <p>In quantum field theory, particles are excitations of underlying fields. The Higgs boson represents 
+                        quantum fluctuations of the Higgs field. Unlike other fields that have zero vacuum expectation value, 
+                        the Higgs field has a non-zero value throughout space.</p>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Discovery Timeline -->
+            <section id="discovery" class="section">
+                <h2 class="section-title">Discovery Timeline</h2>
+                <p class="section-subtitle">
+                    The journey from theoretical prediction to experimental confirmation
+                </p>
+
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">1964</div>
+                            <h4 class="timeline-title">Theoretical Prediction</h4>
+                            <p>Peter Higgs, François Englert, and Robert Brout independently propose the Higgs mechanism to explain how particles acquire mass.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">1970s-1980s</div>
+                            <h4 class="timeline-title">Standard Model Development</h4>
+                            <p>The Higgs mechanism becomes integral to the Standard Model of particle physics, predicting the existence of the Higgs boson.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">1989-2000</div>
+                            <h4 class="timeline-title">LEP Experiments</h4>
+                            <p>The Large Electron-Positron Collider at CERN searches for the Higgs boson but doesn't find it, setting lower bounds on its mass.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2008</div>
+                            <h4 class="timeline-title">LHC Begins Operation</h4>
+                            <p>The Large Hadron Collider starts operations with sufficient energy to potentially create Higgs bosons.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">July 4, 2012</div>
+                            <h4 class="timeline-title">Discovery Announcement</h4>
+                            <p>CERN announces the discovery of a new particle consistent with the Higgs boson, observed by both ATLAS and CMS experiments.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2013</div>
+                            <h4 class="timeline-title">Nobel Prize</h4>
+                            <p>Peter Higgs and François Englert receive the Nobel Prize in Physics for their theoretical work predicting the Higgs mechanism.</p>
+                        </div>
+                    </div>
+
+                    <div class="timeline-item">
+                        <div class="timeline-content">
+                            <div class="timeline-date">2012-Present</div>
+                            <h4 class="timeline-title">Ongoing Research</h4>
+                            <p>Continued studies at the LHC refine measurements of Higgs properties and search for new physics beyond the Standard Model.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Current Research -->
+            <section id="research" class="section">
+                <h2 class="section-title">Current Research Areas</h2>
+                <p class="section-subtitle">
+                    Active research directions in Higgs physics and beyond
+                </p>
+
+                <div class="card-grid">
+                    <div class="card">
+                        <div class="card-icon">📊</div>
+                        <h3 class="card-title">Precision Measurements</h3>
+                        <div class="card-content">
+                            Measuring Higgs properties with increasing precision to test Standard Model predictions 
+                            and search for deviations that might indicate new physics.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🔍</div>
+                        <h3 class="card-title">Rare Decay Channels</h3>
+                        <div class="card-content">
+                            Studying rare Higgs decay modes, including decays to muons, charm quarks, and 
+                            potential invisible decay channels that could reveal dark matter interactions.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">⚡</div>
+                        <h3 class="card-title">Self-Coupling</h3>
+                        <div class="card-content">
+                            Investigating the Higgs self-coupling through double Higgs production, which tests 
+                            the shape of the Higgs potential and validates the mechanism.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🌌</div>
+                        <h3 class="card-title">Beyond Standard Model</h3>
+                        <div class="card-content">
+                            Searching for additional Higgs bosons predicted by supersymmetry and other theories 
+                            that extend the Standard Model.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">🔮</div>
+                        <h3 class="card-title">Cosmological Implications</h3>
+                        <div class="card-content">
+                            Studying how the Higgs field might have behaved in the early universe and its role 
+                            in cosmic inflation and phase transitions.
+                        </div>
+                    </div>
+
+                    <div class="card">
+                        <div class="card-icon">⚛️</div>
+                        <h3 class="card-title">Quantum Properties</h3>
+                        <div class="card-content">
+                            Investigating quantum effects in the Higgs sector, including vacuum stability 
+                            and the hierarchy problem in particle physics.
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <!-- Research Tools -->
+            <section id="tools" class="section">
+                <h2 class="section-title">Research Tools & Resources</h2>
+                <p class="section-subtitle">
+                    Essential tools and databases for Higgs boson research
+                </p>
+
+                <div class="tools-grid">
+                    <div class="tool-card" onclick="openResource('cern')">
+                        <div class="tool-icon">🏛️</div>
+                        <h4>CERN Open Data</h4>
+                        <p>Access to actual LHC collision data for independent analysis</p>
+                    </div>
+
+                    <div class="tool-card" onclick="openResource('arxiv')">
+                        <div class="tool-icon">📚</div>
+                        <h4>arXiv Physics</h4>
+                        <p>Latest research papers in high-energy physics and particle theory</p>
+                    </div>
+
+                    <div class="tool-card" onclick="openResource('pdg')">
+                        <div class="tool-icon">📖</div>
+                        <h4>Particle Data Group</h4>
+                        <p>Comprehensive database of particle properties and measurements</p>
+                    </div>
+
+                    <div class="tool-card" onclick="openResource('inspire')">
+                        <div class="tool-icon">🔍</div>
+                        <h4>INSPIRE-HEP</h4>
+                        <p>Literature database for high-energy physics research</p>
+                    </div>
+
+                    <div class="tool-card" onclick="openResource('root')">
+                        <div class="tool-icon">💻</div>
+                        <h4>ROOT Framework</h4>
+                        <p>Data analysis framework used by particle physicists worldwide</p>
+                    </div>
+
+                    <div class="tool-card" onclick="openResource('madgraph')">
+                        <div class="tool-icon">⚙️</div>
+                        <h4>MadGraph</h4>
+                        <p>Monte Carlo event generator for particle physics simulations</p>
+                    </div>
+                </div>
+
+                <div class="research-note">
+                    <div class="research-note-title">Research Tip:</div>
+                    Start with CERN's educational resources and the Particle Data Group's review articles 
+                    to build foundational knowledge before diving into specialized research papers.
+                </div>
+            </section>
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+        </div>
+    </footer>
+
+    <script>
+        // Tab functionality
+        function showTab(tabId) {
+            // Hide all tab contents
+            document.querySelectorAll('.tab-content').forEach(content => {
+                content.classList.remove('active');
+            });
+            
+            // Remove active class from all tabs
+            document.querySelectorAll('.tab').forEach(tab => {
+                tab.classList.remove('active');
+            });
+            
+            // Show selected tab content
+            document.getElementById(tabId).classList.add('active');
+            
+            // Add active class to clicked tab
+            event.target.classList.add('active');
+        }
+
+        // Smooth scrolling for navigation
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 80;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    // Update active nav item
+                    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Resource links
+        function openResource(type) {
+            const resources = {
+                'cern': 'http://opendata.cern.ch/',
+                'arxiv': 'https://arxiv.org/list/hep-ph/recent',
+                'pdg': 'https://pdg.lbl.gov/',
+                'inspire': 'https://inspirehep.net/',
+                'root': 'https://root.cern/',
+                'madgraph': 'https://launchpad.net/mg5amcnlo'
+            };
+            
+            if (resources[type]) {
+                window.open(resources[type], '_blank');
+            }
+        }
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver(function(entries) {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('animate-in');
+                }
+            });
+        }, observerOptions);
+
+        // Observe elements for animations
+        document.addEventListener('DOMContentLoaded', function() {
+            document.querySelectorAll('.card, .timeline-item, .concept-item').forEach(el => {
+                observer.observe(el);
+            });
+        });
+
+        // Research note generator
+        function generateResearchNote(topic) {
+            const notes = {
+                'mass': 'The Higgs boson mass of 125.1 GeV/c² places it in an interesting region where the Standard Model vacuum is metastable, leading to important implications for the ultimate fate of the universe.',
+                'discovery': 'The discovery required analyzing trillions of proton-proton collisions to find the rare Higgs boson events, demonstrating the incredible precision of modern particle physics experiments.',
+                'implications': 'Beyond confirming the Standard Model, Higgs research opens doors to understanding dark matter, the matter-antimatter asymmetry, and the fundamental nature of space and time.',
+                'future': 'Future experiments will probe whether the discovered particle is exactly the Standard Model Higgs or if it has properties that point to new physics beyond our current understanding.'
+            };
+            
+            return notes[topic] || 'This area of research continues to evolve as we gather more data and refine our theoretical understanding.';
+        }
+
+        // Add interactive features
+        document.addEventListener('DOMContentLoaded', function() {
+            // Add hover effects to cards
+            document.querySelectorAll('.card').forEach(card => {
+                card.addEventListener('mouseenter', function() {
+                    this.style.transform = 'translateY(-8px) scale(1.02)';
+                });
+                
+                card.addEventListener('mouseleave', function() {
+                    this.style.transform = 'translateY(-5px) scale(1)';
+                });
+            });
+
+            // Add click handlers for concept items
+            document.querySelectorAll('.concept-item').forEach(item => {
+                item.addEventListener('click', function() {
+                    const title = this.querySelector('.concept-title').textContent;
+                    const note = generateResearchNote(title.toLowerCase());
+                    
+                    // Create and show a research note
+                    const noteElement = document.createElement('div');
+                    noteElement.className = 'research-note';
+                    noteElement.innerHTML = `
+                        <div class="research-note-title">Research Note: ${title}</div>
+                        <p>${note}</p>
+                    `;
+                    
+                    // Insert after the clicked item
+                    this.parentNode.insertBefore(noteElement, this.nextSibling);
+                    
+                    // Remove after 10 seconds
+                    setTimeout(() => {
+                        if (noteElement.parentNode) {
+                            noteElement.parentNode.removeChild(noteElement);
+                        }
+                    }, 10000);
+                });
+            });
+
+            // Header stats animation
+            function animateStats() {
+                const stats = document.querySelectorAll('.stat-number');
+                stats.forEach(stat => {
+                    const finalValue = stat.textContent;
+                    const isNumber = !isNaN(parseFloat(finalValue));
+                    
+                    if (isNumber) {
+                        const target = parseFloat(finalValue);
+                        let current = 0;
+                        const increment = target / 50;
+                        
+                        const timer = setInterval(() => {
+                            current += increment;
+                            if (current >= target) {
+                                current = target;
+                                clearInterval(timer);
+                            }
+                            stat.textContent = current.toFixed(1);
+                        }, 50);
+                    }
+                });
+            }
+
+            // Trigger stats animation when page loads
+            setTimeout(animateStats, 1000);
+        });
+
+        // Research tools functionality
+        function createResearchPlan() {
+            const planTemplate = `
+# Higgs Boson Research Plan
+
+## Phase 1: Foundation Building
+- [ ] Review Standard Model fundamentals
+- [ ] Study electroweak theory
+- [ ] Understand quantum field theory basics
+
+## Phase 2: Theoretical Deep Dive
+- [ ] Higgs mechanism derivation
+- [ ] Spontaneous symmetry breaking
+- [ ] Gauge theory implications
+
+## Phase 3: Experimental Analysis
+- [ ] LHC detector systems study
+- [ ] Data analysis techniques
+- [ ] Statistical methods in particle physics
+
+## Phase 4: Current Research
+- [ ] Recent Higgs measurements
+- [ ] Beyond Standard Model theories
+- [ ] Future experimental prospects
+
+## Key Resources
+- CERN Open Data Portal
+- Particle Data Group reviews
+- Latest arXiv preprints
+- ROOT data analysis framework
+            `;
+            
+            const blob = new Blob([planTemplate], { type: 'text/markdown' });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = 'higgs-research-plan.md';
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Add research plan generator
+        const toolsSection = document.getElementById('tools');
+        if (toolsSection) {
+            const planButton = document.createElement('button');
+            planButton.textContent = 'Generate Research Plan';
+            planButton.style.cssText = `
+                background: var(--primary-color);
+                color: white;
+                border: none;
+                padding: 12px 24px;
+                border-radius: 8px;
+                font-weight: 600;
+                cursor: pointer;
+                margin-top: 30px;
+                transition: all 0.3s ease;
+            `;
+            planButton.addEventListener('click', createResearchPlan);
+            planButton.addEventListener('mouseover', function() {
+                this.style.background = 'var(--secondary-color)';
+            });
+            planButton.addEventListener('mouseout', function() {
+                this.style.background = 'var(--primary-color)';
+            });
+            
+            toolsSection.appendChild(planButton);
+        }
+    </script>
+</body>
+</html>

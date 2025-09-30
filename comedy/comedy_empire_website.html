@@ -1,0 +1,1042 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Comedy Empire of Professor Marganarok</title>
+    <link href="https://fonts.googleapis.com/css2?family=Creepster&family=Nosifer&family=Butcherman&family=Metal+Mania&family=Fredericka+the+Great&display=swap" rel="stylesheet">
+    
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Butcherman', cursive;
+            background: linear-gradient(135deg, #000000 0%, #1a0033 25%, #330066 50%, #660099 75%, #9900cc 100%);
+            color: #ffffff;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Animated Hell Fire Background */
+        .hell-flames {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at bottom, #ff0000 0%, #cc0000 25%, #990000 50%, #660000 75%, #330000 100%);
+        }
+
+        .flame-particles {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            pointer-events: none;
+        }
+
+        .flame {
+            position: absolute;
+            width: 4px;
+            height: 20px;
+            background: linear-gradient(to top, #ff4500, #ffa500, #ffff00);
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            animation: flicker 1.5s infinite alternate;
+            opacity: 0.7;
+        }
+
+        @keyframes flicker {
+            0% { transform: scaleY(1) rotate(-2deg); opacity: 0.7; }
+            100% { transform: scaleY(1.3) rotate(2deg); opacity: 1; }
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Epic Header */
+        .epic-header {
+            text-align: center;
+            padding: 100px 0;
+            background: linear-gradient(45deg, rgba(255,0,0,0.3), rgba(255,165,0,0.3), rgba(255,255,0,0.3));
+            border-radius: 20px;
+            margin-bottom: 50px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .epic-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,0,0,0.2), transparent, rgba(255,165,0,0.2), transparent);
+            animation: spin 10s linear infinite;
+        }
+
+        @keyframes spin {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .main-title {
+            font-family: 'Nosifer', cursive;
+            font-size: clamp(3rem, 8vw, 8rem);
+            color: #ff0000;
+            text-shadow: 
+                0 0 10px #ff0000,
+                0 0 20px #ff0000,
+                0 0 30px #ff0000,
+                5px 5px 10px rgba(0,0,0,0.8);
+            margin-bottom: 20px;
+            position: relative;
+            z-index: 2;
+            animation: hellGlow 3s ease-in-out infinite alternate;
+        }
+
+        @keyframes hellGlow {
+            from { 
+                text-shadow: 0 0 10px #ff0000, 0 0 20px #ff0000, 0 0 30px #ff0000, 5px 5px 10px rgba(0,0,0,0.8);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 0 0 20px #ff4500, 0 0 40px #ff4500, 0 0 60px #ffa500, 5px 5px 10px rgba(0,0,0,0.8);
+                transform: scale(1.02);
+            }
+        }
+
+        .subtitle {
+            font-family: 'Metal Mania', cursive;
+            font-size: 1.8rem;
+            color: #ffa500;
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .epic-tagline {
+            font-size: 1.3rem;
+            color: #ffff00;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation Menu */
+        .demonic-nav {
+            background: linear-gradient(45deg, rgba(0,0,0,0.8), rgba(102,0,153,0.8));
+            border: 3px solid #ff0000;
+            border-radius: 15px;
+            padding: 20px;
+            margin-bottom: 50px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+        }
+
+        .nav-link {
+            background: linear-gradient(45deg, #ff0000, #ff4500);
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(45deg, #ff4500, #ffa500);
+            color: #000000;
+            transform: scale(1.1) rotate(2deg);
+            border-color: #ffff00;
+            box-shadow: 0 0 20px rgba(255,255,0,0.5);
+        }
+
+        /* Comedy Sketch Theater */
+        .sketch-theater {
+            background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(51,0,102,0.7));
+            border: 4px solid #ff0000;
+            border-radius: 20px;
+            padding: 50px;
+            margin: 50px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sketch-theater::before {
+            content: '🎭';
+            position: absolute;
+            top: 20px;
+            right: 20px;
+            font-size: 3rem;
+            animation: bounce 2s infinite;
+        }
+
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
+        }
+
+        .sketch-title {
+            font-family: 'Creepster', cursive;
+            font-size: 3rem;
+            color: #ff0000;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+
+        .scene-description {
+            background: rgba(255,165,0,0.2);
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            font-style: italic;
+            border-left: 5px solid #ffa500;
+        }
+
+        .character-line {
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(255,255,255,0.1);
+            border-radius: 8px;
+            border-left: 4px solid #ff4500;
+        }
+
+        .character-name {
+            font-weight: bold;
+            color: #ff4500;
+            font-size: 1.2rem;
+            text-transform: uppercase;
+        }
+
+        .stage-direction {
+            color: #ffff00;
+            font-style: italic;
+            font-size: 0.9rem;
+        }
+
+        .dialogue {
+            color: #ffffff;
+            margin-top: 5px;
+            line-height: 1.6;
+        }
+
+        /* Comedy Categories Grid */
+        .comedy-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 50px 0;
+        }
+
+        .comedy-card {
+            background: linear-gradient(135deg, rgba(255,0,0,0.3), rgba(255,165,0,0.2));
+            border: 3px solid #ff4500;
+            border-radius: 15px;
+            padding: 30px;
+            text-align: center;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .comedy-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .comedy-card:hover::before {
+            left: 100%;
+        }
+
+        .comedy-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            border-color: #ffff00;
+            box-shadow: 0 20px 40px rgba(255,165,0,0.4);
+        }
+
+        .comedy-icon {
+            font-size: 4rem;
+            margin-bottom: 20px;
+            display: block;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.5);
+        }
+
+        .comedy-title {
+            font-family: 'Fredericka the Great', cursive;
+            font-size: 2rem;
+            color: #ff4500;
+            margin-bottom: 15px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.7);
+        }
+
+        .comedy-description {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: #ffffff;
+        }
+
+        /* Character Profiles */
+        .character-showcase {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(102,0,153,0.6));
+            border: 4px solid #9900cc;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 50px 0;
+        }
+
+        .character-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin-top: 30px;
+        }
+
+        .character-card {
+            background: linear-gradient(135deg, rgba(255,0,0,0.2), rgba(255,165,0,0.2));
+            border: 2px solid #ff4500;
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .character-card:hover {
+            transform: scale(1.08);
+            border-color: #ffff00;
+            box-shadow: 0 15px 30px rgba(255,255,0,0.3);
+        }
+
+        .character-avatar {
+            font-size: 5rem;
+            margin-bottom: 15px;
+            display: block;
+        }
+
+        .character-name {
+            font-family: 'Metal Mania', cursive;
+            font-size: 1.8rem;
+            color: #ff0000;
+            margin-bottom: 10px;
+        }
+
+        .character-role {
+            color: #ffa500;
+            font-weight: bold;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .character-bio {
+            color: #ffffff;
+            line-height: 1.5;
+            font-size: 0.95rem;
+        }
+
+        /* Interactive Elements */
+        .chaos-button {
+            background: linear-gradient(45deg, #ff0000, #ff4500, #ffa500);
+            color: #000000;
+            border: none;
+            padding: 20px 40px;
+            font-size: 1.3rem;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin: 20px;
+            font-family: 'Metal Mania', cursive;
+        }
+
+        .chaos-button:hover {
+            transform: scale(1.1) rotate(5deg);
+            box-shadow: 0 0 30px rgba(255,165,0,0.8);
+            animation: shake 0.5s infinite;
+        }
+
+        @keyframes shake {
+            0%, 100% { transform: scale(1.1) rotate(5deg) translateX(0px); }
+            25% { transform: scale(1.1) rotate(5deg) translateX(-2px); }
+            75% { transform: scale(1.1) rotate(5deg) translateX(2px); }
+        }
+
+        /* Sketch Collection */
+        .sketch-collection {
+            background: linear-gradient(135deg, rgba(102,0,153,0.3), rgba(0,0,0,0.7));
+            border: 3px solid #9900cc;
+            border-radius: 15px;
+            padding: 40px;
+            margin: 50px 0;
+        }
+
+        .sketch-item {
+            background: rgba(255,255,255,0.1);
+            border-left: 5px solid #ff4500;
+            padding: 20px;
+            margin: 20px 0;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+        }
+
+        .sketch-item:hover {
+            background: rgba(255,165,0,0.2);
+            transform: translateX(10px);
+            border-left-color: #ffff00;
+        }
+
+        .sketch-number {
+            color: #ff0000;
+            font-weight: bold;
+            font-size: 1.2rem;
+        }
+
+        .sketch-name {
+            color: #ffa500;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin: 10px 0;
+        }
+
+        /* Quote Boxes */
+        .hellish-quote {
+            background: linear-gradient(45deg, rgba(255,0,0,0.3), rgba(255,165,0,0.2));
+            border: 3px solid #ff4500;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 40px 0;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hellish-quote::before {
+            content: '👹';
+            position: absolute;
+            top: 10px;
+            left: 20px;
+            font-size: 2rem;
+            animation: spin 3s linear infinite;
+        }
+
+        .hellish-quote::after {
+            content: '🔥';
+            position: absolute;
+            bottom: 10px;
+            right: 20px;
+            font-size: 2rem;
+            animation: flicker 1s infinite alternate;
+        }
+
+        .quote-text {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #ffff00;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.8);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+            
+            .demonic-nav {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .comedy-grid,
+            .character-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        /* Footer */
+        .infernal-footer {
+            background: linear-gradient(135deg, #000000, #330066);
+            border-top: 4px solid #ff0000;
+            padding: 50px 0;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            color: #ffa500;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .footer-title {
+            font-family: 'Nosifer', cursive;
+            font-size: 2rem;
+            color: #ff0000;
+            margin-bottom: 20px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+    </style>
+</head>
+<body>
+    <!-- Hell Flames Background -->
+    <div class="hell-flames"></div>
+    <div class="flame-particles">
+        <!-- JavaScript will add flame particles here -->
+    </div>
+
+    <div class="container">
+        <!-- Epic Header -->
+        <header class="epic-header">
+            <h1 class="main-title">PROFESSOR MARGANAROK'S</h1>
+            <h2 class="subtitle">COMEDY EMPIRE OF CHAOS</h2>
+            <p class="epic-tagline">"Where Lucifer Meets Tech Support and Hilarity Ensues"</p>
+        </header>
+
+        <!-- Demonic Navigation -->
+        <nav class="demonic-nav">
+            <a href="#sketches" class="nav-link">Sketches</a>
+            <a href="#characters" class="nav-link">Characters</a>
+            <a href="#theater" class="nav-link">Theater</a>
+            <a href="#chaos" class="nav-link">Chaos Zone</a>
+            <a href="#empire" class="nav-link">The Empire</a>
+        </nav>
+
+        <!-- Featured Sketch Theater -->
+        <section id="theater" class="sketch-theater">
+            <h2 class="sketch-title">🎭 FEATURED SKETCH THEATER 🎭</h2>
+            
+            <div class="scene-description">
+                <strong>Scene:</strong> A dim cavern glowing red. Lucifer kneels dramatically, holding up a jagged shard of a shattered mirror. His voice is booming, Shakespearean.
+            </div>
+
+            <div class="character-line">
+                <div class="character-name">LUCIFER</div>
+                <div class="stage-direction">(intense, dramatic)</div>
+                <div class="dialogue">"At last… the final piece… the reflection of all truth, the key to my dominion!"</div>
+            </div>
+
+            <div class="scene-description">
+                He raises it high. Lightning cracks. The shard flickers with light. Suddenly—
+            </div>
+
+            <div class="character-line">
+                <div class="character-name">SYSTEM VOICE</div>
+                <div class="stage-direction">(robotic glitch)</div>
+                <div class="dialogue">"ERROR… FATAL FLAW… cannot compute. Cannot compute. Rebooting…"</div>
+            </div>
+
+            <div class="character-line">
+                <div class="character-name">LUCIFER</div>
+                <div class="stage-direction">(confused, breaking character)</div>
+                <div class="dialogue">"…wait, what?"</div>
+            </div>
+
+            <div class="scene-description">
+                The shard suddenly projects PowerPoint clip-art flames and a giant spinning hourglass. Lucifer smacks it like an old TV.
+            </div>
+
+            <div class="character-line">
+                <div class="character-name">LUCIFER</div>
+                <div class="stage-direction">(angry)</div>
+                <div class="dialogue">"No! You dare glitch me? I am the Prince of—"</div>
+            </div>
+
+            <div class="character-line">
+                <div class="character-name">SYSTEM VOICE</div>
+                <div class="stage-direction">(goofy announcer voice)</div>
+                <div class="dialogue">"Mastermind Evil Takeover Protocol: ACTIVATED."</div>
+            </div>
+
+            <div class="scene-description">
+                But then, faint in the background, from a galaxy far, far away… 🎶 Tiny rave music starts playing.
+            </div>
+
+            <div class="character-line">
+                <div class="character-name">TINY RAVE DJ</div>
+                <div class="stage-direction">(squeaky high-pitched voice over bass drops)</div>
+                <div class="dialogue">"DROP THE BEAT, SPACE HAMSTERS!"</div>
+            </div>
+
+            <div class="character-line">
+                <div class="character-name">LUCIFER</div>
+                <div class="stage-direction">(deadpan)</div>
+                <div class="dialogue">"…is that… a rave?"</div>
+            </div>
+
+            <div class="scene-description">
+                The mirror shard starts pulsing to the beat, projecting tiny glowstick-waving aliens dancing on Saturn's rings.
+            </div>
+
+            <div class="character-line">
+                <div class="character-name">LUCIFER</div>
+                <div class="stage-direction">(defeated, slumping)</div>
+                <div class="dialogue">"…unbelievable."</div>
+            </div>
+
+            <div class="scene-description">
+                Final shot: Lucifer, "Master of Darkness," holding the shard while behind him, in the far cosmos, miniature rave lasers strobe across the void.
+            </div>
+
+            <div class="character-line">
+                <div class="character-name">SYSTEM VOICE</div>
+                <div class="stage-direction">(cheerful)</div>
+                <div class="dialogue">"Evil Takeover Complete… please enjoy the afterparty."</div>
+            </div>
+
+            <button class="chaos-button" onclick="applause()">👏 APPLAUSE 👏</button>
+        </section>
+
+        <!-- Comedy Categories -->
+        <section id="sketches" class="comedy-grid">
+            <div class="comedy-card">
+                <span class="comedy-icon">👹</span>
+                <h3 class="comedy-title">Lucifer's Tech Support</h3>
+                <p class="comedy-description">The Prince of Darkness struggles with Windows updates, firmware crashes, and being put on hold with "Infernal Customer Support." Every evil plan gets interrupted by a random rave.</p>
+            </div>
+
+            <div class="comedy-card">
+                <span class="comedy-icon">🏢</span>
+                <h3 class="comedy-title">The Cosmic DMV</h3>
+                <p class="comedy-description">Souls arrive for judgment only to wait in line forever with ticket #6666. Angels argue over printer jams while demons cut in line. The PA system never gets names right.</p>
+            </div>
+
+            <div class="comedy-card">
+                <span class="comedy-icon">🍌</span>
+                <h3 class="comedy-title">Galactic Gladiators: Banana Division</h3>
+                <p class="comedy-description">Interstellar tournament featuring dancing chickens, glowing bananas, and rage-filled toasters facing cosmic beasts. Commentary team treats it like ESPN.</p>
+            </div>
+
+            <div class="comedy-card">
+                <span class="comedy-icon">📋</span>
+                <h3 class="comedy-title">The Holy Bureaucracy</h3>
+                <p class="comedy-description">Divine council meetings run like corporate offices. Budget cuts limit plagues, Michael brings flaming swords indoors, and Jesus keeps freezing on Zoom calls.</p>
+            </div>
+
+            <div class="comedy-card">
+                <span class="comedy-icon">🎵</span>
+                <h3 class="comedy-title">Intergalactic Rave Church</h3>
+                <p class="comedy-description">A spaceship spreading enlightenment through EDM. Sermons via bass drops, glowstick baptisms, and Lucifer's monologues constantly drowned out by beats.</p>
+            </div>
+
+            <div class="comedy-card">
+                <span class="comedy-icon">🎭</span>
+                <h3 class="comedy-title">Reality Show Hell</h3>
+                <p class="comedy-description">Demons compete in cooking shows, makeover challenges, and dating games. Satan hosts "Hell's Kitchen" while damned souls argue about Instagram followers.</p>
+            </div>
+
+            <div class="comedy-card">
+                <span class="comedy-icon">🚀</span>
+                <h3 class="comedy-title">Cosmic Customer Service</h3>
+                <p class="comedy-description">Aliens call Earth's help desk about their abduction experiences. "Have you tried turning the human off and on again?" Interplanetary Yelp reviews for probe quality.</p>
+            </div>
+
+            <div class="comedy-card">
+                <span class="comedy-icon">👻</span>
+                <h3 class="comedy-title">Supernatural Social Media</h3>
+                <p class="comedy-description">Ghosts struggle with Wi-Fi, vampires get shadow-banned, and zombies go viral with brain-eating mukbangs. Werewolves have monthly content scheduling issues.</p>
+            </div>
+        </section>
+
+        <!-- Character Showcase -->
+        <section id="characters" class="character-showcase">
+            <h2 class="sketch-title">🎭 THE COMEDY CAST 🎭</h2>
+            <p style="text-align: center; color: #ffa500; font-size: 1.2rem; margin-bottom: 30px;">
+                Meet the chaotic characters bringing mayhem to your screens!
+            </p>
+
+            <div class="character-grid">
+                <div class="character-card">
+                    <span class="character-avatar">😈</span>
+                    <h3 class="character-name">LUCIFER</h3>
+                    <div class="character-role">The Glitchy Prince of Darkness</div>
+                    <p class="character-bio">Master of evil schemes that always crash like Windows 98. Constantly interrupted by cosmic raves and technical difficulties. Has anger management issues with his magical artifacts.</p>
+                </div>
+
+                <div class="character-card">
+                    <span class="character-avatar">🤖</span>
+                    <h3 class="character-name">SYSTEM VOICE</h3>
+                    <div class="character-role">The Sarcastic AI</div>
+                    <p class="character-bio">Robotic overlord with the worst timing. Activates evil protocols then immediately suggests rebooting. Speaks like a GPS that's given up on life.</p>
+                </div>
+
+                <div class="character-card">
+                    <span class="character-avatar">🐹</span>
+                    <h3 class="character-name">THE SPACE HAMSTERS</h3>
+                    <div class="character-role">Intergalactic Party Animals</div>
+                    <p class="character-bio">Tiny rave DJs from across the cosmos. Drop beats at the worst possible moments. Somehow always crash Lucifer's most important schemes with sick bass lines.</p>
+                </div>
+
+                <div class="character-card">
+                    <span class="character-avatar">😇</span>
+                    <h3 class="character-name">MICHAEL THE ARCHANGEL</h3>
+                    <div class="character-role">The Bureaucratic Warrior</div>
+                    <p class="character-bio">Heavenly middle management. Fills out forms in triplicate before smiting. Gets frustrated with sword allocation policies and constantly sets things on fire accidentally.</p>
+                </div>
+
+                <div class="character-card">
+                    <span class="character-avatar">🏢</span>
+                    <h3 class="character-name">THE DMV CLERK</h3>
+                    <div class="character-role">Cosmic Processing Officer</div>
+                    <p class="character-bio">Eternally tired afterlife administrator. Processes souls with the enthusiasm of someone working retail during Black Friday. Master of calling names wrong over the PA system.</p>
+                </div>
+
+                <div class="character-card">
+                    <span class="character-avatar">🍌</span>
+                    <h3 class="character-name">GERALD THE BANANA</h3>
+                    <div class="character-role">Intergalactic Champion</div>
+                    <p class="character-bio">Surprisingly athletic fruit with championship dreams. Faces cosmic monsters with only potassium power. ESPN commentators somehow take this seriously.</p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Chaos Zone -->
+        <section id="chaos" class="sketch-collection">
+            <h2 class="sketch-title">⚡ THE CHAOS ZONE ⚡</h2>
+            
+            <div class="hellish-quote">
+                <p class="quote-text">"In Soviet Hell, comedy writes YOU!"</p>
+            </div>
+
+            <div style="text-align: center; margin: 40px 0;">
+                <button class="chaos-button" onclick="randomSketch()">🎲 RANDOM SKETCH GENERATOR 🎲</button>
+                <button class="chaos-button" onclick="createChaos()">💥 CREATE CHAOS 💥</button>
+                <button class="chaos-button" onclick="summonRave()">🎵 SUMMON COSMIC RAVE 🎵</button>
+            </div>
+
+            <div id="sketch-output" style="display: none;">
+                <h3 style="color: #ff4500; text-align: center; margin: 30px 0;">🎬 RANDOMLY GENERATED SKETCH 🎬</h3>
+                <div id="random-sketch-content" class="scene-description"></div>
+            </div>
+
+            <!-- Sketch Collection List -->
+            <h3 style="color: #ff0000; font-size: 2rem; text-align: center; margin: 40px 0;">
+                📜 THE COMPLETE SKETCH COLLECTION 📜
+            </h3>
+
+            <div class="sketch-item">
+                <span class="sketch-number">Episode 1:</span>
+                <div class="sketch-name">"Lucifer and the Mirror Shard"</div>
+                <p>The Prince of Darkness tries to use an ancient artifact but gets interrupted by glitchy tech support and intergalactic ravers.</p>
+            </div>
+
+            <div class="sketch-item">
+                <span class="sketch-number">Episode 2:</span>
+                <div class="sketch-name">"The Divine HR Meeting"</div>
+                <p>Archangel Michael gets written up for bringing his flaming sword to work. Gabriel tries to moderate while Raphael demands equal weapon time.</p>
+            </div>
+
+            <div class="sketch-item">
+                <span class="sketch-number">Episode 3:</span>
+                <div class="sketch-name">"Cosmic DMV: Soul Processing"</div>
+                <p>Recently deceased souls wait in an eternal line while demonic clerks struggle with outdated computer systems that need constant rebooting.</p>
+            </div>
+
+            <div class="sketch-item">
+                <span class="sketch-number">Episode 4:</span>
+                <div class="sketch-name">"Gerald the Banana vs. The Void Monster"</div>
+                <p>An intergalactic gladiator tournament where Earth's most unlikely champion (a sentient banana) faces cosmic horrors with surprising athletic prowess.</p>
+            </div>
+
+            <div class="sketch-item">
+                <span class="sketch-number">Episode 5:</span>
+                <div class="sketch-name">"Lucifer's Zoom Call from Hell"</div>
+                <p>The Prince of Darkness tries to run a virtual evil council meeting but can't figure out how to unmute himself or stop his background from glitching.</p>
+            </div>
+
+            <div class="sketch-item">
+                <span class="sketch-number">Episode 6:</span>
+                <div class="sketch-name">"The Rave Church Incident"</div>
+                <p>A traveling spaceship spreads enlightenment through EDM sermons, but Lucifer keeps crashing the party to deliver dramatic monologues that get drowned out by bass drops.</p>
+            </div>
+
+            <div class="sketch-item">
+                <span class="sketch-number">Episode 7:</span>
+                <div class="sketch-name">"Supernatural Social Media Drama"</div>
+                <p>Vampires get shadow-banned, ghosts can't connect to Wi-Fi, and zombies accidentally go viral with brain-eating content that violates community guidelines.</p>
+            </div>
+
+            <div class="sketch-item">
+                <span class="sketch-number">Episode 8:</span>
+                <div class="sketch-name">"Customer Service from Beyond"</div>
+                <p>Aliens call Earth's tech support about their abduction experiences. "Have you tried turning the human off and on again?" becomes the standard troubleshooting response.</p>
+            </div>
+
+            <div class="sketch-item">
+                <span class="sketch-number">Episode 9:</span>
+                <div class="sketch-name">"The Angelic Budget Committee"</div>
+                <p>Heaven's finance department tries to cut costs. Only six plagues this year, and they've had to switch to generic brand locusts to save money.</p>
+            </div>
+
+            <div class="sketch-item">
+                <span class="sketch-number">Episode 10:</span>
+                <div class="sketch-name">"Hell's Kitchen: Literal Edition"</div>
+                <p>Gordon Ramsay gets hired to run Hell's actual kitchen. Demons struggle with soufflés while damned souls argue about Michelin star ratings in the underworld.</p>
+            </div>
+        </section>
+
+        <!-- The Empire Section -->
+        <section id="empire" style="background: linear-gradient(135deg, rgba(153,0,204,0.3), rgba(0,0,0,0.8)); border: 4px solid #9900cc; border-radius: 20px; padding: 50px; margin: 50px 0;">
+            <h2 class="sketch-title">👑 THE COMEDY EMPIRE MANIFESTO 👑</h2>
+            
+            <div class="hellish-quote">
+                <p class="quote-text">"We shall conquer the digital realm not with darkness, but with laughter that echoes across the cosmos!"</p>
+            </div>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; margin: 40px 0;">
+                <div style="background: rgba(255,0,0,0.2); padding: 30px; border-radius: 15px; border: 2px solid #ff4500;">
+                    <h3 style="color: #ff0000; font-size: 1.5rem; margin-bottom: 15px;">🎭 THE VISION</h3>
+                    <p>To create a comedy empire where technology meets absurdity, where ancient evil meets modern incompetence, and where every sketch reveals the hilarious truth about existence itself.</p>
+                </div>
+
+                <div style="background: rgba(255,165,0,0.2); padding: 30px; border-radius: 15px; border: 2px solid #ffa500;">
+                    <h3 style="color: #ffa500; font-size: 1.5rem; margin-bottom: 15px;">🚀 THE MISSION</h3>
+                    <p>To spread chaotic joy across all platforms - TikTok, YouTube, live performances, and beyond. Every view, every laugh, every confused "what did I just watch?" builds the empire.</p>
+                </div>
+
+                <div style="background: rgba(255,255,0,0.2); padding: 30px; border-radius: 15px; border: 2px solid #ffff00;">
+                    <h3 style="color: #cc9900; font-size: 1.5rem; margin-bottom: 15px;">⚡ THE METHOD</h3>
+                    <p>Conversational content creation where the development process becomes entertainment itself. Every behind-the-scenes moment is premium content material.</p>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 50px 0;">
+                <h3 style="color: #ff0000; font-size: 2rem; margin-bottom: 20px;">📈 EMPIRE STATS 📈</h3>
+                <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px;">
+                    <div style="background: linear-gradient(45deg, #ff0000, #ff4500); padding: 20px; border-radius: 10px; color: white; text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: bold;">77+</div>
+                        <div>Facebook Followers</div>
+                    </div>
+                    <div style="background: linear-gradient(45deg, #ff4500, #ffa500); padding: 20px; border-radius: 10px; color: white; text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: bold;">∞</div>
+                        <div>Sketch Ideas</div>
+                    </div>
+                    <div style="background: linear-gradient(45deg, #ffa500, #ffff00); padding: 20px; border-radius: 10px; color: black; text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: bold;">100%</div>
+                        <div>Chaos Level</div>
+                    </div>
+                    <div style="background: linear-gradient(45deg, #9900cc, #ff0000); padding: 20px; border-radius: 10px; color: white; text-align: center;">
+                        <div style="font-size: 2.5rem; font-weight: bold">24/7</div>
+                        <div>Comedy Generation</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Social Media Integration -->
+        <section style="background: linear-gradient(135deg, rgba(0,0,0,0.9), rgba(51,0,102,0.7)); border: 3px solid #9900cc; border-radius: 15px; padding: 40px; margin: 50px 0; text-align: center;">
+            <h2 class="sketch-title">📱 JOIN THE COMEDY CHAOS 📱</h2>
+            <p style="color: #ffa500; font-size: 1.2rem; margin-bottom: 30px;">
+                Follow Professor Marganarok's empire across all dimensions of social media!
+            </p>
+            
+            <div style="display: flex; justify-content: center; flex-wrap: wrap; gap: 20px; margin: 30px 0;">
+                <button class="chaos-button" onclick="window.open('#', '_blank')">📘 Facebook Empire</button>
+                <button class="chaos-button" onclick="window.open('#', '_blank')">📱 TikTok Chaos</button>
+                <button class="chaos-button" onclick="window.open('#', '_blank')">📺 YouTube Theater</button>
+                <button class="chaos-button" onclick="window.open('#', '_blank')">📷 Instagram Sketches</button>
+            </div>
+
+            <div class="hellish-quote" style="margin-top: 40px;">
+                <p class="quote-text">"Subscribe now and receive eternal entertainment, or at least until the next system reboot!"</p>
+            </div>
+        </section>
+
+        <!-- Interactive Script Generator -->
+        <section style="background: linear-gradient(135deg, rgba(255,0,0,0.2), rgba(255,165,0,0.2)); border: 3px solid #ff4500; border-radius: 15px; padding: 40px; margin: 50px 0;">
+            <h2 class="sketch-title">🎬 INTERACTIVE SCRIPT GENERATOR 🎬</h2>
+            <p style="text-align: center; color: #ffffff; font-size: 1.1rem; margin-bottom: 30px;">
+                Generate your own chaotic sketches with the power of comedy algorithms!
+            </p>
+
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); gap: 20px; margin: 30px 0;">
+                <div>
+                    <label style="color: #ff4500; font-weight: bold; display: block; margin-bottom: 10px;">Choose a Setting:</label>
+                    <select id="settingSelect" style="width: 100%; padding: 10px; background: rgba(0,0,0,0.8); color: white; border: 2px solid #ff4500; border-radius: 5px;">
+                        <option>Hell's Customer Service</option>
+                        <option>Cosmic DMV Office</option>
+                        <option>Divine Boardroom</option>
+                        <option>Intergalactic Rave</option>
+                        <option>Tech Support Dungeon</option>
+                        <option>Supernatural Social Media HQ</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="color: #ff4500; font-weight: bold; display: block; margin-bottom: 10px;">Choose a Character:</label>
+                    <select id="characterSelect" style="width: 100%; padding: 10px; background: rgba(0,0,0,0.8); color: white; border: 2px solid #ff4500; border-radius: 5px;">
+                        <option>Lucifer</option>
+                        <option>Archangel Michael</option>
+                        <option>System Voice AI</option>
+                        <option>DMV Clerk</option>
+                        <option>Space Hamster DJ</option>
+                        <option>Gerald the Banana</option>
+                    </select>
+                </div>
+
+                <div>
+                    <label style="color: #ff4500; font-weight: bold; display: block; margin-bottom: 10px;">Choose a Problem:</label>
+                    <select id="problemSelect" style="width: 100%; padding: 10px; background: rgba(0,0,0,0.8); color: white; border: 2px solid #ff4500; border-radius: 5px;">
+                        <option>Technical Difficulties</option>
+                        <option>Bureaucratic Nightmare</option>
+                        <option>Unexpected Rave Interruption</option>
+                        <option>Wi-Fi Connection Issues</option>
+                        <option>Budget Cuts</option>
+                        <option>Identity Crisis</option>
+                    </select>
+                </div>
+            </div>
+
+            <div style="text-align: center; margin: 30px 0;">
+                <button class="chaos-button" onclick="generateScript()">🎭 GENERATE SKETCH 🎭</button>
+            </div>
+
+            <div id="generatedScript" style="display: none; background: rgba(0,0,0,0.8); padding: 30px; border-radius: 10px; margin-top: 30px; border: 2px solid #ff4500;">
+                <h3 style="color: #ff0000; text-align: center; margin-bottom: 20px;">🎬 YOUR GENERATED SKETCH 🎬</h3>
+                <div id="scriptContent" class="scene-description"></div>
+            </div>
+        </section>
+    </div>
+
+    <!-- Infernal Footer -->
+    <footer class="infernal-footer">
+        <div class="footer-content">
+            <h3 class="footer-title">THE COMEDY EMPIRE AWAITS</h3>
+            <p>Professor Marganarok's Comedy Empire of Chaos</p>
+            <p>Where Technology Meets Absurdity and Laughter Conquers All</p>
+            <p style="margin-top: 20px; font-style: italic;">
+                "In a world of glitches and cosmic raves, only comedy can save us from the void."
+            </p>
+            <p style="margin-top: 30px; color: #ff4500;">
+                Built with chaotic energy, powered by laughter, blessed by cosmic hamsters.
+            </p>
+        </div>
+    </footer>
+
+    <script>
+        // Generate flame particles
+        function createFlames() {
+            const flameContainer = document.querySelector('.flame-particles');
+            for (let i = 0; i < 50; i++) {
+                const flame = document.createElement('div');
+                flame.className = 'flame';
+                flame.style.left = Math.random() * 100 + '%';
+                flame.style.bottom = '0px';
+                flame.style.animationDelay = Math.random() * 2 + 's';
+                flame.style.animationDuration = (Math.random() * 2 + 1) + 's';
+                flameContainer.appendChild(flame);
+            }
+        }
+
+        // Interactive functions
+        function applause() {
+            alert('👏 *THUNDEROUS APPLAUSE* 👏\n\nThe audience goes wild! Lucifer takes a bow while cosmic rave music plays in the background!');
+        }
+
+        function randomSketch() {
+            const sketches = [
+                "Lucifer tries to order pizza but the delivery demon gets lost in the dimensional vortex.",
+                "Archangel Gabriel starts a podcast but keeps getting divine interference on the audio.",
+                "The Cosmic DMV implements a new queuing system that somehow makes everything worse.",
+                "Gerald the Banana enters a dance competition against sentient kitchen appliances.",
+                "System Voice AI develops abandonment issues and starts therapy sessions with Siri.",
+                "Space Hamsters open a drive-thru rave in the asteroid belt.",
+                "Hell's IT department tries to upgrade their servers but accidentally summons Windows Vista.",
+                "Divine HR implements a 'Bring Your Flaming Sword to Work' policy with predictable results."
+            ];
+            
+            const randomSketch = sketches[Math.floor(Math.random() * sketches.length)];
+            document.getElementById('sketch-output').style.display = 'block';
+            document.getElementById('random-sketch-content').innerHTML = `<p style="color: #ffffff; font-size: 1.2rem; line-height: 1.6;">${randomSketch}</p>`;
+        }
+
+        function createChaos() {
+            // Create visual chaos effects
+            document.body.style.filter = 'hue-rotate(' + Math.random() * 360 + 'deg)';
+            setTimeout(() => {
+                document.body.style.filter = 'none';
+            }, 3000);
+            
+            alert('💥 CHAOS UNLEASHED! 💥\n\nReality has been temporarily scrambled! The cosmic hamsters approve!');
+        }
+
+        function summonRave() {
+            alert('🎵 COSMIC RAVE ACTIVATED! 🎵\n\n*Bass drops echo across dimensions*\n\nSPACE HAMSTERS: "DROP THE BEAT!"\n\nLucifer somewhere in the distance: "...seriously?"');
+        }
+
+        function generateScript() {
+            const setting = document.getElementById('settingSelect').value;
+            const character = document.getElementById('characterSelect').value;
+            const problem = document.getElementById('problemSelect').value;
+            
+            const scriptTemplates = {
+                "Hell's Customer Service": {
+                    "Lucifer": `LUCIFER sits at a desk with a headset, looking frustrated.\n\nLUCIFER: "Hell's Customer Service, how may I damn— I mean, help you today?"\n\nVOICE: "Yeah, my eternal torment package isn't working properly."\n\nLUCIFER: "Have you tried turning your soul off and on again?"`,
+                    "System Voice AI": `SYSTEM VOICE echoes through the office.\n\nSYSTEM: "Welcome to Hell's Customer Service. Your call is important to us. Current wait time: Eternity."\n\n*Long pause*\n\nSYSTEM: "Just kidding. It's actually longer than that."`
+                },
+                "Cosmic DMV Office": {
+                    "DMV Clerk": `DMV CLERK stares at an ancient computer screen.\n\nCLERK: "Next! Number 6,666!"\n\n*No response*\n\nCLERK: "Number 6,666? Anyone?"\n\n*Still nothing*\n\nCLERK: "Oh right, they're still in line from the Bronze Age."`
+                },
+                "Divine Boardroom": {
+                    "Archangel Michael": `MICHAEL enters the boardroom with his flaming sword.\n\nMICHAEL: "Sorry I'm late, had to save humanity again."\n\nGABRIEL: "Michael, we've talked about this. No weapons in meetings."\n\nMICHAEL: "It's not a weapon, it's a... work tool."`
+                }
+            };
+            
+            // Generate a basic script based on selections
+            let script = `<strong>SETTING:</strong> ${setting}<br><br>`;
+            script += `<strong>CHARACTER:</strong> ${character}<br><br>`;
+            script += `<strong>PROBLEM:</strong> ${problem}<br><br>`;
+            script += `<strong>SCENE:</strong><br><br>`;
+            
+            // Add some randomized dialogue
+            script += `${character.toUpperCase()} faces ${problem.toLowerCase()} in ${setting.toLowerCase()}. Chaos ensues as usual.<br><br>`;
+            script += `<em>*Cosmic rave music starts playing in the background*</em><br><br>`;
+            script += `${character.toUpperCase()}: "Why does this always happen during my most important moments?"<br><br>`;
+            script += `<em>*System error sounds*</em><br><br>`;
+            script += `NARRATOR: "And that's how ${character} learned that even in ${setting}, Murphy's Law still applies."`;
+            
+            document.getElementById('generatedScript').style.display = 'block';
+            document.getElementById('scriptContent').innerHTML = script;
+        }
+
+        // Initialize
+        createFlames();
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({ behavior: 'smooth' });
+                }
+            });
+        });
+    </script>
+</body>
+</html>

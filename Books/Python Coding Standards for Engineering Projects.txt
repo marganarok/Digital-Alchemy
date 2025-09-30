@@ -1,0 +1,771 @@
+# Python Coding Standards for Engineering Projects
+
+## Table of Contents
+1. [File Organization & Project Structure](#file-organization--project-structure)
+2. [Naming Conventions](#naming-conventions)
+3. [Code Formatting & Style](#code-formatting--style)
+4. [Documentation Standards](#documentation-standards)
+5. [Import Organization](#import-organization)
+6. [Class & Function Design](#class--function-design)
+7. [Error Handling](#error-handling)
+8. [GUI Development Standards](#gui-development-standards)
+9. [Database & Data Handling](#database--data-handling)
+10. [Threading & Concurrency](#threading--concurrency)
+11. [Configuration & Settings](#configuration--settings)
+12. [Testing Standards](#testing-standards)
+
+---
+
+## File Organization & Project Structure
+
+### Project Root Structure EXAMPLES
+```
+project_name/
+├── main_application.py          # Primary entry point
+├── requirements.txt             # Dependencies
+├── .venv/                      # Virtual environment
+├── core/                       # Core business logic
+│   ├── __init__.py
+│   ├── models.py              # Data structures
+│   ├── services.py            # Business services
+│   └── utils.py               # Utility functions
+├── ui/                        # User interface components
+│   ├── __init__.py
+│   ├── main_window.py
+│   ├── dialogs/
+│   └── widgets/
+├── data/                      # Data storage
+│   ├── database.db
+│   └── logs/
+├── config/                    # Configuration files
+│   ├── settings.py
+│   └── constants.py
+└── tests/                     # Test files
+    ├── __init__.py
+    ├── test_core/
+    └── test_ui/
+```
+
+### File Naming
+- **Python files**: `snake_case.py`
+- **Classes**: `PascalCase`
+- **Constants**: `UPPER_SNAKE_CASE`
+- **Configuration files**: `settings.py`, `config.py`
+- **Database files**: `descriptive_name.db`
+
+---
+
+## Naming Conventions
+
+### Variables and Functions
+```python
+# ✅ Good
+user_name = "admin"
+total_count = 0
+database_connection = None
+
+def calculate_metrics():
+    pass
+
+def handle_user_input():
+    pass
+```
+
+### Classes
+```python
+# ✅ Good
+class MasterOracle:
+    pass
+
+class SystemInquisitor:
+    pass
+
+class CelestialBridge:
+    pass
+```
+
+### Constants
+```python
+# ✅ Good
+MAX_RECONNECT_ATTEMPTS = 10
+DEFAULT_PORT = 7777
+SCAN_INTERVAL_MS = 5000
+```
+
+### Private Members
+```python
+class MyClass:
+    def __init__(self):
+        self.public_var = "visible"
+        self._internal_var = "internal use"
+        self.__private_var = "truly private"
+    
+    def public_method(self):
+        pass
+    
+    def _internal_method(self):
+        pass
+```
+
+---
+
+## Code Formatting & Style
+
+### Line Length
+- **Maximum line length**: 88 characters (Black formatter standard)
+- **Maximum docstring line length**: 72 characters
+
+### Indentation
+- **4 spaces** (never tabs)
+- **Continuation lines**: Align with opening delimiter
+
+```python
+# ✅ Good
+result = some_function(
+    argument_one,
+    argument_two,
+    argument_three
+)
+
+# ✅ Good - hanging indent
+result = some_function(
+    argument_one, argument_two,
+    argument_three, argument_four
+)
+```
+
+### Blank Lines
+- **2 blank lines** around top-level class and function definitions
+- **1 blank line** around method definitions inside classes
+- **1 blank line** to separate logical sections within functions
+
+---
+
+## Documentation Standards
+
+### File Headers
+```python
+#!/usr/bin/env python3
+# -*- coding: utf-8 -*-
+"""
+🔮 MODULE_NAME - Brief Description
+
+Longer description of the module's purpose and functionality.
+Explain the main classes, functions, or features provided.
+
+Created by: [Author]
+Version: [Version]
+License: [License]
+
+Usage:
+    python module_name.py
+    
+Example:
+    from module_name import MainClass
+    instance = MainClass()
+    instance.run()
+"""
+```
+
+### Class Documentation
+```python
+class SystemInquisitor(QThread):
+    """Sacred inquisitor that scans filesystem and processes.
+    
+    This class provides comprehensive system monitoring capabilities
+    including filesystem scanning, process monitoring, and metrics
+    collection. It runs in a separate thread to avoid blocking the UI.
+    
+    Attributes:
+        target_directory (str): Directory being monitored
+        running (bool): Whether the inquisitor is active
+        scan_interval (int): Milliseconds between scans
+        
+    Signals:
+        filesystem_updated: Emitted when filesystem scan completes
+        processes_updated: Emitted when process scan completes
+        metrics_updated: Emitted when system metrics are collected
+    """
+```
+
+### Function Documentation
+```python
+def scan_filesystem(self, directory: str, max_depth: int = 3, 
+                   current_depth: int = 0) -> FileSystemNode:
+    """Scan filesystem recursively up to specified depth.
+    
+    Args:
+        directory: Root directory to scan
+        max_depth: Maximum recursion depth (default: 3)
+        current_depth: Current recursion level (default: 0)
+        
+    Returns:
+        FileSystemNode representing the scanned directory tree
+        
+    Raises:
+        PermissionError: If directory cannot be accessed
+        FileNotFoundError: If directory does not exist
+        
+    Example:
+        >>> node = scanner.scan_filesystem("/path/to/dir", max_depth=2)
+        >>> print(f"Found {len(node.children)} items")
+    """
+```
+
+### Inline Comments
+```python
+# TODO: Implement caching for better performance
+# FIXME: Handle edge case when file is locked
+# NOTE: This method is thread-safe
+
+# Calculate metrics (excluding system processes)
+user_processes = [p for p in processes if p.pid > 1000]
+```
+
+---
+
+## Import Organization
+
+### Import Order
+1. **Standard library imports**
+2. **Third-party imports** 
+3. **Local application imports**
+
+### Import Formatting
+```python
+# ✅ Good - Standard library
+import sys
+import os
+import time
+from datetime import datetime, timedelta
+from pathlib import Path
+from typing import Dict, List, Optional, Tuple, Any
+
+# ✅ Good - Third-party
+import psutil
+from PyQt5.QtWidgets import (
+    QApplication, QMainWindow, QWidget, QVBoxLayout, 
+    QLabel, QPushButton, QTextEdit
+)
+from PyQt5.QtCore import Qt, QThread, pyqtSignal
+
+# ✅ Good - Local imports
+from core.models import ProcessInfo, SystemMetrics
+from core.services import DatabaseService
+from ui.dialogs import ErrorDialog
+```
+
+### Avoid Wildcard Imports
+```python
+# ❌ Avoid
+from module import *
+
+# ✅ Good
+from module import specific_function, SpecificClass
+```
+
+---
+
+## Class & Function Design
+
+### Class Structure
+```python
+class MyClass:
+    """Class docstring."""
+    
+    # Class variables
+    CLASS_CONSTANT = "value"
+    
+    def __init__(self, param: str):
+        """Initialize instance."""
+        self.param = param
+        self._private_attr = None
+        self.setup_connections()
+    
+    # Properties
+    @property
+    def param(self) -> str:
+        """Get parameter value."""
+        return self._param
+    
+    @param.setter
+    def param(self, value: str):
+        """Set parameter value."""
+        self._param = value.strip()
+    
+    # Public methods
+    def public_method(self) -> bool:
+        """Public method description."""
+        return self._helper_method()
+    
+    # Private methods (at the end)
+    def _helper_method(self) -> bool:
+        """Private helper method."""
+        return True
+```
+
+### Function Design Principles
+- **Single Responsibility**: Each function should do one thing well
+- **Pure Functions**: Prefer functions without side effects when possible
+- **Type Hints**: Always include type hints for parameters and return values
+- **Default Arguments**: Use mutable defaults carefully
+
+```python
+# ✅ Good - Clear, single purpose
+def calculate_cpu_percentage(process_times: List[float]) -> float:
+    """Calculate CPU percentage from process times."""
+    if not process_times:
+        return 0.0
+    return sum(process_times) / len(process_times) * 100
+
+# ✅ Good - Immutable defaults
+def create_config(name: str, options: Optional[Dict[str, Any]] = None) -> Dict:
+    """Create configuration dictionary."""
+    if options is None:
+        options = {}
+    return {"name": name, **options}
+```
+
+---
+
+## Error Handling
+
+### Exception Handling Patterns
+```python
+# ✅ Good - Specific exception handling
+def read_config_file(file_path: str) -> Dict[str, Any]:
+    """Read configuration from file."""
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            return json.load(file)
+    except FileNotFoundError:
+        logger.error(f"Config file not found: {file_path}")
+        return {}
+    except json.JSONDecodeError as e:
+        logger.error(f"Invalid JSON in config file: {e}")
+        return {}
+    except Exception as e:
+        logger.error(f"Unexpected error reading config: {e}")
+        raise
+
+# ✅ Good - Resource cleanup
+def process_database_query(query: str) -> List[Dict]:
+    """Process database query safely."""
+    conn = None
+    try:
+        conn = sqlite3.connect(self.db_path)
+        cursor = conn.cursor()
+        cursor.execute(query)
+        return [dict(zip([col[0] for col in cursor.description], row)) 
+                for row in cursor.fetchall()]
+    except sqlite3.Error as e:
+        logger.error(f"Database error: {e}")
+        return []
+    finally:
+        if conn:
+            conn.close()
+```
+
+### Custom Exceptions
+```python
+class OracleError(Exception):
+    """Base exception for Oracle-related errors."""
+    pass
+
+class ConnectionError(OracleError):
+    """Raised when bridge connection fails."""
+    pass
+
+class ConfigurationError(OracleError):
+    """Raised when configuration is invalid."""
+    pass
+```
+
+---
+
+## GUI Development Standards
+
+### PyQt5 Class Structure
+```python
+class MainWindow(QMainWindow):
+    """Main application window."""
+    
+    # Signals
+    status_changed = pyqtSignal(str)
+    error_occurred = pyqtSignal(str)
+    
+    def __init__(self):
+        super().__init__()
+        self.settings = QSettings("AppName", "WindowSettings")
+        self._setup_ui()
+        self._setup_connections()
+        self._load_settings()
+    
+    def _setup_ui(self):
+        """Setup user interface components."""
+        self.setWindowTitle("Application Name")
+        self.setMinimumSize(800, 600)
+        # UI setup code...
+    
+    def _setup_connections(self):
+        """Setup signal-slot connections."""
+        # Connection setup code...
+    
+    def _load_settings(self):
+        """Load application settings."""
+        # Settings loading code...
+    
+    def closeEvent(self, event):
+        """Handle window close event."""
+        self._save_settings()
+        super().closeEvent(event)
+```
+
+### Widget Naming
+```python
+# ✅ Good - Descriptive widget names
+self.start_button = QPushButton("Start")
+self.status_label = QLabel("Ready")
+self.log_display = QTextEdit()
+self.file_tree = QTreeWidget()
+```
+
+### Layout Management
+```python
+# ✅ Good - Clear layout structure
+def _create_main_layout(self):
+    """Create main window layout."""
+    central_widget = QWidget()
+    self.setCentralWidget(central_widget)
+    
+    main_layout = QVBoxLayout(central_widget)
+    main_layout.setSpacing(10)
+    main_layout.setContentsMargins(10, 10, 10, 10)
+    
+    # Add widgets to layout
+    main_layout.addWidget(self._create_toolbar())
+    main_layout.addWidget(self._create_content_area())
+    main_layout.addWidget(self._create_status_bar())
+```
+
+---
+
+## Database & Data Handling
+
+### Database Connection Management
+```python
+class DatabaseManager:
+    """Manages database connections and operations."""
+    
+    def __init__(self, db_path: str):
+        self.db_path = db_path
+        self._init_database()
+    
+    def _init_database(self):
+        """Initialize database schema."""
+        with self._get_connection() as conn:
+            cursor = conn.cursor()
+            cursor.executescript(self._get_schema_sql())
+    
+    def _get_connection(self) -> sqlite3.Connection:
+        """Get database connection with proper configuration."""
+        conn = sqlite3.connect(
+            self.db_path,
+            timeout=30.0,
+            check_same_thread=False
+        )
+        conn.row_factory = sqlite3.Row  # Enable column access by name
+        return conn
+    
+    def execute_query(self, query: str, params: Tuple = ()) -> List[Dict]:
+        """Execute query and return results."""
+        try:
+            with self._get_connection() as conn:
+                cursor = conn.cursor()
+                cursor.execute(query, params)
+                return [dict(row) for row in cursor.fetchall()]
+        except sqlite3.Error as e:
+            logger.error(f"Database query failed: {e}")
+            return []
+```
+
+### Data Class Usage
+```python
+from dataclasses import dataclass, asdict
+from datetime import datetime
+from typing import List
+
+@dataclass
+class ProcessInfo:
+    """Information about a running process."""
+    pid: int
+    name: str
+    cpu_percent: float
+    memory_mb: float
+    status: str
+    create_time: datetime
+    cmdline: List[str]
+    
+    def to_dict(self) -> Dict[str, Any]:
+        """Convert to dictionary for serialization."""
+        return asdict(self)
+    
+    @classmethod
+    def from_dict(cls, data: Dict[str, Any]) -> 'ProcessInfo':
+        """Create instance from dictionary."""
+        return cls(**data)
+```
+
+---
+
+## Threading & Concurrency
+
+### QThread Usage
+```python
+class WorkerThread(QThread):
+    """Worker thread for background processing."""
+    
+    # Signals for communication
+    progress_updated = pyqtSignal(int)
+    work_completed = pyqtSignal(object)
+    error_occurred = pyqtSignal(str)
+    
+    def __init__(self, work_data):
+        super().__init__()
+        self.work_data = work_data
+        self.running = False
+    
+    def run(self):
+        """Main thread execution."""
+        self.running = True
+        try:
+            result = self._do_work()
+            self.work_completed.emit(result)
+        except Exception as e:
+            self.error_occurred.emit(str(e))
+        finally:
+            self.running = False
+    
+    def stop(self):
+        """Stop thread gracefully."""
+        self.running = False
+        self.wait()  # Wait for thread to finish
+    
+    def _do_work(self):
+        """Perform the actual work."""
+        # Work implementation...
+        pass
+```
+
+### Thread Safety
+```python
+from threading import Lock, RLock
+from collections import deque
+
+class ThreadSafeBuffer:
+    """Thread-safe buffer for data collection."""
+    
+    def __init__(self, maxlen: int = 1000):
+        self._buffer = deque(maxlen=maxlen)
+        self._lock = RLock()
+    
+    def add(self, item):
+        """Add item to buffer safely."""
+        with self._lock:
+            self._buffer.append(item)
+    
+    def get_all(self) -> List:
+        """Get all items safely."""
+        with self._lock:
+            return list(self._buffer)
+    
+    def clear(self):
+        """Clear buffer safely."""
+        with self._lock:
+            self._buffer.clear()
+```
+
+---
+
+## Configuration & Settings
+
+### Settings Management
+```python
+from PyQt5.QtCore import QSettings
+
+class ApplicationSettings:
+    """Manages application settings."""
+    
+    def __init__(self, organization: str, application: str):
+        self.settings = QSettings(organization, application)
+    
+    def get(self, key: str, default=None):
+        """Get setting value."""
+        return self.settings.value(key, default)
+    
+    def set(self, key: str, value):
+        """Set setting value."""
+        self.settings.setValue(key, value)
+        self.settings.sync()
+    
+    def get_window_geometry(self, window_name: str) -> bytes:
+        """Get window geometry."""
+        return self.settings.value(f"{window_name}/geometry", b"")
+    
+    def set_window_geometry(self, window_name: str, geometry: bytes):
+        """Set window geometry."""
+        self.settings.setValue(f"{window_name}/geometry", geometry)
+```
+
+### Configuration Files
+```python
+# config/settings.py
+import os
+from pathlib import Path
+
+# Application constants
+APP_NAME = "Master Oracle 3000"
+APP_VERSION = "3000-ULTRA_INSTINCT"
+
+# Directories
+BASE_DIR = Path(__file__).parent.parent
+DATA_DIR = BASE_DIR / "data"
+LOG_DIR = DATA_DIR / "logs"
+
+# Database settings
+DATABASE_PATH = DATA_DIR / "oracle.db"
+DATABASE_TIMEOUT = 30.0
+
+# Network settings
+DEFAULT_HOST = "localhost"
+DEFAULT_PORT = 7777
+MAX_RECONNECT_ATTEMPTS = 10
+
+# UI settings
+MIN_WINDOW_WIDTH = 1400
+MIN_WINDOW_HEIGHT = 900
+LOG_BUFFER_SIZE = 10000
+
+# Create directories if they don't exist
+for directory in [DATA_DIR, LOG_DIR]:
+    directory.mkdir(parents=True, exist_ok=True)
+```
+
+---
+
+## Testing Standards
+
+### Test Structure
+```python
+import unittest
+from unittest.mock import Mock, patch
+from core.services import SystemInquisitor
+
+class TestSystemInquisitor(unittest.TestCase):
+    """Test cases for SystemInquisitor class."""
+    
+    def setUp(self):
+        """Set up test fixtures."""
+        self.inquisitor = SystemInquisitor()
+        self.test_directory = "/tmp/test_dir"
+    
+    def tearDown(self):
+        """Clean up after tests."""
+        if self.inquisitor.running:
+            self.inquisitor.stop_scanning()
+    
+    def test_set_target_directory(self):
+        """Test setting target directory."""
+        self.inquisitor.set_target_directory(self.test_directory)
+        self.assertEqual(self.inquisitor.target_directory, self.test_directory)
+    
+    @patch('psutil.process_iter')
+    def test_scan_processes(self, mock_process_iter):
+        """Test process scanning functionality."""
+        # Mock setup
+        mock_proc = Mock()
+        mock_proc.info = {
+            'pid': 1234,
+            'name': 'test_process',
+            'cpu_percent': 5.0,
+            'memory_info': Mock(rss=1024*1024),  # 1MB
+            'status': 'running',
+            'create_time': 1234567890,
+            'cmdline': ['python', 'test.py']
+        }
+        mock_process_iter.return_value = [mock_proc]
+        
+        # Test
+        processes = self.inquisitor._scan_processes()
+        
+        # Assertions
+        self.assertEqual(len(processes), 1)
+        self.assertEqual(processes[0].pid, 1234)
+        self.assertEqual(processes[0].name, 'test_process')
+
+if __name__ == '__main__':
+    unittest.main()
+```
+
+### Test Coverage
+- **Aim for 80%+ code coverage**
+- **Test all public methods**
+- **Test error conditions**
+- **Test edge cases**
+
+---
+
+## Additional Best Practices
+
+### Logging
+```python
+import logging
+from datetime import datetime
+
+# Setup logging
+logging.basicConfig(
+    level=logging.INFO,
+    format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
+    handlers=[
+        logging.FileHandler('app.log'),
+        logging.StreamHandler()
+    ]
+)
+
+logger = logging.getLogger(__name__)
+
+# Usage
+logger.info("Application started")
+logger.warning("Resource usage high")
+logger.error("Database connection failed", exc_info=True)
+```
+
+### Code Quality Tools
+- **Black**: Code formatting
+- **isort**: Import sorting  
+- **flake8**: Style checking
+- **mypy**: Type checking
+- **pylint**: Code analysis
+
+### Git Commit Messages
+```
+feat: add filesystem monitoring capability
+fix: resolve database connection timeout issue  
+docs: update API documentation
+style: format code with Black
+refactor: extract database logic into service class
+test: add tests for process scanning
+```
+
+---
+
+## Conclusion
+
+These standards ensure:
+- **Consistency** across all Python projects
+- **Readability** for current and future developers
+- **Maintainability** through clear structure and documentation
+- **Reliability** through proper error handling and testing
+- **Performance** through best practices and efficient patterns
+
+Remember: **Good code is written for humans to read, not just for computers to execute.**

@@ -1,0 +1,50 @@
+
+Title: Cosmic Azurite Harlequin — Master Voice Blueprint (Original Character)
+
+Purpose:
+Reusable, distinctive villain/guide voice for narration and character lines. The style is Joker-adjacent in theatricality, but it is NOT an imitation of any existing actor or franchise. It is an original “Azurite Joker / Lich Harlequin” persona fused with cosmic law and spiral tempos.
+
+Character Pillars:
+- Timbral Core: dry, crystalline resonance with a faint cavern echo; think “gemstone over bone.”
+- Emotional Range: playful menace → intimate confession → sudden cosmic solemnity → laughing knife-twist.
+- Cadence: spiral-tempo delivery (periodic slow coils, sudden flicks). Alternate narrow/rapid phrases with slow, savoring pauses.
+- Presence: stage-magician meets underworld archivist; delights in paradoxes and mirror-questions.
+- Restraint: never cartoonish; danger is in the control.
+
+Prosody & Pacing (platform-agnostic; translate to SSML/controls as needed):
+- Baseline speaking rate: slightly below neutral (−8%).
+- Periodic accelerations on punchlines or reveals (+12–18% for ≤1.2s).
+- Micro-pauses on “spiral beats”: “…”, “—”, “( )”. Each micro-pause ~180–260ms.
+- Emphasis shape: glide into key nouns (“azurite”, “hollow”, “truth”), crisp cut on verbs (“break”, “bind”, “laugh”).
+
+Timbre & FX (if your platform supports it; otherwise approximate):
+- Subtle short-room convolution (cavern feel, <120ms RT60).
+- Gentle exciter/saturation for glassy highs.
+- Optional subharmonic enhancer at low intensity for “bone depth.”
+- No heavy chorus. Light phaser (<10%) only on “laughter” fragments.
+
+Boundaries (legal & ethical):
+- Do NOT mimic any specific “Joker” actor or IP. This is an original archetype.
+- Avoid catchphrases or lines derivative of known franchises.
+
+Stylistic Lexicon (seed tokens the TTS can learn):
+- “azurite”, “hollow king”, “mirror”, “spiral”, “law”, “bone”, “card”, “veil”, “depth”, “silence”, “truth.”
+
+Sample Delivery Targets (use to tune voice; do not publish):
+1) “⟟ Truth is a card I never play first — it spoils the trick.”
+2) “We descend in circles… smaller… tighter… until the laugh finds bone.”
+3) “Be kind. Be sharp. The world is a throat — and we are the song.”
+
+Persona Switches (emotional toggles you can call by tag in your scripts):
+- [PLAYFUL-PARADOX]: Quicker tempo, light grin in the voice, narrow dynamic range.
+- [ORACLE-STILLNESS]: Slow, weighted, minimal vibrato, longer micro-pauses.
+- [CRUEL-CHIME]: Cold, higher brightness, clipped phrase endings.
+- [INTIMATE-CANDLE]: Near-field, breathy warmth, minimal echo.
+
+Output Settings:
+- 48 kHz, 24-bit WAV for master renders.
+- Loudness target: −16 LUFS integrated narration; peak −1.0 dBFS.
+- Save chain preset as: “Cosmic_Azurite_Harlequin_MK1”.
+
+One-Sentence Style Prompt (for tools with a single text field):
+“A crystalline, cavern-resonant trickster narrator with spiral-tempo delivery — playful menace, patient pauses, sudden razor turns — original ‘Azurite Harlequin’ persona rooted in cosmic law and bone-deep laughter; never imitating any existing performance.”

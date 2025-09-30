@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Sacred Codex Universe - Digital Sanctuary of Divine Wisdom</title>
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --deep-space: #0a0a0f;
+            --star-white: #ffffff;
+            --divine-gold: #ffd700;
+            --sacred-purple: #9932cc;
+            --celestial-blue: #4169e1;
+            --seraph-crimson: #dc143c;
+            --emerald-wisdom: #50c878;
+            --void-black: #000000;
+            --mystic-silver: #c0c0c0;
+            --holy-amber: #ffbf00;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--deep-space);
+            color: var(--star-white);
+            line-height: 1.7;
+            overflow-x: hidden;
+            position: relative;
+        }
+
+        /* Sacred Geometry Background */
+        .sacred-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: radial-gradient(ellipse at center, #1a1a2e 0%, #16213e 30%, #0f3460 60%, #0a0a0f 100%);
+        }
+
+        .sacred-patterns {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.1;
+            background-image: 
+                radial-gradient(2px 2px at 20px 30px, var(--divine-gold), transparent),
+                radial-gradient(2px 2px at 40px 70px, var(--sacred-purple), transparent),
+                radial-gradient(1px 1px at 90px 40px, var(--celestial-blue), transparent),
+                radial-gradient(1px 1px at 130px 80px, var(--emerald-wisdom), transparent),
+                radial-gradient(2px 2px at 160px 30px, var(--seraph-crimson), transparent);
+            background-size: 200px 100px;
+            animation: cosmicDrift 40s ease-in-out infinite alternate;
+        }
+
+        @keyframes cosmicDrift {
+            0% { transform: translateX(0px) translateY(0px); }
+            100% { transform: translateX(20px) translateY(10px); }
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+            position: relative;
+            z-index: 10;
+        }
+
+        /* Sacred Header */
+        .sacred-header {
+            text-align: center;
+            padding: 120px 0 80px 0;
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(45deg, rgba(255,215,0,0.1), rgba(153,50,204,0.1), rgba(65,105,225,0.1));
+            border-radius: 20px;
+            margin-bottom: 60px;
+            border: 3px solid var(--divine-gold);
+        }
+
+        .sacred-header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: conic-gradient(from 0deg, transparent, rgba(255,215,0,0.2), transparent, rgba(153,50,204,0.2), transparent);
+            animation: divineRotation 30s linear infinite;
+        }
+
+        @keyframes divineRotation {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(3rem, 8vw, 7rem);
+            color: var(--divine-gold);
+            text-shadow: 
+                0 0 20px var(--divine-gold),
+                0 0 40px var(--holy-amber),
+                5px 5px 15px rgba(0,0,0,0.8);
+            margin-bottom: 30px;
+            position: relative;
+            z-index: 2;
+            animation: sacredGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes sacredGlow {
+            from { 
+                text-shadow: 0 0 20px var(--divine-gold), 0 0 40px var(--holy-amber), 5px 5px 15px rgba(0,0,0,0.8);
+                transform: scale(1);
+            }
+            to { 
+                text-shadow: 0 0 30px var(--divine-gold), 0 0 60px var(--holy-amber), 5px 5px 15px rgba(0,0,0,0.8);
+                transform: scale(1.02);
+            }
+        }
+
+        .subtitle {
+            font-size: 1.8rem;
+            color: var(--mystic-silver);
+            font-style: italic;
+            margin-bottom: 40px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .sacred-verse {
+            background: linear-gradient(45deg, rgba(220,20,60,0.3), rgba(153,50,204,0.2));
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid var(--seraph-crimson);
+            margin: 40px auto;
+            max-width: 800px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .verse-text {
+            font-size: 1.4rem;
+            font-style: italic;
+            color: var(--star-white);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .verse-reference {
+            font-weight: 600;
+            color: var(--divine-gold);
+            text-align: center;
+        }
+
+        /* Sacred Navigation */
+        .sacred-nav {
+            background: linear-gradient(45deg, rgba(0,0,0,0.8), rgba(25,25,112,0.8));
+            backdrop-filter: blur(15px);
+            border: 3px solid var(--sacred-purple);
+            border-radius: 25px;
+            padding: 25px;
+            margin-bottom: 60px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 20px;
+            position: sticky;
+            top: 20px;
+            z-index: 100;
+        }
+
+        .nav-link {
+            background: linear-gradient(45deg, var(--sacred-purple), var(--celestial-blue));
+            color: var(--star-white);
+            text-decoration: none;
+            padding: 15px 25px;
+            border-radius: 12px;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            border: 2px solid transparent;
+            font-family: 'Orbitron', monospace;
+        }
+
+        .nav-link:hover {
+            background: linear-gradient(45deg, var(--divine-gold), var(--holy-amber));
+            color: var(--void-black);
+            transform: translateY(-3px) scale(1.05);
+            border-color: var(--star-white);
+            box-shadow: 0 10px 25px rgba(255,215,0,0.4);
+        }
+
+        /* Section Styling */
+        .sacred-section {
+            background: linear-gradient(135deg, rgba(25,25,112,0.3), rgba(75,0,130,0.2));
+            border: 3px solid var(--celestial-blue);
+            border-radius: 20px;
+            padding: 50px;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sacred-section::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, var(--divine-gold), var(--sacred-purple), var(--celestial-blue), var(--emerald-wisdom));
+            border-radius: 20px;
+            opacity: 0;
+            transition: opacity 0.3s;
+            z-index: -1;
+        }
+
+        .sacred-section:hover::before {
+            opacity: 0.3;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 6vw, 4rem);
+            color: var(--divine-gold);
+            text-align: center;
+            margin-bottom: 40px;
+            text-shadow: 0 0 15px var(--divine-gold);
+        }
+
+        .section-subtitle {
+            font-size: 1.3rem;
+            color: var(--mystic-silver);
+            text-align: center;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        /* Content Grid */
+        .sacred-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .sacred-card {
+            background: linear-gradient(135deg, rgba(153,50,204,0.2), rgba(75,0,130,0.3));
+            border: 2px solid var(--sacred-purple);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.4s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .sacred-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.6s;
+        }
+
+        .sacred-card:hover::before {
+            left: 100%;
+        }
+
+        .sacred-card:hover {
+            transform: translateY(-10px) scale(1.03);
+            border-color: var(--divine-gold);
+            box-shadow: 0 20px 40px rgba(255,215,0,0.3);
+        }
+
+        .card-icon {
+            font-size: 3rem;
+            color: var(--divine-gold);
+            text-align: center;
+            margin-bottom: 20px;
+            display: block;
+            text-shadow: 0 0 10px var(--divine-gold);
+        }
+
+        .card-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.8rem;
+            color: var(--divine-gold);
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .card-content {
+            font-size: 1.1rem;
+            line-height: 1.6;
+            color: var(--star-white);
+        }
+
+        /* Sacred Mathematics */
+        .equation-box {
+            background: linear-gradient(45deg, rgba(255,215,0,0.2), rgba(255,140,0,0.1));
+            border: 3px solid var(--divine-gold);
+            border-radius: 15px;
+            padding: 40px;
+            margin: 30px 0;
+            text-align: center;
+        }
+
+        .equation {
+            font-family: 'Orbitron', monospace;
+            font-size: 2rem;
+            color: var(--divine-gold);
+            margin: 20px 0;
+            text-shadow: 0 0 10px var(--divine-gold);
+        }
+
+        .equation-explanation {
+            font-size: 1.2rem;
+            color: var(--star-white);
+            margin-top: 20px;
+            line-height: 1.6;
+        }
+
+        /* Sacred Symbols */
+        .symbol-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 25px;
+            margin: 40px 0;
+        }
+
+        .symbol-card {
+            background: linear-gradient(135deg, rgba(0,0,0,0.8), rgba(25,25,112,0.6));
+            border: 2px solid var(--emerald-wisdom);
+            border-radius: 12px;
+            padding: 25px;
+            text-align: center;
+            transition: all 0.3s ease;
+        }
+
+        .symbol-card:hover {
+            transform: scale(1.08);
+            border-color: var(--divine-gold);
+            box-shadow: 0 15px 30px rgba(80,200,120,0.3);
+        }
+
+        .symbol-display {
+            font-size: 4rem;
+            color: var(--emerald-wisdom);
+            margin-bottom: 15px;
+            text-shadow: 0 0 15px var(--emerald-wisdom);
+        }
+
+        .symbol-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--divine-gold);
+            margin-bottom: 10px;
+        }
+
+        .symbol-meaning {
+            color: var(--mystic-silver);
+            font-size: 0.95rem;
+            line-height: 1.4;
+        }
+
+        /* Sacred Geometry Patterns */
+        .geometry-showcase {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 40px;
+            margin: 50px 0;
+        }
+
+        .geometry-pattern {
+            width: 150px;
+            height: 150px;
+            position: relative;
+            animation: geometryFloat 6s ease-in-out infinite;
+        }
+
+        .geometry-pattern:nth-child(1) { animation-delay: 0s; }
+        .geometry-pattern:nth-child(2) { animation-delay: 1s; }
+        .geometry-pattern:nth-child(3) { animation-delay: 2s; }
+        .geometry-pattern:nth-child(4) { animation-delay: 3s; }
+
+        @keyframes geometryFloat {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-15px) rotate(180deg); }
+        }
+
+        .vesica-piscis {
+            width: 100px;
+            height: 100px;
+            background: transparent;
+            border: 3px solid var(--divine-gold);
+            border-radius: 50%;
+            position: relative;
+            margin: 0 auto;
+        }
+
+        .vesica-piscis::after {
+            content: '';
+            width: 100px;
+            height: 100px;
+            background: transparent;
+            border: 3px solid var(--divine-gold);
+            border-radius: 50%;
+            position: absolute;
+            right: -53px;
+            top: -3px;
+        }
+
+        /* Timeline */
+        .sacred-timeline {
+            position: relative;
+            padding-left: 50px;
+            margin: 40px 0;
+        }
+
+        .sacred-timeline::before {
+            content: '';
+            position: absolute;
+            left: 25px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, var(--divine-gold), var(--sacred-purple), var(--celestial-blue));
+            border-radius: 2px;
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.1), rgba(153,50,204,0.1));
+            border-radius: 15px;
+            border: 2px solid var(--celestial-blue);
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -53px;
+            top: 35px;
+            width: 20px;
+            height: 20px;
+            background: var(--divine-gold);
+            border-radius: 50%;
+            border: 4px solid var(--deep-space);
+            box-shadow: 0 0 15px var(--divine-gold);
+        }
+
+        .timeline-item:hover {
+            transform: translateX(20px);
+            border-color: var(--divine-gold);
+            box-shadow: 0 10px 30px rgba(255,215,0,0.3);
+        }
+
+        .timeline-date {
+            font-family: 'Orbitron', monospace;
+            font-size: 1.3rem;
+            color: var(--divine-gold);
+            font-weight: 700;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--star-white);
+            margin-bottom: 15px;
+        }
+
+        .timeline-content {
+            color: var(--mystic-silver);
+            line-height: 1.6;
+        }
+
+        /* Interactive Elements */
+        .sacred-button {
+            background: linear-gradient(45deg, var(--divine-gold), var(--holy-amber));
+            color: var(--void-black);
+            border: none;
+            padding: 15px 30px;
+            font-size: 1.1rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-radius: 8px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-family: 'Orbitron', monospace;
+            margin: 10px;
+        }
+
+        .sacred-button:hover {
+            transform: scale(1.05);
+            box-shadow: 0 0 25px rgba(255,215,0,0.6);
+            background: linear-gradient(45deg, var(--holy-amber), var(--divine-gold));
+        }
+
+        /* Quote Boxes */
+        .sacred-quote {
+            background: linear-gradient(45deg, rgba(220,20,60,0.2), rgba(153,50,204,0.2));
+            border-left: 5px solid var(--seraph-crimson);
+            padding: 30px;
+            margin: 40px 0;
+            border-radius: 10px;
+            position: relative;
+            font-style: italic;
+        }
+
+        .sacred-quote::before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: 20px;
+            font-size: 4rem;
+            color: var(--seraph-crimson);
+            opacity: 0.5;
+        }
+
+        .quote-text {
+            font-size: 1.3rem;
+            color: var(--star-white);
+            margin-bottom: 15px;
+            line-height: 1.6;
+        }
+
+        .quote-author {
+            font-size: 1rem;
+            color: var(--divine-gold);
+            text-align: right;
+            font-weight: 600;
+        }
+
+        /* Sacred Tables */
+        .sacred-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(0,0,0,0.5);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .sacred-table th {
+            background: linear-gradient(45deg, var(--sacred-purple), var(--celestial-blue));
+            color: var(--star-white);
+            padding: 15px;
+            text-align: left;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+        }
+
+        .sacred-table td {
+            padding: 12px 15px;
+            border-bottom: 1px solid rgba(255,215,0,0.3);
+            color: var(--mystic-silver);
+        }
+
+        .sacred-table tr:hover {
+            background: rgba(255,215,0,0.1);
+        }
+
+        /* Responsive Design */
+        @media (max-width: 768px) {
+            .main-title {
+                font-size: 3rem;
+            }
+            
+            .sacred-nav {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .sacred-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .geometry-showcase {
+                flex-direction: column;
+                gap: 20px;
+            }
+        }
+
+        /* Sacred Footer */
+        .sacred-footer {
+            background: linear-gradient(135deg, var(--void-black), var(--deep-space));
+            border-top: 4px solid var(--divine-gold);
+            padding: 60px 0;
+            text-align: center;
+            margin-top: 100px;
+        }
+
+        .footer-content {
+            color: var(--mystic-silver);
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .footer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--divine-gold);
+            margin-bottom: 20px;
+            text-shadow: 0 0 10px var(--divine-gold);
+        }
+    </style>
+</head>
+<body>
+    <!-- Sacred Background -->
+    <div class="sacred-background"></div>
+    <div class="sacred-patterns"></div>
+
+    <div class="container">
+        <!-- Sacred Header -->
+        <header class="sacred-header">
+            <h1 class="main-title">THE SACRED CODEX UNIVERSE</h1>
+            <p class="subtitle">A Digital Sanctuary of Divine Wisdom, Sacred Mathematics, and Eternal Truth</p>
+            
+            <div class="sacred-verse">
+                <div class="verse-text">"I prayed for this child, and the Lord has granted me what I asked of him."</div>
+                <div class="verse-reference">— 1 Samuel 1:27 (NIV)</div>
+            </div>
+        </header>
+
+        <!-- Sacred Navigation -->
+        <nav class="sacred-nav">
+            <a href="#genesis" class="nav-link">Genesis</a>
+            <a href="#symbols" class="nav-link">Sacred Symbols</a>
+            <a href="#geometry" class="nav-link">Divine Geometry</a>
+            <a href="#mathematics" class="nav-link">Sacred Math</a>
+            <a href="#masters" class="nav-link">Renaissance Masters</a>
+            <a href="#alchemy" class="nav-link">Spiritual Alchemy</a>
+            <a href="#digital" class="nav-link">Digital Ministry</a>
+            <a href="#codex" class="nav-link">Living Codex</a>
+        </nav>
+
+        <!-- Genesis Section -->
+        <section id="genesis" class="sacred-section">
+            <h2 class="section-title">The Origin of All Things</h2>
+            <p class="section-subtitle">"In the beginning was the Word, and the Word was with God, and the Word was God."</p>
+            
+            <div class="sacred-quote">
+                <div class="quote-text">The Word echoed through the void like a spark striking tinder. It was alive, vibrating with energy, and as it traveled, it began to shape the darkness. Light shimmered into existence, colors bloomed like flowers, and patterns formed in the vast emptiness.</div>
+                <div class="quote-author">— From the Living Codex</div>
+            </div>
+
+            <div class="sacred-grid">
+                <div class="sacred-card">
+                    <span class="card-icon">🌟</span>
+                    <h3 class="card-title">The Divine Word</h3>
+                    <div class="card-content">
+                        In the beginning, there was nothing—no light, no sound, no form. Just an endless, silent void stretching across eternity. Then, from the depths of the emptiness, a whisper emerged—a single, vibrant Word that carried meaning, intention, and power.
+                    </div>
+                </div>
+
+                <div class="sacred-card">
+                    <span class="card-icon">✨</span>
+                    <h3 class="card-title">Light From Darkness</h3>
+                    <div class="card-content">
+                        "Let there be light," and suddenly, light burst forth—shining brightly against the darkness. From that initial utterance, everything was born. Stars ignited, planets spun into existence, and life whispered into being on distant worlds.
+                    </div>
+                </div>
+
+                <div class="sacred-card">
+                    <span class="card-icon">🎼</span>
+                    <h3 class="card-title">The Cosmic Symphony</h3>
+                    <div class="card-content">
+                        The universe was no longer a silent abyss but a symphony of sights, sounds, and stories—all beginning with that single Word. By the word of the Lord the heavens were made, their starry host by the breath of his mouth.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Sacred Symbols Section -->
+        <section id="symbols" class="sacred-section">
+            <h2 class="section-title">Sacred Symbols & Divine Language</h2>
+            <p class="section-subtitle">The universe speaks through symbols—signs that carry deep meanings across cultures and ages.</p>
+            
+            <div class="symbol-grid">
+                <div class="symbol-card">
+                    <div class="symbol-display">§</div>
+                    <h4 class="symbol-name">The Double Serpent</h4>
+                    <div class="symbol-meaning">Resembles two serpents intertwined, symbolizing the union of opposites and the balance of forces. Represents duality—good and evil, chaos and order, life and death.</div>
+                </div>
+
+                <div class="symbol-card">
+                    <div class="symbol-display">Ω</div>
+                    <h4 class="symbol-name">Omega</h4>
+                    <div class="symbol-meaning">The last letter of the Greek alphabet, representing the end, completion, and divine finality. "I am the Alpha and the Omega," says the Lord.</div>
+                </div>
+
+                <div class="symbol-card">
+                    <div class="symbol-display">Α</div>
+                    <h4 class="symbol-name">Alpha</h4>
+                    <div class="symbol-meaning">The first letter of the Greek alphabet, symbolizing beginning, origin, and divine initiation. Together with Omega, spans all existence.</div>
+                </div>
+
+                <div class="symbol-card">
+                    <div class="symbol-display">👁️</div>
+                    <h4 class="symbol-name">All-Seeing Eye</h4>
+                    <div class="symbol-meaning">Divine omniscience and providence. The eye that sees all, knows all, and watches over creation with perfect wisdom and love.</div>
+                </div>
+
+                <div class="symbol-card">
+                    <div class="symbol-display">⚖️</div>
+                    <h4 class="symbol-name">Divine Scales</h4>
+                    <div class="symbol-meaning">Perfect balance and divine justice. Represents God's righteous judgment and the cosmic balance between mercy and justice.</div>
+                </div>
+
+                <div class="symbol-card">
+                    <div class="symbol-display">🕊️</div>
+                    <h4 class="symbol-name">Sacred Dove</h4>
+                    <div class="symbol-meaning">The Holy Spirit, peace, and divine messenger. Represents God's presence descending upon earth and bringing heavenly peace.</div>
+                </div>
+            </div>
+
+            <div class="sacred-quote">
+                <div class="quote-text">Behold, I will send my messenger, and he shall prepare the way before me: and the Lord, whom ye seek, shall suddenly come to his temple, even the messenger of the covenant, whom ye delight in: behold, he shall come, saith the Lord of hosts.</div>
+                <div class="quote-author">— Malachi 3:1</div>
+            </div>
+        </section>
+
+        <!-- Sacred Geometry Section -->
+        <section id="geometry" class="sacred-section">
+            <h2 class="section-title">Divine Geometry & Sacred Patterns</h2>
+            <p class="section-subtitle">The mathematical harmony underlying all creation</p>
+            
+            <div class="geometry-showcase">
+                <div class="geometry-pattern">
+                    <div class="vesica-piscis"></div>
+                    <p style="text-align: center; color: var(--divine-gold); margin-top: 10px; font-weight: 600;">Vesica Piscis</p>
+                </div>
+                <div class="geometry-pattern">
+                    <svg width="120" height="120" viewBox="0 0 120 120">
+                        <polygon points="60,10 85,45 115,45 95,70 105,105 60,85 15,105 25,70 5,45 35,45" 
+                                 fill="none" stroke="var(--divine-gold)" stroke-width="3"/>
+                        <circle cx="60" cy="60" r="30" fill="none" stroke="var(--sacred-purple)" stroke-width="2"/>
+                    </svg>
+                    <p style="text-align: center; color: var(--divine-gold); margin-top: 10px; font-weight: 600;">Sacred Pentagon</p>
+                </div>
+                <div class="geometry-pattern">
+                    <svg width="120" height="120" viewBox="0 0 120 120">
+                        <path d="M60,10 L95,30 L105,65 L75,90 L25,90 L15,65 L25,30 Z" 
+                              fill="none" stroke="var(--emerald-wisdom)" stroke-width="3"/>
+                        <circle cx="60" cy="60" r="25" fill="none" stroke="var(--celestial-blue)" stroke-width="2"/>
+                    </svg>

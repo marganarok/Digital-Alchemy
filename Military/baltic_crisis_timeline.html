@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Baltic Crisis Timeline: September-October 1939</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #1a1a2e, #16213e);
+            color: #e0e6ed;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #ff6b6b;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+        }
+        
+        .dashboard {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-bottom: 30px;
+        }
+        
+        .map-container, .timeline-container {
+            background: rgba(255,255,255,0.1);
+            border-radius: 15px;
+            padding: 25px;
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+        
+        .map-container h2, .timeline-container h2 {
+            color: #4ecdc4;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+        
+        .map {
+            width: 100%;
+            height: 400px;
+            background: #2c3e50;
+            border-radius: 10px;
+            position: relative;
+            overflow: hidden;
+            border: 2px solid #34495e;
+        }
+        
+        .country {
+            position: absolute;
+            border: 2px solid #ecf0f1;
+            border-radius: 5px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        
+        .country:hover {
+            transform: scale(1.05);
+            z-index: 10;
+        }
+        
+        .germany { background: #e74c3c; top: 40%; left: 20%; width: 120px; height: 80px; }
+        .poland { background: #95a5a6; top: 35%; left: 45%; width: 100px; height: 70px; }
+        .estonia { background: #f39c12; top: 15%; left: 55%; width: 80px; height: 50px; }
+        .latvia { background: #f39c12; top: 30%; left: 55%; width: 80px; height: 45px; }
+        .lithuania { background: #f39c12; top: 45%; left: 50%; width: 80px; height: 45px; }
+        .finland { background: #3498db; top: 5%; left: 60%; width: 90px; height: 60px; }
+        .ussr { background: #c0392b; top: 20%; left: 75%; width: 120px; height: 200px; }
+        
+        .islands {
+            position: absolute;
+            background: #e67e22;
+            border: 1px solid #d35400;
+            border-radius: 50%;
+            top: 22%; left: 52%;
+            width: 15px; height: 15px;
+        }
+        
+        .islands::after {
+            content: 'Saaremaa & Hiiumaa';
+            position: absolute;
+            top: -25px;
+            left: -30px;
+            font-size: 10px;
+            color: #ecf0f1;
+            white-space: nowrap;
+        }
+        
+        .timeline {
+            display: flex;
+            flex-direction: column;
+            gap: 15px;
+            max-height: 400px;
+            overflow-y: auto;
+        }
+        
+        .timeline::-webkit-scrollbar {
+            width: 8px;
+        }
+        
+        .timeline::-webkit-scrollbar-track {
+            background: rgba(255,255,255,0.1);
+            border-radius: 10px;
+        }
+        
+        .timeline::-webkit-scrollbar-thumb {
+            background: #4ecdc4;
+            border-radius: 10px;
+        }
+        
+        .event {
+            background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
+            border-left: 4px solid;
+            border-radius: 8px;
+            padding: 15px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .event:hover {
+            transform: translateX(5px);
+            background: linear-gradient(135deg, rgba(255,255,255,0.15), rgba(255,255,255,0.1));
+        }
+        
+        .event.critical { border-color: #ff6b6b; }
+        .event.military { border-color: #4ecdc4; }
+        .event.diplomatic { border-color: #ffe66d; }
+        
+        .event-date {
+            font-weight: bold;
+            color: #ff6b6b;
+            margin-bottom: 5px;
+        }
+        
+        .event-title {
+            font-weight: bold;
+            margin-bottom: 8px;
+            color: #e0e6ed;
+        }
+        
+        .event-description {
+            font-size: 0.9em;
+            line-height: 1.4;
+            color: #bdc3c7;
+        }
+        
+        .legend {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .legend-item {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        
+        .legend-color {
+            width: 20px;
+            height: 4px;
+            border-radius: 2px;
+        }
+        
+        .critical-legend { background: #ff6b6b; }
+        .military-legend { background: #4ecdc4; }
+        .diplomatic-legend { background: #ffe66d; }
+        
+        @media (max-width: 1024px) {
+            .dashboard {
+                grid-template-columns: 1fr;
+            }
+        }
+        
+        .coordination-alert {
+            background: linear-gradient(135deg, #ff6b6b, #ee5a6f);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            text-align: center;
+            font-weight: bold;
+            box-shadow: 0 8px 32px rgba(255, 107, 107, 0.3);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Baltic Crisis Timeline: September-October 1939</h1>
+        
+        <div class="dashboard">
+            <div class="map-container">
+                <h2>Strategic Map</h2>
+                <div class="map">
+                    <div class="country germany">Germany</div>
+                    <div class="country poland">Poland</div>
+                    <div class="country estonia">Estonia</div>
+                    <div class="country latvia">Latvia</div>
+                    <div class="country lithuania">Lithuania</div>
+                    <div class="country finland">Finland</div>
+                    <div class="country ussr">USSR</div>
+                    <div class="islands"></div>
+                </div>
+            </div>
+            
+            <div class="timeline-container">
+                <h2>100-Day Timeline</h2>
+                <div class="timeline">
+                    <div class="event critical">
+                        <div class="event-date">September 1, 1939</div>
+                        <div class="event-title">Germany Invades Poland</div>
+                        <div class="event-description">Wehrmacht crosses Polish border at 4:45 AM. World War II begins.</div>
+                    </div>
+                    
+                    <div class="event diplomatic">
+                        <div class="event-date">September 3, 1939</div>
+                        <div class="event-title">Britain & France Declare War</div>
+                        <div class="event-description">Allied powers honor Polish guarantees, declare war on Germany.</div>
+                    </div>
+                    
+                    <div class="event critical">
+                        <div class="event-date">September 17, 1939</div>
+                        <div class="event-title">Soviet Union Invades Poland</div>
+                        <div class="event-description">Red Army attacks from east, implementing secret Molotov-Ribbentrop provisions.</div>
+                    </div>
+                    
+                    <div class="event diplomatic">
+                        <div class="event-date">September 28, 1939</div>
+                        <div class="event-title">Soviet-Estonian Pact Signed</div>
+                        <div class="event-description">Estonia forced to sign "Pact of Mutual Assistance" allowing Soviet military bases.</div>
+                    </div>
+                    
+                    <div class="event military">
+                        <div class="event-date">September 29, 1939</div>
+                        <div class="event-title">Warsaw Surrenders</div>
+                        <div class="event-description">Polish capital falls to German forces after heroic defense.</div>
+                    </div>
+                    
+                    <div class="event critical">
+                        <div class="event-date">September 30, 1939</div>
+                        <div class="event-title">Hitler Issues Directive No. 5</div>
+                        <div class="event-description">Führer orders pivot from Eastern to Western front strategy.</div>
+                    </div>
+                    
+                    <div class="event critical">
+                        <div class="event-date">October 1, 1939</div>
+                        <div class="event-title">COORDINATION DAY</div>
+                        <div class="event-description">
+                            • Churchill delivers "riddle wrapped in mystery" speech<br>
+                            • Soviet troops prepare Estonian base occupation<br>
+                            • US 67th Armor 2nd Battalion reactivated<br>
+                            • Saaremaa & Hiiumaa Islands strategic importance emerges
+                        </div>
+                    </div>
+                    
+                    <div class="event diplomatic">
+                        <div class="event-date">October 5, 1939</div>
+                        <div class="event-title">Soviet-Latvian Pact</div>
+                        <div class="event-description">Latvia forced to accept similar "mutual assistance" agreement.</div>
+                    </div>
+                    
+                    <div class="event diplomatic">
+                        <div class="event-date">October 10, 1939</div>
+                        <div class="event-title">Soviet-Lithuanian Pact</div>
+                        <div class="event-description">Lithuania becomes third Baltic state under Soviet influence.</div>
+                    </div>
+                    
+                    <div class="event military">
+                        <div class="event-date">October 12, 1939</div>
+                        <div class="event-title">Soviet Bases Operational</div>
+                        <div class="event-description">Red Army establishes operational presence in all three Baltic states.</div>
+                    </div>
+                    
+                    <div class="event diplomatic">
+                        <div class="event-date">November 30, 1939</div>
+                        <div class="event-title">Winter War Begins</div>
+                        <div class="event-description">Soviet Union invades Finland after failed negotiations.</div>
+                    </div>
+                    
+                    <div class="event military">
+                        <div class="event-date">December 10, 1939</div>
+                        <div class="event-title">Baltic Sea Soviet-Controlled</div>
+                        <div class="event-description">Combined German-Soviet control effectively closes Baltic to Allied operations.</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="legend">
+            <div class="legend-item">
+                <div class="legend-color critical-legend"></div>
+                <span>Critical Strategic Events</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color military-legend"></div>
+                <span>Military Operations</span>
+            </div>
+            <div class="legend-item">
+                <div class="legend-color diplomatic-legend"></div>
+                <span>Diplomatic Actions</span>
+            </div>
+        </div>
+        
+        <div class="coordination-alert">
+            October 1, 1939: Multiple simultaneous actions suggest coordinated Allied intelligence response to rapidly evolving Baltic crisis
+        </div>
+    </div>
+
+    <script>
+        // Add click events for interactive elements
+        document.querySelectorAll('.country, .islands').forEach(element => {
+            element.addEventListener('click', function() {
+                const name = this.textContent || 'Estonian Islands';
+                alert(`Strategic importance: ${name}\n\nClick timeline events for more details.`);
+            });
+        });
+
+        document.querySelectorAll('.event').forEach(element => {
+            element.addEventListener('click', function() {
+                const title = this.querySelector('.event-title').textContent;
+                const date = this.querySelector('.event-date').textContent;
+                const description = this.querySelector('.event-description').textContent;
+                
+                alert(`${date}\n${title}\n\n${description}`);
+            });
+        });
+
+        // Highlight October 1 coordination
+        document.addEventListener('DOMContentLoaded', function() {
+            const eventTitles = document.querySelectorAll('.event-title');
+            eventTitles.forEach(title => {
+                if (title.textContent.includes('COORDINATION DAY')) {
+                    title.closest('.event').style.boxShadow = '0 0 20px rgba(255, 107, 107, 0.5)';
+                    title.closest('.event').style.border = '2px solid #ff6b6b';
+                }
+            });
+        });
+    </script>
+</body>
+</html>

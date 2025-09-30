@@ -1,0 +1,697 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="index, follow">
+    <meta name="description" content="Masters Collection - Explore the genius of Leonardo da Vinci and Albrecht Dürer through interactive sacred geometry and divine artistry. Discover the Renaissance masters who bridged art and science.">
+    <meta name="keywords" content="renaissance masters, leonardo da vinci, albrecht durer, sacred geometry, divine artistry, renaissance art, masters collection, artistic genius">
+    <meta name="author" content="Sacred Codex Universe">
+    <meta name="language" content="English">
+    <title>Masters Collection - Renaissance Genius & Sacred Art | Sacred Codex Universe</title>
+
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://sacredcodexuniverse.com/masters.html">
+    <meta property="og:title" content="Masters Collection - Renaissance Genius & Sacred Art | Sacred Codex Universe">
+    <meta property="og:description" content="Masters Collection - Explore the genius of Leonardo da Vinci and Albrecht Dürer through interactive sacred geometry and divine artistry. Discover the Renaissance masters who bridged art and science.">
+    <meta property="og:image" content="https://sacredcodexuniverse.com/favicon-3d-mantra.svg">
+    <meta property="og:image:width" content="512">
+    <meta property="og:image:height" content="512">
+    <meta property="og:image:alt" content="Masters Collection - Renaissance Art & Sacred Geometry">
+    <meta property="og:site_name" content="Sacred Codex Universe">
+    <meta property="og:locale" content="en_US">
+
+    <!-- Twitter -->
+    <meta property="twitter:card" content="summary_large_image">
+    <meta property="twitter:url" content="https://sacredcodexuniverse.com/masters.html">
+    <meta property="twitter:title" content="Masters Collection - Renaissance Genius & Sacred Art | Sacred Codex Universe">
+    <meta property="twitter:description" content="Masters Collection - Explore the genius of Leonardo da Vinci and Albrecht Dürer through interactive sacred geometry and divine artistry. Discover the Renaissance masters who bridged art and science.">
+    <meta property="twitter:image" content="https://sacredcodexuniverse.com/favicon-3d-mantra.svg">
+    <meta property="twitter:image:alt" content="Masters Collection - Renaissance Art & Sacred Geometry">
+    <meta name="twitter:creator" content="@Philipp36533206">
+    <meta name="twitter:site" content="@Philipp36533206">
+
+    <!-- Canonical URL -->
+    <link rel="canonical" href="https://sacredcodexuniverse.com/masters.html">
+
+    <!-- Structured Data -->
+    <script type="application/ld+json">
+    {
+        "@context": "https://schema.org",
+        "@type": "WebPage",
+        "name": "Masters Collection - Renaissance Genius & Sacred Art",
+        "description": "Masters Collection - Explore the genius of Leonardo da Vinci and Albrecht Dürer through interactive sacred geometry and divine artistry. Discover the Renaissance masters who bridged art and science.",
+        "url": "https://sacredcodexuniverse.com/masters.html",
+        "isPartOf": {
+            "@type": "WebSite",
+            "name": "Sacred Codex Universe",
+            "url": "https://sacredcodexuniverse.com/"
+        },
+        "publisher": {
+            "@type": "Organization",
+            "name": "Sacred Codex Universe",
+            "url": "https://sacredcodexuniverse.com/"
+        },
+        "about": [
+            {
+                "@type": "Person",
+                "name": "Leonardo da Vinci",
+                "description": "Renaissance polymath, painter, sculptor, architect, and scientist"
+            },
+            {
+                "@type": "Person",
+                "name": "Albrecht Dürer",
+                "description": "German Renaissance painter, printmaker, and theorist"
+            }
+        ],
+        "mainEntity": {
+            "@type": "ItemList",
+            "name": "Renaissance Masters Collection",
+            "description": "Collection of Renaissance masters and their sacred geometric works"
+        }
+    }
+    </script>
+
+    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="shared-styles.css">
+    <style>
+        /* --- Sacred Codex Theme Variables --- */
+        :root {
+            --divine-gold: #FFD700;
+            --sacred-purple: #9932CC;
+            --celestial-blue: #4169E1;
+            --emerald-wisdom: #50C878;
+            --crimson-passion: #DC143C;
+            --mystic-silver: #C0C0C0;
+            --star-white: #FFFACD;
+            --shadow-deep: #000000;
+            --cosmic-gradient: linear-gradient(135deg, #000428 0%, #004e92 100%);
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--shadow-deep);
+            color: var(--star-white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* --- Cosmic Background --- */
+        .cosmic-background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -2;
+            background: var(--cosmic-gradient);
+        }
+
+        .sacred-patterns {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            opacity: 0.08;
+            background-image:
+                radial-gradient(2px 2px at 20px 30px, var(--divine-gold), transparent),
+                radial-gradient(2px 2px at 40px 70px, var(--sacred-purple), transparent),
+                radial-gradient(1px 1px at 90px 40px, var(--celestial-blue), transparent),
+                radial-gradient(1px 1px at 130px 80px, var(--emerald-wisdom), transparent),
+                radial-gradient(2px 2px at 160px 30px, var(--crimson-passion), transparent);
+            background-size: 200px 100px;
+            animation: cosmicDrift 40s ease-in-out infinite alternate;
+        }
+
+        @keyframes cosmicDrift {
+            0% { transform: translateX(0px) translateY(0px); }
+            100% { transform: translateX(20px) translateY(10px); }
+        }
+
+        /* --- Particle System --- */
+        .particle-system {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1000;
+        }
+
+        .divine-particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--divine-gold);
+            border-radius: 50%;
+            animation: divineFloat 8s ease-in-out infinite;
+        }
+
+        @keyframes divineFloat {
+            0%, 100% {
+                transform: translateY(0px) translateX(0px) scale(1);
+                opacity: 0;
+            }
+            10% { opacity: 1; }
+            50% {
+                transform: translateY(-100px) translateX(50px) scale(1.2);
+                opacity: 0.8;
+            }
+        }
+
+        /* --- Scroll Progress --- */
+        .scroll-progress {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 0%;
+            height: 4px;
+            background: linear-gradient(90deg, var(--divine-gold), var(--sacred-purple), var(--celestial-blue));
+            z-index: 9999;
+            transition: width 0.3s ease;
+        }
+
+        /* --- Navigation Bar --- */
+        .sacred-nav {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background: linear-gradient(45deg, rgba(0,0,0,0.8), rgba(25,25,112,0.8));
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            border-bottom: 3px solid var(--divine-gold);
+            z-index: 1000;
+            padding: 15px 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            gap: 1.5rem;
+            padding: 0 1rem;
+        }
+
+        .nav-link {
+            color: var(--star-white);
+            text-decoration: none;
+            font-family: 'Orbitron', monospace;
+            font-weight: 600;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: all 0.3s ease;
+            position: relative;
+            padding: 8px 16px;
+            border: 2px solid transparent;
+            border-radius: 8px;
+        }
+
+        .nav-link:hover {
+            color: var(--shadow-deep);
+            background: linear-gradient(45deg, var(--divine-gold), var(--sacred-purple));
+            border-color: var(--star-white);
+            transform: translateY(-2px) scale(1.05);
+            box-shadow: 0 8px 20px rgba(255,215,0,0.4);
+        }
+
+        /* --- Main Content --- */
+        .main-content {
+            padding: 120px 2rem 4rem;
+            max-width: 1400px;
+            margin: 0 auto;
+        }
+
+        .page-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(4rem, 8vw, 8rem);
+            color: var(--divine-gold);
+            text-align: center;
+            text-shadow:
+                0 0 20px var(--divine-gold),
+                0 0 40px var(--sacred-purple),
+                5px 5px 15px rgba(0,0,0,0.8);
+            margin-bottom: 2rem;
+            animation: titleGlow 4s ease-in-out infinite alternate;
+        }
+
+        @keyframes titleGlow {
+            from { filter: drop-shadow(0 0 20px var(--divine-gold)); }
+            to { filter: drop-shadow(0 0 40px var(--sacred-purple)); }
+        }
+
+        .page-subtitle {
+            font-size: 1.4rem;
+            color: var(--mystic-silver);
+            text-align: center;
+            margin-bottom: 4rem;
+            font-style: italic;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        /* --- Master Sections --- */
+        .master-section {
+            margin: 4rem 0;
+            padding: 3rem;
+            background: rgba(0,0,0,0.4);
+            border: 3px solid var(--divine-gold);
+            border-radius: 20px;
+            backdrop-filter: blur(10px);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .master-section::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, rgba(255,215,0,0.05), rgba(153,50,204,0.05));
+            animation: sectionGlow 8s ease-in-out infinite alternate;
+            pointer-events: none;
+        }
+
+        @keyframes sectionGlow {
+            from { opacity: 0.3; }
+            to { opacity: 0.7; }
+        }
+
+        .master-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--divine-gold);
+            text-align: center;
+            margin-bottom: 2rem;
+            text-shadow: 0 0 15px var(--divine-gold);
+        }
+
+        .master-description {
+            font-size: 1.1rem;
+            color: var(--mystic-silver);
+            text-align: center;
+            margin-bottom: 2rem;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .master-controls {
+            display: flex;
+            justify-content: center;
+            gap: 2rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .master-button {
+            background: linear-gradient(45deg, var(--divine-gold), var(--sacred-purple));
+            border: none;
+            border-radius: 12px;
+            padding: 15px 30px;
+            color: var(--shadow-deep);
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 1.1rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(255,215,0,0.3);
+        }
+
+        .master-button:hover {
+            transform: translateY(-3px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(255,215,0,0.5);
+        }
+
+        .master-iframe {
+            width: 100%;
+            height: 1200px;
+            border: 3px solid var(--divine-gold);
+            border-radius: 15px;
+            background: rgba(0,0,0,0.8);
+            box-shadow:
+                0 0 30px rgba(255,215,0,0.2),
+                inset 0 0 30px rgba(0,0,0,0.5);
+        }
+
+        /* --- Footer --- */
+        .sacred-footer {
+            text-align: center;
+            padding: 3rem 2rem;
+            margin-top: 4rem;
+            border-top: 2px solid var(--divine-gold);
+        }
+
+        .footer-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2rem;
+            color: var(--divine-gold);
+            margin-bottom: 1rem;
+        }
+
+        .footer-content {
+            color: var(--mystic-silver);
+            font-size: 1rem;
+        }
+
+        /* --- Responsive Design --- */
+        @media (max-width: 768px) {
+            .main-content {
+                padding: 100px 1rem 2rem;
+            }
+
+            .page-title {
+                font-size: clamp(2.5rem, 10vw, 4rem);
+            }
+
+            .master-section {
+                margin: 2rem 0;
+                padding: 2rem 1.5rem;
+            }
+
+            .master-iframe {
+                height: 800px;
+            }
+
+            .nav-container {
+                gap: 1rem;
+            }
+
+            .nav-link {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+        }
+
+        /* Sacred Dot Menu Navigation */
+        .sacred-dot-nav {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+            z-index: 10000;
+        }
+
+        .nav-toggle {
+            width: 60px;
+            height: 60px;
+            background: linear-gradient(135deg, rgba(255,215,0,0.9), rgba(153,50,204,0.9));
+            border: 3px solid var(--divine-gold);
+            border-radius: 50%;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: all 0.3s ease;
+            box-shadow: 0 0 20px rgba(255,215,0,0.5);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-toggle:hover {
+            transform: scale(1.1);
+            box-shadow: 0 0 30px rgba(255,215,0,0.8);
+        }
+
+        .nav-toggle.active {
+            background: linear-gradient(135deg, rgba(153,50,204,0.9), rgba(255,215,0,0.9));
+            box-shadow: 0 0 40px rgba(153,50,204,0.8);
+        }
+
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            background: var(--star-white);
+            border-radius: 50%;
+            box-shadow: 0 0 10px var(--divine-gold);
+            transition: all 0.3s ease;
+        }
+
+        .nav-toggle.active .nav-dot {
+            box-shadow: 0 0 20px var(--sacred-purple);
+        }
+
+        .nav-content {
+            position: absolute;
+            top: 80px;
+            right: 0;
+            background: linear-gradient(135deg, rgba(0,0,0,0.95), rgba(20,20,20,0.95));
+            border: 2px solid var(--divine-gold);
+            border-radius: 15px;
+            padding: 20px;
+            min-width: 250px;
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-10px) scale(0.95);
+            transition: all 0.3s ease;
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.8);
+        }
+
+        .nav-content.active {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0) scale(1);
+        }
+
+        .nav-portal-links {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+
+        .portal-link {
+            color: var(--mystic-silver);
+            text-decoration: none;
+            padding: 12px 15px;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            font-size: 0.9rem;
+            border: 1px solid transparent;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .portal-link::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,215,0,0.2), transparent);
+            transition: left 0.5s ease;
+        }
+
+        .portal-link:hover::before {
+            left: 100%;
+        }
+
+        .portal-link:hover {
+            color: var(--divine-gold);
+            background: rgba(255,215,0,0.1);
+            border-color: var(--divine-gold);
+            transform: translateX(5px);
+            box-shadow: 0 0 15px rgba(255,215,0,0.3);
+        }
+
+        .portal-link.active {
+            color: var(--divine-gold);
+            background: rgba(255,215,0,0.1);
+            border-color: var(--divine-gold);
+            box-shadow: 0 0 15px rgba(255,215,0,0.3);
+        }
+
+        @media (max-width: 768px) {
+            .sacred-dot-nav {
+                top: 15px;
+                right: 15px;
+            }
+
+            .nav-toggle {
+                width: 50px;
+                height: 50px;
+            }
+
+            .nav-content {
+                min-width: 200px;
+                padding: 15px;
+                top: 65px;
+            }
+
+            .portal-link {
+                padding: 10px 12px;
+                font-size: 0.8rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Cosmic Background Elements -->
+    <div class="cosmic-background"></div>
+    <div class="sacred-patterns"></div>
+    <div class="particle-system" id="particleSystem"></div>
+    <div class="scroll-progress" id="scrollProgress"></div>
+
+    <!-- Sacred Dot Menu Navigation -->
+    <nav class="sacred-dot-nav">
+        <button class="nav-toggle" id="nav-toggle" aria-label="Toggle Navigation Menu">
+            <div class="nav-dot"></div>
+        </button>
+        <div class="nav-content" id="nav-content">
+            <div class="nav-portal-links">
+                <a href="index.html" class="portal-link">🏠 Home</a>
+                <a href="genesis.html" class="portal-link">🌟 Genesis</a>
+                <a href="geometry.html" class="portal-link">📐 Geometry</a>
+                <a href="mathematics.html" class="portal-link">🔢 Mathematics</a>
+                <a href="masters.html" class="portal-link active">🎨 Masters</a>
+                <a href="alchemy.html" class="portal-link">⚗️ Alchemy</a>
+                <a href="library.html" class="portal-link">📚 Library</a>
+                <a href="digital.html" class="portal-link">💻 Digital Ministry</a>
+                <a href="wisdom.html" class="portal-link">🧠 Wisdom Portal</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="main-content">
+        <h1 class="page-title">Renaissance Masters</h1>
+        <p class="page-subtitle">Explore the divine genius of Leonardo da Vinci and Albrecht Dürer through sacred geometry, divine proportion, and mystical artistry that transcends time itself.</p>
+
+        <!-- Leonardo Section -->
+        <section class="master-section">
+            <h2 class="master-title">Leonardo da Vinci</h2>
+            <p class="master-description">The ultimate Renaissance genius whose scientific curiosity, artistic mastery, and spiritual insights continue to illuminate humanity's path toward divine understanding.</p>
+            <div class="master-controls">
+                <button class="master-button" onclick="focusLeonardo()">🔍 Explore His Genius</button>
+                <button class="master-button" onclick="toggleLeonardoMirror()">🪞 Mirror Writing</button>
+            </div>
+            <iframe src="leonardo_da_vinci_complete.html" class="master-iframe" id="leonardoFrame" title="Leonardo da Vinci - Complete Master Study"></iframe>
+        </section>
+
+        <!-- Durer Section -->
+        <section class="master-section">
+            <h2 class="master-title">Albrecht Dürer</h2>
+            <p class="master-description">The master of sacred symbolism whose mathematical precision and mystical vision revealed the divine geometry underlying all creation.</p>
+            <div class="master-controls">
+                <button class="master-button" onclick="showMonogram()">✨ Reveal The AD Monogram</button>
+                <button class="master-button" onclick="focusDurer()">🔍 Explore His Vision</button>
+            </div>
+            <iframe src="albrecht_durer_research.html" class="master-iframe" id="durerFrame" title="Albrecht Dürer - Master of Sacred Symbols"></iframe>
+        </section>
+    </main>
+
+    <!-- Subscribe Section -->
+    <section class="subscribe-section" data-np-autofill-form-type="subscribe" data-np-checked="1" data-np-watching="1">
+        <h2 class="subscribe-title">Subscribe to Divine Updates</h2>
+        <p class="subscribe-description">Receive wisdom teachings, event notifications, and sacred insights.</p>
+        <div class="subscribe-form">
+            <input type="email" class="subscribe-input" placeholder="Enter your email..." data-np-autofill-field-type="email" data-np-uid="cf9facb3-92c8-4b17-a295-1b46895f1488">
+            <button class="subscribe-button">Subscribe</button>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="sacred-footer">
+        <div class="footer-title">The Sacred Codex Universe</div>
+        <div class="footer-content">Where ancient wisdom meets divine artistry. May these masters illuminate your path.</div>
+    </footer>
+
+    <script>
+        // Scroll Progress Indicator
+        window.addEventListener('scroll', () => {
+            const scrollProgress = document.getElementById('scrollProgress');
+            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
+            scrollProgress.style.width = scrollPercent + '%';
+        });
+
+        // Create divine particles
+        function createParticle() {
+            const particleSystem = document.getElementById('particleSystem');
+            const particle = document.createElement('div');
+            particle.className = 'divine-particle';
+            particle.style.left = Math.random() * 100 + '%';
+            particle.style.animationDelay = Math.random() * 8 + 's';
+            particleSystem.appendChild(particle);
+
+            setTimeout(() => {
+                particle.remove();
+            }, 8000);
+        }
+
+        // Initialize particles
+        document.addEventListener('DOMContentLoaded', () => {
+            for (let i = 0; i < 15; i++) {
+                setTimeout(createParticle, i * 500);
+            }
+            setInterval(createParticle, 3000);
+        });
+
+        // Master interaction functions
+        function showMonogram() {
+            const iframe = document.getElementById('durerFrame');
+            iframe.contentWindow.postMessage({ action: 'showSection', sectionId: 'monogram' }, '*');
+        }
+
+        function focusLeonardo() {
+            const iframe = document.getElementById('leonardoFrame');
+            iframe.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function focusDurer() {
+            const iframe = document.getElementById('durerFrame');
+            iframe.scrollIntoView({ behavior: 'smooth' });
+        }
+
+        function toggleLeonardoMirror() {
+            const iframe = document.getElementById('leonardoFrame');
+            iframe.contentWindow.postMessage({ action: 'toggleMirror' }, '*');
+        }
+
+        // Sacred Navigation Menu Toggle
+        const navToggle = document.getElementById('nav-toggle');
+        const navContent = document.getElementById('nav-content');
+
+        if (navToggle && navContent) {
+            navToggle.addEventListener('click', function() {
+                navToggle.classList.toggle('active');
+                navContent.classList.toggle('active');
+            });
+
+            // Close menu when clicking outside
+            document.addEventListener('click', function(event) {
+                if (!navToggle.contains(event.target) && !navContent.contains(event.target)) {
+                    navToggle.classList.remove('active');
+                    navContent.classList.remove('active');
+                }
+            });
+
+            // Close menu on escape key
+            document.addEventListener('keydown', function(event) {
+                if (event.key === 'Escape') {
+                    navToggle.classList.remove('active');
+                    navContent.classList.remove('active');
+                }
+            });
+        }
+    </script>
+    <script src="sacred_codex_scripts.min.js"></script>
+</body>
+</html>

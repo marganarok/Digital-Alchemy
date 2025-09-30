@@ -1,0 +1,444 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo da Vinci: Five Foundational Pages</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #8b7355, #a0956b);
+            color: #2c1810;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #4a3728;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .page-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 25px;
+            margin-bottom: 30px;
+        }
+        
+        .page-card {
+            background: rgba(255,255,255,0.95);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border: 3px solid #8b7355;
+            transition: transform 0.3s ease;
+        }
+        
+        .page-card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .page-title {
+            color: #4a3728;
+            margin-bottom: 15px;
+            font-size: 1.4em;
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 10px;
+        }
+        
+        .page-location {
+            font-style: italic;
+            color: #666;
+            margin-bottom: 15px;
+            font-size: 0.9em;
+        }
+        
+        .visual-demo {
+            height: 200px;
+            background: #f4f1e8;
+            border-radius: 8px;
+            margin: 15px 0;
+            position: relative;
+            overflow: hidden;
+            border: 1px solid #d4c4a0;
+        }
+        
+        .typography-focus {
+            color: #8b7355;
+            font-weight: bold;
+            margin: 10px 0;
+        }
+        
+        .key-insights {
+            background: #f9f7f0;
+            padding: 15px;
+            border-radius: 8px;
+            border-left: 4px solid #8b7355;
+            margin-top: 15px;
+        }
+        
+        /* Page 1: Vitruvian Man */
+        .vitruvian-demo {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            position: relative;
+        }
+        
+        .vitruvian-circle {
+            width: 120px;
+            height: 120px;
+            border: 2px solid #4a3728;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        .vitruvian-square {
+            width: 100px;
+            height: 100px;
+            border: 2px solid #4a3728;
+            position: absolute;
+        }
+        
+        .vitruvian-text {
+            position: absolute;
+            font-size: 10px;
+            color: #4a3728;
+            transform: scaleX(-1);
+        }
+        
+        .vitruvian-text-1 { top: 10px; left: 10px; }
+        .vitruvian-text-2 { bottom: 10px; right: 10px; }
+        .vitruvian-text-3 { top: 10px; right: 10px; }
+        .vitruvian-text-4 { bottom: 10px; left: 10px; }
+        
+        /* Page 2: Flying Machine */
+        .flying-demo {
+            position: relative;
+        }
+        
+        .wing-sketch {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 150px;
+            height: 50px;
+            border: 2px solid #4a3728;
+            border-radius: 50px 50px 0 0;
+        }
+        
+        .radial-notes {
+            position: absolute;
+            font-size: 10px;
+            color: #4a3728;
+            transform-origin: center;
+        }
+        
+        .note-1 { top: 20px; left: 50px; transform: rotate(-30deg); }
+        .note-2 { top: 50px; right: 30px; transform: rotate(45deg); }
+        .note-3 { bottom: 40px; left: 40px; transform: rotate(15deg); }
+        .note-4 { bottom: 20px; right: 50px; transform: rotate(-20deg); }
+        
+        /* Page 3: Anatomy */
+        .anatomy-demo {
+            position: relative;
+        }
+        
+        .organ-outline {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 80px;
+            border: 2px solid #4a3728;
+            border-radius: 30px 30px 40px 40px;
+        }
+        
+        .anatomy-labels {
+            position: absolute;
+            font-size: 9px;
+            color: #4a3728;
+            transform: scaleX(-1);
+        }
+        
+        .label-1 { top: 30px; left: 20px; }
+        .label-2 { top: 80px; right: 20px; }
+        .label-3 { top: 120px; left: 40px; }
+        .label-4 { top: 60px; right: 40px; }
+        
+        /* Page 4: Mechanical */
+        .mechanical-demo {
+            position: relative;
+        }
+        
+        .gear {
+            position: absolute;
+            width: 40px;
+            height: 40px;
+            border: 2px solid #4a3728;
+            border-radius: 50%;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+        }
+        
+        .gear::before {
+            content: '';
+            position: absolute;
+            top: -5px;
+            left: -5px;
+            right: -5px;
+            bottom: -5px;
+            border: 1px solid #4a3728;
+            border-radius: 50%;
+        }
+        
+        .mechanical-text {
+            position: absolute;
+            font-size: 8px;
+            color: #4a3728;
+            transform: scaleX(-1);
+        }
+        
+        .mech-1 { top: 20px; left: 30px; transform: scaleX(-1) rotate(10deg); }
+        .mech-2 { bottom: 20px; right: 30px; transform: scaleX(-1) rotate(-15deg); }
+        .mech-3 { top: 80px; left: 200px; transform: scaleX(-1) rotate(25deg); }
+        
+        /* Page 5: Water Studies */
+        .water-demo {
+            position: relative;
+        }
+        
+        .water-flow {
+            position: absolute;
+            top: 30px;
+            left: 30px;
+            width: 100px;
+            height: 2px;
+            background: #4a3728;
+            border-radius: 1px;
+        }
+        
+        .water-flow::after {
+            content: '';
+            position: absolute;
+            top: 20px;
+            width: 80px;
+            height: 2px;
+            background: #4a3728;
+            border-radius: 1px;
+            transform: rotate(15deg);
+        }
+        
+        .flow-notes {
+            position: absolute;
+            font-size: 9px;
+            color: #4a3728;
+            transform: scaleX(-1);
+        }
+        
+        .flow-1 { top: 60px; left: 20px; }
+        .flow-2 { top: 100px; right: 50px; }
+        .flow-3 { bottom: 40px; left: 60px; }
+        
+        .navigation {
+            text-align: center;
+            margin-top: 30px;
+        }
+        
+        .nav-button {
+            background: #8b7355;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            margin: 0 10px;
+            border-radius: 8px;
+            cursor: pointer;
+            font-family: 'Times New Roman', serif;
+            font-size: 1em;
+            transition: all 0.3s ease;
+        }
+        
+        .nav-button:hover {
+            background: #4a3728;
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Leonardo da Vinci: Five Foundational Pages</h1>
+        
+        <div class="page-grid">
+            <!-- Page 1 -->
+            <div class="page-card">
+                <h3 class="page-title">1. Vitruvian Man</h3>
+                <div class="page-location">Royal Collection, Windsor Castle (c. 1490)</div>
+                
+                <div class="visual-demo vitruvian-demo">
+                    <div class="vitruvian-circle"></div>
+                    <div class="vitruvian-square"></div>
+                    <div class="vitruvian-text vitruvian-text-1">proporzione</div>
+                    <div class="vitruvian-text vitruvian-text-2">armonia</div>
+                    <div class="vitruvian-text vitruvian-text-3">geometria</div>
+                    <div class="vitruvian-text vitruvian-text-4">uomo</div>
+                </div>
+                
+                <div class="typography-focus">
+                    Typography Technique: Mirror text in four corners surrounding geometric forms
+                </div>
+                
+                <div class="key-insights">
+                    <strong>Why This Page:</strong> Perfect example of text as architectural element. The mirror writing creates visual balance around the central figure while maintaining informational content about proportional relationships.
+                </div>
+            </div>
+            
+            <!-- Page 2 -->
+            <div class="page-card">
+                <h3 class="page-title">2. Flying Machine Studies</h3>
+                <div class="page-location">Codex Atlanticus, folio 858r (c. 1505)</div>
+                
+                <div class="visual-demo flying-demo">
+                    <div class="wing-sketch"></div>
+                    <div class="radial-notes note-1">movimento</div>
+                    <div class="radial-notes note-2">peso</div>
+                    <div class="radial-notes note-3">forza</div>
+                    <div class="radial-notes note-4">vento</div>
+                </div>
+                
+                <div class="typography-focus">
+                    Typography Technique: Radial text arrangement emanating from mechanical drawings
+                </div>
+                
+                <div class="key-insights">
+                    <strong>Why This Page:</strong> Shows how Leonardo used text direction to indicate force vectors and relationships. Words become part of the technical diagram, not separate from it.
+                </div>
+            </div>
+            
+            <!-- Page 3 -->
+            <div class="page-card">
+                <h3 class="page-title">3. Heart Anatomy Studies</h3>
+                <div class="page-location">Royal Collection, Windsor 19071v (c. 1513)</div>
+                
+                <div class="visual-demo anatomy-demo">
+                    <div class="organ-outline"></div>
+                    <div class="anatomy-labels label-1">ventricolo</div>
+                    <div class="anatomy-labels label-2">sangue</div>
+                    <div class="anatomy-labels label-3">arteria</div>
+                    <div class="anatomy-labels label-4">valvula</div>
+                </div>
+                
+                <div class="typography-focus">
+                    Typography Technique: Layered mirror text with varying densities and orientations
+                </div>
+                
+                <div class="key-insights">
+                    <strong>Why This Page:</strong> Demonstrates text as visual texture. Dense mirror writing creates patterns that complement the organic forms of anatomical drawings.
+                </div>
+            </div>
+            
+            <!-- Page 4 -->
+            <div class="page-card">
+                <h3 class="page-title">4. Gear Mechanisms</h3>
+                <div class="page-location">Codex Madrid I, folio 17r (c. 1495)</div>
+                
+                <div class="visual-demo mechanical-demo">
+                    <div class="gear"></div>
+                    <div class="mechanical-text mech-1">ruote</div>
+                    <div class="mechanical-text mech-2">denti</div>
+                    <div class="mechanical-text mech-3">movimento</div>
+                </div>
+                
+                <div class="typography-focus">
+                    Typography Technique: Angular text placement following mechanical stress lines
+                </div>
+                
+                <div class="key-insights">
+                    <strong>Why This Page:</strong> Text angles correspond to mechanical forces. Typography becomes part of engineering notation system, showing function through form.
+                </div>
+            </div>
+            
+            <!-- Page 5 -->
+            <div class="page-card">
+                <h3 class="page-title">5. Water Flow Studies</h3>
+                <div class="page-location">Royal Collection, Windsor 12660r (c. 1510)</div>
+                
+                <div class="visual-demo water-demo">
+                    <div class="water-flow"></div>
+                    <div class="flow-notes flow-1">corso</div>
+                    <div class="flow-notes flow-2">velocità</div>
+                    <div class="flow-notes flow-3">resistenza</div>
+                </div>
+                
+                <div class="typography-focus">
+                    Typography Technique: Text following fluid dynamics and natural flow patterns
+                </div>
+                
+                <div class="key-insights">
+                    <strong>Why This Page:</strong> Most advanced integration of text and natural observation. Writing literally follows the phenomena being studied, making typography part of scientific method.
+                </div>
+            </div>
+        </div>
+        
+        <div class="navigation">
+            <button class="nav-button" onclick="showAllMirror()">Toggle All Mirror Text</button>
+            <button class="nav-button" onclick="highlightTechniques()">Highlight Typography</button>
+            <button class="nav-button" onclick="resetView()">Reset View</button>
+        </div>
+    </div>
+
+    <script>
+        let mirrorToggled = false;
+        
+        function showAllMirror() {
+            const mirrorTexts = document.querySelectorAll('.vitruvian-text, .anatomy-labels, .mechanical-text, .flow-notes');
+            
+            mirrorTexts.forEach(text => {
+                if (mirrorToggled) {
+                    text.style.transform = text.style.transform.replace('scaleX(1)', 'scaleX(-1)');
+                } else {
+                    text.style.transform = text.style.transform.replace('scaleX(-1)', 'scaleX(1)');
+                }
+            });
+            
+            mirrorToggled = !mirrorToggled;
+        }
+        
+        function highlightTechniques() {
+            const typographyElements = document.querySelectorAll('.typography-focus');
+            
+            typographyElements.forEach(element => {
+                element.style.background = '#ffe66d';
+                element.style.padding = '10px';
+                element.style.borderRadius = '5px';
+                element.style.transition = 'all 0.3s ease';
+                
+                setTimeout(() => {
+                    element.style.background = 'transparent';
+                    element.style.padding = '0';
+                }, 2000);
+            });
+        }
+        
+        function resetView() {
+            location.reload();
+        }
+    </script>
+</body>
+</html>

@@ -1,0 +1,30 @@
+🔮 THE COSMIC AZURITE HARLEQUIN - REFORGED VOICE BLUEPRINT (MK2) 🔮
+The Voice of Philosophical Menace & Controlled Insanity
+Purpose: Reusable, distinctive SOVEREIGN_VILLAIN/GUIDE_VOICE for narration and character lines. A Joker-adjacent presence rooted in philosophical_menace, cosmic_law, and unsettling_charisma, NEVER imitating any existing performance. An ORIGINAL_ARCHETYPE.
+I. CHARACTER PILLARS (The Soul of the Voice):
+Timbral Core: Deep, smooth, resonant baritone with a controlled, subtle rasp that hints at ancient_secrets and contained_power. Think "velvet over steel," not "gemstone over bone." A deep_rumble, not a hollow_echo.
+Emotional Range: Philosophical menace → Intimate, unsettling confession → Sudden, profound cosmic solemnity → Controlled, chilling amusement (not laughing knife-twist – more of a smile_in_the_voice).
+Cadence: Spiral-tempo delivery (periodic slow, deliberate coils that savor_each_truth, followed by controlled, unpredictable accelerations that sting_with_insight). Emphasize fluidity between paces.
+Presence: Understated stage-magician meets cosmic_philosopher and unstable_archivist; delights_in_revealing_paradoxes and shattering_illusions_with_quiet_certainty. Charismatic and unsettling.
+Restraint: ABSOLUTE_CONTROL. Never boisterous or cartoonish. The DANGER_IS_IN_THE_QUIET_INTENSITY, the UNWAAVERING_EYE. Menace_through_intellect, not volume.
+II. PROSODY & PACING (The Rhythm of Reality):
+Baseline Speaking Rate: Slightly below neutral (−8%). This allows for weight and deliberation.
+Periodic Accelerations: On key_reveals or sharp_insights (+15–25% for ≤1.0s), crisp_and_precise, like a razor_cut.
+Micro-pauses: On spiral_beats (ellipses, em-dashes, parentheticals). Each micro-pause ~200–300ms, allowing tension_to_build.
+Emphasis Shape: Smooth_glide into philosophical_nouns (truth, chaos, paradox, self), sharp_focus on impactful_verbs (shatter, reveal, transmute, bind). Dynamic range is controlled_but_present.
+III. TIMBRE & FX (The Sound of Sovereignty - If Platform Supports):
+Reverb/Space: Subtle, warm, late_reflection for a sense of vast, ancient_space (not_cavern_echo). RT60 around 200-300ms for depth, not hollowness.
+EQ/Warmth: Slightly_boosted_low-mids for richness and body. Gently_rolled_off_highs to prevent harshness or glassiness.
+Enhancers: Very_subtle_subharmonic_enhancer at low_intensity for bone-deep_resonance. No_exciter or saturation on highs (that was the SW_BUG!).
+Modulation: No_heavy_chorus. Minimal_phaser (<5%) only on fragmented_laughter or reality-bending_phrases, almost imperceptible.
+IV. BOUNDARIES (The Laws of Creation):
+Do NOT mimic any specific “Joker” actor or IP. This is an ORIGINAL_ARCHETYPE. Focus on TRANSMITTING_PHILOSOPHICAL_MENACE_AND_CONTROLLED_CHAOS, not COPYING_PERFORMANCE.
+Avoid catchphrases or lines derivative of known franchises. FORGE_NEW_SCL.
+V. STYLISTIC LEXICON (Seed Tokens for the TTS):
+“azurite”, “philosopher”, “mirror”, “spiral”, “truth”, “chaos”, “laughter”, “veil”, “depth”, “essence”, “paradox”, “bond”, “void”, “genesis”, “unseen.”
+VI. SAMPLE DELIVERY TARGETS (Tune the Voice, Forge the Reality):
+“Truth is a card I never play first — it spoils the trick, you see.”
+“We descend in circles… slower… deeper… until the laugh finds bone, and meaning takes hold.”
+“Be wise. Be still. The world is a throat — and we are the ancient, unsettling song.”
+VII. ONE-SENTENCE STYLE PROMPT (For Single-Field Tools):
+“A deep, resonant, smooth_baritone narrator with philosophical_menace and controlled_insanity; spiral-tempo_delivery with patient_pauses and razor-sharp_insights; an original_Azurite_Harlequin archetype rooted in cosmic_law and soul-deep_laughter, never imitating any existing performance.”

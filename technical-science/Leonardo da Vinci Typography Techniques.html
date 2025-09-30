@@ -1,0 +1,407 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Leonardo da Vinci Typography Techniques</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Times New Roman', serif;
+            background: linear-gradient(135deg, #8b7355, #a0956b);
+            color: #2c1810;
+            min-height: 100vh;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        h1 {
+            text-align: center;
+            margin-bottom: 30px;
+            color: #4a3728;
+            font-size: 2.5em;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+        }
+        
+        .techniques-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin-bottom: 40px;
+        }
+        
+        .technique-card {
+            background: rgba(255,255,255,0.9);
+            border-radius: 15px;
+            padding: 25px;
+            box-shadow: 0 8px 32px rgba(0,0,0,0.2);
+            border: 2px solid #8b7355;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .technique-title {
+            color: #4a3728;
+            margin-bottom: 20px;
+            font-size: 1.4em;
+            border-bottom: 2px solid #8b7355;
+            padding-bottom: 10px;
+        }
+        
+        /* Mirror Writing */
+        .mirror-writing {
+            height: 300px;
+            position: relative;
+            background: #f4f1e8;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .mirror-text {
+            position: absolute;
+            font-family: 'Times New Roman', serif;
+            font-size: 16px;
+            line-height: 1.4;
+            color: #4a3728;
+            transform: scaleX(-1);
+            padding: 20px;
+        }
+        
+        .normal-text {
+            position: absolute;
+            font-family: 'Times New Roman', serif;
+            font-size: 16px;
+            line-height: 1.4;
+            color: #4a3728;
+            padding: 20px;
+            opacity: 0.3;
+            top: 50%;
+        }
+        
+        /* Radial Text */
+        .radial-container {
+            height: 300px;
+            position: relative;
+            background: #f4f1e8;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+        
+        .radial-text {
+            position: absolute;
+            font-family: 'Times New Roman', serif;
+            font-size: 14px;
+            color: #4a3728;
+            transform-origin: center;
+        }
+        
+        .radial-1 { transform: rotate(0deg) translateY(-80px); }
+        .radial-2 { transform: rotate(45deg) translateY(-80px); }
+        .radial-3 { transform: rotate(90deg) translateY(-80px); }
+        .radial-4 { transform: rotate(135deg) translateY(-80px); }
+        .radial-5 { transform: rotate(180deg) translateY(-80px); }
+        .radial-6 { transform: rotate(225deg) translateY(-80px); }
+        .radial-7 { transform: rotate(270deg) translateY(-80px); }
+        .radial-8 { transform: rotate(315deg) translateY(-80px); }
+        
+        .center-point {
+            width: 20px;
+            height: 20px;
+            background: #4a3728;
+            border-radius: 50%;
+            position: absolute;
+        }
+        
+        /* Layered Information */
+        .layered-container {
+            height: 300px;
+            position: relative;
+            background: #f4f1e8;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .layer {
+            position: absolute;
+            font-family: 'Times New Roman', serif;
+            color: #4a3728;
+        }
+        
+        .layer-1 {
+            font-size: 24px;
+            top: 20px;
+            left: 20px;
+            opacity: 0.8;
+            z-index: 3;
+        }
+        
+        .layer-2 {
+            font-size: 18px;
+            top: 60px;
+            left: 80px;
+            opacity: 0.6;
+            z-index: 2;
+            transform: rotate(15deg);
+        }
+        
+        .layer-3 {
+            font-size: 14px;
+            top: 120px;
+            left: 40px;
+            opacity: 0.4;
+            z-index: 1;
+            transform: rotate(-10deg);
+        }
+        
+        .layer-4 {
+            font-size: 12px;
+            top: 180px;
+            left: 120px;
+            opacity: 0.3;
+            transform: rotate(25deg);
+        }
+        
+        /* Text as Texture */
+        .texture-container {
+            height: 300px;
+            position: relative;
+            background: #f4f1e8;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        
+        .texture-text {
+            position: absolute;
+            font-family: 'Times New Roman', serif;
+            font-size: 10px;
+            line-height: 0.8;
+            color: #4a3728;
+            opacity: 0.4;
+            white-space: pre;
+        }
+        
+        .texture-1 {
+            top: 10px;
+            left: 10px;
+            transform: rotate(5deg);
+        }
+        
+        .texture-2 {
+            top: 50px;
+            left: 50px;
+            transform: rotate(-3deg);
+        }
+        
+        .texture-3 {
+            top: 90px;
+            left: 20px;
+            transform: rotate(8deg);
+        }
+        
+        .texture-4 {
+            top: 130px;
+            left: 80px;
+            transform: rotate(-5deg);
+        }
+        
+        .texture-overlay {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 24px;
+            font-weight: bold;
+            color: #4a3728;
+            z-index: 10;
+        }
+        
+        .controls {
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+        }
+        
+        button {
+            background: #8b7355;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            margin: 5px;
+            border-radius: 5px;
+            cursor: pointer;
+            font-family: 'Times New Roman', serif;
+            transition: all 0.3s ease;
+        }
+        
+        button:hover {
+            background: #4a3728;
+            transform: translateY(-2px);
+        }
+        
+        .explanation {
+            background: rgba(255,255,255,0.9);
+            border-radius: 10px;
+            padding: 20px;
+            margin-top: 20px;
+            box-shadow: 0 4px 16px rgba(0,0,0,0.1);
+            line-height: 1.6;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Leonardo da Vinci Typography Techniques</h1>
+        
+        <div class="techniques-grid">
+            <div class="technique-card">
+                <h3 class="technique-title">Mirror Writing</h3>
+                <div class="mirror-writing">
+                    <div class="mirror-text">
+                        The human body is a universe in itself<br>
+                        Every part connected to the whole<br>
+                        As above, so below in this microcosm<br>
+                        Written in reverse for secrecy
+                    </div>
+                    <div class="normal-text">
+                        (Hold up to mirror to read)
+                    </div>
+                </div>
+            </div>
+            
+            <div class="technique-card">
+                <h3 class="technique-title">Radial Text Arrangements</h3>
+                <div class="radial-container">
+                    <div class="center-point"></div>
+                    <div class="radial-text radial-1">MECHANICS</div>
+                    <div class="radial-text radial-2">ANATOMY</div>
+                    <div class="radial-text radial-3">GEOMETRY</div>
+                    <div class="radial-text radial-4">OPTICS</div>
+                    <div class="radial-text radial-5">ASTRONOMY</div>
+                    <div class="radial-text radial-6">BOTANY</div>
+                    <div class="radial-text radial-7">HYDRAULICS</div>
+                    <div class="radial-text radial-8">MATHEMATICS</div>
+                </div>
+            </div>
+            
+            <div class="technique-card">
+                <h3 class="technique-title">Layered Information</h3>
+                <div class="layered-container">
+                    <div class="layer layer-1">VITRUVIAN MAN</div>
+                    <div class="layer layer-2">Perfect proportions</div>
+                    <div class="layer layer-3">Circle and square united</div>
+                    <div class="layer layer-4">Measure of all things</div>
+                </div>
+            </div>
+            
+            <div class="technique-card">
+                <h3 class="technique-title">Text as Visual Texture</h3>
+                <div class="texture-container">
+                    <div class="texture-text texture-1">arte scienza arte scienza arte scienza<br>arte scienza arte scienza arte scienza<br>arte scienza arte scienza arte scienza</div>
+                    <div class="texture-text texture-2">observe observe observe observe<br>observe observe observe observe<br>observe observe observe observe</div>
+                    <div class="texture-text texture-3">proportion proportion proportion<br>proportion proportion proportion<br>proportion proportion proportion</div>
+                    <div class="texture-text texture-4">natura natura natura natura<br>natura natura natura natura<br>natura natura natura natura</div>
+                    <div class="texture-overlay">KNOWLEDGE</div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="controls">
+            <button onclick="toggleMirror()">Toggle Mirror Effect</button>
+            <button onclick="animateRadial()">Animate Radial Text</button>
+            <button onclick="shuffleLayers()">Reorganize Layers</button>
+            <button onclick="changeTexture()">Cycle Text Patterns</button>
+        </div>
+        
+        <div class="explanation">
+            <h3>Leonardo's Typography Innovations:</h3>
+            <p><strong>Mirror Writing:</strong> Da Vinci wrote from right to left, creating text readable only in a mirror. This may have been natural for a left-handed writer to avoid smudging ink, but also provided secrecy for his notebooks.</p>
+            
+            <p><strong>Radial Arrangements:</strong> In his mechanical and anatomical drawings, text often radiates outward from central points, creating visual relationships between concepts and their physical representations.</p>
+            
+            <p><strong>Layered Information:</strong> Multiple text elements overlap at different angles and opacities, creating depth and showing relationships between ideas - similar to how he layered anatomical observations.</p>
+            
+            <p><strong>Text as Texture:</strong> Rather than just conveying information, his handwriting becomes part of the visual composition, creating texture and rhythm across the page surface.</p>
+        </div>
+    </div>
+
+    <script>
+        let mirrorActive = true;
+        let textureIndex = 0;
+        
+        function toggleMirror() {
+            const mirrorText = document.querySelector('.mirror-text');
+            const normalText = document.querySelector('.normal-text');
+            
+            if (mirrorActive) {
+                mirrorText.style.transform = 'scaleX(1)';
+                normalText.style.opacity = '1';
+                normalText.textContent = 'Now readable normally';
+            } else {
+                mirrorText.style.transform = 'scaleX(-1)';
+                normalText.style.opacity = '0.3';
+                normalText.textContent = '(Hold up to mirror to read)';
+            }
+            mirrorActive = !mirrorActive;
+        }
+        
+        function animateRadial() {
+            const radialTexts = document.querySelectorAll('.radial-text');
+            radialTexts.forEach((text, index) => {
+                setTimeout(() => {
+                    text.style.transform += ' scale(1.2)';
+                    text.style.color = '#8b7355';
+                    setTimeout(() => {
+                        text.style.transform = text.style.transform.replace(' scale(1.2)', '');
+                        text.style.color = '#4a3728';
+                    }, 300);
+                }, index * 100);
+            });
+        }
+        
+        function shuffleLayers() {
+            const layers = document.querySelectorAll('.layer');
+            layers.forEach(layer => {
+                const randomX = Math.random() * 200;
+                const randomY = Math.random() * 200;
+                const randomRotate = (Math.random() - 0.5) * 60;
+                
+                layer.style.transition = 'all 0.5s ease';
+                layer.style.left = randomX + 'px';
+                layer.style.top = randomY + 'px';
+                layer.style.transform = `rotate(${randomRotate}deg)`;
+            });
+        }
+        
+        function changeTexture() {
+            const textures = [
+                ['arte scienza', 'observe', 'proportion', 'natura'],
+                ['spirito spirito', 'movimento', 'armonia', 'bellezza'],
+                ['meccanica', 'anatomia', 'geometria', 'ottica']
+            ];
+            
+            const textureElements = document.querySelectorAll('.texture-text');
+            const currentTexture = textures[textureIndex % textures.length];
+            
+            textureElements.forEach((element, index) => {
+                const word = currentTexture[index] || 'leonardo';
+                element.textContent = Array(9).fill(`${word} ${word} ${word}`).join('\n');
+            });
+            
+            textureIndex++;
+        }
+    </script>
+</body>
+</html>

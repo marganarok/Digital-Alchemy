@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cosmic Angels - Seven Archangels Mandala</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #000;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            font-family: 'Georgia', serif;
+        }
+
+        .artwork-container {
+            width: 800px;
+            height: 800px;
+            position: relative;
+            background: radial-gradient(circle at center, #1a0b3d 0%, #000 100%);
+            border-radius: 50%;
+            overflow: hidden;
+            box-shadow: 0 0 100px rgba(212, 175, 55, 0.3);
+        }
+
+        /* Cosmic Background */
+        .cosmic-bg {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 20%, rgba(139, 92, 246, 0.4) 0%, transparent 40%),
+                radial-gradient(circle at 80% 30%, rgba(251, 191, 36, 0.3) 0%, transparent 35%),
+                radial-gradient(circle at 60% 80%, rgba(59, 130, 246, 0.3) 0%, transparent 40%),
+                radial-gradient(circle at 30% 70%, rgba(239, 68, 68, 0.2) 0%, transparent 30%);
+            animation: cosmicFlow 20s ease-in-out infinite alternate;
+        }
+
+        /* Stars */
+        .stars {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            background-image: 
+                radial-gradient(2px 2px at 100px 150px, #fff, transparent),
+                radial-gradient(1px 1px at 300px 200px, #d4af37, transparent),
+                radial-gradient(1px 1px at 500px 100px, #fff, transparent),
+                radial-gradient(2px 2px at 700px 400px, #8b5cf6, transparent),
+                radial-gradient(1px 1px at 200px 600px, #fff, transparent),
+                radial-gradient(2px 2px at 600px 650px, #d4af37, transparent),
+                radial-gradient(1px 1px at 450px 500px, #fff, transparent),
+                radial-gradient(1px 1px at 150px 350px, #3b82f6, transparent);
+            animation: twinkle 3s ease-in-out infinite alternate;
+        }
+
+        /* Central Sacred Geometry */
+        .sacred-geometry {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+        }
+
+        .inner-circle {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 300px;
+            height: 300px;
+            border: 3px solid rgba(212, 175, 55, 0.6);
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(26, 11, 61, 0.8) 0%, transparent 70%);
+        }
+
+        .outer-ring {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 500px;
+            height: 500px;
+            border: 2px solid rgba(139, 92, 246, 0.4);
+            border-radius: 50%;
+            animation: slowRotate 60s linear infinite;
+        }
+
+        /* Seraphim Wings */
+        .seraphim-wings {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 700px;
+            height: 700px;
+        }
+
+        .wing {
+            position: absolute;
+            width: 120px;
+            height: 60px;
+            background: linear-gradient(45deg, rgba(251, 191, 36, 0.8), rgba(239, 68, 68, 0.6));
+            border-radius: 50% 10% 50% 10%;
+            filter: blur(2px);
+            animation: wingFlutter 4s ease-in-out infinite alternate;
+        }
+
+        .wing:nth-child(1) { top: 10%; left: 50%; transform: translateX(-50%) rotate(0deg); }
+        .wing:nth-child(2) { top: 20%; right: 15%; transform: rotate(60deg); }
+        .wing:nth-child(3) { bottom: 20%; right: 15%; transform: rotate(120deg); }
+        .wing:nth-child(4) { bottom: 10%; left: 50%; transform: translateX(-50%) rotate(180deg); }
+        .wing:nth-child(5) { bottom: 20%; left: 15%; transform: rotate(240deg); }
+        .wing:nth-child(6) { top: 20%; left: 15%; transform: rotate(300deg); }
+
+        /* Archangel Positions */
+        .archangel {
+            position: absolute;
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 24px;
+            font-weight: bold;
+            color: #fff;
+            text-shadow: 0 0 10px currentColor;
+            backdrop-filter: blur(5px);
+            border: 2px solid currentColor;
+            animation: angelGlow 3s ease-in-out infinite alternate;
+        }
+
+        /* Individual Archangel Styling */
+        .michael {
+            top: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(255, 69, 0, 0.8), rgba(255, 140, 0, 0.6));
+            color: #ff4500;
+        }
+
+        .gabriel {
+            top: 140px;
+            right: 100px;
+            background: radial-gradient(circle, rgba(0, 191, 255, 0.8), rgba(135, 206, 250, 0.6));
+            color: #00bfff;
+        }
+
+        .camael {
+            bottom: 140px;
+            right: 100px;
+            background: radial-gradient(circle, rgba(220, 20, 60, 0.8), rgba(255, 105, 180, 0.6));
+            color: #dc143c;
+        }
+
+        .raphael {
+            bottom: 50px;
+            left: 50%;
+            transform: translateX(-50%);
+            background: radial-gradient(circle, rgba(34, 139, 34, 0.8), rgba(144, 238, 144, 0.6));
+            color: #228b22;
+        }
+
+        .sachiel {
+            bottom: 140px;
+            left: 100px;
+            background: radial-gradient(circle, rgba(138, 43, 226, 0.8), rgba(186, 85, 211, 0.6));
+            color: #8a2be2;
+        }
+
+        .anael {
+            top: 140px;
+            left: 100px;
+            background: radial-gradient(circle, rgba(255, 192, 203, 0.8), rgba(255, 182, 193, 0.6));
+            color: #ffc0cb;
+        }
+
+        .cassiel {
+            top: 50%;
+            left: 50px;
+            transform: translateY(-50%);
+            background: radial-gradient(circle, rgba(105, 105, 105, 0.8), rgba(169, 169, 169, 0.6));
+            color: #696969;
+        }
+
+        /* Central Eye of Providence */
+        .central-eye {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 100px;
+            height: 100px;
+            background: radial-gradient(circle, rgba(212, 175, 55, 1), rgba(251, 191, 36, 0.8));
+            border-radius: 50% 50% 50% 50% / 60% 60% 40% 40%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 36px;
+            color: #1a0b3d;
+            animation: eyeGlow 2s ease-in-out infinite alternate;
+            box-shadow: 0 0 30px rgba(212, 175, 55, 0.8);
+        }
+
+        /* Hebrew Text */
+        .hebrew-text {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 400px;
+            height: 400px;
+            pointer-events: none;
+        }
+
+        .kadosh {
+            position: absolute;
+            font-family: 'Times New Roman', serif;
+            font-size: 16px;
+            color: rgba(212, 175, 55, 0.8);
+            font-weight: bold;
+            text-shadow: 0 0 10px currentColor;
+            animation: textGlow 4s ease-in-out infinite alternate;
+        }
+
+        .kadosh:nth-child(1) {
+            top: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        .kadosh:nth-child(2) {
+            top: 50%;
+            right: 10%;
+            transform: translateY(-50%);
+        }
+
+        .kadosh:nth-child(3) {
+            bottom: 20%;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+
+        /* Connecting Lines */
+        .connection-lines {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 600px;
+            height: 600px;
+        }
+
+        .line {
+            position: absolute;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, rgba(139, 92, 246, 0.6), transparent);
+            transform-origin: left center;
+            animation: lineGlow 5s ease-in-out infinite alternate;
+        }
+
+        /* Archangel Labels */
+        .archangel-label {
+            position: absolute;
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.8);
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            text-shadow: 0 0 5px currentColor;
+            pointer-events: none;
+        }
+
+        .michael-label {
+            top: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #ff4500;
+        }
+
+        .gabriel-label {
+            top: 110px;
+            right: 60px;
+            color: #00bfff;
+        }
+
+        .camael-label {
+            bottom: 110px;
+            right: 60px;
+            color: #dc143c;
+        }
+
+        .raphael-label {
+            bottom: 20px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #228b22;
+        }
+
+        .sachiel-label {
+            bottom: 110px;
+            left: 60px;
+            color: #8a2be2;
+        }
+
+        .anael-label {
+            top: 110px;
+            left: 60px;
+            color: #ffc0cb;
+        }
+
+        .cassiel-label {
+            top: 50%;
+            left: 10px;
+            transform: translateY(-50%);
+            color: #696969;
+        }
+
+        /* Animations */
+        @keyframes cosmicFlow {
+            0% { transform: scale(1) rotate(0deg); opacity: 0.8; }
+            100% { transform: scale(1.1) rotate(5deg); opacity: 1; }
+        }
+
+        @keyframes twinkle {
+            0% { opacity: 0.6; }
+            100% { opacity: 1; }
+        }
+
+        @keyframes slowRotate {
+            from { transform: translate(-50%, -50%) rotate(0deg); }
+            to { transform: translate(-50%, -50%) rotate(360deg); }
+        }
+
+        @keyframes wingFlutter {
+            0% { transform: translateX(-50%) rotate(0deg) scale(1); opacity: 0.7; }
+            100% { transform: translateX(-50%) rotate(0deg) scale(1.1); opacity: 1; }
+        }
+
+        @keyframes angelGlow {
+            0% { box-shadow: 0 0 20px currentColor; }
+            100% { box-shadow: 0 0 40px currentColor, inset 0 0 20px currentColor; }
+        }
+
+        @keyframes eyeGlow {
+            0% { box-shadow: 0 0 30px rgba(212, 175, 55, 0.8); }
+            100% { box-shadow: 0 0 60px rgba(212, 175, 55, 1), 0 0 90px rgba(212, 175, 55, 0.6); }
+        }
+
+        @keyframes textGlow {
+            0% { text-shadow: 0 0 10px currentColor; }
+            100% { text-shadow: 0 0 20px currentColor, 0 0 30px currentColor; }
+        }
+
+        @keyframes lineGlow {
+            0% { opacity: 0.3; }
+            100% { opacity: 0.8; }
+        }
+
+        /* Download Button */
+        .download-section {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            display: flex;
+            gap: 10px;
+        }
+
+        .download-btn {
+            background: linear-gradient(45deg, #d4af37, #8b5cf6);
+            color: white;
+            border: none;
+            padding: 12px 20px;
+            border-radius: 25px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            font-size: 14px;
+        }
+
+        .download-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(212, 175, 55, 0.4);
+        }
+    </style>
+</head>
+<body>
+    <div class="artwork-container" id="artwork">
+        <!-- Cosmic Background -->
+        <div class="cosmic-bg"></div>
+        <div class="stars"></div>
+        
+        <!-- Seraphim Wings -->
+        <div class="seraphim-wings">
+            <div class="wing"></div>
+            <div class="wing"></div>
+            <div class="wing"></div>
+            <div class="wing"></div>
+            <div class="wing"></div>
+            <div class="wing"></div>
+        </div>
+        
+        <!-- Sacred Geometry -->
+        <div class="sacred-geometry">
+            <div class="outer-ring"></div>
+            <div class="inner-circle"></div>
+            
+            <!-- Connection Lines -->
+            <div class="connection-lines">
+                <div class="line" style="width: 200px; top: 150px; left: 200px; transform: rotate(30deg);"></div>
+                <div class="line" style="width: 200px; top: 200px; left: 200px; transform: rotate(90deg);"></div>
+                <div class="line" style="width: 200px; top: 250px; left: 200px; transform: rotate(150deg);"></div>
+                <div class="line" style="width: 200px; top: 300px; left: 200px; transform: rotate(210deg);"></div>
+                <div class="line" style="width: 200px; top: 350px; left: 200px; transform: rotate(270deg);"></div>
+                <div class="line" style="width: 200px; top: 400px; left: 200px; transform: rotate(330deg);"></div>
+            </div>
+        </div>
+        
+        <!-- Central Eye of Providence -->
+        <div class="central-eye">👁</div>
+        
+        <!-- Seven Archangels -->
+        <div class="archangel michael">⚔️</div>
+        <div class="archangel gabriel">📯</div>
+        <div class="archangel camael">🔥</div>
+        <div class="archangel raphael">🌿</div>
+        <div class="archangel sachiel">🔮</div>
+        <div class="archangel anael">💖</div>
+        <div class="archangel cassiel">⏳</div>
+        
+        <!-- Archangel Labels -->
+        <div class="archangel-label michael-label">MICHAEL</div>
+        <div class="archangel-label gabriel-label">GABRIEL</div>
+        <div class="archangel-label camael-label">CAMAEL</div>
+        <div class="archangel-label raphael-label">RAPHAEL</div>
+        <div class="archangel-label sachiel-label">SACHIEL</div>
+        <div class="archangel-label anael-label">ANAEL</div>
+        <div class="archangel-label cassiel-label">CASSIEL</div>
+        
+        <!-- Hebrew Text -->
+        <div class="hebrew-text">
+            <div class="kadosh">קדוש</div>
+            <div class="kadosh">קדוש</div>
+            <div class="kadosh">קדוש</div>
+        </div>
+    </div>
+    
+    <!-- Download Controls -->
+    <div class="download-section">
+        <button class="download-btn" onclick="downloadAsImage('png')">Download PNG</button>
+        <button class="download-btn" onclick="downloadAsImage('jpg')">Download JPG</button>
+        <button class="download-btn" onclick="createVariations()">Create Variations</button>
+    </div>
+
+    <script>
+        function downloadAsImage(format) {
+            const artwork = document.getElementById('artwork');
+            const canvas = document.createElement('canvas');
+            const ctx = canvas.getContext('2d');
+            
+            // Set high resolution for print quality
+            canvas.width = 3200;
+            canvas.height = 3200;
+            
+            // Convert HTML to canvas using html2canvas library approach
+            // For now, we'll create a download link
+            html2canvas(artwork, {
+                canvas: canvas,
+                scale: 4,
+                backgroundColor: '#000000',
+                useCORS: true
+            }).then(canvas => {
+                const link = document.createElement('a');
+                link.download = `cosmic-angels-mandala.${format}`;
+                link.href = canvas.toDataURL(`image/${format}`, 1.0);
+                link.click();
+            });
+        }
+        
+        function createVariations() {
+            const variations = [
+                'Light Background Version',
+                'Individual Archangel Focus',
+                'Without Hebrew Text',
+                'Minimal Sacred Geometry',
+                'Constellation Map Style'
+            ];
+            
+            const selection = prompt(`Choose a variation to create:\n${variations.map((v, i) => `${i+1}. ${v}`).join('\n')}`);
+            
+            if (selection) {
+                const variationIndex = parseInt(selection) - 1;
+                if (variationIndex >= 0 && variationIndex < variations.length) {
+                    applyVariation(variationIndex);
+                }
+            }
+        }
+        
+        function applyVariation(index) {
+            const artwork = document.getElementById('artwork');
+            
+            switch(index) {
+                case 0: // Light Background
+                    artwork.style.background = 'radial-gradient(circle at center, #f8f9fa 0%, #e9ecef 100%)';
+                    document.querySelector('.cosmic-bg').style.display = 'none';
+                    document.querySelectorAll('.archangel-label').forEach(el => el.style.color = '#333');
+                    break;
+                    
+                case 1: // Individual Archangel Focus
+                    const focusAngel = prompt('Which archangel to focus on? (michael, gabriel, camael, raphael, sachiel, anael, cassiel)');
+                    if (focusAngel) {
+                        document.querySelectorAll('.archangel').forEach(el => {
+                            if (!el.classList.contains(focusAngel)) {
+                                el.style.opacity = '0.3';
+                            } else {
+                                el.style.transform += ' scale(1.5)';
+                            }
+                        });
+                    }
+                    break;
+                    
+                case 2: // Without Hebrew Text
+                    document.querySelector('.hebrew-text').style.display = 'none';
+                    break;
+                    
+                case 3: // Minimal Sacred Geometry
+                    document.querySelector('.connection-lines').style.display = 'none';
+                    document.querySelector('.outer-ring').style.display = 'none';
+                    break;
+                    
+                case 4: // Constellation Map Style
+                    document.querySelectorAll('.archangel').forEach(el => {
+                        el.style.background = 'transparent';
+                        el.style.border = '2px solid currentColor';
+                        el.innerHTML = '⭐';
+                    });
+                    break;
+            }
+            
+            alert(`Variation applied! You can now download this version.`);
+        }
+        
+        // Add interactive tooltips
+        document.querySelectorAll('.archangel').forEach(archangel => {
+            archangel.addEventListener('mouseover', function() {
+                const archangelInfo = {
+                    'michael': 'MICHAEL - Divine Protection & Warrior Strength',
+                    'gabriel': 'GABRIEL - Divine Messages & Communication',
+                    'camael': 'CAMAEL - Divine Strength & Courage',
+                    'raphael': 'RAPHAEL - Divine Healing & Compassion',
+                    'sachiel': 'SACHIEL - Divine Wisdom & Prosperity',
+                    'anael': 'ANAEL - Divine Love & Harmony',
+                    'cassiel': 'CASSIEL - Divine Time & Patience'
+                };
+                
+                const className = Array.from(this.classList).find(cls => archangelInfo[cls]);
+                if (className) {
+                    this.title = archangelInfo[className];
+                }
+            });
+        });
+        
+        // Add the html2canvas library dynamically
+        const script = document.createElement('script');
+        script.src = 'https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js';
+        document.head.appendChild(script);
+    </script>
+</body>
+</html>

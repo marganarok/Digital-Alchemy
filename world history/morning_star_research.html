@@ -1,0 +1,1151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Morning Star: Lucifer in Religious & Literary Tradition</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0a0a0a 0%, #1a0a0a 25%, #2a1a1a 50%, #3a2a2a 75%, #1a1a2e 100%);
+            color: #e8e6d3;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            background: rgba(0,0,0,0.7);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 3px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.05) 0%, transparent 70%);
+            animation: rotate 35s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 4.5rem;
+            color: #d4af37;
+            text-shadow: 4px 4px 12px rgba(0,0,0,0.9);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            font-variant: small-caps;
+        }
+        
+        .header .subtitle {
+            font-size: 1.4rem;
+            color: #e8e6d3;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            gap: 12px;
+        }
+        
+        .nav-tab {
+            padding: 18px 30px;
+            background: rgba(26,10,10,0.9);
+            color: #e8e6d3;
+            border: 2px solid #d4af37;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+        
+        .nav-tab:hover, .nav-tab.active {
+            background: #d4af37;
+            color: #0a0a0a;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(212,175,55,0.3);
+        }
+        
+        .content-section {
+            display: none;
+            background: rgba(0,0,0,0.6);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #d4af37;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.7);
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .card {
+            background: rgba(26,10,10,0.6);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #3a2a2a;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.1), transparent);
+            transition: left 0.6s;
+        }
+        
+        .card:hover::before {
+            left: 100%;
+        }
+        
+        .card:hover {
+            border-color: #d4af37;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
+        }
+        
+        .card h3 {
+            color: #d4af37;
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #d4af37, #3a2a2a, #d4af37);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 35px;
+            padding: 25px;
+            background: rgba(26,10,10,0.6);
+            border-radius: 12px;
+            border-left: 5px solid #d4af37;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -42px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            background: #d4af37;
+            border-radius: 50%;
+            border: 4px solid #0a0a0a;
+            box-shadow: 0 0 10px rgba(212,175,55,0.3);
+        }
+        
+        .timeline-year {
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        
+        .quote-box {
+            background: linear-gradient(45deg, rgba(212,175,55,0.1), rgba(26,10,10,0.3));
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 6px solid #d4af37;
+            margin: 30px 0;
+            font-style: italic;
+            font-size: 1.15rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.5);
+        }
+        
+        .highlight {
+            background: rgba(212,175,55,0.2);
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #d4af37;
+            font-weight: bold;
+        }
+        
+        .research-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+        
+        .tool-button {
+            display: block;
+            padding: 18px;
+            background: rgba(26,10,10,0.8);
+            color: #e8e6d3;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #3a2a2a;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.5);
+        }
+        
+        .tool-button:hover {
+            background: #d4af37;
+            color: #0a0a0a;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(212,175,55,0.3);
+        }
+        
+        .floating-symbols {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-symbol {
+            position: absolute;
+            color: rgba(212,175,55,0.05);
+            font-size: 2.5rem;
+            animation: float 25s infinite linear;
+        }
+        
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(-150px) rotate(360deg);
+            }
+        }
+        
+        .star-display {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .star-emblem {
+            font-size: 6rem;
+            color: #d4af37;
+            text-shadow: 
+                4px 4px 0px #3a2a2a,
+                8px 8px 15px rgba(0,0,0,0.9);
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            display: inline-block;
+            transform: perspective(150px) rotateX(10deg);
+            margin: 25px;
+            transition: all 0.4s ease;
+        }
+        
+        .star-emblem:hover {
+            transform: perspective(150px) rotateX(0deg) scale(1.15);
+            color: #ffd700;
+        }
+        
+        .warning-box {
+            background: rgba(139,69,19,0.2);
+            border: 2px solid #d2691e;
+            padding: 20px;
+            border-radius: 10px;
+            margin: 20px 0;
+            color: #ddd;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 3rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .star-emblem {
+                font-size: 4rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-symbols">
+        <div class="floating-symbol" style="left: 5%; animation-delay: 0s;">⭐</div>
+        <div class="floating-symbol" style="left: 15%; animation-delay: 3s;">📜</div>
+        <div class="floating-symbol" style="left: 25%; animation-delay: 6s;">⚡</div>
+        <div class="floating-symbol" style="left: 35%; animation-delay: 9s;">🗡️</div>
+        <div class="floating-symbol" style="left: 45%; animation-delay: 12s;">👑</div>
+        <div class="floating-symbol" style="left: 55%; animation-delay: 15s;">🔥</div>
+        <div class="floating-symbol" style="left: 65%; animation-delay: 18s;">📖</div>
+        <div class="floating-symbol" style="left: 75%; animation-delay: 21s;">⚖️</div>
+        <div class="floating-symbol" style="left: 85%; animation-delay: 24s;">🏛️</div>
+        <div class="floating-symbol" style="left: 95%; animation-delay: 27s;">✨</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>The Morning Star</h1>
+            <div class="subtitle">Academic Study of Lucifer in Religious, Literary & Cultural Traditions</div>
+            <div class="star-display">
+                <div class="star-emblem">⭐</div>
+                <div class="star-emblem">📜</div>
+                <div class="star-emblem">⚡</div>
+            </div>
+        </div>
+
+        <div class="warning-box">
+            <strong>Academic Notice:</strong> This page examines the figure of Lucifer/Morning Star from scholarly perspectives across religious studies, literature, and comparative mythology. The content presents various interpretative traditions without endorsing any particular theological position.
+        </div>
+
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('biblical')">Biblical Sources</div>
+            <div class="nav-tab" onclick="showSection('evolution')">Mythological Evolution</div>
+            <div class="nav-tab" onclick="showSection('literature')">Literary Tradition</div>
+            <div class="nav-tab" onclick="showSection('theology')">Theological Interpretations</div>
+            <div class="nav-tab" onclick="showSection('comparative')">Comparative Mythology</div>
+            <div class="nav-tab" onclick="showSection('modern')">Modern Adaptations</div>
+            <div class="nav-tab" onclick="showSection('research')">Research Resources</div>
+        </div>
+
+        <div id="biblical" class="content-section active">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">Biblical & Textual Sources</h2>
+            
+            <div class="quote-box">
+                "How you have fallen from heaven, morning star, son of the dawn! You have been cast down to the earth, you who once laid low the nations!"
+                <strong>— Isaiah 14:12 (NIV)</strong>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">Isaiah 14:12-15</div>
+                    <strong>The Taunt Against Babylon's King</strong><br>
+                    The famous "Morning Star" passage originally appears as <span class="highlight">political satire against Babylon's king</span>. The Hebrew "הֵילֵל" (helel) means "shining one" and was translated as "Lucifer" in the Latin Vulgate.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Ezekiel 28:11-19</div>
+                    <strong>The Lament for Tyre's Prince</strong><br>
+                    Another passage later associated with Satan describes <span class="highlight">"the anointed cherub who covers"</span> who was "perfect in your ways from the day you were created, till unrighteousness was found in you."
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Luke 10:18</div>
+                    <strong>Jesus' Statement</strong><br>
+                    "I saw Satan fall like lightning from heaven" - this New Testament reference became key for connecting <span class="highlight">Satan's fall with the Morning Star imagery</span>.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Revelation 12:7-9</div>
+                    <strong>The War in Heaven</strong><br>
+                    The apocalyptic vision of Michael and his angels fighting <span class="highlight">"the great dragon... that ancient serpent called the devil, or Satan"</span> who is hurled to earth.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">2 Peter 2:4 & Jude 6</div>
+                    <strong>Fallen Angels References</strong><br>
+                    Brief mentions of angels who <span class="highlight">"did not keep their proper domain"</span> and are kept in chains of darkness for judgment.
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Hebrew Terminology</h3>
+                    <p>Key Hebrew terms in original texts:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">הֵילֵל (Helel)</span> - "Shining one," "morning star"</li>
+                        <li>• <span class="highlight">כְּרוּב (Kerub)</span> - Cherub, guardian being</li>
+                        <li>• <span class="highlight">שָׂטָן (Satan)</span> - "Adversary," "accuser"</li>
+                        <li>• <span class="highlight">נָחָשׁ (Nachash)</span> - Serpent, possibly "shining one"</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Translation History</h3>
+                    <p>How "Lucifer" entered Christian tradition:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Septuagint (LXX)</span> - Greek "ἑωσφόρος" (heosphoros)</li>
+                        <li>• <span class="highlight">Latin Vulgate</span> - Jerome's "Lucifer" translation</li>
+                        <li>• <span class="highlight">King James Version</span> - Popularized "Lucifer" in English</li>
+                        <li>• <span class="highlight">Modern translations</span> - Return to "morning star"</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Apocryphal Sources</h3>
+                    <p>Non-canonical texts expanding the narrative:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">1 Enoch</span> - Detailed fallen angel mythology</li>
+                        <li>• <span class="highlight">Life of Adam and Eve</span> - Satan's refusal to bow</li>
+                        <li>• <span class="highlight">2 Enoch</span> - Angelic hierarchies and rebellion</li>
+                        <li>• <span class="highlight">Jubilees</span> - Expanded Genesis narratives</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Scholarly Interpretation</h3>
+                    <p>Academic approaches to these texts:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Historical-critical</span> - Original political contexts</li>
+                        <li>• <span class="highlight">Literary analysis</span> - Poetic and mythic elements</li>
+                        <li>• <span class="highlight">Comparative religion</span> - Ancient Near Eastern parallels</li>
+                        <li>• <span class="highlight">Redaction criticism</span> - Editorial development over time</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="evolution" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">Mythological Evolution</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">Ancient Mesopotamia</div>
+                    <strong>Babylonian & Canaanite Origins</strong><br>
+                    The "morning star" imagery draws from <span class="highlight">Venus mythology</span> and stories of rebellious divine beings. Akkadian myths of Ishtar's descent may influence later Jewish texts.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Second Temple Judaism (500 BCE - 70 CE)</div>
+                    <strong>Angelology Development</strong><br>
+                    Elaborate angel hierarchies develop. <span class="highlight">Satan evolves from divine prosecutor to cosmic adversary</span>. Texts like 1 Enoch provide detailed fallen angel narratives.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Early Christianity (1st-4th Century)</div>
+                    <strong>Patristic Synthesis</strong><br>
+                    Church Fathers like Origen and Jerome connect <span class="highlight">Isaiah's "morning star" with Satan's fall</span>. The narrative becomes foundational Christian doctrine.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Medieval Period (5th-15th Century)</div>
+                    <strong>Systematic Theology</strong><br>
+                    Scholars like Thomas Aquinas develop detailed <span class="highlight">demonology and theories of angelic rebellion</span>. Lucifer becomes the archetypal fallen angel.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Renaissance & Reformation</div>
+                    <strong>Literary Elaboration</strong><br>
+                    Writers expand the mythology. <span class="highlight">Dante, Marlowe, and especially Milton</span> create rich literary portraits of Lucifer's character and motivations.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Modern Era</div>
+                    <strong>Secular & Psychological Interpretations</strong><br>
+                    Lucifer becomes symbol of <span class="highlight">rebellion, individualism, enlightenment</span>. Romantic and modern writers reinterpret the figure as tragic hero or freedom fighter.
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Ancient Near Eastern Parallels</h3>
+                    <p>Similar mythological figures across cultures:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Prometheus</span> - Greek fire-bringer punished by Zeus</li>
+                        <li>• <span class="highlight">Azazel</span> - Scapegoat demon in Levitical tradition</li>
+                        <li>• <span class="highlight">Set</span> - Egyptian god of chaos and rebellion</li>
+                        <li>• <span class="highlight">Ahriman</span> - Zoroastrian destructive spirit</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Theological Development</h3>
+                    <p>How doctrine evolved over centuries:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Problem of evil</span> - Theodicy and free will debates</li>
+                        <li>• <span class="highlight">Angelic nature</span> - Questions of angel psychology</li>
+                        <li>• <span class="highlight">Redemption possibility</span> - Can fallen angels repent?</li>
+                        <li>• <span class="highlight">Cosmic dualism</span> - Good vs. evil cosmologies</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Cultural Transmission</h3>
+                    <p>How the mythology spread and changed:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Jewish diaspora</span> - Spreading angelology concepts</li>
+                        <li>• <span class="highlight">Christian missions</span> - Adapting to local mythologies</li>
+                        <li>• <span class="highlight">Islamic parallel</span> - Iblis/Shaytan narratives</li>
+                        <li>• <span class="highlight">Folk traditions</span> - Popular legends and stories</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Symbolic Functions</h3>
+                    <p>What Lucifer represents across traditions:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Cosmic rebellion</span> - Challenge to divine authority</li>
+                        <li>• <span class="highlight">Human pride</span> - Warning against hubris</li>
+                        <li>• <span class="highlight">Knowledge seeker</span> - Enlightenment and questioning</li>
+                        <li>• <span class="highlight">Scapegoat figure</span> - Bearer of cosmic blame</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="literature" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">Literary Tradition</h2>
+
+            <div class="quote-box">
+                "Better to reign in Hell than serve in Heaven."
+                <strong>— John Milton, Paradise Lost (1667)</strong>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1320</div>
+                    <strong>Dante's Inferno</strong><br>
+                    <span class="highlight">Satan as frozen, three-headed beast</span> trapped in ice at hell's bottom. Represents ultimate evil and betrayal, but also divine justice's triumph.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1592</div>
+                    <strong>Marlowe's Doctor Faustus</strong><br>
+                    Mephistopheles as <span class="highlight">sophisticated, melancholic demon</span> who was "sometime in heaven." Introduces psychological depth to diabolic characters.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1667</div>
+                    <strong>Milton's Paradise Lost</strong><br>
+                    The masterpiece that defines modern Lucifer mythology. Satan as <span class="highlight">tragic hero, eloquent rebel</span> with complex motivations and noble bearing.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1821</div>
+                    <strong>Byron's Cain</strong><br>
+                    Romantic reinterpretation where <span class="highlight">Lucifer represents enlightenment and questioning</span> of traditional authority. Reflects Romantic rebellion themes.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1886</div>
+                    <strong>Anatole France's Revolt of the Angels</strong><br>
+                    Satirical work where <span class="highlight">angels rebel for intellectual freedom</span>. Represents secular, humanistic values against authoritarian religion.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">20th Century</div>
+                    <strong>Modern Adaptations</strong><br>
+                    Authors like <span class="highlight">C.S. Lewis, Neil Gaiman, Philip Pullman</span> create new interpretations, from traditional evil to sympathetic antihero.
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Milton's Revolutionary Impact</h3>
+                    <p>How Paradise Lost changed everything:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Psychological complexity</span> - Satan with internal conflicts</li>
+                        <li>• <span class="highlight">Heroic qualities</span> - Courage, determination, leadership</li>
+                        <li>• <span class="highlight">Political allegory</span> - Republican ideals vs. monarchy</li>
+                        <li>• <span class="highlight">Blank verse mastery</span> - Elevated poetic language</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Romantic Reinterpretation</h3>
+                    <p>19th century transformation of the figure:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Blake's admiration</span> - "Milton was of Devil's party"</li>
+                        <li>• <span class="highlight">Shelley's Prometheus</span> - Defiant benefactor of humanity</li>
+                        <li>• <span class="highlight">Byron's brooding heroes</span> - Satanic protagonist type</li>
+                        <li>• <span class="highlight">Revolutionary symbolism</span> - Rebellion against tyranny</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Modern Literary Themes</h3>
+                    <p>Contemporary approaches to Lucifer:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Existential rebellion</span> - Camus, Sartre influences</li>
+                        <li>• <span class="highlight">Psychological allegory</span> - Internal conflicts externalized</li>
+                        <li>• <span class="highlight">Anti-establishment</span> - Questioning authority structures</li>
+                        <li>• <span class="highlight">Tragic nobility</span> - Sympathetic villain archetype</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Genre Evolution</h3>
+                    <p>Lucifer across different literary forms:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Epic poetry</span> - Milton's cosmic scope</li>
+                        <li>• <span class="highlight">Gothic fiction</span> - Supernatural horror elements</li>
+                        <li>• <span class="highlight">Fantasy literature</span> - Urban fantasy and paranormal</li>
+                        <li>• <span class="highlight">Science fiction</span> - Technological or alien interpretations</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="theology" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">Theological Interpretations</h2>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Orthodox Christian Doctrine</h3>
+                    <p>Traditional theological understanding:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Angelic rebellion</span> - Pride as the root of Satan's fall</li>
+                        <li>• <span class="highlight">Eternal punishment</span> - No possibility of redemption</li>
+                        <li>• <span class="highlight">Tempter role</span> - Opposing God's plan for humanity</li>
+                        <li>• <span class="highlight">Eschatological defeat</span> - Ultimate victory of good over evil</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Alternative Christian Views</h3>
+                    <p>Non-orthodox interpretations within Christianity:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Origen's universalism</span> - Possible eventual redemption of all</li>
+                        <li>• <span class="highlight">Symbolic interpretation</span> - Metaphor for human evil/temptation</li>
+                        <li>• <span class="highlight">Literary device</span> - Mythological rather than literal</li>
+                        <li>• <span class="highlight">Gnostic variants</span> - Demiurge and divine rebellion themes</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Islamic Perspective</h3>
+                    <p>Iblis/Shaytan in Islamic theology:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Refusal to prostrate</span> - Pride before Adam's creation</li>
+                        <li>• <span class="highlight">Jinn nature</span> - Created from fire, not angelic</li>
+                        <li>• <span class="highlight">Divine permission</span> - Testing role in God's plan</li>
+                        <li>• <span class="highlight">Day of Judgment</span> - Temporary reprieve until end times</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Jewish Interpretations</h3>
+                    <p>Satan/adversary in Jewish thought:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Divine prosecutor</span> - Agent of God's justice</li>
+                        <li>• <span class="highlight">Yetzer hara</span> - Evil inclination within humans</li>
+                        <li>• <span class="highlight">Mythological reading</span> - Political metaphor, not literal being</li>
+                        <li>• <span class="highlight">Minimal role</span> - Less developed than Christian tradition</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">Early Patristic (100-400 CE)</div>
+                    <strong>Foundational Doctrines</strong><br>
+                    Church Fathers establish <span class="highlight">Satan as fallen angel due to pride</span>. Debates over nature of angelic free will and possibility of redemption.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Medieval Scholasticism</div>
+                    <strong>Systematic Development</strong><br>
+                    <span class="highlight">Aquinas and others</span> develop detailed angelology. Questions of Satan's knowledge, power limitations, and role in divine providence.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Reformation Era</div>
+                    <strong>Protestant Perspectives</strong><br>
+                    Reformers emphasize <span class="highlight">Satan's role in temptation and spiritual warfare</span>. Less focus on speculative angelology.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Modern Theology</div>
+                    <strong>Contemporary Debates</strong><br>
+                    Liberal theology questions literal existence. <span class="highlight">Fundamentalists maintain traditional views</span>. Process theology offers new frameworks.
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "The question is not whether Satan exists, but what the figure of Satan represents in human religious consciousness and moral imagination."
+                <strong>— Contemporary Religious Studies Approach</strong>
+            </div>
+        </div>
+
+        <div id="comparative" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">Comparative Mythology</h2>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Prometheus Parallel</h3>
+                    <p>Greek fire-bringer comparison:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Divine knowledge theft</span> - Bringing forbidden wisdom</li>
+                        <li>• <span class="highlight">Punishment motif</span> - Eternal torment for rebellion</li>
+                        <li>• <span class="highlight">Human benefactor</span> - Suffering for humanity's sake</li>
+                        <li>• <span class="highlight">Romantic hero</span> - Noble defiance of tyranny</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Set/Typhon Traditions</h3>
+                    <p>Ancient chaos deity parallels:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Cosmic opposition</span> - Order vs. chaos dynamics</li>
+                        <li>• <span class="highlight">Sibling rivalry</span> - Divine family conflicts</li>
+                        <li>• <span class="highlight">Necessary evil</span> - Balance-maintaining function</li>
+                        <li>• <span class="highlight">Cyclical defeat</span> - Recurring cosmic battles</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Zoroastrian Influence</h3>
+                    <p>Ahriman/Angra Mainyu connections:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Cosmic dualism</span> - Good vs. evil cosmology</li>
+                        <li>• <span class="highlight">Equal opposition</span> - Nearly equal divine powers</li>
+                        <li>• <span class="highlight">Eschatological resolution</span> - Final triumph of good</li>
+                        <li>• <span class="highlight">Historical influence</span> - Impact on Jewish thought</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Trickster Figures</h3>
+                    <p>Cross-cultural comparison with trickster deities:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Loki (Norse)</span> - Boundary-crossing shapeshifter</li>
+                        <li>• <span class="highlight">Coyote (Native American)</span> - Creator and destroyer</li>
+                        <li>• <span class="highlight">Hermes (Greek)</span> - Divine messenger and thief</li>
+                        <li>• <span class="highlight">Anansi (West African)</span> - Spider trickster wisdom-bringer</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">Ancient Patterns</div>
+                    <strong>Universal Mythological Themes</strong><br>
+                    <span class="highlight">Rebellion against cosmic order</span> appears across cultures. Divine beings who challenge authority and bring consequences.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Cultural Exchange</div>
+                    <strong>Cross-Pollination of Ideas</strong><br>
+                    Persian, Greek, and Mesopotamian influences on <span class="highlight">Jewish and Christian angelology</span>. Syncretistic development of Satan figure.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Archetypal Analysis</div>
+                    <strong>Jungian Interpretations</strong><br>
+                    Satan as <span class="highlight">shadow archetype</span> - representing repressed or denied aspects of psyche and society.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Modern Comparative Study</div>
+                    <strong>Academic Approaches</strong><br>
+                    Scholars like <span class="highlight">Elaine Pagels and Jeffrey Burton Russell</span> trace Satan's development through comparative religious lens.
+                </div>
+            </div>
+        </div>
+
+        <div id="modern" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">Modern Cultural Adaptations</h2>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Literature & Film</h3>
+                    <p>Contemporary portrayals:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Neil Gaiman's Lucifer</span> - Sophisticated, morally complex</li>
+                        <li>• <span class="highlight">TV series "Lucifer"</span> - Detective procedural with mythology</li>
+                        <li>• <span class="highlight">"The Sandman"</span> - Part of larger mythological universe</li>
+                        <li>• <span class="highlight">"Good Omens"</span> - Comedic treatment of apocalypse</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Philosophical Appropriations</h3>
+                    <p>Secular philosophical uses:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Existentialism</span> - Authentic choice and rebellion</li>
+                        <li>• <span class="highlight">Libertarianism</span> - Anti-authoritarian symbolism</li>
+                        <li>• <span class="highlight">Romantic ideals</span> - Individual against conformity</li>
+                        <li>• <span class="highlight">Enlightenment values</span> - Reason challenging dogma</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Popular Culture</h3>
+                    <p>Mainstream cultural presence:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Heavy metal imagery</span> - Rebellion and power symbols</li>
+                        <li>• <span class="highlight">Gaming culture</span> - RPG antagonist archetype</li>
+                        <li>• <span class="highlight">Fashion and art</span> - Gothic and alternative aesthetics</li>
+                        <li>• <span class="highlight">Political symbolism</span> - Anti-establishment movements</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Academic Interest</h3>
+                    <p>Scholarly approaches to the figure:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Religious studies</span> - Comparative mythology courses</li>
+                        <li>• <span class="highlight">Literary criticism</span> - Satan in Western literature</li>
+                        <li>• <span class="highlight">Psychological analysis</span> - Shadow and projection studies</li>
+                        <li>• <span class="highlight">Cultural studies</span> - Symbol in modern society</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">19th Century Romanticism</div>
+                    <strong>Hero Transformation</strong><br>
+                    <span class="highlight">Blake, Byron, Shelley</span> recast Satan as noble rebel. "Satanic School" of poetry emerges.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Early 20th Century</div>
+                    <strong>Modernist Interpretations</strong><br>
+                    Psychoanalytic readings emerge. <span class="highlight">Jung's shadow concept</span> influences understanding of Satan figure.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1960s Counterculture</div>
+                    <strong>Anti-Establishment Symbol</strong><br>
+                    Satan becomes symbol of <span class="highlight">rebellion against conservative values</span>. "Sympathy for the Devil" cultural moment.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">Contemporary Era</div>
+                    <strong>Postmodern Deconstructions</strong><br>
+                    <span class="highlight">Ironic and sophisticated</span> treatments. Satan as antihero, victim, or misunderstood character.
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "The modern Satan is less a theological reality than a cultural symbol - representing everything from individual freedom to cosmic rebellion against unjust authority."
+                <strong>— Contemporary Cultural Analysis</strong>
+            </div>
+        </div>
+
+        <div id="research" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">Research Resources & Methodologies</h2>
+
+            <div class="grid research-tools">
+                <a href="https://www.britannica.com/topic/Satan" class="tool-button" target="_blank">
+                    📚 Encyclopedia Britannica
+                </a>
+                
+                <a href="https://www.jstor.org/" class="tool-button" target="_blank">
+                    📖 JSTOR Academic Database
+                </a>
+                
+                <a href="https://www.oxfordbibliographies.com/" class="tool-button" target="_blank">
+                    🏛️ Oxford Bibliographies
+                </a>
+                
+                <a href="https://www.biblicalarchaeology.org/" class="tool-button" target="_blank">
+                    🏺 Biblical Archaeology Society
+                </a>
+                
+                <a href="https://www.worldcat.org/" class="tool-button" target="_blank">
+                    🌍 WorldCat Library Search
+                </a>
+                
+                <a href="https://www.earlychristianwritings.com/" class="tool-button" target="_blank">
+                    ⛪ Early Christian Writings
+                </a>
+                
+                <a href="https://www.sacred-texts.com/" class="tool-button" target="_blank">
+                    📜 Sacred Texts Archive
+                </a>
+                
+                <a href="https://www.perseus.tufts.edu/" class="tool-button" target="_blank">
+                    🏺 Perseus Digital Library
+                </a>
+            </div>
+
+            <div class="card" style="margin: 30px 0;">
+                <h3>Primary Source Categories</h3>
+                <div class="grid">
+                    <div>
+                        <h4 style="color: #d4af37;">Biblical & Canonical:</h4>
+                        <ul>
+                            <li>• Hebrew Bible (Tanakh)</li>
+                            <li>• New Testament texts</li>
+                            <li>• Septuagint (Greek translation)</li>
+                            <li>• Latin Vulgate</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #d4af37;">Apocryphal & Pseudepigraphic:</h4>
+                        <ul>
+                            <li>• 1 Enoch (Ethiopic Enoch)</li>
+                            <li>• 2 Enoch (Slavonic Enoch)</li>
+                            <li>• Life of Adam and Eve</li>
+                            <li>• Testament of Solomon</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #d4af37;">Patristic Sources:</h4>
+                        <ul>
+                            <li>• Origen's writings</li>
+                            <li>• Augustine's theology</li>
+                            <li>• Jerome's commentaries</li>
+                            <li>• John Chrysostom's homilies</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #d4af37;">Medieval & Scholastic:</h4>
+                        <ul>
+                            <li>• Thomas Aquinas's Summa</li>
+                            <li>• Duns Scotus's writings</li>
+                            <li>• Medieval mystery plays</li>
+                            <li>• Dante's Divine Comedy</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="background: rgba(212,175,55,0.1); border-color: #d4af37;">
+                <h3>Research Methodologies</h3>
+                <p><strong>Approaches for Academic Study:</strong></p>
+                <br>
+                <p><span class="highlight">Historical-Critical Method:</span> Examining texts in their original historical contexts, considering authorship, dating, and cultural background.</p>
+                <br>
+                <p><span class="highlight">Comparative Religion:</span> Analyzing parallels across different religious traditions and mythological systems.</p>
+                <br>
+                <p><span class="highlight">Literary Analysis:</span> Studying Satan as literary character, examining narrative function, symbolic meaning, and artistic development.</p>
+                <br>
+                <p><span class="highlight">Psychological Interpretation:</span> Jungian, Freudian, and other psychological approaches to mythological figures.</p>
+            </div>
+
+            <div class="card">
+                <h3>Essential Academic Sources</h3>
+                <div class="grid">
+                    <div>
+                        <h4 style="color: #d4af37;">Foundational Studies:</h4>
+                        <ul>
+                            <li>• Jeffrey Burton Russell's "Satan" series</li>
+                            <li>• Elaine Pagels' "The Origin of Satan"</li>
+                            <li>• Henry Ansgar Kelly's "Satan: A Biography"</li>
+                            <li>• Neil Forsyth's "The Old Enemy"</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #d4af37;">Literary Criticism:</h4>
+                        <ul>
+                            <li>• C.S. Lewis's "A Preface to Paradise Lost"</li>
+                            <li>• William Blake's "The Marriage of Heaven and Hell"</li>
+                            <li>• Harold Bloom's "Shakespeare: The Invention of the Human"</li>
+                            <li>• Regina Schwartz's "Remembering and Repeating"</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>Research Challenges</h3>
+                <p><strong>Methodological Issues:</strong></p>
+                <br>
+                <div class="grid">
+                    <div>
+                        <h4 style="color: #d4af37;">Source Complexity:</h4>
+                        <ul>
+                            <li>• Multiple textual traditions</li>
+                            <li>• Translation variations</li>
+                            <li>• Manuscript differences</li>
+                            <li>• Dating uncertainties</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #d4af37;">Interpretive Challenges:</h4>
+                        <ul>
+                            <li>• Literal vs. metaphorical readings</li>
+                            <li>• Cultural context reconstruction</li>
+                            <li>• Theological bias in sources</li>
+                            <li>• Modern projection onto ancient texts</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <strong>Research Approach:</strong> "Study Lucifer/Satan as a cultural construct that has evolved across millennia, shaped by theological, literary, political, and psychological forces rather than as a fixed theological entity."
+            </div>
+
+            <div class="card">
+                <h3>Contemporary Scholarship Trends</h3>
+                <p><strong>Current Academic Directions:</strong></p>
+                <br>
+                <p><span class="highlight">Digital Humanities:</span> Computer-assisted analysis of textual traditions and cultural transmission patterns.</p>
+                <br>
+                <p><span class="highlight">Postcolonial Criticism:</span> Examining how Satan figures have been used in colonial contexts and indigenous interpretations.</p>
+                <br>
+                <p><span class="highlight">Feminist Theology:</span> Analyzing gender dynamics in Satan mythology and alternative interpretations.</p>
+                <br>
+                <p><span class="highlight">Popular Culture Studies:</span> Academic examination of Satan in contemporary media, literature, and digital culture.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function createFloatingSymbol() {
+            const symbols = ['⭐', '📜', '⚡', '🗡️', '👑', '🔥', '📖', '⚖️', '🏛️', '✨', '🌟', '📿', '🕯️', '⚱️'];
+            const container = document.querySelector('.floating-symbols');
+            
+            const symbol = document.createElement('div');
+            symbol.className = 'floating-symbol';
+            symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            symbol.style.left = Math.random() * 100 + '%';
+            symbol.style.animationDuration = (Math.random() * 10 + 20) + 's';
+            symbol.style.animationDelay = Math.random() * 5 + 's';
+            symbol.style.fontSize = (Math.random() * 1.5 + 2) + 'rem';
+            
+            container.appendChild(symbol);
+            
+            setTimeout(() => {
+                if (symbol.parentNode) {
+                    symbol.parentNode.removeChild(symbol);
+                }
+            }, 30000);
+        }
+
+        setInterval(createFloatingSymbol, 3000);
+
+        for (let i = 0; i < 6; i++) {
+            setTimeout(createFloatingSymbol, i * 1000);
+        }
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-10px) scale(1.02)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        document.querySelectorAll('.star-emblem').forEach(emblem => {
+            emblem.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'pulse 2s ease';
+                }, 10);
+            });
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: perspective(150px) rotateX(0deg) scale(1); }
+                50% { transform: perspective(150px) rotateX(20deg) scale(1.3); color: #ffd700; }
+                100% { transform: perspective(150px) rotateX(0deg) scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .timeline-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(50px)';
+            el.style.transition = 'all 1s ease';
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.timeline-item').forEach(item => {
+            item.addEventListener('mouseenter', function() {
+                this.style.borderLeftColor = '#ffd700';
+                this.style.backgroundColor = 'rgba(26,10,10,0.8)';
+            });
+            
+            item.addEventListener('mouseleave', function() {
+                this.style.borderLeftColor = '#d4af37';
+                this.style.backgroundColor = 'rgba(26,10,10,0.6)';
+            });
+        });
+    </script>
+</body>
+</html>

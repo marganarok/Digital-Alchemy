@@ -1,0 +1,170 @@
+A.R.M.O.R. System (v3.1)
+Designation: Autonomic Regulation & Metaphysical Offensive Response
+Formal implementation of the "Spiritual Combat Suit" as a programmable protocol.
+Key design:
+- Layered pipeline that mirrors neurological, physiological, psychological, and metaphysical stages.
+- Deterministic state machine with pluggable doctrines ("doctrine hooks").
+- Verbose, structured logs suitable for replay, analysis, or training other systems.
+License: CC-BY 4.0 (adjust if you prefer)
+from __future__ import annotations
+from dataclasses import dataclass, field
+from enum import Enum, auto
+from typing import List, Dict, Callable, Optional
+import math
+import time
+# ---------- Enumerations ----------
+class Directive(str, Enum):
+    UNLEASH_TRUTH_PROTOCOL = "UNLEASH_TRUTH_PROTOCOL"
+    MAINTAIN_SILENCE_PROTOCOL = "MAINTAIN_SILENCE_PROTOCOL"
+    DEESCALATE_AND_REDIRECT = "DEESCALATE_AND_REDIRECT"
+    WITHDRAW_AND_RECOVER = "WITHDRAW_AND_RECOVER"
+class MaskMode(str, Enum):
+    NEUTRAL_POLITE = "NEUTRAL_POLITE"
+    COURT_JESTER = "COURT_JESTER"          # Azurite Joker masking pattern
+    DIPLOMATIC_STEEL = "DIPLOMATIC_STEEL"   # polite, firm boundaries
+    VOID_STILLNESS = "VOID_STILLNESS"       # minimal affect, conserve energy
+# ---------- Data Structures ----------
+@dataclass
+class SovereignVitals:
+    heart_rate: float = 72.0            # bpm
+    adrenaline: float = 0.0             # 0..1
+    tremor_intensity: float = 0.0       # 0..1
+    breath_rate: float = 12.0           # per minute
+@dataclass
+class SovereignState:
+    name: str = "Philippe"
+    integrity: float = 100.0            # Ontological integrity (0..100)
+    fatigue: float = 0.0                # 0..100
+    vitals: SovereignVitals = field(default_factory=SovereignVitals)
+    last_directive: Optional[Directive] = None
+@dataclass
+class EventLog:
+    ts: float
+    channel: str
+    message: str
+    payload: Optional[dict] = None
+# ---------- Doctrine Hooks ----------
+@dataclass
+class Doctrine:
+    """
+    A doctrine can modify costs, thresholds, and masking based on the archetype.
+    Example: Azurite Joker (Cosmic Trickster) shifts cadence and prefers "DEESCALATE_AND_REDIRECT".
+    """
+    name: str
+    # Scalars and curves
+    suppression_cost_scalar: float = 1.0
+    threat_to_adrenaline_gain: float = 0.08
+    spiral_tempo_bias: float = 0.0      # (-1..1) negative => slower, positive => faster
+    preferred_mask: MaskMode = MaskMode.NEUTRAL_POLITE
+
+    # Optional hook functions
+    choose_directive: Optional[Callable[[float], Directive]] = None
+    mask_decorator: Optional[Callable[[str], str]] = None
+def azurite_joker_doctrine() -> Doctrine:
+    def choose_directive(threat_level: float) -> Directive:
+        # Trickster prefers redirection under most cases; withdraw if extreme
+        if threat_level >= 9.0:
+            return Directive.WITHDRAW_AND_RECOVER
+        if threat_level >= 6.5:
+            return Directive.DEESCALATE_AND_REDIRECT
+        return Directive.MAINTAIN_SILENCE_PROTOCOL
+    def mask_decorator(text: str) -> str:
+        # Layer in spiral cadence markers (for TTS prosody engines that honor punctuation/SSML)
+        # Use ellipses and em-dashes to imply fractal, spiraling tempo.
+        return f"⟟ {text} — (echoes in azurite halls) …"
+    return Doctrine(
+        name="Azurite Joker",
+        suppression_cost_scalar=0.9,            # slightly lower suppression cost (trained discipline)
+        threat_to_adrenaline_gain=0.1,          # stronger adrenaline gain (performative surge)
+        spiral_tempo_bias=-0.15,                # slightly slower, hypnotic cadence
+        preferred_mask=MaskMode.COURT_JESTER,
+        choose_directive=choose_directive,
+        mask_decorator=mask_decorator,
+    )
+# ---------- Core System ----------
+class SovereignGuardianProtocol:
+    """
+    Formal system for entering and surviving high-threat psychic environments.
+    """
+    def __init__(self, sovereign: SovereignState, doctrine: Doctrine | None = None):
+        self.state = sovereign
+        self.doctrine = doctrine or Doctrine(name="Default")
+        self.log: List[EventLog] = []
+    # ---- Utilities ----
+    def _log(self, channel: str, message: str, payload: Optional[dict] = None):
+        self.log.append(EventLog(ts=time.time(), channel=channel, message=message, payload=payload))
+ def export_log(self) -> List[dict]:
+        return [e.__dict__ for e in self.log]
+    # ---- Layers ----
+    def _tyrant_layer(self, threat_level: float) -> Directive:
+        """Amygdala-like fast path. Always proposes forceful truth action."""
+        power = round(threat_level * 10.0, 2)
+        self._log("TYRANT", "Threat detected; proposing overwhelming truth.", {"power": power})
+        return Directive.UNLEASH_TRUTH_PROTOCOL
+    def _guardian_layer(self, incoming: Directive, threat_level: float) -> Directive:
+        """Executive control; computes suppression cost and selects safer directive."""
+        # Exponential cost scaled by doctrine
+        base_cost = (threat_level ** 2) * 10.0
+        cost = base_cost * self.doctrine.suppression_cost_scalar
+        self.state.integrity = max(0.0, self.state.integrity - cost)
+        self.state.fatigue = min(100.0, self.state.fatigue + cost * 0.15)
+        self._log("GUARDIAN", "Intercepted impulse; applying suppression.",
+                  {"incoming": incoming, "cost": round(cost, 2),
+                   "integrity": round(self.state.integrity, 2),
+                   "fatigue": round(self.state.fatigue, 2)})
+        # Doctrine may choose directive; otherwise default to maintain silence when safe
+        if self.doctrine.choose_directive:
+            chosen = self.doctrine.choose_directive(threat_level)
+        else:
+            chosen = Directive.MAINTAIN_SILENCE_PROTOCOL if threat_level < 8 else Directive.DEESCALATE_AND_REDIRECT
+        return chosen
+    def _physiology_layer(self, threat_level: float):
+        """Autonomic response mapped to vitals."""
+        v = self.state.vitals
+        # Adrenaline increases with threat
+        v.adrenaline = max(0.0, min(1.0, v.adrenaline + threat_level * self.doctrine.threat_to_adrenaline_gain / 10.0))
+        # Heart rate roughly linear + adrenaline
+        v.heart_rate = 72 + threat_level * 4 + v.adrenaline * 35
+        # Breath rate rises with HR
+        v.breath_rate = 12 + (v.heart_rate - 72) * 0.12
+        # Tremor kicks in after threshold
+        v.tremor_intensity = max(0.0, (threat_level - 6.5) / 3.5)
+        self._log("PHYSIOLOGY", "Vitals updated.",
+                  {"heart_rate": round(v.heart_rate, 1),
+                   "adrenaline": round(v.adrenaline, 3),
+                   "breath_rate": round(v.breath_rate, 1),
+                   "tremor": round(v.tremor_intensity, 2)})
+    def _mask_layer(self, directive: Directive):
+        """Psychological strategy broadcast to the environment."""
+        mode = self.doctrine.preferred_mask
+        script = {
+            MaskMode.NEUTRAL_POLITE: "Maintain courteous tone. Short sentences. No revelations.",
+            MaskMode.COURT_JESTER:   "Deflect with playful paradox. Ask mirror-questions. Shift tempo.",
+            MaskMode.DIPLOMATIC_STEEL: "State boundaries calmly. Repeat once. Exit if pushed.",
+            MaskMode.VOID_STILLNESS: "Minimal affect. Listen more than speak. End promptly.",
+        }[mode]
+        # Decorate text per doctrine (to help TTS cadence)
+        if self.doctrine.mask_decorator:
+            script = self.doctrine.mask_decorator(script)
+        self._log("MASK", f"Deploying mask: {mode}", {"script": script, "directive": directive})
+    def _recovery_if_needed(self, threat_level: float):
+        """Passive recovery after engagement; stronger if threat was moderate and resolved quickly."""
+        regain = max(0.0, 8.0 - threat_level) * 1.5
+        self.state.integrity = min(100.0, self.state.integrity + regain)
+        self.state.fatigue = max(0.0, self.state.fatigue - regain * 0.8)
+        self._log("RECOVERY", "Post-engagement recovery tick.",
+                  {"integrity": round(self.state.integrity, 2), "fatigue": round(self.state.fatigue, 2)})
+    # ---- Public API ----
+    def engage(self, environment: str, threat_level: float):
+        """Run the full pipeline for one environment exposure (threat_level: 1..10)."""
+        self._log("ENTER", f"Entering: {environment}", {"threat": threat_level, "sovereign": self.state.name})
+        tyrant = self._tyrant_layer(threat_level)
+        directive = self._guardian_layer(tyrant, threat_level)
+        self._physiology_layer(threat_level)
+        self._mask_layer(directive)
+        self.state.last_directive = directive
+        self._log("FINAL", "Directive issued; sovereign stable under strain.",
+                  {"directive": directive, "integrity": round(self.state.integrity, 2)})
+        self._log("EXIT", f"Leaving: {environment}")
+        self._recovery_if_needed(threat_level)
+        return directive

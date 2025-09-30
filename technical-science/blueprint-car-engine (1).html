@@ -1,0 +1,564 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Technical Blueprint Viewer</title>
+    <style>
+        :root {
+            --color-primary: #2c3e50;
+            --color-secondary: #3498db;
+            --color-accent: #e74c3c;
+            --color-background: #ecf0f1;
+            --color-surface: #ffffff;
+            --color-text: #2c3e50;
+            --color-text-muted: #7f8c8d;
+            --spacing-xs: 4px;
+            --spacing-sm: 8px;
+            --spacing-md: 16px;
+            --spacing-lg: 24px;
+            --spacing-xl: 32px;
+            --font-system: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+            --font-mono: 'Monaco', 'Consolas', monospace;
+            --border-radius: 4px;
+            --transition-fast: 0.15s ease;
+            --transition-standard: 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: var(--font-system);
+            background-color: var(--color-background);
+            color: var(--color-text);
+            line-height: 1.6;
+        }
+
+        .blueprint-viewer {
+            display: grid;
+            grid-template-columns: 300px 1fr;
+            grid-template-rows: auto 1fr;
+            grid-template-areas: 
+                "header header"
+                "sidebar main";
+            height: 100vh;
+        }
+
+        .blueprint-viewer__header {
+            grid-area: header;
+            background-color: var(--color-primary);
+            color: white;
+            padding: var(--spacing-md);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .blueprint-viewer__title {
+            font-size: 1.25rem;
+            font-weight: 600;
+        }
+
+        .blueprint-viewer__controls {
+            display: flex;
+            gap: var(--spacing-sm);
+        }
+
+        .btn {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            color: white;
+            padding: var(--spacing-sm) var(--spacing-md);
+            border-radius: var(--border-radius);
+            cursor: pointer;
+            font-size: 0.875rem;
+            transition: background-color var(--transition-fast);
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.1);
+        }
+
+        .btn--active {
+            background-color: var(--color-secondary);
+            border-color: var(--color-secondary);
+        }
+
+        .blueprint-viewer__sidebar {
+            grid-area: sidebar;
+            background-color: var(--color-surface);
+            border-right: 1px solid #dee2e6;
+            overflow-y: auto;
+        }
+
+        .component-list {
+            list-style: none;
+        }
+
+        .component-list__item {
+            border-bottom: 1px solid #f8f9fa;
+        }
+
+        .component-list__button {
+            width: 100%;
+            background: none;
+            border: none;
+            text-align: left;
+            padding: var(--spacing-md);
+            cursor: pointer;
+            transition: background-color var(--transition-fast);
+            font-family: inherit;
+            color: inherit;
+        }
+
+        .component-list__button:hover {
+            background-color: #f8f9fa;
+        }
+
+        .component-list__button--active {
+            background-color: var(--color-secondary);
+            color: white;
+        }
+
+        .component-list__title {
+            font-weight: 600;
+            font-size: 0.875rem;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .component-list__description {
+            font-size: 0.75rem;
+            color: var(--color-text-muted);
+            line-height: 1.4;
+        }
+
+        .component-list__button--active .component-list__description {
+            color: rgba(255, 255, 255, 0.8);
+        }
+
+        .blueprint-viewer__main {
+            grid-area: main;
+            position: relative;
+            overflow: hidden;
+            background-color: var(--color-surface);
+        }
+
+        .blueprint-canvas {
+            width: 100%;
+            height: 100%;
+            position: relative;
+            overflow: auto;
+            background-image: 
+                radial-gradient(circle, #ddd 1px, transparent 1px);
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+
+        .blueprint-drawing {
+            min-width: 800px;
+            min-height: 600px;
+            margin: var(--spacing-xl);
+            background-color: white;
+            border: 2px solid var(--color-primary);
+            border-radius: var(--border-radius);
+            position: relative;
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        }
+
+        .drawing-layer {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+        }
+
+        .drawing-layer--annotations {
+            pointer-events: all;
+        }
+
+        .annotation {
+            position: absolute;
+            background-color: var(--color-accent);
+            color: white;
+            padding: var(--spacing-xs) var(--spacing-sm);
+            border-radius: var(--border-radius);
+            font-size: 0.75rem;
+            font-weight: 600;
+            cursor: pointer;
+            transform: translate(-50%, -100%);
+            z-index: 10;
+        }
+
+        .annotation::after {
+            content: '';
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%);
+            border: 4px solid transparent;
+            border-top-color: var(--color-accent);
+        }
+
+        .component-diagram {
+            display: none;
+            width: 100%;
+            height: 100%;
+        }
+
+        .component-diagram--active {
+            display: block;
+        }
+
+        .technical-specs {
+            position: absolute;
+            bottom: var(--spacing-md);
+            right: var(--spacing-md);
+            background-color: rgba(255, 255, 255, 0.95);
+            border: 1px solid #dee2e6;
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            line-height: 1.4;
+            max-width: 300px;
+        }
+
+        .technical-specs__title {
+            font-weight: 600;
+            margin-bottom: var(--spacing-sm);
+            font-family: var(--font-system);
+        }
+
+        .technical-specs__list {
+            list-style: none;
+        }
+
+        .technical-specs__item {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: var(--spacing-xs);
+        }
+
+        .technical-specs__label {
+            color: var(--color-text-muted);
+        }
+
+        .technical-specs__value {
+            font-weight: 600;
+        }
+
+        @media (max-width: 768px) {
+            .blueprint-viewer {
+                grid-template-columns: 1fr;
+                grid-template-areas: 
+                    "header"
+                    "sidebar"
+                    "main";
+                grid-template-rows: auto auto 1fr;
+            }
+
+            .blueprint-viewer__sidebar {
+                max-height: 200px;
+            }
+
+            .component-list {
+                display: flex;
+                overflow-x: auto;
+            }
+
+            .component-list__item {
+                border-bottom: none;
+                border-right: 1px solid #f8f9fa;
+                min-width: 200px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="blueprint-viewer">
+        <header class="blueprint-viewer__header">
+            <h1 class="blueprint-viewer__title">Technical Blueprint Viewer</h1>
+            <div class="blueprint-viewer__controls">
+                <button class="btn" data-layer="construction" aria-label="Toggle construction lines">Construction</button>
+                <button class="btn btn--active" data-layer="final" aria-label="Toggle final design">Final Design</button>
+                <button class="btn" data-layer="annotations" aria-label="Toggle annotations">Annotations</button>
+            </div>
+        </header>
+
+        <aside class="blueprint-viewer__sidebar">
+            <nav aria-label="Component navigation">
+                <ul class="component-list">
+                    <li class="component-list__item">
+                        <button class="component-list__button component-list__button--active" data-component="engine-overview">
+                            <div class="component-list__title">Engine Assembly</div>
+                            <div class="component-list__description">Complete 5-cylinder turbocharged unit with integrated systems</div>
+                        </button>
+                    </li>
+                    <li class="component-list__item">
+                        <button class="component-list__button" data-component="turbocharger">
+                            <div class="component-list__title">Turbocharger Unit</div>
+                            <div class="component-list__description">KKK K26 series with wastegate control system</div>
+                        </button>
+                    </li>
+                    <li class="component-list__item">
+                        <button class="component-list__button" data-component="fuel-injection">
+                            <div class="component-list__title">Fuel Injection</div>
+                            <div class="component-list__description">Bosch LH Jetronic electronic management system</div>
+                        </button>
+                    </li>
+                    <li class="component-list__item">
+                        <button class="component-list__button" data-component="drivetrain">
+                            <div class="component-list__title">Quattro Drivetrain</div>
+                            <div class="component-list__description">Center differential and transfer case assembly</div>
+                        </button>
+                    </li>
+                </ul>
+            </nav>
+        </aside>
+
+        <main class="blueprint-viewer__main">
+            <div class="blueprint-canvas">
+                <div class="blueprint-drawing">
+                    
+                    <!-- Engine Overview Component -->
+                    <svg class="component-diagram component-diagram--active" data-component="engine-overview" viewBox="0 0 800 600" aria-labelledby="engine-overview-title">
+                        <title id="engine-overview-title">5-Cylinder Turbocharged Engine Assembly</title>
+                        
+                        <!-- Construction layer -->
+                        <g class="drawing-layer" data-layer="construction">
+                            <defs>
+                                <pattern id="construction-lines" patternUnits="userSpaceOnUse" width="40" height="40">
+                                    <path d="M 40 0 L 0 0 0 40" fill="none" stroke="#e0e0e0" stroke-width="0.5" stroke-dasharray="2,2"/>
+                                </pattern>
+                            </defs>
+                            <rect width="100%" height="100%" fill="url(#construction-lines)" opacity="0.3"/>
+                        </g>
+                        
+                        <!-- Final design layer -->
+                        <g class="drawing-layer" data-layer="final">
+                            <!-- Engine block -->
+                            <rect x="200" y="200" width="300" height="180" fill="none" stroke="#2c3e50" stroke-width="3"/>
+                            
+                            <!-- Cylinders -->
+                            <circle cx="240" cy="250" r="20" fill="none" stroke="#3498db" stroke-width="2"/>
+                            <circle cx="290" cy="250" r="20" fill="none" stroke="#3498db" stroke-width="2"/>
+                            <circle cx="340" cy="250" r="20" fill="none" stroke="#3498db" stroke-width="2"/>
+                            <circle cx="390" cy="250" r="20" fill="none" stroke="#3498db" stroke-width="2"/>
+                            <circle cx="440" cy="250" r="20" fill="none" stroke="#3498db" stroke-width="2"/>
+                            
+                            <!-- Turbocharger -->
+                            <rect x="520" y="180" width="80" height="60" fill="none" stroke="#e74c3c" stroke-width="2"/>
+                            <circle cx="560" cy="210" r="25" fill="none" stroke="#e74c3c" stroke-width="2"/>
+                            
+                            <!-- Intake manifold -->
+                            <path d="M 500 220 L 460 220 L 460 240 L 200 240" fill="none" stroke="#27ae60" stroke-width="3"/>
+                            
+                            <!-- Exhaust manifold -->
+                            <path d="M 200 280 L 460 280 L 460 200 L 520 200" fill="none" stroke="#f39c12" stroke-width="3"/>
+                            
+                            <!-- Connecting lines -->
+                            <line x1="240" y1="270" x2="240" y2="300" stroke="#2c3e50" stroke-width="1"/>
+                            <line x1="290" y1="270" x2="290" y2="300" stroke="#2c3e50" stroke-width="1"/>
+                            <line x1="340" y1="270" x2="340" y2="300" stroke="#2c3e50" stroke-width="1"/>
+                            <line x1="390" y1="270" x2="390" y2="300" stroke="#2c3e50" stroke-width="1"/>
+                            <line x1="440" y1="270" x2="440" y2="300" stroke="#2c3e50" stroke-width="1"/>
+                        </g>
+                        
+                        <!-- Annotations layer -->
+                        <g class="drawing-layer drawing-layer--annotations" data-layer="annotations">
+                            <text x="350" y="150" text-anchor="middle" font-family="Arial, sans-serif" font-size="24" font-weight="bold" fill="#2c3e50">
+                                2.1L I5 Turbocharged Engine
+                            </text>
+                            <text x="240" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d">CYL 1</text>
+                            <text x="290" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d">CYL 2</text>
+                            <text x="340" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d">CYL 3</text>
+                            <text x="390" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d">CYL 4</text>
+                            <text x="440" y="320" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#7f8c8d">CYL 5</text>
+                            <text x="560" y="260" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#e74c3c">TURBO</text>
+                        </g>
+                    </svg>
+
+                    <!-- Turbocharger Component -->
+                    <svg class="component-diagram" data-component="turbocharger" viewBox="0 0 800 600" aria-labelledby="turbo-title">
+                        <title id="turbo-title">KKK K26 Turbocharger Assembly</title>
+                        
+                        <g class="drawing-layer" data-layer="final">
+                            <!-- Turbo housing -->
+                            <circle cx="400" cy="300" r="100" fill="none" stroke="#2c3e50" stroke-width="4"/>
+                            
+                            <!-- Compressor wheel -->
+                            <circle cx="350" cy="300" r="40" fill="none" stroke="#3498db" stroke-width="3"/>
+                            <path d="M 330 280 L 370 320 M 330 320 L 370 280 M 350 260 L 350 340 M 310 300 L 390 300" stroke="#3498db" stroke-width="2"/>
+                            
+                            <!-- Turbine wheel -->
+                            <circle cx="450" cy="300" r="40" fill="none" stroke="#e74c3c" stroke-width="3"/>
+                            <path d="M 430 280 L 470 320 M 430 320 L 470 280 M 450 260 L 450 340 M 410 300 L 490 300" stroke="#e74c3c" stroke-width="2"/>
+                            
+                            <!-- Connecting shaft -->
+                            <line x1="350" y1="300" x2="450" y2="300" stroke="#2c3e50" stroke-width="6"/>
+                            
+                            <!-- Intake -->
+                            <rect x="150" y="280" width="150" height="40" fill="none" stroke="#27ae60" stroke-width="3"/>
+                            <line x1="300" y1="300" x2="350" y2="300" stroke="#27ae60" stroke-width="3"/>
+                            
+                            <!-- Exhaust -->
+                            <rect x="500" y="280" width="150" height="40" fill="none" stroke="#f39c12" stroke-width="3"/>
+                            <line x1="450" y1="300" x2="500" y2="300" stroke="#f39c12" stroke-width="3"/>
+                        </g>
+                        
+                        <g class="drawing-layer drawing-layer--annotations" data-layer="annotations">
+                            <text x="400" y="200" text-anchor="middle" font-family="Arial, sans-serif" font-size="20" font-weight="bold" fill="#2c3e50">
+                                KKK K26 Turbocharger
+                            </text>
+                            <text x="350" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#3498db">Compressor</text>
+                            <text x="450" y="250" text-anchor="middle" font-family="Arial, sans-serif" font-size="12" fill="#e74c3c">Turbine</text>
+                            <text x="225" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#27ae60">Fresh Air In</text>
+                            <text x="575" y="270" text-anchor="middle" font-family="Arial, sans-serif" font-size="10" fill="#f39c12">Exhaust In</text>
+                        </g>
+                    </svg>
+
+                    <!-- Annotations -->
+                    <div class="annotation" style="top: 25%; left: 30%" data-info="Engine block houses 5 cylinders in inline configuration">1</div>
+                    <div class="annotation" style="top: 35%; left: 70%" data-info="KKK turbocharger provides forced induction">2</div>
+                    <div class="annotation" style="top: 45%; left: 50%" data-info="Bosch LH Jetronic fuel injection system">3</div>
+
+                    <div class="technical-specs">
+                        <div class="technical-specs__title">Technical Specifications</div>
+                        <ul class="technical-specs__list">
+                            <li class="technical-specs__item">
+                                <span class="technical-specs__label">Displacement:</span>
+                                <span class="technical-specs__value">2144cc</span>
+                            </li>
+                            <li class="technical-specs__item">
+                                <span class="technical-specs__label">Configuration:</span>
+                                <span class="technical-specs__value">I5 DOHC</span>
+                            </li>
+                            <li class="technical-specs__item">
+                                <span class="technical-specs__label">Power:</span>
+                                <span class="technical-specs__value">200 HP</span>
+                            </li>
+                            <li class="technical-specs__item">
+                                <span class="technical-specs__label">Turbo:</span>
+                                <span class="technical-specs__value">KKK K26</span>
+                            </li>
+                            <li class="technical-specs__item">
+                                <span class="technical-specs__label">Fuel System:</span>
+                                <span class="technical-specs__value">LH Jetronic</span>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </main>
+    </div>
+
+    <script>
+        class BlueprintViewer {
+            constructor() {
+                this.currentComponent = 'engine-overview';
+                this.visibleLayers = new Set(['final', 'annotations']);
+                this.init();
+            }
+
+            init() {
+                this.bindEvents();
+                this.updateDisplay();
+            }
+
+            bindEvents() {
+                // Component navigation
+                document.querySelectorAll('[data-component]').forEach(button => {
+                    if (button.tagName === 'BUTTON') {
+                        button.addEventListener('click', (e) => {
+                            this.selectComponent(e.target.closest('[data-component]').dataset.component);
+                        });
+                    }
+                });
+
+                // Layer controls
+                document.querySelectorAll('[data-layer]').forEach(button => {
+                    if (button.tagName === 'BUTTON') {
+                        button.addEventListener('click', (e) => {
+                            this.toggleLayer(e.target.dataset.layer);
+                        });
+                    }
+                });
+
+                // Annotation interactions
+                document.querySelectorAll('.annotation').forEach(annotation => {
+                    annotation.addEventListener('click', (e) => {
+                        this.showAnnotationInfo(e.target.dataset.info);
+                    });
+                });
+            }
+
+            selectComponent(componentId) {
+                // Update active button
+                document.querySelectorAll('.component-list__button').forEach(btn => {
+                    btn.classList.remove('component-list__button--active');
+                });
+                document.querySelector(`[data-component="${componentId}"]`).classList.add('component-list__button--active');
+
+                // Update active diagram
+                document.querySelectorAll('.component-diagram').forEach(diagram => {
+                    diagram.classList.remove('component-diagram--active');
+                });
+                document.querySelector(`svg[data-component="${componentId}"]`).classList.add('component-diagram--active');
+
+                this.currentComponent = componentId;
+                this.updateDisplay();
+            }
+
+            toggleLayer(layerId) {
+                const button = document.querySelector(`button[data-layer="${layerId}"]`);
+                
+                if (this.visibleLayers.has(layerId)) {
+                    this.visibleLayers.delete(layerId);
+                    button.classList.remove('btn--active');
+                } else {
+                    this.visibleLayers.add(layerId);
+                    button.classList.add('btn--active');
+                }
+
+                this.updateDisplay();
+            }
+
+            updateDisplay() {
+                // Update layer visibility
+                document.querySelectorAll('.drawing-layer').forEach(layer => {
+                    const layerType = layer.dataset.layer;
+                    if (this.visibleLayers.has(layerType)) {
+                        layer.style.display = 'block';
+                    } else {
+                        layer.style.display = 'none';
+                    }
+                });
+            }
+
+            showAnnotationInfo(info) {
+                if (info) {
+                    alert(info); // In a real application, this would show a proper tooltip or modal
+                }
+            }
+        }
+
+        // Initialize the blueprint viewer when DOM is loaded
+        document.addEventListener('DOMContentLoaded', () => {
+            new BlueprintViewer();
+        });
+
+        // Keyboard navigation
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                // Close any open modals or tooltips
+            }
+        });
+    </script>
+</body>
+</html>

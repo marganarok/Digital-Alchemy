@@ -1,0 +1,787 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <script src="qrc:///qtwebchannel/qwebchannel.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personal Audit Methodology Framework</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Arial', sans-serif;
+            background: linear-gradient(135deg, #1a1a1a, #2d2d2d);
+            color: #e0e0e0;
+            line-height: 1.6;
+            min-height: 100vh;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(64, 224, 208, 0.1), rgba(255, 20, 147, 0.1));
+            border-radius: 15px;
+            border: 1px solid rgba(64, 224, 208, 0.3);
+        }
+
+        .main-title {
+            font-size: clamp(2rem, 5vw, 3.5rem);
+            font-weight: bold;
+            color: #40e0d0;
+            margin-bottom: 1rem;
+            text-shadow: 0 0 20px rgba(64, 224, 208, 0.5);
+        }
+
+        .subtitle {
+            font-size: 1.2rem;
+            color: #b0b0b0;
+            font-weight: 300;
+        }
+
+        .framework-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+            margin-bottom: 3rem;
+        }
+
+        .framework-card {
+            background: linear-gradient(135deg, rgba(64, 224, 208, 0.05), rgba(255, 20, 147, 0.05));
+            border: 1px solid rgba(64, 224, 208, 0.2);
+            border-radius: 12px;
+            padding: 2rem;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .framework-card:hover {
+            transform: translateY(-5px);
+            border-color: rgba(64, 224, 208, 0.4);
+            box-shadow: 0 10px 30px rgba(64, 224, 208, 0.2);
+        }
+
+        .card-icon {
+            font-size: 2.5rem;
+            margin-bottom: 1rem;
+            color: #ff1493;
+        }
+
+        .card-title {
+            font-size: 1.4rem;
+            color: #40e0d0;
+            margin-bottom: 1rem;
+            font-weight: bold;
+        }
+
+        .card-content {
+            color: #c0c0c0;
+            margin-bottom: 1.5rem;
+        }
+
+        .implementation-steps {
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            border-left: 3px solid #40e0d0;
+        }
+
+        .implementation-steps ol {
+            margin-left: 1.5rem;
+        }
+
+        .implementation-steps li {
+            margin: 0.5rem 0;
+            color: #e0e0e0;
+        }
+
+        .timeline-section {
+            margin: 3rem 0;
+            padding: 2rem;
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.05), rgba(64, 224, 208, 0.05));
+            border-radius: 15px;
+            border: 1px solid rgba(255, 20, 147, 0.2);
+        }
+
+        .section-title {
+            font-size: 2rem;
+            color: #ff1493;
+            text-align: center;
+            margin-bottom: 2rem;
+            font-weight: bold;
+        }
+
+        .timeline-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+            gap: 1rem;
+            margin: 2rem 0;
+        }
+
+        .timeline-segment {
+            background: rgba(0, 0, 0, 0.4);
+            border: 1px solid rgba(64, 224, 208, 0.3);
+            border-radius: 8px;
+            padding: 1rem;
+            text-align: center;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .timeline-segment:hover {
+            border-color: #40e0d0;
+            transform: scale(1.05);
+        }
+
+        .segment-number {
+            font-weight: bold;
+            color: #40e0d0;
+            font-size: 1.1rem;
+        }
+
+        .segment-days {
+            color: #b0b0b0;
+            font-size: 0.9rem;
+        }
+
+        .audit-categories {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+            margin: 2rem 0;
+        }
+
+        .category-box {
+            background: rgba(0, 0, 0, 0.3);
+            border: 1px solid rgba(255, 20, 147, 0.3);
+            border-radius: 10px;
+            padding: 1.5rem;
+            text-align: center;
+        }
+
+        .category-title {
+            color: #ff1493;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .category-desc {
+            color: #c0c0c0;
+            font-size: 0.9rem;
+        }
+
+        .methodology-flow {
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.6), rgba(64, 224, 208, 0.1));
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            border: 1px solid rgba(64, 224, 208, 0.2);
+        }
+
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin: 1.5rem 0;
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 8px;
+            border-left: 3px solid #40e0d0;
+        }
+
+        .step-number {
+            background: #40e0d0;
+            color: #000;
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: bold;
+            margin-right: 1rem;
+            flex-shrink: 0;
+        }
+
+        .step-content {
+            flex-grow: 1;
+        }
+
+        .step-title {
+            color: #ff1493;
+            font-weight: bold;
+            margin-bottom: 0.5rem;
+        }
+
+        .interactive-section {
+            background: linear-gradient(135deg, rgba(255, 20, 147, 0.1), rgba(64, 224, 208, 0.1));
+            border-radius: 15px;
+            padding: 2rem;
+            margin: 3rem 0;
+            text-align: center;
+            border: 1px solid rgba(255, 20, 147, 0.3);
+        }
+
+        .action-button {
+            background: linear-gradient(45deg, #40e0d0, #ff1493);
+            border: none;
+            color: #000;
+            font-weight: bold;
+            padding: 1rem 2rem;
+            border-radius: 25px;
+            cursor: pointer;
+            margin: 0.5rem;
+            transition: all 0.3s ease;
+            font-size: 1rem;
+        }
+
+        .action-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(64, 224, 208, 0.4);
+        }
+
+        .template-section {
+            background: rgba(0, 0, 0, 0.4);
+            border-radius: 12px;
+            padding: 2rem;
+            margin: 2rem 0;
+            border: 1px solid rgba(64, 224, 208, 0.2);
+        }
+
+        .code-block {
+            background: #1a1a1a;
+            border: 1px solid #333;
+            border-radius: 8px;
+            padding: 1.5rem;
+            font-family: 'Courier New', monospace;
+            color: #00ff00;
+            overflow-x: auto;
+            margin: 1rem 0;
+        }
+
+        @media (max-width: 768px) {
+            .framework-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .timeline-grid {
+                grid-template-columns: repeat(4, 1fr);
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header class="header">
+            <h1 class="main-title">PERSONAL AUDIT METHODOLOGY</h1>
+            <p class="subtitle">Evidence-Based Framework for Self-Analysis & Pattern Recognition</p>
+        </header>
+
+        <section class="framework-grid">
+            <div class="framework-card">
+                <div class="card-icon">📊</div>
+                <h3 class="card-title">DUAL-PERSPECTIVE ANALYSIS</h3>
+                <p class="card-content">
+                    Simultaneous tactical and emotional analysis of experiences. Two distinct viewpoints prevent single-source bias and provide comprehensive understanding.
+                </p>
+                <div class="implementation-steps">
+                    <strong>Implementation:</strong>
+                    <ol>
+                        <li>Document events from tactical/strategic perspective</li>
+                        <li>Analyze same events from emotional/psychological angle</li>
+                        <li>Compare findings for contradictions or blind spots</li>
+                        <li>Synthesize insights from both perspectives</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="framework-card">
+                <div class="card-icon">🗓️</div>
+                <h3 class="card-title">TIMELINE SEGMENTATION</h3>
+                <p class="card-content">
+                    Breaking extended periods into manageable chunks prevents overwhelm and enables pattern recognition across different time scales.
+                </p>
+                <div class="implementation-steps">
+                    <strong>120-Day Structure:</strong>
+                    <ol>
+                        <li>Divide total period into 12 segments of 10 days each</li>
+                        <li>Assign each segment a focus area or theme</li>
+                        <li>Document key events within each segment</li>
+                        <li>Identify patterns across segments</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="framework-card">
+                <div class="card-icon">🔍</div>
+                <h3 class="card-title">BEHAVIORAL PATTERN MAPPING</h3>
+                <p class="card-content">
+                    Systematic documentation of repeated behaviors without emotional interpretation or motive assignment. Focus on observable actions and their effects.
+                </p>
+                <div class="implementation-steps">
+                    <strong>Documentation Method:</strong>
+                    <ol>
+                        <li>Record specific behaviors without interpretation</li>
+                        <li>Note frequency and context of patterns</li>
+                        <li>Track outcomes and consequences</li>
+                        <li>Avoid assigning motivation or intent</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="framework-card">
+                <div class="card-icon">🔄</div>
+                <h3 class="card-title">FAILURE-TO-UPGRADE PROTOCOL</h3>
+                <p class="card-content">
+                    Reframing setbacks as mandatory system improvements. Extract architectural lessons from every failure point.
+                </p>
+                <div class="implementation-steps">
+                    <strong>Phoenix Protocol:</strong>
+                    <ol>
+                        <li>Document what broke and why</li>
+                        <li>Identify structural weaknesses exposed</li>
+                        <li>Design improved architecture</li>
+                        <li>Implement with lessons integrated</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="framework-card">
+                <div class="card-icon">📝</div>
+                <h3 class="card-title">EVIDENCE-BASED VALIDATION</h3>
+                <p class="card-content">
+                    Creating objective documentation trails that can withstand external scrutiny. Data for others, not self-validation.
+                </p>
+                <div class="implementation-steps">
+                    <strong>Validation Process:</strong>
+                    <ol>
+                        <li>Document decisions and reasoning</li>
+                        <li>Record measurable outcomes</li>
+                        <li>Maintain audit trails for review</li>
+                        <li>Enable external verification</li>
+                    </ol>
+                </div>
+            </div>
+
+            <div class="framework-card">
+                <div class="card-icon">🎯</div>
+                <h3 class="card-title">NON-ATTACHMENT PROCESSING</h3>
+                <p class="card-content">
+                    Evaluating experiences without ego investment in outcomes. Farmer's perspective: "Good, bad, who's to say?"
+                </p>
+                <div class="implementation-steps">
+                    <strong>Detachment Method:</strong>
+                    <ol>
+                        <li>Separate observation from emotional reaction</li>
+                        <li>Focus on data rather than personal impact</li>
+                        <li>Accept all outcomes as information</li>
+                        <li>Extract lessons without self-judgment</li>
+                    </ol>
+                </div>
+            </div>
+        </section>
+
+        <section class="timeline-section">
+            <h2 class="section-title">120-DAY AUDIT STRUCTURE</h2>
+            <p style="text-align: center; margin-bottom: 2rem; color: #c0c0c0;">
+                Systematic breakdown of extended periods into manageable analysis segments
+            </p>
+            
+            <div class="timeline-grid">
+                <div class="timeline-segment" onclick="highlightSegment(this, '1-10')">
+                    <div class="segment-number">1</div>
+                    <div class="segment-days">Days 1-10</div>
+                </div>
+                <div class="timeline-segment" onclick="highlightSegment(this, '11-20')">
+                    <div class="segment-number">2</div>
+                    <div class="segment-days">Days 11-20</div>
+                </div>
+                <div class="timeline-segment" onclick="highlightSegment(this, '21-30')">
+                    <div class="segment-number">3</div>
+                    <div class="segment-days">Days 21-30</div>
+                </div>
+                <div class="timeline-segment" onclick="highlightSegment(this, '31-40')">
+                    <div class="segment-number">4</div>
+                    <div class="segment-days">Days 31-40</div>
+                </div>
+                <div class="timeline-segment" onclick="highlightSegment(this, '41-50')">
+                    <div class="segment-number">5</div>
+                    <div class="segment-days">Days 41-50</div>
+                </div>
+                <div class="timeline-segment" onclick="highlightSegment(this, '51-60')">
+                    <div class="segment-number">6</div>
+                    <div class="segment-days">Days 51-60</div>
+                </div>
+                <div class="timeline-segment" onclick="highlightSegment(this, '61-70')">
+                    <div class="segment-number">7</div>
+                    <div class="segment-days">Days 61-70</div>
+                </div>
+                <div class="timeline-segment" onclick="highlightSegment(this, '71-80')">
+                    <div class="segment-number">8</div>
+                    <div class="segment-days">Days 71-80</div>
+                </div>
+                <div class="timeline-segment" onclick="highlightSegment(this, '81-90')">
+                    <div class="segment-number">9</div>
+                    <div class="segment-days">Days 81-90</div>
+                </div>
+                <div class="timeline-segment" onclick="highlightSegment(this, '91-100')">
+                    <div class="segment-number">10</div>
+                    <div class="segment-days">Days 91-100</div>
+                </div>
+                <div class="timeline-segment" onclick="highlightSegment(this, '101-110')">
+                    <div class="segment-number">11</div>
+                    <div class="segment-days">Days 101-110</div>
+                </div>
+                <div class="timeline-segment" onclick="highlightSegment(this, '111-120')">
+                    <div class="segment-number">12</div>
+                    <div class="segment-days">Days 111-120</div>
+                </div>
+            </div>
+
+            <div class="audit-categories">
+                <h3 style="color: #40e0d0; text-align: center; margin-bottom: 1.5rem;">Core Audit Categories</h3>
+                <div class="category-box">
+                    <div class="category-title">Key Experiences & Milestones</div>
+                    <div class="category-desc">Major events, changes, achievements</div>
+                </div>
+                <div class="category-box">
+                    <div class="category-title">Growth & Learning</div>
+                    <div class="category-desc">Skills developed, insights gained</div>
+                </div>
+                <div class="category-box">
+                    <div class="category-title">Challenges & Responses</div>
+                    <div class="category-desc">Obstacles faced, solutions applied</div>
+                </div>
+                <div class="category-box">
+                    <div class="category-title">Relationships & Connections</div>
+                    <div class="category-desc">Social dynamics, relationship evolution</div>
+                </div>
+                <div class="category-box">
+                    <div class="category-title">Daily Patterns & Habits</div>
+                    <div class="category-desc">Routines, behaviors, lifestyle patterns</div>
+                </div>
+                <div class="category-box">
+                    <div class="category-title">Goals & Priorities</div>
+                    <div class="category-desc">Focus shifts, objective evolution</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="methodology-flow">
+            <h2 class="section-title">AUDIT METHODOLOGY FLOW</h2>
+            
+            <div class="flow-step">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <div class="step-title">DATA COLLECTION</div>
+                    <p>Gather raw information without interpretation. Focus on facts, behaviors, outcomes, and measurable results.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <div class="step-title">DUAL-PERSPECTIVE ANALYSIS</div>
+                    <p>Examine data from both tactical/strategic and emotional/psychological viewpoints to identify blind spots.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <div class="step-title">PATTERN RECOGNITION</div>
+                    <p>Identify recurring themes, behaviors, and outcomes across time segments without assigning causation.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">4</div>
+                <div class="step-content">
+                    <div class="step-title">STRUCTURAL ASSESSMENT</div>
+                    <p>Evaluate whether current systems, approaches, or frameworks are producing desired outcomes.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">5</div>
+                <div class="step-content">
+                    <div class="step-title">ARCHITECTURAL REDESIGN</div>
+                    <p>Based on failure points and successful patterns, design improved approaches for future implementation.</p>
+                </div>
+            </div>
+
+            <div class="flow-step">
+                <div class="step-number">6</div>
+                <div class="step-content">
+                    <div class="step-title">VALIDATION & DOCUMENTATION</div>
+                    <p>Create evidence trails that can withstand external review and provide accountability for future decisions.</p>
+                </div>
+            </div>
+        </section>
+
+        <section class="template-section">
+            <h2 class="section-title">AUDIT TEMPLATE STRUCTURE</h2>
+            
+            <div class="code-block">
+ADAPTIVE AUDIT ENTRY TEMPLATE:
+
+[DATE] - [SEGMENT NUMBER] - [COMPLEXITY LEVEL: Simple/Standard/Deep]
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+CONTEXT ASSESSMENT:
+• Situation type: [Relationship/Work/Creative/Crisis/Routine/Mixed]
+• Stakes level: [Low/Medium/High/Critical]
+• Available data quality: [Complete/Partial/Limited/Unclear]
+
+CORE OBSERVATIONS:
+┌── CLEAR FACTS ──┐
+• Observable actions and measurable outcomes
+• Concrete decisions made and their direct results
+• Verifiable timeline of events
+• External factors that can be documented
+
+┌── INTERPRETATIONS ──┐
+• Emotional states and their apparent triggers
+• Motivations inferred from behavior patterns
+• Relationship dynamics and communication analysis
+• Strategic reasoning behind decisions
+
+┌── MIXED/UNCERTAIN ──┐
+• Situations where tactical and emotional factors intertwined
+• Events where cause-effect relationships are unclear
+• Patterns that don't fit standard categories
+• Data points requiring further observation
+
+CROSS-CATEGORY CONNECTIONS:
+• How emotions influenced tactical decisions:
+• How strategic choices affected emotional state:
+• Feedback loops between different factors:
+• Unexpected interactions between categories:
+
+COMPLEXITY-SPECIFIC ANALYSIS:
+[AUTO-EXPANDS BASED ON SITUATION TYPE]
+▼ Relationship Dynamics (if applicable):
+• Communication patterns and effectiveness
+• Boundary management and respect levels
+• Power dynamics and influence flows
+• Attachment/detachment patterns
+
+▼ Performance/Work Analysis (if applicable):
+• Resource utilization and efficiency
+• Goal alignment and priority management
+• Skill application and development gaps
+• System/process effectiveness
+
+▼ Creative/Innovation Assessment (if applicable):
+• Inspiration sources and creative blocks
+• Process effectiveness and flow states
+• Output quality and innovation level
+• Learning and skill integration
+
+STRUCTURAL REVIEW:
+• What systems/approaches worked effectively:
+• What frameworks failed or created problems:
+• Dependencies that caused vulnerabilities:
+• Architecture that proved resilient:
+
+UNCERTAINTY ACKNOWLEDGMENT:
+• What I'm not sure about:
+• Areas requiring more data:
+• Analysis limitations and blind spots:
+• Assumptions that need testing:
+
+LESSONS EXTRACTED:
+• Key insights with confidence levels (High/Medium/Low):
+• Applicable principles for future scenarios:
+• Warning signs to monitor going forward:
+• Success patterns to replicate:
+
+NEXT ITERATION DESIGN:
+• High-confidence improvements to implement:
+• Systems to modify or replace:
+• Experiments to run before committing to changes:
+• Validation methods for measuring success:
+
+FOLLOW-UP TRACKING:
+• Patterns to monitor in next segments:
+• Questions to revisit with more data:
+• Hypotheses to test through action:
+• Success metrics to track:
+            </div>
+        </section>
+
+        <section class="interactive-section">
+            <h2 class="section-title">FRAMEWORK IMPLEMENTATION</h2>
+            <p style="margin-bottom: 2rem; color: #c0c0c0;">
+                Transform this methodology into actionable practice for systematic self-improvement
+            </p>
+            
+            <button class="action-button" onclick="generateTemplate()">GENERATE AUDIT TEMPLATE</button>
+            <button class="action-button" onclick="startTimeline()">BEGIN 120-DAY ANALYSIS</button>
+            <button class="action-button" onclick="showValidation()">VIEW VALIDATION CHECKLIST</button>
+        </section>
+    </div>
+
+    <script>
+        // QWebChannel bridge setup
+        let auditBridge = null;
+        if (typeof qt !== 'undefined') {
+            new QWebChannel(qt.webChannelTransport, function(channel) {
+                auditBridge = channel.objects.auditBridge;
+                window.auditBridge = auditBridge;
+            });
+        }
+
+        function highlightSegment(element, dayRange) {
+            // Remove previous highlights
+            document.querySelectorAll('.timeline-segment').forEach(seg => {
+                seg.style.borderColor = 'rgba(64, 224, 208, 0.3)';
+                seg.style.backgroundColor = 'rgba(0, 0, 0, 0.4)';
+            });
+            
+            // Highlight selected segment
+            element.style.borderColor = '#40e0d0';
+            element.style.backgroundColor = 'rgba(64, 224, 208, 0.1)';
+            
+            // Show segment details
+            showSegmentDetails(dayRange);
+        }
+
+        function showSegmentDetails(dayRange) {
+            const detailsArea = document.createElement('div');
+            detailsArea.innerHTML = `
+                <div style="background: rgba(64, 224, 208, 0.1); padding: 1rem; border-radius: 8px; margin-top: 1rem; border: 1px solid rgba(64, 224, 208, 0.3);">
+                    <h4 style="color: #40e0d0; margin-bottom: 0.5rem;">SEGMENT ANALYSIS: Days ${dayRange}</h4>
+                    <p style="color: #c0c0c0;">Click to focus audit analysis on this time period. Document key experiences, patterns, and insights specific to these 10 days.</p>
+                </div>
+            `;
+            
+            // Remove existing details
+            const existing = document.querySelector('.segment-details');
+            if (existing) existing.remove();
+            
+            detailsArea.className = 'segment-details';
+            document.querySelector('.timeline-section').appendChild(detailsArea);
+        }
+
+        function generateTemplate() {
+            const template = `
+PERSONAL AUDIT ENTRY
+Date: ${new Date().toLocaleDateString()}
+Segment: [X/12]
+
+TACTICAL ANALYSIS:
+────────────────────
+• Facts observed:
+• Decisions made:
+• Outcomes measured:
+• System performance:
+
+EMOTIONAL ANALYSIS:
+─────────────────────
+• Emotional patterns:
+• Stress responses:
+• Motivation factors:
+• Growth indicators:
+
+BEHAVIORAL PATTERNS:
+──────────────────────
+• Recurring actions:
+• Response triggers:
+• Consistency checks:
+• External influences:
+
+STRUCTURAL REVIEW:
+────────────────────
+• What worked:
+• What failed:
+• Vulnerabilities:
+• Resilient elements:
+
+LESSONS LEARNED:
+──────────────────
+• Key insights:
+• Future applications:
+• Warning signs:
+• Success patterns:
+
+NEXT ITERATION:
+─────────────────
+• Improvements:
+• System changes:
+• New protocols:
+• Validation methods:
+            `;
+            
+            navigator.clipboard.writeText(template).then(() => {
+                alert('Audit template copied to clipboard!');
+            });
+        }
+
+        function startTimeline() {
+            const segments = document.querySelectorAll('.timeline-segment');
+            segments.forEach((segment, index) => {
+                setTimeout(() => {
+                    segment.style.animation = 'pulse 0.5s ease-in-out';
+                    segment.style.borderColor = '#ff1493';
+                    setTimeout(() => {
+                        segment.style.borderColor = 'rgba(64, 224, 208, 0.3)';
+                        segment.style.animation = '';
+                    }, 500);
+                }, index * 100);
+            });
+        }
+
+        function showValidation() {
+            const validation = document.createElement('div');
+            validation.innerHTML = `
+                <div style="background: rgba(255, 20, 147, 0.1); padding: 2rem; border-radius: 12px; margin-top: 2rem; border: 1px solid rgba(255, 20, 147, 0.3);">
+                    <h4 style="color: #ff1493; margin-bottom: 1rem;">AUDIT VALIDATION CHECKLIST</h4>
+                    <ul style="color: #c0c0c0; line-height: 1.8;">
+                        <li>✓ All claims supported by specific evidence</li>
+                        <li>✓ Emotional reactions separated from factual observations</li>
+                        <li>✓ Patterns documented across multiple time segments</li>
+                        <li>✓ Both positive and negative outcomes included</li>
+                        <li>✓ External perspectives considered where possible</li>
+                        <li>✓ Structural failures analyzed for improvement opportunities</li>
+                        <li>✓ Success patterns identified for replication</li>
+                        <li>✓ Documentation trail enables external review</li>
+                    </ul>
+                </div>
+            `;
+            
+            // Remove existing validation
+            const existing = document.querySelector('.validation-details');
+            if (existing) existing.remove();
+            
+            validation.className = 'validation-details';
+            document.querySelector('.interactive-section').appendChild(validation);
+        }
+
+        // Add CSS animation keyframes
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: scale(1); }
+                50% { transform: scale(1.1); }
+                100% { transform: scale(1); }
+            }
+        `;
+        document.head.appendChild(style);
+    </script>
+</body>
+</html>

@@ -1,0 +1,1294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Noble Bloodlines of Čachtice: Genealogical Archive</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 25%, #16213e 50%, #3d2c4d 75%, #5c4b5a 100%);
+            color: #f4f1e8;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            background: rgba(0,0,0,0.4);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 3px solid #d4af37;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(212,175,55,0.1) 0%, transparent 70%);
+            animation: rotate 25s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 4rem;
+            color: #d4af37;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.9);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            font-variant: small-caps;
+        }
+        
+        .header .subtitle {
+            font-size: 1.4rem;
+            color: #f4f1e8;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            gap: 12px;
+        }
+        
+        .nav-tab {
+            padding: 18px 30px;
+            background: rgba(22,33,62,0.8);
+            color: #f4f1e8;
+            border: 2px solid #d4af37;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .nav-tab:hover, .nav-tab.active {
+            background: #d4af37;
+            color: #0f0f23;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(212,175,55,0.4);
+        }
+        
+        .content-section {
+            display: none;
+            background: rgba(0,0,0,0.5);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #d4af37;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .card {
+            background: rgba(22,33,62,0.4);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #16213e;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(212,175,55,0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .card:hover::before {
+            left: 100%;
+        }
+        
+        .card:hover {
+            border-color: #d4af37;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .card h3 {
+            color: #d4af37;
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #d4af37;
+            padding-bottom: 10px;
+        }
+        
+        .family-tree {
+            background: rgba(0,0,0,0.6);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 2px solid #d4af37;
+        }
+        
+        .generation {
+            margin: 25px 0;
+            padding: 20px;
+            background: rgba(22,33,62,0.3);
+            border-radius: 10px;
+            border-left: 4px solid #d4af37;
+        }
+        
+        .generation h4 {
+            color: #d4af37;
+            font-size: 1.3rem;
+            margin-bottom: 15px;
+            text-transform: uppercase;
+        }
+        
+        .person {
+            display: inline-block;
+            margin: 8px 15px;
+            padding: 12px 20px;
+            background: rgba(212,175,55,0.2);
+            border: 1px solid #d4af37;
+            border-radius: 8px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+        
+        .person:hover {
+            background: rgba(212,175,55,0.4);
+            transform: scale(1.05);
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #d4af37, #16213e, #d4af37);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 35px;
+            padding: 25px;
+            background: rgba(22,33,62,0.4);
+            border-radius: 12px;
+            border-left: 5px solid #d4af37;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -42px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            background: #d4af37;
+            border-radius: 50%;
+            border: 4px solid #0f0f23;
+            box-shadow: 0 0 10px rgba(212,175,55,0.5);
+        }
+        
+        .timeline-year {
+            color: #d4af37;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        
+        .heraldic-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .heraldic-item {
+            background: rgba(0,0,0,0.6);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 3px solid #16213e;
+            transition: all 0.3s ease;
+        }
+        
+        .heraldic-item:hover {
+            border-color: #d4af37;
+            transform: scale(1.03);
+        }
+        
+        .heraldic-shield {
+            font-size: 4rem;
+            color: #d4af37;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+        
+        .quote-box {
+            background: linear-gradient(45deg, rgba(212,175,55,0.1), rgba(22,33,62,0.1));
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 6px solid #d4af37;
+            margin: 30px 0;
+            font-style: italic;
+            font-size: 1.15rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .highlight {
+            background: rgba(212,175,55,0.3);
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #d4af37;
+            font-weight: bold;
+        }
+        
+        .research-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+        
+        .tool-button {
+            display: block;
+            padding: 18px;
+            background: rgba(22,33,62,0.7);
+            color: #f4f1e8;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #16213e;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .tool-button:hover {
+            background: #d4af37;
+            color: #0f0f23;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(212,175,55,0.4);
+        }
+        
+        .floating-symbols {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-symbol {
+            position: absolute;
+            color: rgba(212,175,55,0.08);
+            font-size: 2.5rem;
+            animation: float 18s infinite linear;
+        }
+        
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(-150px) rotate(360deg);
+            }
+        }
+        
+        .coat-of-arms {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .heraldic-display {
+            font-size: 6rem;
+            color: #d4af37;
+            text-shadow: 
+                4px 4px 0px #16213e,
+                8px 8px 15px rgba(0,0,0,0.9);
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            display: inline-block;
+            transform: perspective(150px) rotateX(10deg);
+            margin: 25px;
+            transition: all 0.4s ease;
+        }
+        
+        .heraldic-display:hover {
+            transform: perspective(150px) rotateX(0deg) scale(1.15);
+            color: #f4d03f;
+        }
+        
+        .marriage-web {
+            background: rgba(0,0,0,0.7);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 2px solid #d4af37;
+        }
+        
+        .marriage-connection {
+            display: flex;
+            align-items: center;
+            margin: 15px 0;
+            padding: 15px;
+            background: rgba(22,33,62,0.3);
+            border-radius: 8px;
+            border-left: 3px solid #d4af37;
+        }
+        
+        .family-name {
+            font-weight: bold;
+            color: #d4af37;
+            font-size: 1.1rem;
+        }
+        
+        .connection-arrow {
+            margin: 0 20px;
+            color: #d4af37;
+            font-size: 1.5rem;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .heraldic-display {
+                font-size: 3.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-symbols">
+        <div class="floating-symbol" style="left: 5%; animation-delay: 0s;">⚜️</div>
+        <div class="floating-symbol" style="left: 15%; animation-delay: 2s;">👑</div>
+        <div class="floating-symbol" style="left: 25%; animation-delay: 4s;">🏰</div>
+        <div class="floating-symbol" style="left: 35%; animation-delay: 6s;">🛡️</div>
+        <div class="floating-symbol" style="left: 45%; animation-delay: 8s;">⚔️</div>
+        <div class="floating-symbol" style="left: 55%; animation-delay: 10s;">📜</div>
+        <div class="floating-symbol" style="left: 65%; animation-delay: 12s;">💍</div>
+        <div class="floating-symbol" style="left: 75%; animation-delay: 14s;">🦅</div>
+        <div class="floating-symbol" style="left: 85%; animation-delay: 16s;">💎</div>
+        <div class="floating-symbol" style="left: 95%; animation-delay: 18s;">🗡️</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>NOBLE BLOODLINES</h1>
+            <div class="subtitle">Genealogical Archives of Čachtice Castle • Medieval Hungarian Nobility • Family Networks & Alliances</div>
+            <div class="coat-of-arms">
+                <div class="heraldic-display">⚜️</div>
+                <div class="heraldic-display">🛡️</div>
+                <div class="heraldic-display">👑</div>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('overview')">Overview</div>
+            <div class="nav-tab" onclick="showSection('koszegi')">Kőszegi Line</div>
+            <div class="nav-tab" onclick="showSection('nadasdy')">Nádasdy Dynasty</div>
+            <div class="nav-tab" onclick="showSection('bathory')">Báthory Lineage</div>
+            <div class="nav-tab" onclick="showSection('marriages')">Marriage Networks</div>
+            <div class="nav-tab" onclick="showSection('heraldry')">Heraldry</div>
+            <div class="nav-tab" onclick="showSection('research')">Research</div>
+        </div>
+
+        <div id="overview" class="content-section active">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">Genealogical Overview</h2>
+            
+            <div class="quote-box">
+                "The noble families of Čachtice Castle represent some of the most powerful bloodlines in medieval Hungary, their genealogies intertwined with the political and military history of Central Europe."
+                <strong>— Hungarian Genealogical Society</strong>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Primary Family Lines</h3>
+                    <p>Three major noble dynasties controlled Čachtice Castle across its medieval history:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Kőszegi Family</span> (1253-1390s) - Original holders</li>
+                        <li>• <span class="highlight">Nádasdy Dynasty</span> (1390s-1575) - Major expansion period</li>
+                        <li>• <span class="highlight">Báthory Lineage</span> (1575-1614) - Final noble ownership</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Genealogical Significance</h3>
+                    <p>These families represent the apex of Hungarian nobility:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Royal connections</span> - Marriage ties to Hungarian royalty</li>
+                        <li>• <span class="highlight">Pan-European alliances</span> - Links to Austrian, Polish nobility</li>
+                        <li>• <span class="highlight">Military leadership</span> - Commanders in Ottoman wars</li>
+                        <li>• <span class="highlight">Political influence</span> - Advisors to kings and emperors</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Research Challenges</h3>
+                    <p>Medieval genealogy presents unique obstacles:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Incomplete records</span> - Wars destroyed many documents</li>
+                        <li>• <span class="highlight">Name variations</span> - Latin, Hungarian, German spellings</li>
+                        <li>• <span class="highlight">Political bias</span> - Records influenced by contemporary politics</li>
+                        <li>• <span class="highlight">Marriage politics</span> - Alliances sometimes obscure bloodlines</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Documentary Sources</h3>
+                    <p>Primary genealogical evidence includes:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Royal charters</span> - Land grants and confirmations</li>
+                        <li>• <span class="highlight">Church records</span> - Baptisms, marriages, burials</li>
+                        <li>• <span class="highlight">Estate inventories</span> - Property transfer documents</li>
+                        <li>• <span class="highlight">Contemporary chronicles</span> - Historical narratives</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="family-tree">
+                <h3 style="color: #d4af37; margin-bottom: 20px;">Castle Ownership Timeline</h3>
+                <div class="generation">
+                    <h4>13th-14th Century: Kőszegi Era</h4>
+                    <div class="person">Iván Kőszegi (1253+)</div>
+                    <div class="person">Henrik Kőszegi</div>
+                    <div class="person">János Kőszegi</div>
+                    <div class="person">Multiple Heirs</div>
+                </div>
+                <div class="generation">
+                    <h4>15th-16th Century: Nádasdy Dynasty</h4>
+                    <div class="person">Nádasdy Tamás (Elder)</div>
+                    <div class="person">Nádasdy Ferenc (Black Knight)</div>
+                    <div class="person">Nádasdy Tamás (Younger)</div>
+                </div>
+                <div class="generation">
+                    <h4>Late 16th - Early 17th Century: Báthory Period</h4>
+                    <div class="person">György Báthory</div>
+                    <div class="person">Erzsébet Báthory</div>
+                    <div class="person">Habsburg Confiscation (1614)</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="koszegi" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">The Kőszegi Lineage</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1200s-1253</div>
+                    <strong>Origins & Early Power</strong><br>
+                    The Kőszegi family emerged as one of Hungary's most powerful baronial families during the reign of King Béla IV. <span class="highlight">Iván Kőszegi</span> was among the first documented holders of Čachtice.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1253</div>
+                    <strong>First Castle Documentation</strong><br>
+                    Castle first appears in royal documents as <span class="highlight">"Castrum Cheh"</span> in Kőszegi possession. The family controlled vast estates across western Hungary.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1270s-1290s</div>
+                    <strong>Henrik & János Kőszegi</strong><br>
+                    Brothers <span class="highlight">Henrik</span> and <span class="highlight">János Kőszegi</span> expanded family influence. Henrik served as Ban of Slavonia, while János commanded military campaigns.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1300-1350</div>
+                    <strong>Fragmentation Period</strong><br>
+                    Kőszegi estates began dividing among multiple heirs. Čachtice passed through several <span class="highlight">junior branches</span> of the family.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1350-1390</div>
+                    <strong>Decline & Transfer</strong><br>
+                    Economic pressures and political changes weakened Kőszegi control. The castle eventually passed to the <span class="highlight">Nádasdy family</span> through marriage or purchase.
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Kőszegi Family Characteristics</h3>
+                    <p>Key traits of this powerful baronial line:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Military prowess</span> - Renowned battlefield commanders</li>
+                        <li>• <span class="highlight">Strategic marriages</span> - Allied with royal and noble houses</li>
+                        <li>• <span class="highlight">Castle builders</span> - Expanded fortifications across region</li>
+                        <li>• <span class="highlight">Political influence</span> - Advisors to multiple Hungarian kings</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Heraldic Elements</h3>
+                    <p>Kőszegi heraldic symbols included:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Wolf motifs</span> - Symbol of fierce loyalty</li>
+                        <li>• <span class="highlight">Castle towers</span> - Representing their fortress network</li>
+                        <li>• <span class="highlight">Royal colors</span> - Granted by Hungarian kings</li>
+                        <li>• <span class="highlight">Cross symbols</span> - Christian military service</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Marriage Alliances</h3>
+                    <p>Strategic matrimonial connections:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Árpád dynasty</span> - Connections to royal bloodline</li>
+                        <li>• <span class="highlight">Austrian nobility</span> - Cross-border alliances</li>
+                        <li>• <span class="highlight">Croatian bans</span> - Southern territorial control</li>
+                        <li>• <span class="highlight">Moravian lords</span> - Northern influence networks</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Legacy & Descendants</h3>
+                    <p>Kőszegi bloodline continuation:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Junior branches</span> - Survived into 15th century</li>
+                        <li>• <span class="highlight">Female inheritance</span> - Daughters carried bloodline</li>
+                        <li>• <span class="highlight">Territorial fragmentation</span> - Estates divided among heirs</li>
+                        <li>• <span class="highlight">Name variations</span> - Kőszeg, Güns, Günser spellings</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="nadasdy" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">The Nádasdy Dynasty</h2>
+
+            <div class="quote-box">
+                "The Nádasdy family transformed Čachtice from a frontier fortress into a Renaissance palace, while maintaining its strategic military importance."
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1390s</div>
+                    <strong>Nádasdy Acquisition</strong><br>
+                    The <span class="highlight">Nádasdy family</span> acquired Čachtice, likely through marriage alliance or royal grant. They brought new architectural vision and administrative efficiency.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1450-1500</div>
+                    <strong>Nádasdy Tamás (Elder)</strong><br>
+                    <span class="highlight">Tamás Nádasdy the Elder</span> expanded the castle and consolidated family power. He served as royal advisor and military commander.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1500-1562</div>
+                    <strong>Ferenc "The Black Knight"</strong><br>
+                    <span class="highlight">Ferenc Nádasdy</span> earned fame as the "Black Knight" fighting Ottoman forces. He modernized castle defenses and expanded territorial holdings.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1555-1575</div>
+                    <strong>Nádasdy Tamás (Younger)</strong><br>
+                    <span class="highlight">Tamás Nádasdy the Younger</span> inherited vast estates. His marriage arrangements would bring the <span class="highlight">Báthory connection</span> to Čachtice.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1575</div>
+                    <strong>Báthory Inheritance</strong><br>
+                    Through marriage of <span class="highlight">Erzsébet Báthory</span> to Ferenc Nádasdy, the castle passed into Báthory hands while maintaining Nádasdy bloodline connections.
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Nádasdy Military Tradition</h3>
+                    <p>The family built their reputation through military service:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Ottoman campaigns</span> - Frontline defenders of Christendom</li>
+                        <li>• <span class="highlight">Castle modernization</span> - Adapted for gunpowder warfare</li>
+                        <li>• <span class="highlight">Private armies</span> - Maintained substantial military forces</li>
+                        <li>• <span class="highlight">Strategic alliances</span> - Military partnerships across Europe</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Renaissance Patronage</h3>
+                    <p>Cultural and architectural contributions:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Italian architects</span> - Imported Renaissance design</li>
+                        <li>• <span class="highlight">Library expansion</span> - Collected manuscripts and books</li>
+                        <li>• <span class="highlight">Art collection</span> - Patronized painters and sculptors</li>
+                        <li>• <span class="highlight">Garden design</span> - Created formal Renaissance gardens</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Economic Power</h3>
+                    <p>Sources of Nádasdy wealth:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Land ownership</span> - Vast agricultural estates</li>
+                        <li>• <span class="highlight">Mining rights</span> - Silver and copper extraction</li>
+                        <li>• <span class="highlight">Trade control</span> - Tolls on major commercial routes</li>
+                        <li>• <span class="highlight">Royal grants</span> - Rewards for military service</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Genealogical Records</h3>
+                    <p>Primary sources for Nádasdy lineage:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Family chronicles</span> - Private family histories</li>
+                        <li>• <span class="highlight">Royal registers</span> - Official court documents</li>
+                        <li>• <span class="highlight">Church records</span> - Baptisms, marriages, burials</li>
+                        <li>• <span class="highlight">Estate documents</span> - Property inheritance papers</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="marriage-web">
+                <h3 style="color: #d4af37; margin-bottom: 20px;">Key Nádasdy Marriages</h3>
+                <div class="marriage-connection">
+                    <span class="family-name">Nádasdy Ferenc</span>
+                    <span class="connection-arrow">⟷</span>
+                    <span>Kanizsai Orsolya (Military alliance)</span>
+                </div>
+                <div class="marriage-connection">
+                    <span class="family-name">Ferenc "Black Knight"</span>
+                    <span class="connection-arrow">⟷</span>
+                    <span>Erzsébet Báthory (1575 - Historic union)</span>
+                </div>
+                <div class="marriage-connection">
+                    <span class="family-name">Various Nádasdy branches</span>
+                    <span class="connection-arrow">⟷</span>
+                    <span>Habsburg court nobles</span>
+                </div>
+            </div>
+        </div>
+
+        <div id="bathory" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">The Báthory Lineage</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1200s-1400s</div>
+                    <strong>Báthory Origins</strong><br>
+                    The <span class="highlight">Báthory family</span> emerged from minor nobility in Nyírbátor. Through military service and strategic marriages, they rose to become one of Hungary's most powerful houses.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1400s-1500s</div>
+                    <strong>Royal Connections</strong><br>
+                    Multiple Báthory family members achieved royal status: <span class="highlight">István Báthory</span> became King of Poland (1576-1586), while <span class="highlight">Zsigmond Báthory</span> ruled Transylvania.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1560</div>
+                    <strong>Erzsébet's Birth</strong><br>
+                    <span class="highlight">Erzsébet Báthory</span> born to György Báthory and Anna Báthory. She inherited extensive estates and noble privileges through both bloodlines.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1575</div>
+                    <strong>Nádasdy Marriage</strong><br>
+                    Marriage to <span class="highlight">Ferenc Nádasdy</span> brought Čachtice Castle into Báthory possession. This union combined two of Hungary's wealthiest noble houses.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1604-1614</div>
+                    <strong>Independent Rule</strong><br>
+                    After Ferenc's death in 1604, Erzsébet managed vast estates independently. She maintained the castle as administrative center until her death in 1614.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1614</div>
+                    <strong>Habsburg Confiscation</strong><br>
+                    Following legal proceedings, <span class="highlight">Habsburg authorities</span> confiscated Báthory estates, ending noble family control of Čachtice.
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Báthory Political Network</h3>
+                    <p>The family's extensive political connections:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Polish royalty</span> - István Báthory as Polish king</li>
+                        <li>• <span class="highlight">Transylvanian princes</span> - Multiple family rulers</li>
+                        <li>• <span class="highlight">Habsburg court</span> - Strategic diplomatic relations</li>
+                        <li>• <span class="highlight">Ottoman contacts</span> - Frontier diplomatic necessity</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Economic Holdings</h3>
+                    <p>Báthory wealth sources:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Castle network</span> - 17 castles and fortifications</li>
+                        <li>• <span class="highlight">Agricultural estates</span> - Vast farming operations</li>
+                        <li>• <span class="highlight">Mining interests</span> - Precious metal extraction rights</li>
+                        <li>• <span class="highlight">Trade privileges</span> - Commercial route control</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Family Branches</h3>
+                    <p>Major Báthory genealogical lines:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Ecsedi branch</span> - Erzsébet's direct lineage</li>
+                        <li>• <span class="highlight">Somlyói branch</span> - Royal and princely line</li>
+                        <li>• <span class="highlight">Királyi branch</span> - Military commanders</li>
+                        <li>• <span class="highlight">Minor branches</span> - Regional noble families</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Children & Inheritance</h3>
+                    <p>Erzsébet's direct descendants:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Anna Nádasdy</span> - Daughter, married Miklós Zrínyi</li>
+                        <li>• <span class="highlight">Katalin Nádasdy</span> - Daughter, married György Drugeth</li>
+                        <li>• <span class="highlight">Pál Nádasdy</span> - Son, inherited some estates</li>
+                        <li>• <span class="highlight">Disputed inheritance</span> - Legal complications after 1614</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "The Báthory genealogy demonstrates how medieval noble families maintained power through strategic marriages, military service, and careful alliance management across generations."
+            </div>
+        </div>
+
+        <div id="marriages" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">Marriage Networks & Alliances</h2>
+
+            <div class="marriage-web">
+                <h3 style="color: #d4af37; margin-bottom: 25px;">Strategic Marriage Alliances</h3>
+                
+                <div class="marriage-connection">
+                    <span class="family-name">Kőszegi → Austrian Nobility</span>
+                    <span class="connection-arrow">⟷</span>
+                    <span>Cross-border territorial control</span>
+                </div>
+                
+                <div class="marriage-connection">
+                    <span class="family-name">Nádasdy → Kanizsai</span>
+                    <span class="connection-arrow">⟷</span>
+                    <span>Military alliance strengthening</span>
+                </div>
+                
+                <div class="marriage-connection">
+                    <span class="family-name">Báthory → Nádasdy (1575)</span>
+                    <span class="connection-arrow">⟷</span>
+                    <span>Consolidation of two major houses</span>
+                </div>
+                
+                <div class="marriage-connection">
+                    <span class="family-name">Nádasdy heirs → Zrínyi</span>
+                    <span class="connection-arrow">⟷</span>
+                    <span>Croatian military leadership connection</span>
+                </div>
+                
+                <div class="marriage-connection">
+                    <span class="family-name">Nádasdy heirs → Drugeth</span>
+                    <span class="connection-arrow">⟷</span>
+                    <span>Northern Hungarian territorial expansion</span>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Marriage Strategy Principles</h3>
+                    <p>Medieval noble marriage planning followed consistent patterns:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Territorial expansion</span> - Marriages to acquire new lands</li>
+                        <li>• <span class="highlight">Military alliances</span> - Partnerships for defense</li>
+                        <li>• <span class="highlight">Political influence</span> - Access to royal courts</li>
+                        <li>• <span class="highlight">Economic consolidation</span> - Combining wealth resources</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Dowry & Inheritance Patterns</h3>
+                    <p>Financial aspects of noble marriages:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Castle transfers</span> - Fortifications as dowry</li>
+                        <li>• <span class="highlight">Estate portions</span> - Agricultural land divisions</li>
+                        <li>• <span class="highlight">Mining rights</span> - Resource extraction privileges</li>
+                        <li>• <span class="highlight">Trade privileges</span> - Commercial route control</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>International Connections</h3>
+                    <p>Cross-border marriage networks:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Habsburg Austria</span> - Imperial court connections</li>
+                        <li>• <span class="highlight">Polish nobility</span> - Eastern European alliances</li>
+                        <li>• <span class="highlight">Bohemian lords</span> - Northern territorial ties</li>
+                        <li>• <span class="highlight">Italian families</span> - Renaissance cultural exchange</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Genealogical Complications</h3>
+                    <p>Challenges in tracing family connections:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Multiple marriages</span> - Remarriage after spouse death</li>
+                        <li>• <span class="highlight">Adoption practices</span> - Non-biological inheritance</li>
+                        <li>• <span class="highlight">Name changes</span> - Titles and territorial designations</li>
+                        <li>• <span class="highlight">Disputed paternity</span> - Political marriage complications</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="family-tree">
+                <h3 style="color: #d4af37; margin-bottom: 20px;">Marriage Web Visualization</h3>
+                <div class="generation">
+                    <h4>First Generation Alliances</h4>
+                    <div class="person">Kőszegi ⟷ Habsburg Connections</div>
+                    <div class="person">Early Nádasdy ⟷ Royal Court</div>
+                </div>
+                <div class="generation">
+                    <h4>Consolidation Period</h4>
+                    <div class="person">Nádasdy ⟷ Kanizsai Alliance</div>
+                    <div class="person">Báthory ⟷ Polish Royalty</div>
+                </div>
+                <div class="generation">
+                    <h4>Peak Alliance Network</h4>
+                    <div class="person">Ferenc Nádasdy ⟷ Erzsébet Báthory</div>
+                    <div class="person">Children ⟷ Croatian/Northern Nobles</div>
+                </div>
+            </div>
+        </div>
+
+        <div id="heraldry" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">Heraldic Traditions & Symbols</h2>
+
+            <div class="heraldic-gallery">
+                <div class="heraldic-item">
+                    <div class="heraldic-shield">🐺</div>
+                    <h4>Kőszegi Arms</h4>
+                    <p>Wolf symbols representing fierce loyalty, hunting prowess, and territorial protection. Silver wolf on red field.</p>
+                </div>
+                
+                <div class="heraldic-item">
+                    <div class="heraldic-shield">⚔️</div>
+                    <h4>Nádasdy Arms</h4>
+                    <p>Crossed swords with black knight helmet, representing military command and battlefield leadership. The "Black Knight" legacy.</p>
+                </div>
+                
+                <div class="heraldic-item">
+                    <div class="heraldic-shield">🦷</div>
+                    <h4>Báthory Arms</h4>
+                    <p>Three wolf teeth (bátor means "brave" in Hungarian) on red field with silver dragons. Symbol of courage and nobility.</p>
+                </div>
+                
+                <div class="heraldic-item">
+                    <div class="heraldic-shield">👑</div>
+                    <h4>Royal Connections</h4>
+                    <p>Crown symbols granted to families with royal service. Multiple generations earned royal heraldic additions.</p>
+                </div>
+                
+                <div class="heraldic-item">
+                    <div class="heraldic-shield">🏰</div>
+                    <h4>Castle Symbols</h4>
+                    <p>Tower and fortress motifs representing territorial control and defensive responsibilities across the region.</p>
+                </div>
+                
+                <div class="heraldic-item">
+                    <div class="heraldic-shield">🦅</div>
+                    <h4>Imperial Eagles</h4>
+                    <p>Habsburg eagle additions granted for service to the Holy Roman Empire. Symbol of imperial favor and protection.</p>
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Heraldic Evolution</h3>
+                    <p>How family arms changed over time:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Original symbols</span> - Basic family identification</li>
+                        <li>• <span class="highlight">Royal additions</span> - Crowns and royal symbols granted</li>
+                        <li>• <span class="highlight">Marriage quartering</span> - Combining spouse arms</li>
+                        <li>• <span class="highlight">Achievement upgrades</span> - Military and civil honors</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Symbolic Meanings</h3>
+                    <p>Interpretation of heraldic elements:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Animals</span> - Character traits and family values</li>
+                        <li>• <span class="highlight">Colors</span> - Traditional heraldic significance</li>
+                        <li>• <span class="highlight">Weapons</span> - Military service and battlefield honors</li>
+                        <li>• <span class="highlight">Architecture</span> - Territorial control and defensive duty</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Documentation Sources</h3>
+                    <p>Where heraldic records survive:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Royal registers</span> - Official grant documents</li>
+                        <li>• <span class="highlight">Church monuments</span> - Tomb and memorial carvings</li>
+                        <li>• <span class="highlight">Castle decorations</span> - Architectural heraldic displays</li>
+                        <li>• <span class="highlight">Manuscript illumination</span> - Book decoration and chronicles</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Research Applications</h3>
+                    <p>Using heraldry for genealogical research:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Family identification</span> - Confirming bloodline connections</li>
+                        <li>• <span class="highlight">Marriage verification</span> - Quartered arms show unions</li>
+                        <li>• <span class="highlight">Dating evidence</span> - Heraldic evolution timeline</li>
+                        <li>• <span class="highlight">Social status</span> - Rank and privilege indicators</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "Heraldic symbols serve as visual genealogies, encoding centuries of family history, marriage alliances, and noble achievements in symbolic form."
+            </div>
+        </div>
+
+        <div id="research" class="content-section">
+            <h2 style="color: #d4af37; font-size: 2.2rem; margin-bottom: 25px;">Genealogical Research Resources</h2>
+
+            <div class="grid research-tools">
+                <a href="https://familysearch.org/" class="tool-button" target="_blank">
+                    🌳 FamilySearch International
+                </a>
+                
+                <a href="https://www.genteam.eu/" class="tool-button" target="_blank">
+                    🇭🇺 GenTeam Central Europe
+                </a>
+                
+                <a href="https://archives.hungaricana.hu/" class="tool-button" target="_blank">
+                    📚 Hungarian National Archives
+                </a>
+                
+                <a href="https://www.matricula-online.eu/" class="tool-button" target="_blank">
+                    ⛪ Church Records Database
+                </a>
+                
+                <a href="https://www.geni.com/" class="tool-button" target="_blank">
+                    👥 Geni Collaborative Trees
+                </a>
+                
+                <a href="https://www.myheritage.com/" class="tool-button" target="_blank">
+                    🧬 MyHeritage DNA/Records
+                </a>
+                
+                <a href="https://www.ancestry.com/" class="tool-button" target="_blank">
+                    📈 Ancestry International
+                </a>
+                
+                <a href="https://www.wikitree.com/" class="tool-button" target="_blank">
+                    🌐 WikiTree Collaborative
+                </a>
+            </div>
+
+            <div class="card" style="margin: 30px 0;">
+                <h3>Essential Research Methodologies</h3>
+                <div class="grid">
+                    <div>
+                        <h4 style="color: #d4af37;">Primary Source Analysis:</h4>
+                        <ul>
+                            <li>• Royal charter examination</li>
+                            <li>• Church baptismal records</li>
+                            <li>• Marriage contract documents</li>
+                            <li>• Probate and inheritance papers</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #d4af37;">Cross-Reference Verification:</h4>
+                        <ul>
+                            <li>• Multiple source confirmation</li>
+                            <li>• Date consistency checking</li>
+                            <li>• Geographic location verification</li>
+                            <li>• Name variant recognition</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #d4af37;">Heraldic Evidence:</h4>
+                        <ul>
+                            <li>• Coat of arms analysis</li>
+                            <li>• Seal impression studies</li>
+                            <li>• Monument heraldry documentation</li>
+                            <li>• Manuscript illumination research</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #d4af37;">DNA Genealogy:</h4>
+                        <ul>
+                            <li>• Y-chromosome lineage tracing</li>
+                            <li>• Mitochondrial DNA analysis</li>
+                            <li>• Autosomal DNA matching</li>
+                            <li>• Ancient DNA comparative studies</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card" style="background: rgba(212,175,55,0.1); border-color: #d4af37;">
+                <h3>🎯 Advanced Research Strategies</h3>
+                <p><strong>Medieval Hungarian Genealogy Specialization:</strong></p>
+                <br>
+                <p><span class="highlight">Language Skills:</span> Latin, Hungarian, German are essential for primary source research. Many documents exist in multiple language versions.</p>
+                <br>
+                <p><span class="highlight">Archive Navigation:</span> Hungarian State Archives, Vatican Secret Archives, Austrian State Archives contain crucial genealogical documents.</p>
+                <br>
+                <p><span class="highlight">Network Analysis:</span> Medieval nobles maintained extensive correspondence networks. Letters and diplomatic records often contain genealogical information.</p>
+                <br>
+                <p><span class="highlight">Property Records:</span> Land ownership documents are among the most reliable sources for tracing family succession and inheritance patterns.</p>
+            </div>
+
+            <div class="card">
+                <h3>📖 Essential Academic Sources</h3>
+                <div class="grid">
+                    <div>
+                        <h4 style="color: #d4af37;">Reference Works:</h4>
+                        <ul>
+                            <li>• "Magyar Országos Levéltár" (Hungarian National Archives)</li>
+                            <li>• "Codex Diplomaticus Hungariae" (Diplomatic Code)</li>
+                            <li>• "Turul" (Hungarian Genealogical Society Journal)</li>
+                            <li>• "Genealogisches Handbuch" (German Genealogical Handbook)</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #d4af37;">Specialized Databases:</h4>
+                        <ul>
+                            <li>• Medieval Families Database (Cambridge)</li>
+                            <li>• Prosopographia Imperii Byzantini</li>
+                            <li>• Regesta Imperii (Imperial Records)</li>
+                            <li>• Magyar Családtörténeti Adatbázis</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="card">
+                <h3>🔍 Research Challenges & Solutions</h3>
+                <p><strong>Common Obstacles in Medieval Genealogy:</strong></p>
+                <br>
+                <div class="grid">
+                    <div>
+                        <h4 style="color: #d4af37;">Documentation Gaps:</h4>
+                        <ul>
+                            <li>• Wars destroyed many archives</li>
+                            <li>• Fire and flood damage</li>
+                            <li>• Political record suppression</li>
+                            <li>• Religious conversion impacts</li>
+                        </ul>
+                    </div>
+                    <div>
+                        <h4 style="color: #d4af37;">Solution Strategies:</h4>
+                        <ul>
+                            <li>• Multi-archive research approaches</li>
+                            <li>• Collaborative genealogy networks</li>
+                            <li>• DNA evidence integration</li>
+                            <li>• Digital restoration projects</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                <strong>Research Mission:</strong> "Reconstruct the complex web of medieval noble genealogies through comprehensive analysis of primary sources, heraldic evidence, and modern genetic research techniques."
+            </div>
+
+            <div class="card">
+                <h3>🧬 Modern DNA Applications</h3>
+                <p><strong>Genetic Genealogy for Medieval Families:</strong></p>
+                <br>
+                <p><span class="highlight">Living Descendant Testing:</span> Modern family members with documented lineages can provide genetic confirmation of historical relationships.</p>
+                <br>
+                <p><span class="highlight">Ancient DNA Analysis:</span> Remains from castle burials can be analyzed for direct genetic evidence of family relationships.</p>
+                <br>
+                <p><span class="highlight">Haplogroup Tracking:</span> Y-chromosome and mitochondrial DNA patterns can trace specific family lines across centuries.</p>
+                <br>
+                <p><span class="highlight">Population Genetics:</span> Regional genetic studies help understand medieval migration patterns and marriage networks.</p>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function showSection(sectionId) {
+            const sections = document.querySelectorAll('.content-section');
+            sections.forEach(section => section.classList.remove('active'));
+            
+            const tabs = document.querySelectorAll('.nav-tab');
+            tabs.forEach(tab => tab.classList.remove('active'));
+            
+            document.getElementById(sectionId).classList.add('active');
+            event.target.classList.add('active');
+        }
+
+        function createFloatingSymbol() {
+            const symbols = ['⚜️', '👑', '🏰', '🛡️', '⚔️', '📜', '💍', '🦅', '💎', '🗡️', '🐺', '🦷', '⭐', '🔮'];
+            const container = document.querySelector('.floating-symbols');
+            
+            const symbol = document.createElement('div');
+            symbol.className = 'floating-symbol';
+            symbol.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+            symbol.style.left = Math.random() * 100 + '%';
+            symbol.style.animationDuration = (Math.random() * 10 + 12) + 's';
+            symbol.style.animationDelay = Math.random() * 3 + 's';
+            symbol.style.fontSize = (Math.random() * 1.5 + 1.5) + 'rem';
+            
+            container.appendChild(symbol);
+            
+            setTimeout(() => {
+                if (symbol.parentNode) {
+                    symbol.parentNode.removeChild(symbol);
+                }
+            }, 20000);
+        }
+
+        setInterval(createFloatingSymbol, 2500);
+
+        for (let i = 0; i < 6; i++) {
+            setTimeout(createFloatingSymbol, i * 800);
+        }
+
+        document.querySelectorAll('.card').forEach(card => {
+            card.addEventListener('mouseenter', function() {
+                this.style.transform = 'translateY(-12px) scale(1.03)';
+            });
+            
+            card.addEventListener('mouseleave', function() {
+                this.style.transform = 'translateY(0) scale(1)';
+            });
+        });
+
+        document.querySelectorAll('.person').forEach(person => {
+            person.addEventListener('click', function() {
+                this.style.animation = 'glow 1s ease';
+                setTimeout(() => {
+                    this.style.animation = '';
+                }, 1000);
+            });
+        });
+
+        document.querySelectorAll('.heraldic-display').forEach(display => {
+            display.addEventListener('click', function() {
+                this.style.animation = 'none';
+                setTimeout(() => {
+                    this.style.animation = 'pulse 1.5s ease';
+                }, 10);
+            });
+        });
+
+        const style = document.createElement('style');
+        style.textContent = `
+            @keyframes pulse {
+                0% { transform: perspective(150px) rotateX(0deg) scale(1); }
+                50% { transform: perspective(150px) rotateX(15deg) scale(1.3); color: #f4d03f; }
+                100% { transform: perspective(150px) rotateX(0deg) scale(1); }
+            }
+            @keyframes glow {
+                0% { box-shadow: 0 0 5px rgba(212,175,55,0.3); }
+                50% { box-shadow: 0 0 20px rgba(212,175,55,0.8), 0 0 30px rgba(212,175,55,0.6); }
+                100% { box-shadow: 0 0 5px rgba(212,175,55,0.3); }
+            }
+        `;
+        document.head.appendChild(style);
+
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.opacity = '1';
+                    entry.target.style.transform = 'translateY(0)';
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.card, .timeline-item, .heraldic-item').forEach(el => {
+            el.style.opacity = '0';
+            el.style.transform = 'translateY(40px)';
+            el.style.transition = 'all 0.8s ease';
+            observer.observe(el);
+        });
+
+        document.querySelectorAll('.marriage-connection').forEach(connection => {
+            connection.addEventListener('mouseenter', function() {
+                this.style.backgroundColor = 'rgba(212,175,55,0.2)';
+                this.style.borderColor = '#d4af37';
+            });
+            
+            connection.addEventListener('mouseleave', function() {
+                this.style.backgroundColor = 'rgba(22,33,62,0.3)';
+                this.style.borderColor = '#d4af37';
+            });
+        });
+    </script>
+</body>
+</html>

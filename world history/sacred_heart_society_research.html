@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Society of the Sacred Heart: Educational Legacy</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #2c1810 0%, #8b2635 25%, #c41e3a 50%, #d4af37 75%, #f4f1e8 100%);
+            color: #f4f1e8;
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .header {
+            text-align: center;
+            padding: 50px 0;
+            background: rgba(0,0,0,0.6);
+            border-radius: 20px;
+            margin-bottom: 30px;
+            border: 3px solid #c41e3a;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(196,30,58,0.1) 0%, transparent 70%);
+            animation: rotate 30s linear infinite;
+        }
+        
+        @keyframes rotate {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+        
+        .header h1 {
+            font-size: 4rem;
+            color: #c41e3a;
+            text-shadow: 4px 4px 8px rgba(0,0,0,0.9);
+            margin-bottom: 15px;
+            position: relative;
+            z-index: 2;
+            font-variant: small-caps;
+        }
+        
+        .header .subtitle {
+            font-size: 1.4rem;
+            color: #f4f1e8;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+            margin-bottom: 20px;
+        }
+        
+        .header .motto {
+            font-size: 1.2rem;
+            color: #d4af37;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+            border-top: 2px solid #c41e3a;
+            padding-top: 15px;
+            margin-top: 20px;
+        }
+        
+        .nav-tabs {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            margin-bottom: 30px;
+            gap: 12px;
+        }
+        
+        .nav-tab {
+            padding: 18px 30px;
+            background: rgba(139,38,53,0.8);
+            color: #f4f1e8;
+            border: 2px solid #c41e3a;
+            cursor: pointer;
+            border-radius: 12px;
+            transition: all 0.3s ease;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .nav-tab:hover, .nav-tab.active {
+            background: #c41e3a;
+            color: #f4f1e8;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(196,30,58,0.4);
+        }
+        
+        .content-section {
+            display: none;
+            background: rgba(0,0,0,0.5);
+            padding: 40px;
+            border-radius: 20px;
+            border: 3px solid #c41e3a;
+            margin-bottom: 25px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        
+        .content-section.active {
+            display: block;
+            animation: fadeIn 0.6s ease;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+        
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 25px;
+            margin: 25px 0;
+        }
+        
+        .card {
+            background: rgba(139,38,53,0.4);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid #8b2635;
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(196,30,58,0.2), transparent);
+            transition: left 0.6s;
+        }
+        
+        .card:hover::before {
+            left: 100%;
+        }
+        
+        .card:hover {
+            border-color: #c41e3a;
+            transform: translateY(-8px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+        }
+        
+        .card h3 {
+            color: #c41e3a;
+            font-size: 1.5rem;
+            margin-bottom: 18px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            border-bottom: 2px solid #c41e3a;
+            padding-bottom: 10px;
+        }
+        
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 30px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #c41e3a, #8b2635, #c41e3a);
+        }
+        
+        .timeline-item {
+            position: relative;
+            margin-bottom: 35px;
+            padding: 25px;
+            background: rgba(139,38,53,0.4);
+            border-radius: 12px;
+            border-left: 5px solid #c41e3a;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -42px;
+            top: 30px;
+            width: 16px;
+            height: 16px;
+            background: #c41e3a;
+            border-radius: 50%;
+            border: 4px solid #2c1810;
+            box-shadow: 0 0 10px rgba(196,30,58,0.5);
+        }
+        
+        .timeline-year {
+            color: #c41e3a;
+            font-weight: bold;
+            font-size: 1.3rem;
+            margin-bottom: 8px;
+        }
+        
+        .institution-gallery {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 25px;
+            margin: 30px 0;
+        }
+        
+        .institution-item {
+            background: rgba(0,0,0,0.6);
+            padding: 25px;
+            border-radius: 12px;
+            text-align: center;
+            border: 3px solid #8b2635;
+            transition: all 0.3s ease;
+        }
+        
+        .institution-item:hover {
+            border-color: #c41e3a;
+            transform: scale(1.03);
+        }
+        
+        .institution-symbol {
+            font-size: 4rem;
+            color: #c41e3a;
+            margin-bottom: 15px;
+            text-shadow: 3px 3px 6px rgba(0,0,0,0.8);
+        }
+        
+        .quote-box {
+            background: linear-gradient(45deg, rgba(196,30,58,0.1), rgba(139,38,53,0.1));
+            padding: 30px;
+            border-radius: 15px;
+            border-left: 6px solid #c41e3a;
+            margin: 30px 0;
+            font-style: italic;
+            font-size: 1.15rem;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+        }
+        
+        .highlight {
+            background: rgba(196,30,58,0.3);
+            padding: 3px 8px;
+            border-radius: 5px;
+            color: #c41e3a;
+            font-weight: bold;
+        }
+        
+        .research-tools {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 18px;
+            margin: 25px 0;
+        }
+        
+        .tool-button {
+            display: block;
+            padding: 18px;
+            background: rgba(139,38,53,0.7);
+            color: #f4f1e8;
+            text-decoration: none;
+            border-radius: 10px;
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 2px solid #8b2635;
+            font-weight: bold;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.3);
+        }
+        
+        .tool-button:hover {
+            background: #c41e3a;
+            color: #f4f1e8;
+            transform: translateY(-4px);
+            box-shadow: 0 8px 20px rgba(196,30,58,0.4);
+        }
+        
+        .floating-symbols {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: -1;
+            overflow: hidden;
+        }
+        
+        .floating-symbol {
+            position: absolute;
+            color: rgba(196,30,58,0.08);
+            font-size: 2.5rem;
+            animation: float 20s infinite linear;
+        }
+        
+        @keyframes float {
+            from {
+                transform: translateY(100vh) rotate(0deg);
+            }
+            to {
+                transform: translateY(-150px) rotate(360deg);
+            }
+        }
+        
+        .sacred-heart-display {
+            text-align: center;
+            margin: 40px 0;
+        }
+        
+        .heart-emblem {
+            font-size: 6rem;
+            color: #c41e3a;
+            text-shadow: 
+                4px 4px 0px #8b2635,
+                8px 8px 15px rgba(0,0,0,0.9);
+            font-family: 'Times New Roman', serif;
+            font-weight: bold;
+            display: inline-block;
+            transform: perspective(150px) rotateX(10deg);
+            margin: 25px;
+            transition: all 0.4s ease;
+        }
+        
+        .heart-emblem:hover {
+            transform: perspective(150px) rotateX(0deg) scale(1.15);
+            color: #ff6b6b;
+        }
+        
+        .founder-profile {
+            background: rgba(0,0,0,0.7);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 25px 0;
+            border: 2px solid #c41e3a;
+        }
+        
+        .founder-image {
+            width: 200px;
+            height: 200px;
+            border-radius: 50%;
+            background: #c41e3a;
+            margin: 0 auto 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 4rem;
+            color: white;
+            border: 5px solid #d4af37;
+        }
+        
+        @media (max-width: 768px) {
+            .header h1 {
+                font-size: 2.8rem;
+            }
+            
+            .nav-tabs {
+                flex-direction: column;
+                align-items: center;
+            }
+            
+            .heart-emblem {
+                font-size: 3.5rem;
+            }
+            
+            .grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="floating-symbols">
+        <div class="floating-symbol" style="left: 5%; animation-delay: 0s;">❤️</div>
+        <div class="floating-symbol" style="left: 15%; animation-delay: 2s;">✝️</div>
+        <div class="floating-symbol" style="left: 25%; animation-delay: 4s;">📚</div>
+        <div class="floating-symbol" style="left: 35%; animation-delay: 6s;">🏫</div>
+        <div class="floating-symbol" style="left: 45%; animation-delay: 8s;">👑</div>
+        <div class="floating-symbol" style="left: 55%; animation-delay: 10s;">🌹</div>
+        <div class="floating-symbol" style="left: 65%; animation-delay: 12s;">📿</div>
+        <div class="floating-symbol" style="left: 75%; animation-delay: 14s;">⛪</div>
+        <div class="floating-symbol" style="left: 85%; animation-delay: 16s;">🕊️</div>
+        <div class="floating-symbol" style="left: 95%; animation-delay: 18s;">⚜️</div>
+    </div>
+
+    <div class="container">
+        <div class="header">
+            <h1>Society of the Sacred Heart</h1>
+            <div class="subtitle">Religiosae Sanctissimi Cordis Jesu • Founded 1800 • Educational Excellence for Over Two Centuries</div>
+            <div class="sacred-heart-display">
+                <div class="heart-emblem">❤️</div>
+                <div class="heart-emblem">✝️</div>
+                <div class="heart-emblem">📚</div>
+            </div>
+            <div class="motto">
+                <strong>Latin:</strong> <em>Cor Unum et Anima Una in Corde Jesu</em><br>
+                <strong>English:</strong> <em>One Heart and One Soul in the Heart of Jesus</em>
+            </div>
+        </div>
+
+        <div class="nav-tabs">
+            <div class="nav-tab active" onclick="showSection('foundation')">Foundation</div>
+            <div class="nav-tab" onclick="showSection('founder')">Madeleine Sophie</div>
+            <div class="nav-tab" onclick="showSection('expansion')">Global Expansion</div>
+            <div class="nav-tab" onclick="showSection('education')">Educational Mission</div>
+            <div class="nav-tab" onclick="showSection('institutions')">Notable Schools</div>
+            <div class="nav-tab" onclick="showSection('spirituality')">Spirituality</div>
+            <div class="nav-tab" onclick="showSection('modern')">Modern Era</div>
+            <div class="nav-tab" onclick="showSection('research')">Research</div>
+        </div>
+
+        <div id="foundation" class="content-section active">
+            <h2 style="color: #c41e3a; font-size: 2.2rem; margin-bottom: 25px;">Foundation & Early History</h2>
+            
+            <div class="quote-box">
+                "We must teach firmly and be gentle and humble with our students, treating them as our Lord treated His apostles."
+                <strong>— Saint Madeleine Sophie Barat</strong>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">November 21, 1800</div>
+                    <strong>Foundation in Amiens</strong><br>
+                    <span class="highlight">Madeleine Sophie Barat</span>, along with three companions, established the Society of the Sacred Heart in Amiens, France. The foundation came during the tumultuous period following the French Revolution.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1801-1804</div>
+                    <strong>First Educational Ventures</strong><br>
+                    The first Sacred Heart school opened in Amiens, focusing on <span class="highlight">education for young women</span>. The curriculum combined religious formation with academic excellence, revolutionary for its time.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1806</div>
+                    <strong>Papal Recognition</strong><br>
+                    Pope Pius VII granted preliminary approval to the Society's constitutions. This <span class="highlight">pontifical recognition</span> established the order's legitimacy within the Catholic Church.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1815</div>
+                    <strong>Paris Expansion</strong><br>
+                    The Society established its first school in Paris, marking the beginning of <span class="highlight">urban educational ministry</span>. This expansion attracted students from aristocratic and wealthy merchant families.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1826</div>
+                    <strong>Final Papal Approval</strong><br>
+                    Pope Leo XII granted definitive approval to the Society's constitutions, making it a <span class="highlight">Pontifical Right religious institute</span>.
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Revolutionary Context</h3>
+                    <p>The Society's foundation occurred during France's post-revolutionary reconstruction:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Educational void</span> - Revolutionary period destroyed many schools</li>
+                        <li>• <span class="highlight">Religious persecution</span> - Catholic orders had been suppressed</li>
+                        <li>• <span class="highlight">Social upheaval</span> - Traditional structures were collapsing</li>
+                        <li>• <span class="highlight">Napoleon's reforms</span> - New educational opportunities emerging</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Founding Principles</h3>
+                    <p>Core values established by Saint Madeleine Sophie:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Sacred Heart devotion</span> - Central spiritual focus</li>
+                        <li>• <span class="highlight">Educational excellence</span> - Rigorous academic standards</li>
+                        <li>• <span class="highlight">Social responsibility</span> - Service to society</li>
+                        <li>• <span class="highlight">Personal growth</span> - Holistic human development</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Early Challenges</h3>
+                    <p>Obstacles faced in the founding years:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Financial struggles</span> - Limited resources and funding</li>
+                        <li>• <span class="highlight">Political instability</span> - Changing French governments</li>
+                        <li>• <span class="highlight">Religious suspicion</span> - Wariness of new Catholic orders</li>
+                        <li>• <span class="highlight">Educational competition</span> - Secular schools emerging</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Organizational Structure</h3>
+                    <p>The Society's institutional framework:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Superior General</span> - Central leadership authority</li>
+                        <li>• <span class="highlight">Provincial system</span> - Regional administrative divisions</li>
+                        <li>• <span class="highlight">Local communities</span> - Individual school governance</li>
+                        <li>• <span class="highlight">General Council</span> - Policy and decision-making body</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <div id="founder" class="content-section">
+            <h2 style="color: #c41e3a; font-size: 2.2rem; margin-bottom: 25px;">Saint Madeleine Sophie Barat</h2>
+
+            <div class="founder-profile">
+                <div class="founder-image">👤</div>
+                <h3 style="color: #c41e3a; text-align: center; margin-bottom: 20px;">Madeleine Sophie Barat (1779-1865)</h3>
+                <p style="text-align: center; font-style: italic;">Foundress and First Superior General • Canonized 1925 • Feast Day: May 25</p>
+            </div>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">December 12, 1779</div>
+                    <strong>Birth in Joigny</strong><br>
+                    Born to <span class="highlight">Jacques Barat</span>, a barrel-maker, and <span class="highlight">Madeleine Fouffé</span>. Her older brother Louis provided her early education and encouraged her religious vocation.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1793-1800</div>
+                    <strong>Formation Years</strong><br>
+                    During the French Revolution's <span class="highlight">Reign of Terror</span>, Sophie continued her studies in secret. Her brother Louis, a priest, guided her intellectual and spiritual development.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1800</div>
+                    <strong>Religious Vocation</strong><br>
+                    At age 20, Sophie joined the small group founding the Society of the Sacred Heart. She was chosen as <span class="highlight">Superior at age 23</span>, despite her youth and inexperience.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1806-1865</div>
+                    <strong>Leadership Period</strong><br>
+                    For nearly 65 years, Mother Barat led the Society's growth from 4 members to over <span class="highlight">3,500 religious sisters</span> across multiple continents.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">May 25, 1865</div>
+                    <strong>Death in Paris</strong><br>
+                    Died at age 85 in Paris, having overseen the establishment of <span class="highlight">105 Sacred Heart schools</span> worldwide.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">May 24, 1925</div>
+                    <strong>Canonization</strong><br>
+                    Pope Pius XI canonized Madeleine Sophie Barat, recognizing her as <span class="highlight">Saint and Patron of Catholic Education</span>.
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Educational Philosophy</h3>
+                    <p>Saint Madeleine Sophie's pedagogical approach:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Personalized attention</span> - Individual student needs</li>
+                        <li>• <span class="highlight">Intellectual rigor</span> - High academic standards</li>
+                        <li>• <span class="highlight">Moral formation</span> - Character development emphasis</li>
+                        <li>• <span class="highlight">Social awareness</span> - Service to community values</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Leadership Qualities</h3>
+                    <p>Characteristics that enabled her success:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Visionary planning</span> - Long-term institutional thinking</li>
+                        <li>• <span class="highlight">Cultural adaptability</span> - Flexibility across different societies</li>
+                        <li>• <span class="highlight">Financial acumen</span> - Practical resource management</li>
+                        <li>• <span class="highlight">Diplomatic skills</span> - Navigation of political challenges</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Spiritual Legacy</h3>
+                    <p>Her contributions to Catholic spirituality:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Sacred Heart devotion</span> - Popularized this spiritual practice</li>
+                        <li>• <span class="highlight">Educational ministry</span> - Schools as evangelization</li>
+                        <li>• <span class="highlight">Women's religious life</span> - New models of female consecration</li>
+                        <li>• <span class="highlight">Social engagement</span> - Faith applied to social issues</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Historical Significance</h3>
+                    <p>Her impact on 19th century society:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Women's education</span> - Expanded access and quality</li>
+                        <li>• <span class="highlight">International networks</span> - Global Catholic connections</li>
+                        <li>• <span class="highlight">Post-revolutionary healing</span> - Religious renewal in France</li>
+                        <li>• <span class="highlight">Modern religious life</span> - Influenced contemporary orders</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "One must be like melted wax in the hands of God, ready to receive any impression that His adorable will would make."
+                <strong>— Saint Madeleine Sophie Barat</strong>
+            </div>
+        </div>
+
+        <div id="expansion" class="content-section">
+            <h2 style="color: #c41e3a; font-size: 2.2rem; margin-bottom: 25px;">Global Expansion Timeline</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1818</div>
+                    <strong>First International Expansion</strong><br>
+                    Sacred Heart sisters arrived in <span class="highlight">Louisiana, United States</span>. Mother Rose Philippine Duchesne led this pioneering mission to the American frontier.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1820s-1830s</div>
+                    <strong>European Growth</strong><br>
+                    Schools established in <span class="highlight">Italy, Austria, Belgium, and Switzerland</span>. The Society adapted to different cultural contexts while maintaining educational standards.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1842</div>
+                    <strong>South American Mission</strong><br>
+                    First Sacred Heart school opened in <span class="highlight">Chile</span>, beginning the Society's significant presence in Latin America.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1860s</div>
+                    <strong>British Isles Establishment</strong><br>
+                    Schools founded in <span class="highlight">Ireland and England</span>, serving both Catholic and Protestant families seeking quality education.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1880s-1890s</div>
+                    <strong>Asian Expansion</strong><br>
+                    Sacred Heart education reached <span class="highlight">Japan and the Philippines</span>, adapting Western pedagogical methods to Asian contexts.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1900s-1920s</div>
+                    <strong>African and Oceanic Presence</strong><br>
+                    Schools established in <span class="highlight">Australia, New Zealand, and various African countries</span>, completing the Society's global reach.
+                </div>
+                
+                <div class="timeline-item">
+                    <div class="timeline-year">1950s-Present</div>
+                    <strong>Post-War Reconstruction & Modernization</strong><br>
+                    Society rebuilt European institutions and adapted to <span class="highlight">Vatican II reforms</span>, embracing contemporary educational methods.
+                </div>
+            </div>
+
+            <div class="grid">
+                <div class="card">
+                    <h3>Expansion Strategies</h3>
+                    <p>Methods used for international growth:</p>
+                    <ul style="margin-top: 15px;">
+                        <li>• <span class="highlight">Local partnerships</span> - Collaboration with existing institutions</li>
+                        <li>• <span class="highlight">Cultural adaptation</span> - Flexibility in curriculum and methods</li>
+                        <li>• <span class="highlight">Elite connections</span> - Support from wealthy and influential families</li>
+                        <li>• <span class="highlight">Missionary cooperation</span> - Working with other Catholic orders</li>
+                    </ul>
+                </div>
+                
+                <div class="card">
+                    <h3>Geographic
