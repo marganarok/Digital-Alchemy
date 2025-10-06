@@ -2166,41 +2166,41 @@
                 <div class="quick-action-card" onclick="triggerSmartDiscovery()">
                     <div class="action-icon">🧠</div>
                     <div class="action-content">
-                        <div class="action-title">AI Discovery</div>
-                        <div class="action-desc">Intelligent content scanning</div>
+                        <div class="action-title">World History</div>
+                        <div class="action-desc">Historical research, archaeology, and cultural studies</div>
                     </div>
                     <div class="action-pulse"></div>
                 </div>
                 
                 <div class="quick-action-card" onclick="openMostAccessedCategory()">
-                    <div class="action-icon">🔥</div>
+                    <div class="action-icon">�</div>
                     <div class="action-content">
-                        <div class="action-title">Popular Content</div>
-                        <div class="action-desc">Most accessed resources</div>
+                        <div class="action-title">Technical Science</div>
+                        <div class="action-desc">AI development, coding tools, and scientific research</div>
                     </div>
                 </div>
 
-                <div class="quick-action-card" onclick="openFile('master_compilation.html')">
-                    <div class="action-icon">🎨</div>
+                <div class="quick-action-card" onclick="openHeaderNavigation()">
+                    <div class="action-icon">📂</div>
                     <div class="action-content">
-                        <div class="action-title">Master Archive</div>
-                        <div class="action-desc">Consolidated collection</div>
+                        <div class="action-title">Header Navigation</div>
+                        <div class="action-desc">Site navigation and menu systems</div>
                     </div>
                 </div>
 
                 <div class="quick-action-card" onclick="showRecentlyUpdated()">
-                    <div class="action-icon">⏰</div>
+                    <div class="action-icon">📚</div>
                     <div class="action-content">
-                        <div class="action-title">Recent Updates</div>
-                        <div class="action-desc">Latest modifications</div>
+                        <div class="action-title">Master Archives</div>
+                        <div class="action-desc">Comprehensive document collections</div>
                     </div>
                 </div>
 
                 <div class="quick-action-card" onclick="openRandomFile()">
-                    <div class="action-icon">🎲</div>
+                    <div class="action-icon">🚀</div>
                     <div class="action-content">
-                        <div class="action-title">Surprise Me</div>
-                        <div class="action-desc">Random exploration</div>
+                        <div class="action-title">Kai Projects</div>
+                        <div class="action-desc">Business ventures and creative tools</div>
                     </div>
                 </div>
             </div>
@@ -2438,45 +2438,51 @@
             }
         };
 
-        // Enhanced global functions
+        // Enhanced global functions for smart quick access - now matching category names
         function triggerSmartDiscovery() {
-            PortalAI.discoverContent();
+            console.log('🌍 Opening World History section...');
+            // Open World History directory
+            window.open('world history/', '_blank');
         }
 
         function openMostAccessedCategory() {
-            const mostAccessed = Array.from(PortalAI.categories.values())
-                .sort((a, b) => b.files - a.files)[0];
-            
-            if (mostAccessed) {
-                PortalAI.openCategory(mostAccessed.id);
-            }
+            console.log('� Opening Technical Science section...');
+            // Open Technical Science directory
+            window.open('technical-science/', '_blank');
         }
 
         function showRecentlyUpdated() {
-            PortalAI.updateStatus('⏰ Loading', 'Fetching recent updates...');
-            setTimeout(() => {
-                PortalAI.updateStatus('📝 Recent Files', 'Last updated: Today');
-            }, 600);
+            console.log('📚 Opening Master Archives...');
+            // Open Master Archives
+            window.open('master-archive-collection.html', '_blank');
         }
 
         function openRandomFile() {
-            const categories = Array.from(PortalAI.categories.values());
-            if (categories.length > 0) {
-                const randomCategory = categories[Math.floor(Math.random() * categories.length)];
-                PortalAI.openCategory(randomCategory.id);
-            }
+            console.log('🚀 Opening Kai Projects section...');
+            // Open Kai Projects directory
+            window.open('Kai/', '_blank');
+        }
+
+        function openHeaderNavigation() {
+            console.log('📂 Opening Header Navigation section...');
+            // Open Header Navigation directory
+            window.open('Header menu html\'s/', '_blank');
         }
 
         function toggleInsights() {
             const content = document.getElementById('insightsContent');
             const toggle = document.querySelector('.insights-toggle');
             
-            if (content.style.display === 'none') {
-                content.style.display = 'block';
-                toggle.textContent = '▼';
+            if (content && toggle) {
+                if (content.style.display === 'none' || content.style.display === '') {
+                    content.style.display = 'block';
+                    toggle.textContent = '▼';
+                } else {
+                    content.style.display = 'none';
+                    toggle.textContent = '▶';
+                }
             } else {
-                content.style.display = 'none';
-                toggle.textContent = '▶';
+                console.log('💡 Insights panel activated');
             }
         }
 
@@ -2497,133 +2503,8 @@
             window.open(fileName, '_blank');
         }
 
-        // Add the missing functions that are called from HTML
-        function triggerSmartDiscovery() {
-            if (typeof PortalAI !== 'undefined' && PortalAI.discoverContent) {
-                PortalAI.discoverContent();
-            } else {
-                console.log('AI Discovery triggered - content scanning...');
-                // Fallback behavior
-                setTimeout(() => {
-                    alert('🧠 AI Discovery Complete! Content has been analyzed and organized.');
-                }, 1500);
-            }
-        }
 
-        function toggleInsights() {
-            const content = document.getElementById('insightsContent');
-            const toggle = document.querySelector('.insights-toggle');
-            
-            if (content && toggle) {
-                if (content.style.display === 'none' || content.style.display === '') {
-                    content.style.display = 'block';
-                    toggle.textContent = '▼';
-                } else {
-                    content.style.display = 'none';
-                    toggle.textContent = '▶';
-                }
-            }
-        }
-
-        function openMostAccessedCategory() {
-            // Simulate opening most accessed category
-            console.log('Opening most accessed category...');
-            triggerSmartDiscovery();
-        }
-
-        function showRecentlyUpdated() {
-            alert('📝 Recent Updates:\n\n• AI Discovery System Enhanced\n• Book Promotion Added\n• Project Cleanup Completed\n• Performance Optimized');
-        }
-
-        function openRandomFile() {
-            const files = [
-                'master_compilation.html',
-                'the_renaissance.html', 
-                'ancient_rome.html'
-            ];
-            const randomFile = files[Math.floor(Math.random() * files.length)];
-            window.open(randomFile, '_blank');
-        }
     </script>
-
-    <!-- Cleanup: Remove any leftover HTML that was mixed in JavaScript -->
-                    <div class="sub-menu-header">
-                        <div class="sub-menu-title">🎭 Comedy Collection</div>
-                        <div class="sub-menu-description">Humor and comedy-related projects</div>
-                    </div>
-                    <div class="file-list">
-                        <div class="file-item" onclick="openFile('comedy/comedy_empire_website.html')">
-                            <span class="file-icon html">⟨/⟩</span>
-                            <div class="file-info">
-                                <div class="file-name">Kai Framework</div>
-                                <div class="file-meta">Kai system framework</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-            <!-- Military Category -->
-            <div class="category-portal" onclick="toggleCategory('military')">
-                <div class="category-icon">⚔️</div>
-                <div class="category-title">Military</div>
-                <div class="category-description">Military history, strategy, and archaeological coordinates</div>
-                <div class="category-stats">
-                    <span class="file-count">2 files</span>
-                    <span class="category-arrow">→</span>
-                </div>
-                <div class="sub-menu" id="military-menu">
-                    <div class="sub-menu-header">
-            <!-- Technical Science Category -->
-            <div class="category-portal" onclick="toggleCategory('technical-science')">
-                <div class="category-icon">🔬</div>
-                <div class="category-title">Technical Science</div>
-                <div class="category-description">AI development, coding tools, research, and scientific analysis</div>
-                <div class="category-stats">
-                    <span class="file-count">25 files</span>
-                    <span class="category-arrow">→</span>
-                </div>
-                <div class="sub-menu" id="technical-science-menu">
-                    <div class="sub-menu-header">
-
-            <!-- World History Category -->
-            <div class="category-portal" onclick="toggleCategory('world-history')">
-                <div class="category-icon">🌍</div>
-                <div class="category-title">World History</div>
-                <div class="category-description">Historical research, archaeology, and cultural studies</div>
-                <div class="category-stats">
-                    <span class="file-count">20 files</span>
-                    <span class="category-arrow">→</span>
-                </div>
-      <!-- Books Category -->
-            <div class="category-portal" onclick="toggleCategory('books')">
-                <div class="category-icon">📚</div>
-                <div class="category-title">Books Collection</div>
-                <div class="category-description">Books and manuscripts archive </div>
-                <div class="category-stats">
-                    <span class="file-count">0 files</span>
-                    <span class="category-arrow">→</span>
-                </div>
-                <div class="sub-menu" id="books-menu">
-                    <div class="sub-menu-header">
-                        <div class="sub-menu-title">📚 Books Library</div>
-                    </div>
-                    <div class="file-list">
-                        <div class="empty-state">
-                            <div style="text-align: center; padding: 40px 20px; color: #999;">
-                                <div style="font-size: 3rem; margin-bottom: 15px;">📚</div>
-                                <p style="font-size: 0.9rem; line-height: 1.5;">
-                                </p>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
     <script>
         // Updated Article Count Function for Current Project State
@@ -2671,76 +2552,7 @@
             window.open(filePath, '_blank');
         }
 
-        function updateArticleCount() {
-            console.log('🔄 Updating file counts automatically...');
-            
-            // Count total files across all categories
-            const fileItems = document.querySelectorAll('.file-item');
-            const totalFiles = fileItems.length;
 
-            // Update the main counter if it exists
-            const mainCounter = document.getElementById('total-files-count');
-            if (mainCounter) {
-                mainCounter.textContent = totalFiles;
-            }
-
-            // Dynamic category discovery - find all categories automatically
-            const categoryPortals = document.querySelectorAll('.category-portal[onclick*="toggleCategory"]');
-            
-            categoryPortals.forEach(portal => {
-                // Extract category name from onclick attribute
-                const onclickAttr = portal.getAttribute('onclick');
-                const categoryMatch = onclickAttr.match(/toggleCategory\('([^']+)'\)/);
-                
-                if (categoryMatch) {
-                    const category = categoryMatch[1];
-                    
-                    // Count files in this category's menu
-                    const categoryFiles = document.querySelectorAll(`#${category}-menu .file-item`);
-                    const countElement = portal.querySelector('.file-count');
-                    
-                    if (countElement) {
-                        const fileCount = categoryFiles.length;
-                        countElement.textContent = `${fileCount} file${fileCount !== 1 ? 's' : ''}`;
-                        
-                        // Update category description to show current status
-                        const description = portal.querySelector('.category-description');
-                        if (description && fileCount === 0) {
-                            // Add a note for empty categories
-                            if (!description.textContent.includes('(Empty)')) {
-                                description.textContent += ' (Empty)';
-                            }
-                        } else if (description && description.textContent.includes('(Empty)') && fileCount > 0) {
-                            // Remove empty note if files are present
-                            description.textContent = description.textContent.replace(' (Empty)', '');
-                        }
-                        
-                        console.log(`📁 ${category}: ${fileCount} files`);
-                    }
-                }
-            });
-            
-            console.log(`✅ Total files discovered: ${totalFiles}`);
-        }
-
-        // Initialize when page loads
-        document.addEventListener('DOMContentLoaded', function() {
-            updateArticleCount();
-
-            // Add click outside to close menus
-            document.addEventListener('click', function(e) {
-                if (!e.target.closest('.category-portal')) {
-                    const allMenus = document.querySelectorAll('.sub-menu');
-                    allMenus.forEach(menu => {
-                        menu.style.display = 'none';
-                        const portal = menu.closest('.category-portal');
-                        if (portal) {
-                            portal.classList.remove('active', 'loading');
-                        }
-                    });
-                }
-            });
-        });
     </script>
 
     <div class="footer-content">
