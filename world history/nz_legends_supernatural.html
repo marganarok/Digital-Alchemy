@@ -1,0 +1,576 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Zealand Legends & Supernatural Archives</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        @keyframes colorShift {
+            0% { filter: hue-rotate(0deg); }
+            50% { filter: hue-rotate(180deg); }
+            100% { filter: hue-rotate(360deg); }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        @keyframes glow {
+            0%, 100% { box-shadow: 0 0 20px rgba(147, 51, 234, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(147, 51, 234, 0.8), 0 0 60px rgba(59, 130, 246, 0.6); }
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a0b2e 50%, #16213e 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+            overflow-x: hidden;
+        }
+
+        /* Animated background particles */
+        .mystical-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 0;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(147, 51, 234, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(59, 130, 246, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 20%, rgba(16, 185, 129, 0.1) 0%, transparent 50%);
+            animation: colorShift 20s infinite;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            width: 200%;
+            height: 200%;
+            background: 
+                radial-gradient(circle, rgba(147, 51, 234, 0.2) 1px, transparent 1px),
+                radial-gradient(circle, rgba(59, 130, 246, 0.2) 1px, transparent 1px);
+            background-size: 50px 50px;
+            background-position: 0 0, 25px 25px;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        .hero-glass {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 60px 80px;
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            animation: glow 3s infinite;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            background: linear-gradient(45deg, #9333ea, #3b82f6, #10b981);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            animation: colorShift 10s infinite;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: #a78bfa;
+            margin-bottom: 40px;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .glass-section {
+            margin-bottom: 80px;
+            background: rgba(255, 255, 255, 0.03);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 50px;
+            border-radius: 30px;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px 0 rgba(31, 38, 135, 0.37);
+            transition: all 0.3s ease;
+        }
+
+        .glass-section:hover {
+            background: rgba(255, 255, 255, 0.08);
+            transform: translateY(-5px);
+            box-shadow: 0 12px 48px 0 rgba(147, 51, 234, 0.4);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            background: linear-gradient(45deg, #9333ea, #3b82f6);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 2px solid rgba(147, 51, 234, 0.3);
+        }
+
+        .legend-card {
+            background: rgba(147, 51, 234, 0.05);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(147, 51, 234, 0.3);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 30px 0;
+            transition: all 0.3s ease;
+        }
+
+        .legend-card:hover {
+            background: rgba(147, 51, 234, 0.1);
+            border-color: rgba(147, 51, 234, 0.6);
+            transform: scale(1.02);
+        }
+
+        .legend-title {
+            font-size: 2.2rem;
+            color: #a78bfa;
+            margin-bottom: 20px;
+        }
+
+        .creature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .creature-card {
+            background: linear-gradient(135deg, rgba(147, 51, 234, 0.1), rgba(59, 130, 246, 0.1));
+            backdrop-filter: blur(15px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            transition: all 0.3s ease;
+            animation: float 6s infinite ease-in-out;
+        }
+
+        .creature-card:nth-child(2n) {
+            animation-delay: 2s;
+        }
+
+        .creature-card:nth-child(3n) {
+            animation-delay: 4s;
+        }
+
+        .creature-card:hover {
+            transform: translateY(-10px) scale(1.05);
+            box-shadow: 0 20px 60px rgba(147, 51, 234, 0.4);
+        }
+
+        .creature-name {
+            font-size: 1.8rem;
+            color: #60a5fa;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .dargaville-special {
+            background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));
+            backdrop-filter: blur(20px);
+            border: 2px solid rgba(16, 185, 129, 0.3);
+            border-radius: 30px;
+            padding: 60px;
+            margin: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .dargaville-special::before {
+            content: '🌊';
+            position: absolute;
+            font-size: 15rem;
+            opacity: 0.05;
+            right: -50px;
+            top: -50px;
+            animation: float 10s infinite;
+        }
+
+        .mystical-quote {
+            background: rgba(147, 51, 234, 0.08);
+            backdrop-filter: blur(10px);
+            border-left: 4px solid #9333ea;
+            padding: 30px;
+            margin: 30px 0;
+            font-size: 1.4rem;
+            font-style: italic;
+            color: #c4b5fd;
+            border-radius: 10px;
+        }
+
+        .location-badge {
+            display: inline-block;
+            background: linear-gradient(45deg, #10b981, #3b82f6);
+            color: white;
+            padding: 10px 20px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: bold;
+            margin: 5px;
+        }
+
+        .power-level {
+            display: flex;
+            align-items: center;
+            margin: 20px 0;
+        }
+
+        .power-bar {
+            height: 10px;
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 10px;
+            overflow: hidden;
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .power-fill {
+            height: 100%;
+            background: linear-gradient(90deg, #9333ea, #3b82f6, #10b981);
+            border-radius: 10px;
+            animation: colorShift 3s infinite;
+        }
+
+        .story-section {
+            background: rgba(59, 130, 246, 0.05);
+            backdrop-filter: blur(10px);
+            padding: 30px;
+            border-radius: 15px;
+            margin: 20px 0;
+            border: 1px solid rgba(59, 130, 246, 0.2);
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .glass-section {
+                padding: 30px 20px;
+            }
+
+            .creature-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-hint {
+            position: absolute;
+            bottom: 40px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: #a78bfa;
+            font-size: 2rem;
+            animation: float 2s infinite;
+            z-index: 2;
+        }
+    </style>
+</head>
+<body>
+    <div class="mystical-bg"></div>
+
+    <div class="hero">
+        <div class="hero-glass">
+            <h1>LEGENDS OF AOTEAROA</h1>
+            <div class="subtitle">The Supernatural Archives of New Zealand</div>
+            <div style="color: #888; font-size: 1rem;">Where Myth Meets Reality • Where Spirits Walk Among Us</div>
+        </div>
+        <div class="scroll-hint">↓</div>
+    </div>
+
+    <div class="container">
+        <!-- Taniwha Section -->
+        <div class="glass-section">
+            <h2 class="section-title">Taniwha: Guardians of the Waters</h2>
+            
+            <div class="legend-card">
+                <div class="legend-title">The Great Water Serpents</div>
+                <div class="content-block" style="color: #d1d5db; font-size: 1.1rem;">
+                    Taniwha are the most powerful supernatural beings in Māori cosmology. These shape-shifting guardians inhabit rivers, lakes, oceans, and deep caves throughout New Zealand. Far from being mere myths, many Māori recognize taniwha as living entities—protectors of sacred waters and arbiters of ancient laws.
+                </div>
+
+                <div class="power-level">
+                    <span style="color: #a78bfa; font-weight: bold;">Power Level:</span>
+                    <div class="power-bar">
+                        <div class="power-fill" style="width: 95%;"></div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <span class="location-badge">North Island</span>
+                    <span class="location-badge">South Island</span>
+                    <span class="location-badge">Coastal Waters</span>
+                    <span class="location-badge">Deep Lakes</span>
+                </div>
+            </div>
+
+            <div class="creature-grid">
+                <div class="creature-card">
+                    <div class="creature-name">Poutini</div>
+                    <div style="color: #d1d5db; margin-bottom: 15px;">
+                        The legendary taniwha who guards the pounamu (greenstone) of the West Coast. His tragic love story with Waitaiki—a married woman he pursued down the coast—ended when he transformed her into greenstone itself to preserve her beauty eternally.
+                    </div>
+                    <div style="color: #60a5fa; font-size: 0.9rem; margin-top: 10px;">
+                        <strong>Domain:</strong> West Coast rivers and greenstone deposits
+                    </div>
+                </div>
+
+                <div class="creature-card">
+                    <div class="creature-name">Araiteuru</div>
+                    <div style="color: #d1d5db; margin-bottom: 15px;">
+                        A fierce taniwha dwelling in Wellington Harbor. Known for capsizing canoes of those who failed to show proper respect or make offerings. Modern infrastructure projects consult with local iwi about Araiteuru's presence before construction.
+                    </div>
+                    <div style="color: #60a5fa; font-size: 0.9rem; margin-top: 10px;">
+                        <strong>Domain:</strong> Wellington Harbor waters
+                    </div>
+                </div>
+
+                <div class="creature-card">
+                    <div class="creature-name">Karu-tahi</div>
+                    <div style="color: #d1d5db; margin-bottom: 15px;">
+                        "One-eyed" taniwha of Lake Rotoiti. This guardian was known for protecting travelers but punishing those who polluted the waters. Sightings reported as recently as the 1970s by fishermen.
+                    </div>
+                    <div style="color: #60a5fa; font-size: 0.9rem; margin-top: 10px;">
+                        <strong>Domain:</strong> Lake Rotoiti, Bay of Plenty
+                    </div>
+                </div>
+            </div>
+
+            <div class="mystical-quote">
+                "He taniwha te moana, he taniwha te whenua" — The sea has its guardians, the land has its guardians
+            </div>
+        </div>
+
+        <!-- Patupaiarehe Section -->
+        <div class="glass-section">
+            <h2 class="section-title">Patupaiarehe: The Fairy Folk</h2>
+
+            <div class="legend-card">
+                <div class="legend-title">The Mist Dwellers</div>
+                <div style="color: #d1d5db; font-size: 1.1rem; line-height: 1.8;">
+                    Patupaiarehe are ethereal beings—pale-skinned, light-haired supernatural folk who inhabit the misty forests and mountain peaks of New Zealand. They are the closest parallel to European fairy traditions, yet distinctly Māori in nature. These mysterious people are said to fear daylight, fire, and cooked food, living on raw fish and fern root.
+                </div>
+
+                <div class="power-level">
+                    <span style="color: #a78bfa; font-weight: bold;">Power Level:</span>
+                    <div class="power-bar">
+                        <div class="power-fill" style="width: 70%;"></div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="story-section">
+                <h3 style="color: #60a5fa; margin-bottom: 20px; font-size: 1.6rem;">Encounters & Abilities</h3>
+                <div style="color: #d1d5db; font-size: 1.05rem; line-height: 1.8;">
+                    <p style="margin-bottom: 15px;">
+                        <strong style="color: #a78bfa;">Enchanting Music:</strong> Their flute playing (pūtōrino) is said to be hauntingly beautiful, luring humans into the forests where they become lost or fall under spells.
+                    </p>
+                    <p style="margin-bottom: 15px;">
+                        <strong style="color: #a78bfa;">Kidnapping:</strong> Patupaiarehe were known to steal human children, particularly those with fair hair, raising them as their own in the misty realms.
+                    </p>
+                    <p style="margin-bottom: 15px;">
+                        <strong style="color: #a78bfa;">Interbreeding:</strong> Some Māori families claim descent from unions between humans and patupaiarehe, attributing their lighter skin or red hair to this ancestry.
+                    </p>
+                    <p>
+                        <strong style="color: #a78bfa;">Modern Sightings:</strong> Reports of pale figures in mist continue in places like the Waitakere Ranges and Pirongia Mountain, particularly during foggy dawns.
+                    </p>
+                </div>
+            </div>
+
+            <div style="margin-top: 30px;">
+                <span class="location-badge">Waitakere Ranges</span>
+                <span class="location-badge">Pirongia Mountain</span>
+                <span class="location-badge">Coromandel</span>
+                <span class="location-badge">Waikato Hills</span>
+            </div>
+        </div>
+
+        <!-- Dargaville Special Section -->
+        <div class="dargaville-special">
+            <h2 class="section-title" style="background: linear-gradient(45deg, #10b981, #3b82f6); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">Dargaville: Gateway to the Mystical North</h2>
+
+            <div style="color: #d1d5db; font-size: 1.2rem; margin-bottom: 30px;">
+                Situated on the Northern Wairoa River in the Kaipara District, Dargaville serves as the gateway to some of New Zealand's most spiritually charged landscapes. This unassuming town of 4,500 souls sits at the convergence of ancient pathways and supernatural highways.
+            </div>
+
+            <div class="legend-card" style="background: rgba(16, 185, 129, 0.08);">
+                <div class="legend-title" style="color: #34d399;">The Wairoa River Taniwha</div>
+                <div style="color: #d1d5db; font-size: 1.1rem; line-height: 1.8;">
+                    The Northern Wairoa River—on whose banks Dargaville rests—is home to multiple taniwha. Local Māori have maintained relationships with these guardians for centuries. The river mouth, where fresh water meets the Tasman Sea, is considered particularly potent.
+                    
+                    <div style="margin-top: 20px; padding: 20px; background: rgba(16, 185, 129, 0.1); border-radius: 10px;">
+                        <strong style="color: #34d399;">Local Legend:</strong> Fishermen report strange disturbances in the water near Dargaville's riverfront—sudden whirlpools, unexplained waves, and shadows beneath the surface that move against the current.
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #34d399; font-size: 2rem; margin: 40px 0 20px 0;">The Kai Iwi Lakes Mysteries</h3>
+            <div style="color: #d1d5db; font-size: 1.05rem; line-height: 1.8; margin-bottom: 30px;">
+                Just 30km north of Dargaville lie the Kai Iwi Lakes—three pristine dune lakes with crystal-clear waters and an unsettling reputation. These lakes (Taharoa, Waikere, and Kai Iwi) are said to be bottomless, and local lore speaks of taniwha dwelling in their depths.
+            </div>
+
+            <div class="creature-grid">
+                <div class="creature-card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));">
+                    <div class="creature-name" style="color: #34d399;">Lake Taharoa Guardian</div>
+                    <div style="color: #d1d5db;">
+                        The largest of the three lakes, Taharoa is said to house a protective taniwha who ensures the lakes remain pure. Swimmers occasionally report feeling watched or touched by unseen hands in the deeper sections.
+                    </div>
+                </div>
+
+                <div class="creature-card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));">
+                    <div class="creature-name" style="color: #34d399;">The Drowned Village</div>
+                    <div style="color: #d1d5db;">
+                        Local legend claims a patupaiarehe village was submerged when the lakes formed. On misty mornings, some report hearing flute music drifting across the water from no discernible source.
+                    </div>
+                </div>
+
+                <div class="creature-card" style="background: linear-gradient(135deg, rgba(16, 185, 129, 0.1), rgba(59, 130, 246, 0.1));">
+                    <div class="creature-name" style="color: #34d399;">The Midnight Lights</div>
+                    <div style="color: #d1d5db;">
+                        Strange lights have been reported hovering over the lakes at night—dancing, pulsing orbs that vanish when approached. Skeptics blame methane; locals know better.
+                    </div>
+                </div>
+            </div>
+
+            <h3 style="color: #34d399; font-size: 2rem; margin: 40px 0 20px 0;">Baylys Beach & The Shipwrecks</h3>
+            <div style="color: #d1d5db; font-size: 1.05rem; line-height: 1.8;">
+                West of Dargaville, Baylys Beach stretches for 100km of black iron sand—a graveyard for dozens of ships wrecked on the treacherous Tasman coast. The beach is considered highly tapu (sacred/forbidden) by local Māori.
+
+                <div class="mystical-quote" style="margin: 30px 0; background: rgba(16, 185, 129, 0.1); border-left-color: #10b981;">
+                    "E kore e taea e te tangata te whakatika i te hē o te moana" — No person can correct the wrongs of the sea
+                </div>
+
+                <div style="margin-top: 20px; padding: 20px; background: rgba(220, 38, 38, 0.1); border-radius: 10px; border-left: 4px solid #ef4444;">
+                    <strong style="color: #f87171;">Warning:</strong> Visitors to Baylys Beach report feelings of intense unease, particularly near old wreck sites. Some claim to see phantom ships in the fog or hear voices calling from the surf. Swimming is dangerous not just physically but spiritually—drownings are attributed not merely to rips but to supernatural forces.
+                </div>
+            </div>
+
+            <h3 style="color: #34d399; font-size: 2rem; margin: 40px 0 20px 0;">The Kauri Giants</h3>
+            <div style="color: #d1d5db; font-size: 1.05rem; line-height: 1.8;">
+                The Waipoua Forest near Dargaville is home to Tāne Mahuta—New Zealand's largest kauri tree, standing 51 meters tall and estimated to be 2,000+ years old. The forest itself is considered a realm where the veil between worlds is thin.
+
+                <div style="margin-top: 20px; padding: 25px; background: rgba(16, 185, 129, 0.08); border-radius: 15px;">
+                    <strong style="color: #34d399; font-size: 1.3rem;">Nighttime Phenomena:</strong>
+                    <ul style="list-style: none; margin-top: 15px; color: #d1d5db;">
+                        <li style="padding: 10px 0;">🌲 Visitors report seeing glowing eyes between trees</li>
+                        <li style="padding: 10px 0;">🌲 Strange whistling and clicking sounds with no source</li>
+                        <li style="padding: 10px 0;">🌲 The sensation of being followed on the forest paths</li>
+                        <li style="padding: 10px 0;">🌲 Electronic devices malfunctioning near the ancient trees</li>
+                        <li style="padding: 10px 0;">🌲 Unexplained cold spots despite warm weather</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div style="margin-top: 40px; padding: 30px; background: rgba(147, 51, 234, 0.1); border-radius: 15px;">
+                <h4 style="color: #a78bfa; font-size: 1.5rem; margin-bottom: 15px;">Why Dargaville Matters</h4>
+                <div style="color: #d1d5db; line-height: 1.8;">
+                    Dargaville sits at the nexus of water (river, sea, lakes), ancient forest, and open dune country—a geographic configuration that Māori recognize as spiritually potent. It's a place where multiple realms intersect: the realm of taniwha in the waters, patupaiarehe in the forests, and ancestral spirits along the coast.
+                    
+                    <div style="margin-top: 20px; font-style: italic; color: #c4b5fd;">
+                        The town itself may appear quiet, even sleepy—but those who know where to look understand that Dargaville is a doorway to New Zealand's deepest mysteries.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- More Creatures Section -->
+        <div class="glass-section">
+            <h2 class="section-title">Other Supernatural Beings</h2>
+
+            <div class="creature-grid">
+                <div class="creature-card">
+                    <div class="creature-name">Maero</div>
+                    <div style="color: #d1d5db; margin-bottom: 15px;">
+                        Wild, hairy giants living in deep forests. Standing 3 meters tall with razor-sharp fingernails, they hunt humans for food. The Māori equivalent of Bigfoot, with considerably more malevolent intent.
+                    </div>
+                    <div class="power-level">
+                        <span style="color: #a78bfa; font-weight: bold; font-size: 0.9rem;">Danger:</span>
+                        <div class="power-bar">
+                            <div class="power-fill" style="width: 85%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="creature-card">
+                    <div class="creature-name">Kēhua</div>
+                    <div style="color: #d1d5db; margin-bottom: 15px;">
+                        Ghosts or spirits of the dead. Unlike Western ghosts, kēhua can be malicious, attacking the living or causing madness. They're particularly active at night and in places of death or violence.
+                    </div>
+                    <div class="power-level">
+                        <span style="color: #a78bfa; font-weight: bold; font-size: 0.9rem;">Danger:</span>
+                        <div class="power-bar">
+                            <div class="power-fill" style="width: 70%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="creature-card">
+                    <div class="creature-name">Pouākai</div>
+                    <div style="color: #d1d5db; margin-bottom: 15px;">
+                        Giant predatory bird said to carry off humans. While scientists now believe this refers to the extinct Haast's Eagle (which DID hunt humans), some claim pouākai still exist in remote mountain ranges.
+                    </div>
+                    <div class="power-level">
+                        <span style="color: #a78bfa; font-weight: bold; font-size: 0.9rem;">Danger:</span>
+                        <div class="power-bar">
+                            <div class="power-fill" style="width: 90%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="creature-card">
+                    <div class="creature-name">Makutu</div>
+                    <div style="color: #d1d5db; margin-bottom: 15px;">
+                        Not a creature but a practice: Māori sorcery and black magic. Tohunga (priests) could curse enemies with illness, madness, or death through makutu. Many Māori today still respect its power.
+                    </div>
+                    <div class="power-level">
+                        <span style="color: #a78bfa; font-weight: bold; font-size: 0.9rem;">Danger:</span>
+                        <div class="power-bar">
+                            <div class="power-fill" style="width: 95%;"></div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="creature-card">
+                    <div class="creature-name">Ngarara</div>
+                    <div style="color: #d1d5db; margin-bottom: 15px;">
+                        Reptilian monsters—lizards of enormous size that guard treasures or sacred sites. Some descriptions match extinct New Zealand reptiles; others suggest creatures that may still lurk in deep caves.
+                    </div>
+                    <div class="power-level">
+                        <span style="color: #a78bfa; font-weight: bold; font-size: 0.9rem;">Danger:</span>

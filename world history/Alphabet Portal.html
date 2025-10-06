@@ -1,0 +1,1237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Master Alphabet Research Portal</title>
+    <link href="https://fonts.googleapis.com/css2?family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Cinzel:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            --ancient-gold: #d4af37;
+            --papyrus: #f4f1e8;
+            --ink-dark: #2c1810;
+            --stone-gray: #5a5550;
+            --copper-green: #4a6741;
+            --clay-red: #8b4513;
+            --deep-purple: #4a148c;
+            --mystic-blue: #1565c0;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Crimson Text', serif;
+            background: var(--papyrus);
+            color: var(--ink-dark);
+            line-height: 1.7;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+        }
+
+        /* Header */
+        .header {
+            background: linear-gradient(135deg, var(--clay-red), var(--copper-green));
+            color: var(--papyrus);
+            text-align: center;
+            padding: 60px 0;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .header::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 100 100"><defs><pattern id="ancient-pattern" width="20" height="20" patternUnits="userSpaceOnUse"><path d="M10,0 L20,10 L10,20 L0,10 Z" fill="none" stroke="rgba(244,241,232,0.1)" stroke-width="1"/></pattern></defs><rect width="100" height="100" fill="url(%23ancient-pattern)"/></svg>');
+        }
+
+        .main-title {
+            font-family: 'Cinzel', serif;
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-weight: 700;
+            margin-bottom: 20px;
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.3);
+            position: relative;
+            z-index: 2;
+        }
+
+        .subtitle {
+            font-size: 1.3rem;
+            opacity: 0.9;
+            font-style: italic;
+            position: relative;
+            z-index: 2;
+        }
+
+        /* Navigation */
+        .nav {
+            background: rgba(44, 24, 16, 0.95);
+            padding: 20px 0;
+            position: sticky;
+            top: 0;
+            z-index: 100;
+            backdrop-filter: blur(10px);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+        }
+
+        .nav-item {
+            color: var(--papyrus);
+            text-decoration: none;
+            padding: 10px 20px;
+            border-radius: 25px;
+            transition: all 0.3s ease;
+            font-weight: 500;
+        }
+
+        .nav-item:hover, .nav-item.active {
+            background: var(--ancient-gold);
+            color: var(--ink-dark);
+            transform: translateY(-2px);
+        }
+
+        /* Sections */
+        .section {
+            margin: 80px 0;
+            padding: 40px 0;
+        }
+
+        .section-title {
+            font-family: 'Cinzel', serif;
+            font-size: 2.5rem;
+            color: var(--clay-red);
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .section-description {
+            font-size: 1.1rem;
+            color: var(--stone-gray);
+            text-align: center;
+            max-width: 800px;
+            margin: 0 auto 50px;
+            line-height: 1.8;
+        }
+
+        /* Alphabet Grid */
+        .alphabet-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 25px;
+            margin: 50px 0;
+        }
+
+        .letter-card {
+            background: white;
+            border: 2px solid var(--ancient-gold);
+            border-radius: 12px;
+            padding: 25px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+            transition: all 0.3s ease;
+            cursor: pointer;
+        }
+
+        .letter-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(212, 175, 55, 0.3);
+        }
+
+        .letter-symbol {
+            font-size: 3rem;
+            text-align: center;
+            margin-bottom: 15px;
+            color: var(--clay-red);
+            font-weight: 700;
+        }
+
+        .letter-name {
+            font-family: 'Cinzel', serif;
+            font-size: 1.3rem;
+            color: var(--ink-dark);
+            text-align: center;
+            margin-bottom: 10px;
+            font-weight: 600;
+        }
+
+        .letter-meanings {
+            text-align: center;
+            margin-bottom: 15px;
+        }
+
+        .meaning-category {
+            display: inline-block;
+            background: var(--copper-green);
+            color: white;
+            padding: 4px 8px;
+            border-radius: 12px;
+            font-size: 0.8rem;
+            margin: 2px;
+            font-weight: 500;
+        }
+
+        .letter-description {
+            font-size: 0.95rem;
+            color: var(--stone-gray);
+            text-align: center;
+            line-height: 1.6;
+        }
+
+        /* Comparison Section */
+        .comparison-section {
+            background: rgba(74, 103, 65, 0.1);
+            border: 2px solid var(--copper-green);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+
+        .comparison-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 30px;
+        }
+
+        .alphabet-column {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            border: 1px solid var(--ancient-gold);
+        }
+
+        .alphabet-header {
+            font-family: 'Cinzel', serif;
+            font-size: 1.5rem;
+            color: var(--clay-red);
+            text-align: center;
+            margin-bottom: 25px;
+            font-weight: 600;
+        }
+
+        .letter-row {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-bottom: 1px solid rgba(212, 175, 55, 0.3);
+            transition: background 0.3s ease;
+        }
+
+        .letter-row:hover {
+            background: rgba(212, 175, 55, 0.1);
+        }
+
+        .letter-symbol-small {
+            font-size: 1.5rem;
+            width: 40px;
+            text-align: center;
+            color: var(--clay-red);
+            font-weight: 700;
+        }
+
+        .letter-info {
+            flex: 1;
+            margin-left: 15px;
+        }
+
+        .letter-name-small {
+            font-weight: 600;
+            color: var(--ink-dark);
+            margin-bottom: 2px;
+        }
+
+        .letter-concept {
+            font-size: 0.85rem;
+            color: var(--stone-gray);
+            font-style: italic;
+        }
+
+        /* Interactive Features */
+        .interactive-section {
+            background: rgba(138, 69, 19, 0.1);
+            border: 2px solid var(--clay-red);
+            border-radius: 20px;
+            padding: 40px;
+            margin: 60px 0;
+        }
+
+        .symbol-builder {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin-top: 30px;
+        }
+
+        .builder-input {
+            background: white;
+            border-radius: 15px;
+            padding: 25px;
+        }
+
+        .builder-output {
+            background: rgba(74, 20, 140, 0.1);
+            border: 1px solid var(--deep-purple);
+            border-radius: 15px;
+            padding: 25px;
+            text-align: center;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        .input-label {
+            display: block;
+            font-weight: 600;
+            color: var(--ink-dark);
+            margin-bottom: 8px;
+        }
+
+        .input-field {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid var(--stone-gray);
+            border-radius: 8px;
+            font-family: inherit;
+        }
+
+        .generate-btn {
+            background: var(--ancient-gold);
+            color: var(--ink-dark);
+            border: none;
+            padding: 12px 25px;
+            border-radius: 8px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .generate-btn:hover {
+            background: var(--clay-red);
+            color: white;
+            transform: translateY(-2px);
+        }
+
+        .output-symbol {
+            font-size: 4rem;
+            margin: 20px 0;
+            color: var(--deep-purple);
+        }
+
+        /* Timeline */
+        .timeline {
+            position: relative;
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 50%;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--ancient-gold);
+            transform: translateX(-50%);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin: 50px 0;
+            width: 50%;
+        }
+
+        .timeline-item:nth-child(odd) {
+            left: 0;
+            padding-right: 40px;
+            text-align: right;
+        }
+
+        .timeline-item:nth-child(even) {
+            left: 50%;
+            padding-left: 40px;
+        }
+
+        .timeline-content {
+            background: white;
+            border: 2px solid var(--ancient-gold);
+            border-radius: 12px;
+            padding: 20px;
+        }
+
+        .timeline-date {
+            font-family: 'Cinzel', serif;
+            font-weight: 600;
+            color: var(--clay-red);
+            margin-bottom: 10px;
+        }
+
+        .timeline-item::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: var(--ancient-gold);
+            border: 4px solid var(--papyrus);
+            border-radius: 50%;
+            top: 25px;
+        }
+
+        .timeline-item:nth-child(odd)::after {
+            right: -12px;
+        }
+
+        .timeline-item:nth-child(even)::after {
+            left: -12px;
+        }
+
+        /* Footer */
+        .footer {
+            background: var(--ink-dark);
+            color: var(--papyrus);
+            text-align: center;
+            padding: 40px 0;
+            margin-top: 80px;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .comparison-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .symbol-builder {
+                grid-template-columns: 1fr;
+            }
+
+            .timeline::before {
+                left: 30px;
+            }
+
+            .timeline-item {
+                width: 100%;
+                left: 0 !important;
+                padding-left: 70px !important;
+                padding-right: 20px !important;
+                text-align: left !important;
+            }
+
+            .timeline-item::after {
+                left: 22px !important;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Header -->
+    <header class="header">
+        <div class="container">
+            <h1 class="main-title">Master Alphabets</h1>
+            <p class="subtitle">Proto-Sinaitic & Etruscan Systems of Sacred Symbols</p>
+        </div>
+    </header>
+
+    <!-- Navigation -->
+    <nav class="nav">
+        <div class="container">
+            <div class="nav-container">
+                <a href="#overview" class="nav-item active">Overview</a>
+                <a href="#proto-sinaitic" class="nav-item">Proto-Sinaitic</a>
+                <a href="#etruscan" class="nav-item">Etruscan</a>
+                <a href="#comparison" class="nav-item">Comparison</a>
+                <a href="#timeline" class="nav-item">Timeline</a>
+                <a href="#tools" class="nav-item">Tools</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="container">
+        <!-- Overview Section -->
+        <section id="overview" class="section">
+            <h2 class="section-title">Ancient Symbol Systems</h2>
+            <p class="section-description">
+                These ancient alphabets represent more than writing systems—they are templates for understanding 
+                fundamental patterns of human perception and cognition. Each symbol carries pictographic, 
+                phonetic, and conceptual meanings that bridge the visible and invisible worlds.
+            </p>
+
+            <div class="alphabet-grid">
+                <div class="letter-card">
+                    <div class="letter-symbol">𐤀</div>
+                    <div class="letter-name">Aleph</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Ox</span>
+                        <span class="meaning-category">Strength</span>
+                        <span class="meaning-category">First Principle</span>
+                    </div>
+                    <div class="letter-description">
+                        The beginning of all things, representing primal force and the foundation from which all other forms emerge.
+                    </div>
+                </div>
+
+                <div class="letter-card">
+                    <div class="letter-symbol">𐌀</div>
+                    <div class="letter-name">Etruscan A</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Beginning</span>
+                        <span class="meaning-category">Initiation</span>
+                        <span class="meaning-category">Primal Breath</span>
+                    </div>
+                    <div class="letter-description">
+                        The opening sound, the first breath of consciousness, the initiation of manifestation into form.
+                    </div>
+                </div>
+
+                <div class="letter-card">
+                    <div class="letter-symbol">𐤁</div>
+                    <div class="letter-name">Beth</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">House</span>
+                        <span class="meaning-category">Container</span>
+                        <span class="meaning-category">Duality</span>
+                    </div>
+                    <div class="letter-description">
+                        The principle of containment and shelter, representing the body as a house for spirit.
+                    </div>
+                </div>
+
+                <div class="letter-card">
+                    <div class="letter-symbol">𐌁</div>
+                    <div class="letter-name">Etruscan B</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Container</span>
+                        <span class="meaning-category">Vessel</span>
+                        <span class="meaning-category">Body-Spirit</span>
+                    </div>
+                    <div class="letter-description">
+                        The vessel that holds spirit, the physical form that contains the divine essence.
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Proto-Sinaitic Section -->
+        <section id="proto-sinaitic" class="section">
+            <h2 class="section-title">Proto-Sinaitic Master Alphabet</h2>
+            <p class="section-description">
+                Emerging around 1850 BCE in the Sinai Peninsula, this script is considered the ancestor of nearly 
+                all subsequent alphabetic systems. Each symbol operates on three levels: pictographic representation, 
+                phonetic value, and abstract principle.
+            </p>
+
+            <div class="alphabet-grid">
+                <div class="letter-card" onclick="showLetterDetails('aleph')">
+                    <div class="letter-symbol">𐤀</div>
+                    <div class="letter-name">Aleph</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Ox</span>
+                        <span class="meaning-category">Strength</span>
+                        <span class="meaning-category">First Principle</span>
+                    </div>
+                    <div class="letter-description">The primordial force, the beginning of manifestation</div>
+                </div>
+
+                <div class="letter-card" onclick="showLetterDetails('beth')">
+                    <div class="letter-symbol">𐤁</div>
+                    <div class="letter-name">Beth</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">House</span>
+                        <span class="meaning-category">Container</span>
+                        <span class="meaning-category">Duality</span>
+                    </div>
+                    <div class="letter-description">The principle of containment and shelter</div>
+                </div>
+
+                <div class="letter-card" onclick="showLetterDetails('gimel')">
+                    <div class="letter-symbol">𐤂</div>
+                    <div class="letter-name">Gimel</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Throwing Stick</span>
+                        <span class="meaning-category">Movement</span>
+                        <span class="meaning-category">Transportation</span>
+                    </div>
+                    <div class="letter-description">The principle of directed motion and purpose</div>
+                </div>
+
+                <div class="letter-card" onclick="showLetterDetails('daleth')">
+                    <div class="letter-symbol">𐤃</div>
+                    <div class="letter-name">Daleth</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Door</span>
+                        <span class="meaning-category">Passage</span>
+                        <span class="meaning-category">Transformation</span>
+                    </div>
+                    <div class="letter-description">The threshold between states of being</div>
+                </div>
+
+                <div class="letter-card" onclick="showLetterDetails('he')">
+                    <div class="letter-symbol">𐤄</div>
+                    <div class="letter-name">He</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Raised Arms</span>
+                        <span class="meaning-category">Breath</span>
+                        <span class="meaning-category">Spirit</span>
+                    </div>
+                    <div class="letter-description">The breath of life, divine inspiration</div>
+                </div>
+
+                <div class="letter-card" onclick="showLetterDetails('waw')">
+                    <div class="letter-symbol">𐤅</div>
+                    <div class="letter-name">Waw</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Hook</span>
+                        <span class="meaning-category">Connection</span>
+                        <span class="meaning-category">Joining</span>
+                    </div>
+                    <div class="letter-description">The principle that binds elements together</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Etruscan Section -->
+        <section id="etruscan" class="section">
+            <h2 class="section-title">Etruscan Alphabet</h2>
+            <p class="section-description">
+                The Etruscan civilization was renowned for divination and pattern recognition across different domains. 
+                Their alphabet reflects this understanding that symbols bridge visible and invisible worlds, 
+                with each letter representing both sound and spiritual principle.
+            </p>
+
+            <div class="alphabet-grid">
+                <div class="letter-card" onclick="showEtruscanDetails('a')">
+                    <div class="letter-symbol">𐌀</div>
+                    <div class="letter-name">A</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Beginning</span>
+                        <span class="meaning-category">Initiation</span>
+                        <span class="meaning-category">Primal Breath</span>
+                    </div>
+                    <div class="letter-description">The first sound, the opening of creation</div>
+                </div>
+
+                <div class="letter-card" onclick="showEtruscanDetails('b')">
+                    <div class="letter-symbol">𐌁</div>
+                    <div class="letter-name">B</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Container</span>
+                        <span class="meaning-category">Vessel</span>
+                        <span class="meaning-category">Body-Spirit</span>
+                    </div>
+                    <div class="letter-description">The body that holds spirit, the vessel of potential</div>
+                </div>
+
+                <div class="letter-card" onclick="showEtruscanDetails('c')">
+                    <div class="letter-symbol">𐌂</div>
+                    <div class="letter-name">C/K</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Cutting</span>
+                        <span class="meaning-category">Division</span>
+                        <span class="meaning-category">Form Creation</span>
+                    </div>
+                    <div class="letter-description">Creation through separation and definition</div>
+                </div>
+
+                <div class="letter-card" onclick="showEtruscanDetails('d')">
+                    <div class="letter-symbol">𐌃</div>
+                    <div class="letter-name">D</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Door</span>
+                        <span class="meaning-category">Threshold</span>
+                        <span class="meaning-category">Passage</span>
+                    </div>
+                    <div class="letter-description">The passage between different states</div>
+                </div>
+
+                <div class="letter-card" onclick="showEtruscanDetails('e')">
+                    <div class="letter-symbol">𐌄</div>
+                    <div class="letter-name">E</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Energy</span>
+                        <span class="meaning-category">Extension</span>
+                        <span class="meaning-category">Reaching</span>
+                    </div>
+                    <div class="letter-description">The force that extends outward, expansion</div>
+                </div>
+
+                <div class="letter-card" onclick="showEtruscanDetails('v')">
+                    <div class="letter-symbol">𐌅</div>
+                    <div class="letter-name">V/F</div>
+                    <div class="letter-meanings">
+                        <span class="meaning-category">Flow</span>
+                        <span class="meaning-category">Transformation</span>
+                        <span class="meaning-category">Bridge</span>
+                    </div>
+                    <div class="letter-description">The bridge between elements, transformation</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Comparison Section -->
+        <section id="comparison" class="section">
+            <div class="comparison-section">
+                <h2 class="section-title">System Comparison</h2>
+                <p class="section-description">
+                    Both alphabets share fundamental principles while expressing them through different cultural lenses. 
+                    The Proto-Sinaitic system emphasizes concrete imagery, while the Etruscan focuses on spiritual processes.
+                </p>
+
+                <div class="comparison-grid">
+                    <div class="alphabet-column">
+                        <h3 class="alphabet-header">Proto-Sinaitic</h3>
+                        <div class="letter-row">
+                            <div class="letter-symbol-small">𐤀</div>
+                            <div class="letter-info">
+                                <div class="letter-name-small">Aleph</div>
+                                <div class="letter-concept">Ox → Strength → First Principle</div>
+                            </div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="letter-symbol-small">𐤁</div>
+                            <div class="letter-info">
+                                <div class="letter-name-small">Beth</div>
+                                <div class="letter-concept">House → Container → Duality</div>
+                            </div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="letter-symbol-small">𐤂</div>
+                            <div class="letter-info">
+                                <div class="letter-name-small">Gimel</div>
+                                <div class="letter-concept">Stick → Movement → Transportation</div>
+                            </div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="letter-symbol-small">𐤃</div>
+                            <div class="letter-info">
+                                <div class="letter-name-small">Daleth</div>
+                                <div class="letter-concept">Door → Passage → Transformation</div>
+                            </div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="letter-symbol-small">𐤄</div>
+                            <div class="letter-info">
+                                <div class="letter-name-small">He</div>
+                                <div class="letter-concept">Arms → Breath → Spirit</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="alphabet-column">
+                        <h3 class="alphabet-header">Etruscan</h3>
+                        <div class="letter-row">
+                            <div class="letter-symbol-small">𐌀</div>
+                            <div class="letter-info">
+                                <div class="letter-name-small">A</div>
+                                <div class="letter-concept">Beginning → Initiation → Primal Breath</div>
+                            </div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="letter-symbol-small">𐌁</div>
+                            <div class="letter-info">
+                                <div class="letter-name-small">B</div>
+                                <div class="letter-concept">Container → Vessel → Body-Spirit</div>
+                            </div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="letter-symbol-small">𐌂</div>
+                            <div class="letter-info">
+                                <div class="letter-name-small">C/K</div>
+                                <div class="letter-concept">Cutting → Division → Form Creation</div>
+                            </div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="letter-symbol-small">𐌃</div>
+                            <div class="letter-info">
+                                <div class="letter-name-small">D</div>
+                                <div class="letter-concept">Door → Threshold → Passage</div>
+                            </div>
+                        </div>
+                        <div class="letter-row">
+                            <div class="letter-symbol-small">𐌄</div>
+                            <div class="letter-info">
+                                <div class="letter-name-small">E</div>
+                                <div class="letter-concept">Energy → Extension → Reaching</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Timeline Section -->
+        <section id="timeline" class="section">
+            <h2 class="section-title">Historical Development</h2>
+            <p class="section-description">
+                The evolution from prehistoric symbol patterns to structured alphabetic systems represents 
+                humanity's growing ability to encode abstract concepts in visual form.
+            </p>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">100,000 - 70,000 BCE</div>
+                        <h4>Blombos Cave Engravings</h4>
+                        <p>Earliest known symbolic representations - geometric patterns suggesting rhythm, symmetry, and containment principles.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">3200 BCE</div>
+                        <h4>Egyptian Hieroglyphs</h4>
+                        <p>Fully developed pictographic-phonetic system combining concrete imagery with abstract concepts.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1850 BCE</div>
+                        <h4>Proto-Sinaitic Script</h4>
+                        <p>The first alphabetic system emerges in Sinai, simplifying Egyptian concepts into 22 symbols with pictographic, phonetic, and conceptual meanings.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">1200 BCE</div>
+                        <h4>Phoenician Alphabet</h4>
+                        <p>Proto-Sinaitic evolves into the Phoenician system, spreading across the Mediterranean through trade networks.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">800 BCE</div>
+                        <h4>Greek Adaptation</h4>
+                        <p>Greeks adapt Phoenician letters, adding vowels and creating the template for European alphabets.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">700 BCE</div>
+                        <h4>Etruscan Alphabet</h4>
+                        <p>Etruscans adapt Greek letters for their language, developing a 26-letter system with strong divinatory associations.</p>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-content">
+                        <div class="timeline-date">600 BCE</div>
+                        <h4>Latin Development</h4>
+                        <p>Romans adapt Etruscan letters, creating the foundation for modern Western alphabets.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Interactive Tools Section -->
+        <section id="tools" class="section">
+            <div class="interactive-section">
+                <h2 class="section-title">Research & Analysis Tools</h2>
+                <p class="section-description">
+                    Interactive tools for exploring the symbolic patterns and conceptual frameworks 
+                    encoded in these ancient writing systems.
+                </p>
+
+                <div class="symbol-builder">
+                    <div class="builder-input">
+                        <h3 style="color: var(--clay-red); margin-bottom: 20px;">Symbol Pattern Analyzer</h3>
+                        
+                        <div class="input-group">
+                            <label class="input-label">Enter a word or concept:</label>
+                            <input type="text" class="input-field" id="conceptInput" placeholder="e.g., strength, house, movement">
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label">Select alphabet system:</label>
+                            <select class="input-field" id="alphabetSelect">
+                                <option value="proto-sinaitic">Proto-Sinaitic</option>
+                                <option value="etruscan">Etruscan</option>
+                                <option value="both">Both Systems</option>
+                            </select>
+                        </div>
+
+                        <div class="input-group">
+                            <label class="input-label">Analysis focus:</label>
+                            <select class="input-field" id="analysisType">
+                                <option value="conceptual">Conceptual Meaning</option>
+                                <option value="pictographic">Pictographic Origin</option>
+                                <option value="phonetic">Sound Correspondence</option>
+                                <option value="spiritual">Spiritual Significance</option>
+                            </select>
+                        </div>
+
+                        <button class="generate-btn" onclick="analyzeSymbol()">Analyze Symbol Pattern</button>
+                    </div>
+
+                    <div class="builder-output">
+                        <h3 style="color: var(--deep-purple); margin-bottom: 20px;">Analysis Results</h3>
+                        <div class="output-symbol" id="outputSymbol">𐤀</div>
+                        <div id="analysisResult">
+                            <p style="color: var(--stone-gray);">Enter a concept to analyze its symbolic representation across ancient alphabetic systems.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div style="margin-top: 50px; text-align: center;">
+                    <h3 style="color: var(--clay-red); margin-bottom: 20px;">Research Tools</h3>
+                    <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 15px;">
+                        <button class="generate-btn" onclick="downloadResearchGuide()">Download Research Guide</button>
+                        <button class="generate-btn" onclick="generateSymbolChart()">Generate Symbol Chart</button>
+                        <button class="generate-btn" onclick="exportComparison()">Export Comparison</button>
+                        <button class="generate-btn" onclick="createPracticeSheet()">Practice Sheet</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2024 Master Alphabet Research Portal</p>
+            <p>Exploring the symbolic foundations of human communication and consciousness</p>
+        </div>
+    </footer>
+
+    <script>
+        // Navigation functionality
+        document.querySelectorAll('.nav-item').forEach(item => {
+            item.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href').substring(1);
+                const targetElement = document.getElementById(targetId);
+                
+                if (targetElement) {
+                    const offsetTop = targetElement.getBoundingClientRect().top + window.pageYOffset - 100;
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                    
+                    document.querySelectorAll('.nav-item').forEach(nav => nav.classList.remove('active'));
+                    this.classList.add('active');
+                }
+            });
+        });
+
+        // Symbol databases
+        const protoSinaiticSymbols = {
+            'strength': { symbol: '𐤀', name: 'Aleph', meaning: 'Ox → Strength → First Principle' },
+            'house': { symbol: '𐤁', name: 'Beth', meaning: 'House → Container → Duality' },
+            'movement': { symbol: '𐤂', name: 'Gimel', meaning: 'Throwing stick → Movement → Transportation' },
+            'door': { symbol: '𐤃', name: 'Daleth', meaning: 'Door → Passage → Transformation' },
+            'breath': { symbol: '𐤄', name: 'He', meaning: 'Raised arms → Breath → Spirit' },
+            'connection': { symbol: '𐤅', name: 'Waw', meaning: 'Hook → Connection → Joining' },
+            'division': { symbol: '𐤆', name: 'Zayin', meaning: 'Weapon → Cutting → Division' },
+            'protection': { symbol: '𐤇', name: 'Heth', meaning: 'Fence → Boundary → Protection' },
+            'cycle': { symbol: '𐤈', name: 'Teth', meaning: 'Wheel → Cycle → Completion' },
+            'action': { symbol: '𐤉', name: 'Yod', meaning: 'Arm/Hand → Action → Manifestation' }
+        };
+
+        const etruscanSymbols = {
+            'beginning': { symbol: '𐌀', name: 'A', meaning: 'Beginning → Initiation → Primal Breath' },
+            'container': { symbol: '𐌁', name: 'B', meaning: 'Container → Vessel → Body-Spirit' },
+            'cutting': { symbol: '𐌂', name: 'C/K', meaning: 'Cutting → Division → Form Creation' },
+            'door': { symbol: '𐌃', name: 'D', meaning: 'Door → Threshold → Passage' },
+            'energy': { symbol: '𐌄', name: 'E', meaning: 'Energy → Extension → Reaching' },
+            'flow': { symbol: '𐌅', name: 'V/F', meaning: 'Flow → Transformation → Bridge' },
+            'vibration': { symbol: '𐌆', name: 'Z', meaning: 'Vibration → Pattern → Energy Dance' },
+            'breath': { symbol: '𐌇', name: 'H', meaning: 'Breath → Spirit → Unseen Force' },
+            'completion': { symbol: '𐌈', name: 'Th', meaning: 'Completion → Fullness → Circle Closed' }
+        };
+
+        // Symbol analysis function
+        function analyzeSymbol() {
+            const concept = document.getElementById('conceptInput').value.toLowerCase().trim();
+            const alphabet = document.getElementById('alphabetSelect').value;
+            const analysisType = document.getElementById('analysisType').value;
+            
+            if (!concept) {
+                alert('Please enter a concept to analyze');
+                return;
+            }
+
+            let result = '';
+            let symbol = '❓';
+
+            if (alphabet === 'proto-sinaitic' || alphabet === 'both') {
+                if (protoSinaiticSymbols[concept]) {
+                    const data = protoSinaiticSymbols[concept];
+                    symbol = data.symbol;
+                    result += `<strong>Proto-Sinaitic:</strong><br>${data.name} (${data.symbol})<br>${data.meaning}<br><br>`;
+                }
+            }
+
+            if (alphabet === 'etruscan' || alphabet === 'both') {
+                if (etruscanSymbols[concept]) {
+                    const data = etruscanSymbols[concept];
+                    if (alphabet === 'etruscan') symbol = data.symbol;
+                    result += `<strong>Etruscan:</strong><br>${data.name} (${data.symbol})<br>${data.meaning}<br><br>`;
+                }
+            }
+
+            if (!result) {
+                result = `<p style="color: var(--clay-red);">No direct match found for "${concept}".</p>
+                         <p>Try these concepts: strength, house, movement, door, breath, connection, protection, energy, flow, vibration</p>`;
+                symbol = '❓';
+            } else {
+                result += `<strong>Analysis Type:</strong> ${analysisType.charAt(0).toUpperCase() + analysisType.slice(1)}<br>`;
+                
+                switch(analysisType) {
+                    case 'conceptual':
+                        result += 'This symbol represents the abstract principle underlying the concrete form.';
+                        break;
+                    case 'pictographic':
+                        result += 'The visual form derives from a recognizable object or action in the physical world.';
+                        break;
+                    case 'phonetic':
+                        result += 'The sound value comes from the first letter of the object\'s name (acrophonic principle).';
+                        break;
+                    case 'spiritual':
+                        result += 'The spiritual significance connects the symbol to deeper metaphysical principles.';
+                        break;
+                }
+            }
+
+            document.getElementById('outputSymbol').textContent = symbol;
+            document.getElementById('analysisResult').innerHTML = result;
+        }
+
+        // Tool functions
+        function downloadResearchGuide() {
+            const guide = `# Master Alphabet Research Guide
+
+## Proto-Sinaitic System (c. 1850 BCE)
+The foundational alphabetic system with triple-layer meaning:
+
+### Core Principles
+1. **Pictographic**: Each symbol represents a concrete object
+2. **Acrophonic**: Sound comes from first letter of object's name  
+3. **Conceptual**: Abstract principle underlying the form
+
+### Key Symbols
+- 𐤀 Aleph: Ox → Strength → First Principle
+- 𐤁 Beth: House → Container → Duality
+- 𐤂 Gimel: Throwing stick → Movement → Transportation
+- 𐤃 Daleth: Door → Passage → Transformation
+- 𐤄 He: Raised arms → Breath → Spirit
+
+## Etruscan System (c. 700 BCE)
+Adapted from Greek with strong divinatory focus:
+
+### Spiritual Framework
+- Each letter represents both sound and principle
+- Used for reading patterns across domains
+- Bridges visible and invisible worlds
+
+### Key Symbols  
+- 𐌀 A: Beginning → Initiation → Primal Breath
+- 𐌁 B: Container → Vessel → Body-Spirit
+- 𐌂 C/K: Cutting → Division → Form Creation
+- 𐌃 D: Door → Threshold → Passage
+- 𐌄 E: Energy → Extension → Reaching
+
+## Research Methodology
+1. **Pattern Recognition**: Look for recurring themes
+2. **Cross-System Analysis**: Compare symbol meanings
+3. **Historical Context**: Understand cultural development
+4. **Practical Application**: Use for insight and reflection
+
+## Further Reading
+- Albright, W.F. "The Proto-Sinaitic Inscriptions"
+- Torelli, M. "Typology and Structure of Roman Historical Reliefs"
+- Cross, F.M. "The Origin and Early Evolution of the Alphabet"
+
+Generated: ${new Date().toISOString()}`;
+            
+            downloadFile(guide, 'master-alphabet-research-guide.md', 'text/markdown');
+        }
+
+        function generateSymbolChart() {
+            const chart = `# Symbol Comparison Chart
+
+| Concept | Proto-Sinaitic | Etruscan | Shared Principle |
+|---------|----------------|----------|------------------|
+| Beginning | 𐤀 Aleph | 𐌀 A | First Principle / Initiation |
+| Container | 𐤁 Beth | 𐌁 B | House / Vessel for Spirit |
+| Movement | 𐤂 Gimel | 𐌂 C/K | Transportation / Creation |
+| Passage | 𐤃 Daleth | 𐌃 D | Door / Threshold |
+| Spirit | 𐤄 He | 𐌇 H | Breath / Unseen Force |
+| Connection | 𐤅 Waw | 𐌅 V/F | Joining / Bridge |
+| Division | 𐤆 Zayin | 𐌆 Z | Cutting / Pattern |
+| Protection | 𐤇 Heth | - | Boundary / Fence |
+| Completion | 𐤈 Teth | 𐌈 Th | Cycle / Fullness |
+| Action | 𐤉 Yod | - | Hand / Manifestation |
+
+## Usage Notes
+- Both systems encode fundamental human experiences
+- Symbols bridge concrete and abstract realms
+- Pattern recognition is key to understanding
+- Each system reflects its cultural context
+
+Generated: ${new Date().toISOString()}`;
+            
+            downloadFile(chart, 'symbol-comparison-chart.md', 'text/markdown');
+        }
+
+        function exportComparison() {
+            const comparison = `# Detailed System Comparison
+
+## Proto-Sinaitic Characteristics
+- **Origin**: Sinai Peninsula, c. 1850 BCE
+- **Derivation**: Simplified Egyptian hieroglyphs
+- **Structure**: 22 primary symbols
+- **Method**: Acrophonic principle
+- **Focus**: Concrete objects → abstract principles
+
+### Symbolic Framework
+Each symbol operates on three levels:
+1. **Object**: Physical form (ox, house, door)
+2. **Sound**: First letter of object name
+3. **Concept**: Abstract principle (strength, containment, passage)
+
+## Etruscan Characteristics  
+- **Origin**: Central Italy, c. 700 BCE
+- **Derivation**: Adapted from Greek alphabet
+- **Structure**: 26 letters (not all commonly used)
+- **Method**: Direct symbolic meaning
+- **Focus**: Spiritual principles and divination
+
+### Symbolic Framework
+Each letter represents:
+1. **Sound**: Phonetic value
+2. **Principle**: Spiritual/metaphysical concept
+3. **Process**: Transformation or state
+
+## Key Similarities
+- Both encode abstract concepts in visual form
+- Both use symbols to bridge visible/invisible realms
+- Both reflect pattern recognition principles
+- Both influence later alphabetic development
+
+## Key Differences
+- Proto-Sinaitic emphasizes concrete origins
+- Etruscan emphasizes spiritual processes
+- Proto-Sinaitic uses acrophonic derivation
+- Etruscan uses direct symbolic assignment
+
+Generated: ${new Date().toISOString()}`;
+            
+            downloadFile(comparison, 'alphabet-system-comparison.md', 'text/markdown');
+        }
+
+        function createPracticeSheet() {
+            const practice = `# Alphabet Practice Sheet
+
+## Exercise 1: Symbol Recognition
+Draw the symbols for these concepts:
+
+1. Strength/First Principle: ___________
+2. House/Container: ___________  
+3. Movement/Transportation: ___________
+4. Door/Passage: ___________
+5. Breath/Spirit: ___________
+
+## Exercise 2: Pattern Analysis
+For each symbol, identify the three levels:
+
+### 𐤀 (Aleph)
+- Object: ___________
+- Sound: ___________
+- Concept: ___________
+
+### 𐤁 (Beth)  
+- Object: ___________
+- Sound: ___________
+- Concept: ___________
+
+## Exercise 3: Cross-System Comparison
+Compare these equivalent concepts:
+
+| Proto-Sinaitic | Etruscan | Shared Principle |
+|----------------|----------|------------------|
+| 𐤀 Aleph | 𐌀 A | _____________ |
+| 𐤁 Beth | 𐌁 B | _____________ |
+| 𐤃 Daleth | 𐌃 D | _____________ |
+
+## Exercise 4: Conceptual Application
+Choose a symbol and explain how its principle appears in:
+- Nature: ___________
+- Human behavior: ___________
+- Social structures: ___________
+- Creative expression: ___________
+
+## Answer Key
+[Practice with the interactive tool for verification]
+
+Generated: ${new Date().toISOString()}`;
+            
+            downloadFile(practice, 'alphabet-practice-sheet.md', 'text/markdown');
+        }
+
+        // Utility function for file downloads
+        function downloadFile(content, filename, mimeType) {
+            const blob = new Blob([content], { type: mimeType });
+            const url = URL.createObjectURL(blob);
+            const a = document.createElement('a');
+            a.href = url;
+            a.download = filename;
+            a.click();
+            URL.revokeObjectURL(url);
+        }
+
+        // Letter detail functions
+        function showLetterDetails(letter) {
+            const details = {
+                'aleph': 'Aleph (𐤀) represents the primordial force from which all manifestation emerges. As an ox, it embodies raw strength and potential. As the first letter, it establishes the principle of beginning and foundation.',
+                'beth': 'Beth (𐤁) symbolizes containment and shelter. The house provides protection and defines interior from exterior, representing the principle of duality and the body as container for spirit.',
+                'gimel': 'Gimel (𐤂) embodies purposeful movement and transportation. The throwing stick represents directed energy and the ability to extend influence across distance.',
+                'daleth': 'Daleth (𐤃) represents transition and transformation. The door is a threshold between states, embodying the principle of passage and change.',
+                'he': 'He (𐤄) symbolizes the breath of life and divine inspiration. The raised arms represent the reception of spirit and the expression of vitality.',
+                'waw': 'Waw (𐤅) represents connection and joining. The hook brings separate elements together, embodying the principle of unity and relationship.'
+            };
+            
+            alert(details[letter] || 'Letter details not available.');
+        }
+
+        function showEtruscanDetails(letter) {
+            const details = {
+                'a': 'Etruscan A (𐌀) represents the beginning of all manifestation, the first breath of consciousness, and the initiation of form from formlessness.',
+                'b': 'Etruscan B (𐌁) symbolizes the vessel that contains spirit, the body that houses consciousness, and the principle of containment.',
+                'c': 'Etruscan C/K (𐌂) represents the act of cutting and division that creates form, the separation necessary for manifestation.',
+                'd': 'Etruscan D (𐌃) symbolizes the threshold between states, the passage point where transformation occurs.',
+                'e': 'Etruscan E (𐌄) represents energy extending outward, the force that reaches beyond boundaries and expands awareness.',
+                'v': 'Etruscan V/F (𐌅) symbolizes flow and transformation, the bridge that connects different elements and states.'
+            };
+            
+            alert(details[letter] || 'Letter details not available.');
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set default analysis example
+            document.getElementById('conceptInput').value = 'strength';
+            analyzeSymbol();
+        });
+    </script>
+</body>
+</html>

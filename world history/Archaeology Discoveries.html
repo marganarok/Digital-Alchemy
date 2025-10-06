@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Archaeological Discoveries: Ancient Civilizations Timeline</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a2e 0%, #16213e 50%, #0f3460 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: 
+                radial-gradient(circle at 20% 50%, rgba(218, 165, 32, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 80%, rgba(139, 69, 19, 0.1) 0%, transparent 50%);
+            padding: 40px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '𓂀 𓆣 𓋹 𓃭 𓅓';
+            position: absolute;
+            font-size: 10rem;
+            opacity: 0.03;
+            color: #daa520;
+            animation: float 20s infinite ease-in-out;
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-30px) rotate(5deg); }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            color: #daa520;
+            text-shadow: 0 0 40px rgba(218, 165, 32, 0.5);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: #c9a961;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .container {
+            max-width: 1400px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            background: rgba(22, 33, 62, 0.6);
+            padding: 50px;
+            border-radius: 30px;
+            border: 2px solid rgba(218, 165, 32, 0.3);
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0, 0, 0, 0.5);
+        }
+
+        .section-title {
+            font-size: 3rem;
+            color: #daa520;
+            margin-bottom: 30px;
+            padding-bottom: 15px;
+            border-bottom: 3px solid #daa520;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 50px;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 4px;
+            background: linear-gradient(to bottom, #daa520, #8b4513);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 50px;
+            padding: 30px;
+            background: rgba(218, 165, 32, 0.05);
+            border-radius: 15px;
+            border-left: 4px solid #daa520;
+            transition: all 0.3s ease;
+        }
+
+        .timeline-item:hover {
+            background: rgba(218, 165, 32, 0.1);
+            transform: translateX(10px);
+            box-shadow: 0 5px 20px rgba(218, 165, 32, 0.3);
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -57px;
+            top: 30px;
+            width: 24px;
+            height: 24px;
+            border-radius: 50%;
+            background: #daa520;
+            border: 4px solid #1a1a2e;
+            box-shadow: 0 0 20px rgba(218, 165, 32, 0.5);
+        }
+
+        .timeline-year {
+            font-size: 2rem;
+            color: #daa520;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .timeline-title {
+            font-size: 1.8rem;
+            color: #c9a961;
+            margin-bottom: 15px;
+        }
+
+        .timeline-content {
+            color: #d1d5db;
+            font-size: 1.1rem;
+            line-height: 1.8;
+        }
+
+        .discovery-tag {
+            display: inline-block;
+            padding: 6px 15px;
+            background: rgba(139, 69, 19, 0.3);
+            border: 1px solid #8b4513;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            color: #daa520;
+            margin: 5px;
+            font-weight: bold;
+        }
+
+        .featured-box {
+            background: linear-gradient(135deg, rgba(218, 165, 32, 0.1), rgba(139, 69, 19, 0.1));
+            border: 2px solid #daa520;
+            border-radius: 20px;
+            padding: 40px;
+            margin: 40px 0;
+        }
+
+        .featured-title {
+            font-size: 2.5rem;
+            color: #daa520;
+            margin-bottom: 25px;
+            text-align: center;
+        }
+
+        .artifact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .artifact-card {
+            background: rgba(218, 165, 32, 0.08);
+            border: 2px solid rgba(218, 165, 32, 0.3);
+            border-radius: 15px;
+            padding: 30px;
+            transition: all 0.3s ease;
+        }
+
+        .artifact-card:hover {
+            transform: translateY(-10px);
+            border-color: #daa520;
+            box-shadow: 0 10px 30px rgba(218, 165, 32, 0.3);
+        }
+
+        .artifact-name {
+            font-size: 1.5rem;
+            color: #daa520;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .stat-highlight {
+            background: rgba(218, 165, 32, 0.2);
+            padding: 15px;
+            border-radius: 10px;
+            margin: 15px 0;
+            border-left: 4px solid #daa520;
+        }
+
+        .quote-box {
+            background: rgba(139, 69, 19, 0.2);
+            border-left: 5px solid #8b4513;
+            padding: 25px;
+            margin: 30px 0;
+            font-size: 1.2rem;
+            font-style: italic;
+            color: #c9a961;
+        }
+
+        .info-badge {
+            display: inline-block;
+            background: #daa520;
+            color: #1a1a2e;
+            padding: 8px 18px;
+            border-radius: 20px;
+            font-weight: bold;
+            font-size: 0.9rem;
+            margin: 5px;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .section {
+                padding: 30px 20px;
+            }
+
+            .timeline {
+                padding-left: 30px;
+            }
+
+            .artifact-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>ARCHAEOLOGICAL DISCOVERIES</h1>
+        <div class="subtitle">From Ancient Tombs to Lost Cities</div>
+        <div style="color: #888; margin-top: 20px;">A Timeline of Humanity's Greatest Finds</div>
+    </div>
+
+    <div class="container">
+        <!-- Introduction -->
+        <div class="section">
+            <h2 class="section-title">Why These Discoveries Matter</h2>
+            <div style="color: #d1d5db; font-size: 1.15rem; line-height: 1.9;">
+                For thousands of years, ancient civilizations built monuments, buried their dead with treasures, and left behind clues about how they lived. Most of this was lost, buried, or destroyed. But when archaeologists find these sites intact, they rewrite what we know about human history.
+                
+                <div class="stat-highlight" style="margin-top: 30px;">
+                    <strong style="color: #daa520;">Key Pattern:</strong> The best discoveries happen when sites are found UNDISTURBED - meaning grave robbers, treasure hunters, or modern construction didn't get there first. That's why intact tombs are so valuable: they're time capsules.
+                </div>
+            </div>
+        </div>
+
+        <!-- Major Discoveries Timeline -->
+        <div class="section">
+            <h2 class="section-title">Timeline of Major Discoveries</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-year">1798-1801</div>
+                    <div class="timeline-title">Napoleon's Egyptian Campaign</div>
+                    <div class="timeline-content">
+                        Napoleon brought 167 scientists and scholars along with his army to Egypt. This wasn't just a military invasion - it was the first systematic study of Egyptian monuments.
+                        
+                        <div class="stat-highlight">
+                            <strong>Major Find:</strong> The Rosetta Stone (1799) - a black granite slab with the same text in three languages: Greek, Demotic Egyptian, and hieroglyphs. This single stone unlocked the ability to read hieroglyphs for the first time in 1,400 years.
+                        </div>
+
+                        <div style="margin-top: 15px;">
+                            <span class="discovery-tag">Egypt</span>
+                            <span class="discovery-tag">Hieroglyphs</span>
+                            <span class="discovery-tag">Rosetta Stone</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1911</div>
+                    <div class="timeline-title">Machu Picchu Revealed</div>
+                    <div class="timeline-content">
+                        Hiram Bingham, an American historian, brought international attention to the "Lost City of the Incas" high in the Peruvian Andes. Important note: local people always knew it was there - Bingham didn't "discover" it, he made it famous to the outside world.
+                        
+                        <div class="stat-highlight">
+                            <strong>Why It Matters:</strong> The site was never found by Spanish conquistadors, so it remained intact. This gave archaeologists a complete picture of Inca architecture, agriculture (terraced farming), and urban planning at 2,430 meters (7,970 ft) elevation.
+                        </div>
+
+                        <div style="margin-top: 15px;">
+                            <span class="discovery-tag">Peru</span>
+                            <span class="discovery-tag">Inca</span>
+                            <span class="discovery-tag">Architecture</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1922</div>
+                    <div class="timeline-title">Tutankhamun's Tomb</div>
+                    <div class="timeline-content">
+                        Howard Carter discovered the intact tomb of the "boy pharaoh" Tutankhamun in Egypt's Valley of the Kings. This is THE most famous archaeological find of all time.
+                        
+                        <div class="stat-highlight">
+                            <strong>Why It's Legendary:</strong> Nearly every other pharaoh's tomb had been robbed in ancient times. Tut's tomb was hidden by debris from later construction, so it survived untouched for 3,200+ years. Inside: golden death mask, chariots, weapons, furniture, food, and over 5,000 artifacts.
+                        </div>
+
+                        <div class="quote-box">
+                            When Carter first peered into the tomb and was asked "Can you see anything?" he replied: "Yes, wonderful things."
+                        </div>
+
+                        <div style="margin-top: 15px;">
+                            <span class="discovery-tag">Egypt</span>
+                            <span class="discovery-tag">Royal Tomb</span>
+                            <span class="discovery-tag">Gold Mask</span>
+                            <span class="discovery-tag">3,200 Years Old</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1952</div>
+                    <div class="timeline-title">Pakal's Tomb at Palenque</div>
+                    <div class="timeline-content">
+                        Mexican archaeologist Alberto Ruz Lhuillier discovered the elaborate tomb of Maya ruler K'inich Janaab Pakal I deep inside the Temple of Inscriptions in Palenque, Mexico.
+                        
+                        <div class="stat-highlight">
+                            <strong>The Discovery:</strong> Ruz noticed the temple floor had a stone slab with holes in it - clearly meant to be lifted. Underneath was a staircase filled with rubble. It took 4 YEARS to clear the stairs. At the bottom: a chamber containing Pakal's sarcophagus, covered by a 5-ton carved lid, with Pakal's skeleton wearing a jade burial mask.
+                        </div>
+
+                        <div style="margin-top: 15px;">
+                            <span class="discovery-tag">Maya</span>
+                            <span class="discovery-tag">Mexico</span>
+                            <span class="discovery-tag">Jade Mask</span>
+                            <span class="discovery-tag">1,300 Years Old</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1987</div>
+                    <div class="timeline-title">Moche Royal Tombs at Sipán</div>
+                    <div class="timeline-content">
+                        Peruvian archaeologist Walter Alva discovered unlooted Moche elite tombs at Sipán, Peru - one of the richest archaeological finds in the Americas.
+                        
+                        <div class="stat-highlight">
+                            <strong>The Treasure:</strong> The "Lord of Sipán" was buried with elaborate gold and silver ornaments, turquoise, lapis lazuli, and dozens of ceramic vessels. The craftsmanship rivals Egyptian treasures. This proved pre-Columbian American metallurgy was incredibly sophisticated.
+                        </div>
+
+                        <div style="margin-top: 15px;">
+                            <span class="discovery-tag">Moche</span>
+                            <span class="discovery-tag">Peru</span>
+                            <span class="discovery-tag">Gold/Silver</span>
+                            <span class="discovery-tag">1,700 Years Old</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">1994</div>
+                    <div class="timeline-title">Caral Civilization</div>
+                    <div class="timeline-content">
+                        Peruvian archaeologist Ruth Shady's excavations at Caral proved the site is 5,000 years old, making it the oldest known civilization in the Americas and contemporary with Egyptian pyramid building.
+                        
+                        <div class="stat-highlight">
+                            <strong>Mind-Blowing Fact:</strong> While Egyptians were building the pyramids at Giza, people in Peru were building massive pyramids and creating sophisticated urban centers. This happened SIMULTANEOUSLY on opposite sides of the world with no contact between them.
+                        </div>
+
+                        <div style="margin-top: 15px;">
+                            <span class="discovery-tag">Peru</span>
+                            <span class="discovery-tag">Urban Planning</span>
+                            <span class="discovery-tag">5,000 Years Old</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2017</div>
+                    <div class="timeline-title">Great Pyramid Hidden Void</div>
+                    <div class="timeline-content">
+                        Scientists using cosmic-ray imaging (muon tomography) discovered a large void above the Grand Gallery in the Great Pyramid of Giza - potentially a hidden chamber.
+                        
+                        <div class="stat-highlight">
+                            <strong>What This Means:</strong> The Great Pyramid has been studied for 4,500 years. The fact that we're STILL finding new rooms inside it in 2017 shows how much we don't know. This void is at least 30 meters long. What's inside? Nobody knows yet - no way to access it without damaging the pyramid.
+                        </div>
+
+                        <div style="margin-top: 15px;">
+                            <span class="discovery-tag">Egypt</span>
+                            <span class="discovery-tag">Great Pyramid</span>
+                            <span class="discovery-tag">Hidden Chamber</span>
+                            <span class="discovery-tag">Modern Tech</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-year">2022</div>
+                    <div class="timeline-title">Maya Megalopolis (LiDAR Discovery)</div>
+                    <div class="timeline-content">
+                        LiDAR technology (laser scanning from aircraft) revealed massive Maya urban centers hidden under jungle canopy in Guatemala, Mexico, and Belize.
+                        
+                        <div class="stat-highlight">
+                            <strong>The Scale:</strong> These scans revealed over 60,000 previously unknown structures including pyramids, causeways, fortifications, and agricultural systems. Estimate: Maya civilization may have had 10-15 MILLION people at its peak - far more than previously thought. Entire cities that archaeologists walked past for decades because they were covered in jungle.
+                        </div>
+
+                        <div style="margin-top: 15px;">
+                            <span class="discovery-tag">Maya</span>
+                            <span class="discovery-tag">LiDAR Tech</span>
+                            <span class="discovery-tag">Lost Cities</span>
+                            <span class="discovery-tag">Ongoing</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- Natufian Shaman Section -->
+        <div class="section">
+            <h2 class="section-title">Special Feature: The Natufian Shaman</h2>
+            
+            <div class="featured-box">
+                <div class="featured-title">Hilazon Tachtit Cave, Israel (12,000 Years Ago)</div>
+                
+                <div style="color: #d1d5db; font-size: 1.1rem; line-height: 1.9;">
+                    In 2008, archaeologists discovered the grave of an elderly woman in a cave in northern Israel. This burial is extraordinary because of how elaborate it was - suggesting this person held high status, possibly as a shaman or spiritual leader.
+                </div>
+
+                <div class="artifact-grid">
+                    <div class="artifact-card">
+                        <div class="artifact-name">The Individual</div>
+                        <div style="color: #d1d5db;">
+                            <strong>Age:</strong> Approximately 45 years old (elderly for that time period)<br>
+                            <strong>Sex:</strong> Female<br>
+                            <strong>Height:</strong> About 1.5 meters (4'11")<br>
+                            <strong>Physical issues:</strong> Deformed pelvis, spine abnormalities - she would have walked with difficulty
+                        </div>
+                    </div>
+
+                    <div class="artifact-card">
+                        <div class="artifact-name">Burial Position</div>
+                        <div style="color: #d1d5db;">
+                            Arranged sitting/reclining against the cave wall in a prepared pit lined with limestone slabs. This took significant effort - not a simple burial.
+                        </div>
+                    </div>
+
+                    <div class="artifact-card">
+                        <div class="artifact-name">Grave Goods: Animals</div>
+                        <div style="color: #d1d5db;">
+                            <strong>• Leopard pelvis</strong> (rare, powerful animal)<br>
+                            <strong>• Golden eagle wing</strong> (birds of prey = spiritual power)<br>
+                            <strong>• 50+ tortoise shells</strong> (some with meat still inside = funerary feast)<br>
+                            <strong>• Wild boar remains</strong><br>
+                            <strong>• Wild cow tail</strong>
+                        </div>
+                    </div>
+
+                    <div class="artifact-card">
+                        <div class="artifact-name">Strange Detail</div>
+                        <div style="color: #d1d5db;">
+                            A complete human foot from another person was placed in the grave. Nobody knows why. Theories: trophy, symbolic offering, or connection to another individual.
+                        </div>
+                    </div>
+                </div>
+
+                <div class="stat-highlight" style="margin-top: 30px;">
+                    <strong style="color: #daa520;">Why This Matters:</strong> This burial dates to the Natufian period - right before humans invented agriculture. These were hunter-gatherers transitioning to settled life. The elaborate burial suggests they already had:
+                    <ul style="margin: 15px 0 0 30px; color: #d1d5db;">
+                        <li>Social hierarchy (some people more important than others)</li>
+                        <li>Spiritual beliefs requiring specialists (shamans/healers)</li>
+                        <li>Complex burial rituals</li>
+                        <li>Ability to support individuals who couldn't hunt/gather (she had physical disabilities but clearly held high status)</li>
+                    </ul>
+                </div>
+
+                <div class="quote-box">
+                    "The diversity and number of grave goods, the special treatment of the body, and the animal remains suggest this was no ordinary burial. This woman likely served as a ritual specialist - a mediator between the human and spiritual worlds."
+                    <div style="text-align: right; margin-top: 10px; color: #888;">— Leore Grosman, excavation director</div>
+                </div>
+
+                <div style="margin-top: 30px;">
+                    <span class="info-badge">12,000 Years Old</span>
+                    <span class="info-badge">Pre-Agriculture</span>
+                    <span class="info-badge">Shaman/Healer</span>
+                    <span class="info-badge">Elaborate Ritual</span>
+                </div>
+            </div>
+        </div>
+
+        <!-- Patterns Section -->
+        <div class="section">
+            <h2 class="section-title">What These Discoveries Teach Us</h2>
+
+            <div style="color: #d1d5db; font-size: 1.1rem; line-height: 1.9;">
+                <h3 style="color: #daa520; margin: 30px 0 20px 0;">1. Humans Have Always Been Creative and Complex</h3>
+                <p>Whether it's 12,000 years ago (Natufian shaman) or 5,000 years ago (Egyptian pyramids), humans were building, creating art, establishing social hierarchies, and practicing elaborate rituals. The "primitive caveman" stereotype is wrong.</p>
+
+                <h3 style="color: #daa520; margin: 30px 0 20px 0;">2. Technology Changes What We Can Find</h3>
+                <p>LiDAR scans found entire Maya cities in 2022 that archaeologists had walked past for decades. Cosmic-ray imaging found hidden chambers in the Great Pyramid in 2017. New technology = new discoveries in places we thought we knew.</p>
+
+                <h3 style="color: #daa520; margin: 30px 0 20px 0;">3. Most Sites Were Looted Long Ago</h3>
+                <p>That's why intact tombs (Tutankhamun, Pakal, Sipán) are so valuable - they're the exception, not the rule. Grave robbers have been stealing from tombs for thousands of years. When we find one that survived, it's a miracle.</p>
+
+                <h3 style="color: #daa520; margin: 30px 0 20px 0;">4. Independent Development Across Continents</h3>
+                <p>Pyramids in Egypt and pyramids in Peru. Urban planning in Mesopotamia and urban planning at Caral. Complex societies developed independently on different continents, suggesting these patterns are part of how humans organize when populations grow.</p>
+
+                <div class="stat-highlight" style="margin-top: 30px;">
+                    <strong>Bottom Line:</strong> Archaeology keeps rewriting what we know. The more we dig (literally and technologically), the more we realize ancient humans were sophisticated, creative, and capable of incredible achievements - often much earlier than we thought possible.
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

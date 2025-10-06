@@ -1,0 +1,682 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Māori People & Hakari: Cultural Research Study</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), 
+                        url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23003300" width="1200" height="600"/><path fill="%23004400" d="M0 300 Q300 200 600 300 T1200 300 V600 H0 Z"/></svg>');
+            background-size: cover;
+            background-position: center;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: repeating-linear-gradient(
+                90deg,
+                transparent,
+                transparent 40px,
+                rgba(255,255,255,0.03) 40px,
+                rgba(255,255,255,0.03) 80px
+            );
+            animation: scroll 20s linear infinite;
+        }
+
+        @keyframes scroll {
+            0% { transform: translateX(0); }
+            100% { transform: translateX(80px); }
+        }
+
+        .hero h1 {
+            font-size: 5rem;
+            font-weight: 700;
+            color: #c9a961;
+            text-shadow: 0 0 30px rgba(201, 169, 97, 0.5);
+            margin-bottom: 20px;
+            letter-spacing: 3px;
+            z-index: 1;
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: #a8d5ba;
+            margin-bottom: 40px;
+            font-style: italic;
+            z-index: 1;
+        }
+
+        .hero .meta {
+            font-size: 1rem;
+            color: #888;
+            z-index: 1;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            background: rgba(40, 40, 40, 0.6);
+            padding: 50px;
+            border-radius: 20px;
+            border-left: 5px solid #c9a961;
+            backdrop-filter: blur(10px);
+            box-shadow: 0 10px 40px rgba(0,0,0,0.3);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: #c9a961;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #c9a961;
+            padding-bottom: 15px;
+        }
+
+        .subsection-title {
+            font-size: 2rem;
+            color: #a8d5ba;
+            margin: 40px 0 20px 0;
+        }
+
+        .definition-box {
+            background: rgba(201, 169, 97, 0.1);
+            border: 2px solid #c9a961;
+            border-radius: 15px;
+            padding: 30px;
+            margin: 30px 0;
+            font-size: 1.2rem;
+        }
+
+        .definition-box .term {
+            font-size: 2rem;
+            color: #c9a961;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .definition-box .pronunciation {
+            color: #a8d5ba;
+            font-style: italic;
+            margin-bottom: 20px;
+        }
+
+        .stat-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin: 40px 0;
+        }
+
+        .stat-card {
+            background: linear-gradient(135deg, #c9a961 0%, #8b7355 100%);
+            padding: 30px;
+            border-radius: 15px;
+            text-align: center;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.3);
+            transition: transform 0.3s ease;
+        }
+
+        .stat-card:hover {
+            transform: translateY(-10px);
+        }
+
+        .stat-number {
+            font-size: 3rem;
+            font-weight: bold;
+            color: #1a1a1a;
+            margin-bottom: 10px;
+        }
+
+        .stat-label {
+            font-size: 1rem;
+            color: #2d2d2d;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .quote-box {
+            background: rgba(168, 213, 186, 0.1);
+            border-left: 5px solid #a8d5ba;
+            padding: 30px;
+            margin: 30px 0;
+            font-size: 1.3rem;
+            font-style: italic;
+            color: #a8d5ba;
+        }
+
+        .content-block {
+            margin: 25px 0;
+            font-size: 1.1rem;
+            text-align: justify;
+        }
+
+        .highlight {
+            color: #c9a961;
+            font-weight: bold;
+        }
+
+        .timeline {
+            position: relative;
+            padding-left: 40px;
+            margin: 40px 0;
+        }
+
+        .timeline::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: linear-gradient(to bottom, #c9a961, #a8d5ba);
+        }
+
+        .timeline-item {
+            position: relative;
+            margin-bottom: 40px;
+            padding-left: 30px;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: -47px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: #c9a961;
+            border: 4px solid #1a1a1a;
+        }
+
+        .timeline-date {
+            font-size: 1.5rem;
+            color: #c9a961;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+
+        .list-elegant {
+            list-style: none;
+            margin: 20px 0;
+        }
+
+        .list-elegant li {
+            padding: 15px 0;
+            padding-left: 40px;
+            position: relative;
+            font-size: 1.1rem;
+        }
+
+        .list-elegant li::before {
+            content: '▸';
+            position: absolute;
+            left: 10px;
+            color: #c9a961;
+            font-size: 1.5rem;
+        }
+
+        .image-placeholder {
+            width: 100%;
+            height: 400px;
+            background: linear-gradient(135deg, #003300, #006600);
+            border-radius: 15px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #a8d5ba;
+            font-size: 1.5rem;
+            margin: 30px 0;
+            border: 3px solid #c9a961;
+        }
+
+        .two-column {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin: 40px 0;
+        }
+
+        .column-box {
+            background: rgba(168, 213, 186, 0.05);
+            padding: 30px;
+            border-radius: 15px;
+            border: 2px solid rgba(168, 213, 186, 0.3);
+        }
+
+        .sources {
+            background: rgba(40, 40, 40, 0.8);
+            padding: 40px;
+            border-radius: 15px;
+            margin-top: 60px;
+        }
+
+        .sources h3 {
+            color: #c9a961;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .sources a {
+            color: #a8d5ba;
+            text-decoration: none;
+            display: block;
+            margin: 10px 0;
+            transition: color 0.3s ease;
+        }
+
+        .sources a:hover {
+            color: #c9a961;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 3rem;
+            }
+            
+            .hero .subtitle {
+                font-size: 1.3rem;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+
+            .two-column {
+                grid-template-columns: 1fr;
+            }
+
+            .stat-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            animation: bounce 2s infinite;
+            z-index: 1;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% { transform: translateX(-50%) translateY(0); }
+            40% { transform: translateX(-50%) translateY(-20px); }
+            60% { transform: translateX(-50%) translateY(-10px); }
+        }
+
+        .scroll-indicator::after {
+            content: '↓';
+            font-size: 3rem;
+            color: #c9a961;
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>MĀORI PEOPLE & HAKARI</h1>
+        <div class="subtitle">Cultural Research Study</div>
+        <div class="meta">A Comprehensive Exploration of New Zealand's Indigenous Heritage</div>
+        <div class="scroll-indicator"></div>
+    </div>
+
+    <div class="container">
+        <!-- Introduction Section -->
+        <div class="section">
+            <h2 class="section-title">Overview: The Māori of Aotearoa</h2>
+            
+            <div class="content-block">
+                The Māori are the indigenous Polynesian people of mainland New Zealand (Aotearoa). They are <span class="highlight">the second-largest ethnic group in New Zealand</span>, after European New Zealanders (commonly known by the Māori name Pākehā). The Māori arrived in New Zealand from eastern Polynesia, settling the islands between approximately 1320 and 1350 CE during what is known as the Great Migration.
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-number">850K+</div>
+                    <div class="stat-label">Māori Population</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">17.1%</div>
+                    <div class="stat-label">of NZ Population</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1000+</div>
+                    <div class="stat-label">Years of History</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">2nd</div>
+                    <div class="stat-label">Largest Ethnic Group</div>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                "Ko te reo te mauri o te mana Māori" — Language is the life force of Māori identity
+            </div>
+        </div>
+
+        <!-- Hakari Definition Section -->
+        <div class="section">
+            <h2 class="section-title">Understanding Hakari: The Sacred Feast</h2>
+
+            <div class="definition-box">
+                <div class="term">hakari</div>
+                <div class="pronunciation">/ˈhäkərē/</div>
+                <div><strong>noun</strong> • New Zealand English</div>
+                <div style="margin-top: 20px;">
+                    <strong>Definition:</strong> A Māori feast that follows a funeral ceremony or marks another important occasion.
+                </div>
+                <div style="margin-top: 15px; font-style: italic; color: #a8d5ba;">
+                    "Such large quantities of food are prepared that some hakaris last for several weeks"
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Cultural Significance</h3>
+            
+            <div class="content-block">
+                The hakari represents far more than a simple meal—it is a fundamental expression of <span class="highlight">manaakitanga</span> (hospitality), <span class="highlight">whanaungatanga</span> (kinship), and <span class="highlight">utu</span> (reciprocity). These feasts serve as critical social institutions that reinforce tribal bonds, settle disputes, celebrate achievements, and honor the deceased.
+            </div>
+
+            <div class="two-column">
+                <div class="column-box">
+                    <h4 style="color: #c9a961; margin-bottom: 15px;">Traditional Occasions</h4>
+                    <ul class="list-elegant">
+                        <li>Tangihanga (funeral ceremonies)</li>
+                        <li>Weddings and births</li>
+                        <li>Treaty signings</li>
+                        <li>Tribal gatherings</li>
+                        <li>War victories</li>
+                        <li>House openings (whare whakairo)</li>
+                    </ul>
+                </div>
+                <div class="column-box">
+                    <h4 style="color: #c9a961; margin-bottom: 15px;">Core Values Expressed</h4>
+                    <ul class="list-elegant">
+                        <li>Manaakitanga (hospitality)</li>
+                        <li>Whanaungatanga (kinship)</li>
+                        <li>Utu (reciprocity)</li>
+                        <li>Mana (prestige/authority)</li>
+                        <li>Kaitiakitanga (guardianship)</li>
+                        <li>Aroha (love/compassion)</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- Historical Context -->
+        <div class="section">
+            <h2 class="section-title">Historical Context</h2>
+
+            <div class="timeline">
+                <div class="timeline-item">
+                    <div class="timeline-date">1320-1350 CE</div>
+                    <div class="content-block">
+                        <strong>The Great Migration:</strong> Māori ancestors arrive in Aotearoa from eastern Polynesia in waka (ocean-going canoes). They bring with them the tradition of communal feasting that would evolve into the hakari.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">Pre-1840</div>
+                    <div class="content-block">
+                        <strong>Pre-European Era:</strong> Hakari serves as crucial political and social institution. Large feasts demonstrate tribal mana and wealth, with some lasting weeks and feeding thousands of guests.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">1840</div>
+                    <div class="content-block">
+                        <strong>Treaty of Waitangi:</strong> Signed between Māori chiefs and British Crown. Hakari plays role in bringing tribes together for this historic moment.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">1860s-1900s</div>
+                    <div class="content-block">
+                        <strong>Colonial Suppression:</strong> Many Māori cultural practices, including large-scale hakari, are discouraged or banned under assimilation policies.
+                    </div>
+                </div>
+
+                <div class="timeline-item">
+                    <div class="timeline-date">1970s-Present</div>
+                    <div class="content-block">
+                        <strong>Cultural Renaissance:</strong> Māori cultural revival brings renewed emphasis on traditional practices including hakari. Modern hakari blend traditional values with contemporary New Zealand culture.
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- The Scale of Hakari -->
+        <div class="section">
+            <h2 class="section-title">The Monumental Scale of Traditional Hakari</h2>
+
+            <div class="content-block">
+                Historical accounts describe hakari of extraordinary magnitude. The most famous example is the <span class="highlight">hakari hosted by chief Te Rauparaha in the 1830s</span>, which reportedly lasted several weeks and fed over 5,000 guests. Such events required:
+            </div>
+
+            <div class="stat-grid">
+                <div class="stat-card">
+                    <div class="stat-number">5000+</div>
+                    <div class="stat-label">Guests Fed</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">3-4</div>
+                    <div class="stat-label">Weeks Duration</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">1000s</div>
+                    <div class="stat-label">Fish Caught</div>
+                </div>
+                <div class="stat-card">
+                    <div class="stat-number">100+</div>
+                    <div class="stat-label">Workers Involved</div>
+                </div>
+            </div>
+
+            <h3 class="subsection-title">Preparation and Logistics</h3>
+
+            <div class="content-block">
+                Preparing for a major hakari was a massive undertaking requiring months of preparation:
+            </div>
+
+            <ul class="list-elegant">
+                <li><strong>Food Gathering:</strong> Hunting parties, fishing expeditions, and cultivation of crops (kumara, taro) began months in advance</li>
+                <li><strong>Storage Systems:</strong> Elaborate pātaka (elevated storehouses) were built to preserve food</li>
+                <li><strong>Cooking Facilities:</strong> Large hāngi pits were dug, capable of cooking hundreds of kilograms of food simultaneously</li>
+                <li><strong>Labor Organization:</strong> Entire communities were mobilized, with specific roles assigned by age and gender</li>
+                <li><strong>Guest Accommodations:</strong> Temporary shelters and meeting houses were constructed</li>
+            </ul>
+
+            <div class="image-placeholder">
+                [Traditional Hāngi Pit Preparation]
+            </div>
+        </div>
+
+        <!-- Traditional Foods -->
+        <div class="section">
+            <h2 class="section-title">Traditional Hakari Foods</h2>
+
+            <h3 class="subsection-title">Seafood (Kai Moana)</h3>
+            <div class="content-block">
+                New Zealand's abundant coastal waters provided the foundation of hakari feasts:
+            </div>
+            <ul class="list-elegant">
+                <li>Kina (sea urchin)</li>
+                <li>Pāua (abalone)</li>
+                <li>Kōura (crayfish)</li>
+                <li>Numerous fish species including snapper, kahawai, and trevally</li>
+                <li>Tio (oysters)</li>
+                <li>Pipi and tuatua (shellfish)</li>
+            </ul>
+
+            <h3 class="subsection-title">Land-Based Foods</h3>
+            <ul class="list-elegant">
+                <li><strong>Kūmara:</strong> Sweet potato, a staple crop brought from Polynesia</li>
+                <li><strong>Taro:</strong> Another Polynesian import, grown in warmer regions</li>
+                <li><strong>Fernroot (aruhe):</strong> Processed from bracken fern, a carbohydrate source</li>
+                <li><strong>Birds:</strong> Including kererū (wood pigeon), tūī, and coastal seabirds</li>
+                <li><strong>Kiore:</strong> Pacific rat, considered a delicacy</li>
+            </ul>
+
+            <h3 class="subsection-title">Modern Additions</h3>
+            <div class="content-block">
+                Contemporary hakari blend traditional foods with introduced ingredients:
+            </div>
+            <ul class="list-elegant">
+                <li>Pork and mutton (introduced by Europeans)</li>
+                <li>Modern vegetables and salads</li>
+                <li>Bread and wheat-based foods</li>
+                <li>Desserts and cakes</li>
+                <li>Beverages including tea and coffee</li>
+            </ul>
+        </div>
+
+        <!-- Social and Political Function -->
+        <div class="section">
+            <h2 class="section-title">Social and Political Functions</h2>
+
+            <div class="content-block">
+                The hakari served multiple critical functions in Māori society beyond mere sustenance:
+            </div>
+
+            <h3 class="subsection-title">1. Demonstration of Mana</h3>
+            <div class="content-block">
+                The scale and quality of a hakari directly reflected the <span class="highlight">mana</span> (prestige, power, authority) of the hosting chief and tribe. A successful hakari enhanced tribal status and political influence.
+            </div>
+
+            <h3 class="subsection-title">2. Diplomatic Platform</h3>
+            <div class="content-block">
+                Hakari provided neutral ground for negotiations between tribes, peace treaties, and alliance formations. The act of sharing food created bonds of reciprocity and mutual obligation.
+            </div>
+
+            <h3 class="subsection-title">3. Economic Exchange</h3>
+            <div class="content-block">
+                Feasts facilitated trade networks, with guests bringing gifts (koha) and establishing economic relationships that extended beyond the event.
+            </div>
+
+            <h3 class="subsection-title">4. Cultural Transmission</h3>
+            <div class="content-block">
+                Hakari served as educational venues where oral histories, genealogies (whakapapa), and cultural knowledge were formally transmitted to younger generations.
+            </div>
+
+            <div class="quote-box">
+                "Nau te rourou, naku te rourou, ka ora ai te iwi" — With your food basket and my food basket, the people will thrive
+            </div>
+        </div>
+
+        <!-- Contemporary Hakari -->
+        <div class="section">
+            <h2 class="section-title">Contemporary Hakari Practice</h2>
+
+            <div class="content-block">
+                Today, hakari continues as a living tradition, adapted to modern New Zealand society while retaining core cultural values:
+            </div>
+
+            <h3 class="subsection-title">Modern Context</h3>
+            <ul class="list-elegant">
+                <li><strong>Marae-based:</strong> Most hakari now occur at marae (tribal meeting grounds) with established kitchens and dining facilities</li>
+                <li><strong>Tangihanga Central:</strong> Funeral feasts remain the most common form of hakari, with whānau (extended family) feeding mourners for 3-5 days</li>
+                <li><strong>Celebration Events:</strong> Weddings, birthdays, and anniversaries incorporate hakari principles</li>
+                <li><strong>Political Gatherings:</strong> Government consultations and treaty negotiations often include formal hakari</li>
+                <li><strong>Tourism Integration:</strong> Some marae offer cultural experiences including traditional feasts</li>
+            </ul>
+
+            <h3 class="subsection-title">Challenges and Adaptations</h3>
+            <div class="content-block">
+                Modern hakari face several challenges:
+            </div>
+            <ul class="list-elegant">
+                <li>Cost pressures in preparing food for large groups</li>
+                <li>Time constraints in contemporary work schedules</li>
+                <li>Environmental concerns around overfishing and sustainability</li>
+                <li>Health and safety regulations around food preparation</li>
+                <li>Balancing tradition with practical modern needs</li>
+            </ul>
+
+            <div class="content-block">
+                Despite these challenges, hakari remains a vital expression of Māori identity and continues to evolve while maintaining its essential cultural significance.
+            </div>
+        </div>
+
+        <!-- Research Significance -->
+        <div class="section">
+            <h2 class="section-title">Research Significance</h2>
+
+            <div class="content-block">
+                The study of hakari and Māori culture offers valuable insights across multiple disciplines:
+            </div>
+
+            <div class="two-column">
+                <div class="column-box">
+                    <h4 style="color: #c9a961; margin-bottom: 15px;">Academic Fields</h4>
+                    <ul class="list-elegant">
+                        <li>Anthropology</li>
+                        <li>Sociology</li>
+                        <li>Cultural Studies</li>
+                        <li>History</li>
+                        <li>Food Studies</li>
+                        <li>Political Science</li>
+                    </ul>
+                </div>
+                <div class="column-box">
+                    <h4 style="color: #c9a961; margin-bottom: 15px;">Key Research Areas</h4>
+                    <ul class="list-elegant">
+                        <li>Indigenous food systems</li>
+                        <li>Cultural preservation</li>
+                        <li>Post-colonial identity</li>
+                        <li>Social cohesion mechanisms</li>
+                        <li>Economic anthropology</li>
+                        <li>Environmental sustainability</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="quote-box">
+                Understanding hakari provides a window into how indigenous cultures maintain identity, transmit values, and adapt traditions in contemporary multicultural societies.
+            </div>
+        </div>
+
+        <!-- Sources -->
+        <div class="sources">
+            <h3>Sources & Further Reading</h3>
+            <a href="https://en.wikipedia.org/wiki/Māori_people" target="_blank">Wikipedia: Māori People</a>
+            <a href="https://teara.govt.nz/en/maori" target="_blank">Te Ara Encyclopedia of New Zealand: Māori</a>
+            <a href="https://www.stats.govt.nz/topics/maori" target="_blank">Statistics New Zealand: Māori Population</a>
+            <a href="https://maoridictionary.co.nz/" target="_blank">Māori Dictionary</a>
+            
+            <div style="margin-top: 30px; padding-top: 30px; border-top: 1px solid #444; color: #888; font-size: 0.9rem;">
+                <strong>Note:</strong> This research document is designed for educational purposes. Cultural practices should be approached with respect and understanding. For authentic engagement with Māori culture, consultation with Māori communities and cultural experts is essential.
+            </div>
+        </div>
+    </div>
+</body>
+</html>

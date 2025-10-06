@@ -1,0 +1,637 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>New Zealand Elite Migration: Critical Research Analysis</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #1a1a1a 0%, #2d2d2d 100%);
+            color: #e0e0e0;
+            line-height: 1.8;
+        }
+
+        .hero {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: linear-gradient(rgba(0,0,0,0.8), rgba(0,0,0,0.8)),
+                        radial-gradient(circle at 50% 50%, #2d1b69 0%, #0f0f23 100%);
+            padding: 40px;
+        }
+
+        .hero h1 {
+            font-size: 4.5rem;
+            color: #ffffff;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            text-shadow: 0 0 40px rgba(255, 255, 255, 0.3);
+        }
+
+        .hero .subtitle {
+            font-size: 1.8rem;
+            color: #a0a0a0;
+            margin-bottom: 30px;
+            font-style: italic;
+        }
+
+        .research-badge {
+            display: inline-block;
+            padding: 12px 30px;
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid #8b5cf6;
+            border-radius: 30px;
+            color: #c4b5fd;
+            font-weight: bold;
+            letter-spacing: 1px;
+            margin-top: 20px;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 60px 40px;
+        }
+
+        .section {
+            margin-bottom: 80px;
+            background: rgba(40, 40, 40, 0.6);
+            padding: 50px;
+            border-radius: 20px;
+            border-left: 5px solid #8b5cf6;
+            backdrop-filter: blur(10px);
+        }
+
+        .section-title {
+            font-size: 2.8rem;
+            color: #c4b5fd;
+            margin-bottom: 30px;
+            border-bottom: 3px solid #8b5cf6;
+            padding-bottom: 15px;
+        }
+
+        .evidence-tag {
+            display: inline-block;
+            padding: 6px 16px;
+            border-radius: 20px;
+            font-size: 0.85rem;
+            font-weight: bold;
+            margin: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .confirmed {
+            background: rgba(16, 185, 129, 0.2);
+            border: 2px solid #10b981;
+            color: #34d399;
+        }
+
+        .speculation {
+            background: rgba(245, 158, 11, 0.2);
+            border: 2px solid #f59e0b;
+            color: #fbbf24;
+        }
+
+        .disputed {
+            background: rgba(239, 68, 68, 0.2);
+            border: 2px solid #ef4444;
+            color: #f87171;
+        }
+
+        .needs-verification {
+            background: rgba(139, 92, 246, 0.2);
+            border: 2px solid #8b5cf6;
+            color: #c4b5fd;
+        }
+
+        .claim-box {
+            background: rgba(255, 255, 255, 0.03);
+            border-left: 4px solid #8b5cf6;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .claim-header {
+            font-size: 1.3rem;
+            color: #c4b5fd;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+
+        .evidence-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 30px;
+            margin: 30px 0;
+        }
+
+        .evidence-card {
+            background: rgba(139, 92, 246, 0.05);
+            padding: 25px;
+            border-radius: 15px;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .evidence-card h4 {
+            color: #34d399;
+            margin-bottom: 15px;
+            font-size: 1.2rem;
+        }
+
+        .evidence-card.against h4 {
+            color: #f87171;
+        }
+
+        .source-citation {
+            background: rgba(0, 0, 0, 0.3);
+            padding: 15px;
+            border-left: 3px solid #6366f1;
+            margin: 15px 0;
+            font-size: 0.95rem;
+            color: #a0a0a0;
+            font-style: italic;
+        }
+
+        .data-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 30px 0;
+            background: rgba(0, 0, 0, 0.3);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .data-table th {
+            background: rgba(139, 92, 246, 0.2);
+            color: #c4b5fd;
+            padding: 15px;
+            text-align: left;
+            font-weight: bold;
+        }
+
+        .data-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            color: #d1d5db;
+        }
+
+        .data-table tr:hover {
+            background: rgba(139, 92, 246, 0.1);
+        }
+
+        .researcher-note {
+            background: rgba(245, 158, 11, 0.1);
+            border: 2px solid #f59e0b;
+            border-radius: 15px;
+            padding: 25px;
+            margin: 30px 0;
+        }
+
+        .researcher-note::before {
+            content: "📋 RESEARCHER'S NOTE";
+            display: block;
+            color: #fbbf24;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        .location-profile {
+            background: linear-gradient(135deg, rgba(139, 92, 246, 0.1), rgba(59, 130, 246, 0.1));
+            padding: 30px;
+            border-radius: 15px;
+            margin: 30px 0;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .location-profile h3 {
+            color: #60a5fa;
+            font-size: 2rem;
+            margin-bottom: 20px;
+        }
+
+        .stat-row {
+            display: flex;
+            justify-content: space-between;
+            padding: 12px 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .stat-label {
+            color: #a0a0a0;
+        }
+
+        .stat-value {
+            color: #ffffff;
+            font-weight: bold;
+        }
+
+        .critical-analysis {
+            background: rgba(239, 68, 68, 0.1);
+            border-left: 4px solid #ef4444;
+            padding: 25px;
+            margin: 25px 0;
+            border-radius: 8px;
+        }
+
+        .critical-analysis::before {
+            content: "⚠️ CRITICAL ANALYSIS";
+            display: block;
+            color: #f87171;
+            font-weight: bold;
+            margin-bottom: 15px;
+            font-size: 1.1rem;
+        }
+
+        @media (max-width: 768px) {
+            .hero h1 {
+                font-size: 2.5rem;
+            }
+
+            .evidence-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .section {
+                padding: 30px 20px;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="hero">
+        <h1>NEW ZEALAND ELITE MIGRATION</h1>
+        <div class="subtitle">A Critical Research Analysis</div>
+        <div style="color: #888; max-width: 800px; margin: 20px auto;">
+            Examining claims about wealthy individuals, luxury enclaves, and "doomsday bunkers" in Aotearoa through documented evidence, media analysis, and critical evaluation
+        </div>
+        <div class="research-badge">INDEPENDENT RESEARCH DOCUMENT</div>
+    </div>
+
+    <div class="container">
+        <!-- Methodology Section -->
+        <div class="section">
+            <h2 class="section-title">Research Methodology & Transparency</h2>
+            
+            <div style="color: #d1d5db; font-size: 1.1rem; margin-bottom: 30px;">
+                This document examines claims about wealthy migration to New Zealand using a critical research framework. Each claim is evaluated based on available evidence and clearly tagged:
+            </div>
+
+            <div style="margin: 30px 0;">
+                <span class="evidence-tag confirmed">✓ CONFIRMED</span>
+                <span style="color: #888; margin-left: 10px;">Multiple verifiable sources, documented evidence</span>
+            </div>
+
+            <div style="margin: 30px 0;">
+                <span class="evidence-tag speculation">⚠ SPECULATION</span>
+                <span style="color: #888; margin-left: 10px;">Media narratives, anecdotal reports, unverified claims</span>
+            </div>
+
+            <div style="margin: 30px 0;">
+                <span class="evidence-tag disputed">✗ DISPUTED</span>
+                <span style="color: #888; margin-left: 10px;">Contradicted by evidence, local authorities, or experts</span>
+            </div>
+
+            <div style="margin: 30px 0;">
+                <span class="evidence-tag needs-verification">? NEEDS VERIFICATION</span>
+                <span style="color: #888; margin-left: 10px;">Insufficient evidence to confirm or deny</span>
+            </div>
+
+            <div class="researcher-note">
+                This research aims to separate documented facts from media narratives and speculation. The "elite bunker" story has become sensationalized in popular media, making critical evaluation essential. No claim should be accepted without scrutiny.
+            </div>
+        </div>
+
+        <!-- Core Claims Section -->
+        <div class="section">
+            <h2 class="section-title">Core Claims: Evidence Assessment</h2>
+
+            <div class="claim-box">
+                <div class="claim-header">CLAIM 1: Wealthy individuals are purchasing property in New Zealand as "bolt holes"</div>
+                <span class="evidence-tag confirmed">✓ CONFIRMED (PARTIAL)</span>
+                
+                <div style="margin-top: 20px; color: #d1d5db;">
+                    <strong>Evidence FOR:</strong>
+                    <ul style="margin: 15px 0 15px 30px; line-height: 2;">
+                        <li>Multiple documented cases of ultra-wealthy purchasing NZ property (Peter Thiel, Larry Page, others)</li>
+                        <li>Rising S Company confirmed delivering approximately 10 luxury bunkers to New Zealand</li>
+                        <li>Real estate agents in Queenstown, Auckland report inquiries from wealthy foreign buyers</li>
+                        <li>Media coverage in The Guardian, Business Insider, Forbes documenting trend</li>
+                    </ul>
+
+                    <strong>Critical Context:</strong>
+                    <ul style="margin: 15px 0 15px 30px; line-height: 2;">
+                        <li>Scale is modest: ~10 known bunkers, handful of high-profile purchases</li>
+                        <li>Many purchases are for lifestyle/investment, not specifically "doomsday" preparation</li>
+                        <li>Local councils report NO building permits for underground bunkers in key areas</li>
+                        <li>Queenstown/Wanaka residents dispute bunker existence in interviews</li>
+                    </ul>
+                </div>
+
+                <div class="source-citation">
+                    Sources: Rising S Company statements (2017-2022); Queenstown Lakes District Council records; Guardian article "New Zealand: The 'perfect' spot for billionaires' bunkers" (2022)
+                </div>
+            </div>
+
+            <div class="claim-box">
+                <div class="claim-header">CLAIM 2: "Golden Visa" programs make New Zealand easily accessible to wealthy foreigners</div>
+                <span class="evidence-tag disputed">✗ DISPUTED</span>
+                
+                <div style="margin-top: 20px; color: #d1d5db;">
+                    <strong>Actual Situation:</strong>
+                    <ul style="margin: 15px 0 15px 30px; line-height: 2;">
+                        <li>Active Investor Plus Visa exists but has been struggling since 2022 reforms</li>
+                        <li>Only 35-43 applications approved in 2023-2024 (down from historical ~200-300/year)</li>
+                        <li>Requirements: NZ$5-10 million investment, no English proficiency needed</li>
+                        <li>Government is currently (2025) trying to revive program due to low uptake</li>
+                    </ul>
+
+                    <strong>Reality vs. Narrative:</strong>
+                    <p style="margin: 15px 0; line-height: 1.8;">
+                        The claim suggests visa programs facilitate easy access. Evidence shows the opposite: the program has nearly collapsed, approval numbers are at historic lows, and New Zealand has made entry MORE difficult, not easier.
+                    </p>
+                </div>
+
+                <div class="source-citation">
+                    Sources: New Zealand Immigration statistics (2023-2024); Immigration NZ policy documents; News coverage of visa program struggles
+                </div>
+            </div>
+
+            <div class="claim-box">
+                <div class="claim-header">CLAIM 3: Queenstown, Waiheke Island, Hawke's Bay are primary "elite enclaves"</div>
+                <span class="evidence-tag confirmed">✓ CONFIRMED</span>
+                
+                <div style="margin-top: 20px; color: #d1d5db;">
+                    <strong>Documented Facts:</strong>
+                    <ul style="margin: 15px 0 15px 30px; line-height: 2;">
+                        <li>These regions have highest property values in New Zealand</li>
+                        <li>Documented wealthy resident population (both NZ and foreign nationals)</li>
+                        <li>Luxury real estate market, high-end amenities, international airport access</li>
+                        <li>Waiheke Island frequently called "Hamptons of New Zealand" in real estate marketing</li>
+                    </ul>
+
+                    <strong>Important Distinction:</strong>
+                    <p style="margin: 15px 0; line-height: 1.8;">
+                        These are genuine wealthy enclaves, BUT the majority of residents are successful New Zealanders, not foreign "preppers." The presence of luxury does not equal "doomsday headquarters."
+                    </p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Location Profiles -->
+        <div class="section">
+            <h2 class="section-title">Geographic Analysis: Key Locations</h2>
+
+            <div class="location-profile">
+                <h3>Queenstown, South Island</h3>
+                <div class="stat-row">
+                    <span class="stat-label">Population:</span>
+                    <span class="stat-value">~15,000 (42,000 district)</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Median House Price:</span>
+                    <span class="stat-value">NZ$1.4 million (~US$850K)</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Primary Industry:</span>
+                    <span class="stat-value">Tourism, luxury hospitality</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Wealthy Foreign Residents:</span>
+                    <span class="stat-value">Documented but minority population</span>
+                </div>
+
+                <div style="margin-top: 25px; color: #d1d5db; line-height: 1.8;">
+                    <strong style="color: #c4b5fd;">Research Finding:</strong> Queenstown is genuinely a luxury destination with wealthy residents. However, claims about extensive underground bunker networks are unsubstantiated. Local council has no permits on record; residents dispute bunker existence. The area's appeal is lifestyle and natural beauty, not primarily survivalism.
+                </div>
+            </div>
+
+            <div class="location-profile">
+                <h3>Waiheke Island, Auckland</h3>
+                <div class="stat-row">
+                    <span class="stat-label">Population:</span>
+                    <span class="stat-value">~10,000 permanent residents</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Median House Price:</span>
+                    <span class="stat-value">NZ$1.8 million (~US$1.1M)</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Primary Character:</span>
+                    <span class="stat-value">Vineyards, art galleries, beaches</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Accessibility:</span>
+                    <span class="stat-value">35-minute ferry from Auckland</span>
+                </div>
+
+                <div style="margin-top: 25px; color: #d1d5db; line-height: 1.8;">
+                    <strong style="color: #c4b5fd;">Research Finding:</strong> Waiheke has the highest concentration of wealthy residents in NZ. Property ownership is predominantly New Zealand nationals, with some Australian and European residents. The "Hamptons" comparison is accurate for lifestyle but misleading for the "elite escape" narrative—it's 35 minutes from New Zealand's largest city, not remote.
+                </div>
+            </div>
+
+            <div class="location-profile">
+                <h3>Hawke's Bay, North Island</h3>
+                <div class="stat-row">
+                    <span class="stat-label">Population:</span>
+                    <span class="stat-value">~180,000 (region)</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Primary Industry:</span>
+                    <span class="stat-value">Wine production, agriculture</span>
+                </div>
+                <div class="stat-row">
+                    <span class="stat-label">Notable:</span>
+                    <span class="stat-value">Art Deco architecture, food culture</span>
+                </div>
+
+                <div style="margin-top: 25px; color: #d1d5db; line-height: 1.8;">
+                    <strong style="color: #c4b5fd;">Research Finding:</strong> Hawke's Bay is a legitimate luxury region centered on wine tourism and agriculture. Wealthy residents exist but the "elite enclave" characterization is overstated. This is a working agricultural region with high-end tourism overlay, not a gated community for billionaires.
+                </div>
+            </div>
+        </div>
+
+        <!-- The Bunker Question -->
+        <div class="section">
+            <h2 class="section-title">The Bunker Question: Myth vs. Reality</h2>
+
+            <div class="evidence-grid">
+                <div class="evidence-card">
+                    <h4>Evidence FOR Bunker Existence:</h4>
+                    <ul style="color: #d1d5db; line-height: 2; margin-top: 10px;">
+                        <li>Rising S Company confirmed ~10 deliveries to NZ</li>
+                        <li>Peter Thiel citizenship grant (2011) noted for property purchase</li>
+                        <li>Multiple media reports citing anonymous sources</li>
+                        <li>Gary Lynch (Rising S CEO) statements to media</li>
+                        <li>Real estate agents report inquiries about "secure properties"</li>
+                    </ul>
+                </div>
+
+                <div class="evidence-card against">
+                    <h4>Evidence AGAINST Widespread Bunkers:</h4>
+                    <ul style="color: #d1d5db; line-height: 2; margin-top: 10px;">
+                        <li>Queenstown Lakes District Council: NO bunker building permits</li>
+                        <li>Local residents interviewed: never seen bunkers</li>
+                        <li>Scale: ~10 bunkers total (not hundreds)</li>
+                        <li>Building codes make secret construction difficult</li>
+                        <li>Geographic reality: hard rock terrain complicates underground building</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="critical-analysis">
+                The "billionaire bunker" narrative appears to be significantly exaggerated. Evidence supports approximately 10 luxury survival shelters delivered to New Zealand over several years. This is a tiny number compared to media portrayal suggesting widespread bunker construction.
+                <br><br>
+                The disconnect likely stems from:
+                <ol style="margin: 15px 0 0 20px; line-height: 1.8;">
+                    <li>Media amplification of a few confirmed cases into a "trend"</li>
+                    <li>Conflation of luxury homes with actual bunkers</li>
+                    <li>Anonymous sourcing allowing speculation to appear as fact</li>
+                    <li>The narrative fitting existing fears about elite preparation for collapse</li>
+                </ol>
+            </div>
+
+            <div class="researcher-note">
+                As a researcher, I must note: The existence of SOME bunkers is confirmed. The existence of a widespread underground network is NOT confirmed and contradicted by local authorities. The story lives in the gap between these two facts.
+            </div>
+        </div>
+
+        <!-- Historical Context -->
+        <div class="section">
+            <h2 class="section-title">Historical Context: "Rogernomics" & Economic Reform</h2>
+
+            <div style="color: #d1d5db; font-size: 1.1rem; line-height: 1.8; margin-bottom: 30px;">
+                Some narratives connect current wealthy migration to 1980s-90s economic reforms under Finance Minister Roger Douglas ("Rogernomics"). This requires critical examination.
+            </div>
+
+            <table class="data-table">
+                <tr>
+                    <th>Period</th>
+                    <th>Key Reforms</th>
+                    <th>Relevance to Current Situation</th>
+                </tr>
+                <tr>
+                    <td>1984-1990</td>
+                    <td>Deregulation, privatization, tax reform, floating NZ dollar</td>
+                    <td>Created modern NZ economy but not specifically attractive to wealthy foreigners</td>
+                </tr>
+                <tr>
+                    <td>1991-1999</td>
+                    <td>Welfare cuts, labor market deregulation, fiscal austerity</td>
+                    <td>Controversial domestically, minimal impact on foreign wealthy</td>
+                </tr>
+                <tr>
+                    <td>2000-Present</td>
+                    <td>Political stability, low corruption, strong institutions</td>
+                    <td>These factors ARE attractive but are results of decades of policy, not "Rogernomics" specifically</td>
+                </tr>
+            </table>
+
+            <div class="critical-analysis">
+                Connecting "Rogernomics" (1980s reforms) to current billionaire interest is analytically weak. The reforms created a functioning modern economy and political stability—factors that make ANY country attractive. This is like crediting 1980s US tax reforms for Silicon Valley's current wealth concentration. The connection is indirect at best, misleading at worst.
+                <br><br>
+                What actually attracts wealthy migrants to NZ:
+                <ul style="margin: 15px 0 0 20px; line-height: 1.8;">
+                    <li>Political stability (ongoing, not specific to Rogernomics)</li>
+                    <li>Geographic isolation (natural feature, not policy)</li>
+                    <li>Natural beauty and lifestyle (geological, not economic)</li>
+                    <li>Low corruption, rule of law (multi-decade development)</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Media Analysis -->
+        <div class="section">
+            <h2 class="section-title">Media Narrative Analysis</h2>
+
+            <div style="color: #d1d5db; font-size: 1.1rem; margin-bottom: 30px;">
+                The "New Zealand elite bunker" story has become a media phenomenon. Analyzing how the narrative evolved reveals important patterns:
+            </div>
+
+            <div class="claim-box">
+                <div class="claim-header">Narrative Evolution Timeline</div>
+                
+                <div style="margin-top: 20px;">
+                    <div style="margin: 20px 0; padding: 20px; background: rgba(139, 92, 246, 0.1); border-radius: 10px;">
+                        <strong style="color: #c4b5fd;">2011-2015:</strong> Occasional mentions of wealthy property purchases
+                        <br><span style="color: #888;">Tone: Factual reporting</span>
+                    </div>
+
+                    <div style="margin: 20px 0; padding: 20px; background: rgba(245, 158, 11, 0.1); border-radius: 10px;">
+                        <strong style="color: #fbbf24;">2016-2018:</strong> "Billionaire bunker" narrative emerges
+                        <br><span style="color: #888;">Tone: Sensationalist, post-Trump-election anxiety</span>
+                    </div>
+
+                    <div style="margin: 20px 0; padding: 20px; background: rgba(239, 68, 68, 0.1); border-radius: 10px;">
+                        <strong style="color: #f87171;">2019-2023:</strong> Narrative becomes established "fact"
+                        <br><span style="color: #888;">Tone: Uncritical repetition, citing previous articles as sources</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="researcher-note">
+                Pattern observed: Initial reporting (2011-2015) was measured and evidence-based. Post-2016, the narrative shifted toward apocalyptic framing. By 2020, many articles cite OTHER articles rather than primary sources, creating a circular reference problem where speculation becomes "common knowledge."
+            </div>
+
+            <div style="margin-top: 30px; padding: 25px; background: rgba(0, 0, 0, 0.3); border-radius: 15px;">
+                <strong style="color: #c4b5fd; font-size: 1.2rem;">Media Amplification Mechanisms:</strong>
+                <ul style="color: #d1d5db; margin: 15px 0 0 20px; line-height: 2;">
+                    <li><strong>Confirmation Bias:</strong> Stories that confirm existing fears about elites get more attention</li>
+                    <li><strong>Anonymous Sourcing:</strong> "Real estate agents say..." without names or verification</li>
+                    <li><strong>Number Inflation:</strong> "Some billionaires" becomes "many elites" becomes "widespread trend"</li>
+                    <li><strong>Geographic Vagueness:</strong> "New Zealand" sounds remote; actual locations are near cities</li>
+                    <li><strong>Recycling:</strong> Same ~5 examples (Thiel, etc.) repeated across hundreds of articles</li>
+                </ul>
+            </div>
+        </div>
+
+        <!-- Conclusion -->
+        <div class="section">
+            <h2 class="section-title">Research Conclusions</h2>
+
+            <div style="color: #d1d5db; font-size: 1.15rem; line-height: 1.9;">
+                <h3 style="color: #34d399; margin: 30px 0 20px 0;">WHAT IS DOCUMENTED:</h3>
+                <ul style="margin: 15px 0 0 30px;">
+                    <li>New Zealand has luxury real estate markets in Queenstown, Waiheke, and Hawke's Bay</li>
+                    <li>Some ultra-wealthy individuals have purchased property in NZ</li>
+                    <li>Approximately 10 luxury bunkers have been delivered to New Zealand</li>
+                    <li>NZ has political stability, low corruption, and natural beauty</li>
+                    <li>An investor visa program exists but is struggling with low uptake</li>
+                </ul>
+
+                <h3 style="color: #f87171; margin: 30px 0 20px 0;">WHAT IS NOT DOCUMENTED:</h3>
+                <ul style="margin: 15px 0 0 30px;">
+                    <li>Widespread bunker construction (contradicted by local authorities)</li>
+                    <li>NZ as primary "elite escape destination" (scale doesn't support this)</li>
+                    <li>Easy access via visa programs (actually becoming more restrictive)</li>
+                    <li>Direct causal link between Rogernomics and current wealthy migration</li>
+                </ul>
+
+                <h3 style="color: #c4b5fd; margin: 40px 0 20px 0;">RESEARCHER'S ASSESSMENT:</h3>
+                <div style="padding: 30px; background: rgba(139, 92, 246, 0.1); border-radius: 15px; margin-top: 20px;">
+                    The reality appears to be: <strong>New Zealand is an attractive destination for wealthy individuals seeking lifestyle, investment, and yes, for some, security.</strong> However, the scale and nature of this migration has been significantly exaggerated by media narratives.
+                    <br><br>
+                    A handful of ultra-wealthy individuals making preparations for worst-case scenarios has been amplified into a narrative of mass elite exodus. The documented evidence supports "some wealthy people bought nice property" not "billionaire doomsday headquarters."
+                    <br><br>
+                    <strong style="color: #fbbf24;">Critical thinking requires:</strong> Distinguishing between confirmed facts (small number of bunkers exist) and narrative extrapolation (therefore NZ is elite escape plan central). The gap between these is where speculation lives.
+                </div>
+            </div>
+        </div>
+
+        <!-- Sources -->
+        <div class="section">
+            <h2 class="section-title">Research Sources & Methodology</h2>
+
+            <div style="color: #d1d5db; line-height: 1
