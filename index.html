@@ -20,6 +20,9 @@
             color: #f8f8ff;
             line-height: 1.6;
             padding: 0;
+            cursor: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='32' height='32' viewBox='0 0 32 32'%3E%3Cdefs%3E%3Cstyle%3E@keyframes flame%7B0%25%7Btransform:scale(1) rotate(0deg);opacity:1%7D25%25%7Btransform:scale(1.1) rotate(2deg);opacity:0.9%7D50%25%7Btransform:scale(0.9) rotate(-1deg);opacity:1%7D75%25%7Btransform:scale(1.05) rotate(1deg);opacity:0.95%7D100%25%7Btransform:scale(1) rotate(0deg);opacity:1%7D%7D@keyframes sword-glow%7B0%25%2C100%25%7Bfilter:drop-shadow(0 0 3px %23ff4500)%7D50%25%7Bfilter:drop-shadow(0 0 8px %23ff6347)%7D%7D%3C/style%3E%3C/defs%3E%3Cg transform='translate(16,16)'%3E%3C!-- Sword Blade --%3E%3Cpath d='M-1,-12 L1,-12 L1,8 L-1,8 Z' fill='%23c0c0c0' stroke='%23ffd700' stroke-width='0.5'/%3E%3C!-- Sword Handle --%3E%3Crect x='-2' y='8' width='4' height='4' fill='%238b4513' stroke='%23daa520' stroke-width='0.5'/%3E%3C!-- Flame Base --%3E%3Cellipse cx='0' cy='-14' rx='3' ry='4' fill='%23ff4500' opacity='0.8'%3E%3CanimateTransform attributeName='transform' type='scale' values='1,1;1.2,0.8;0.8,1.2;1.1,0.9;1,1' dur='0.6s' repeatCount='indefinite'/%3E%3C/ellipse%3E%3C!-- Flame Middle --%3E%3Cellipse cx='0' cy='-16' rx='2' ry='3' fill='%23ff6347' opacity='0.9'%3E%3CanimateTransform attributeName='transform' type='scale' values='1,1;0.8,1.3;1.3,0.7;0.9,1.1;1,1' dur='0.5s' repeatCount='indefinite'/%3E%3C/ellipse%3E%3C!-- Flame Top --%3E%3Cellipse cx='0' cy='-18' rx='1.5' ry='2.5' fill='%23ffd700' opacity='1'%3E%3CanimateTransform attributeName='transform' type='scale' values='1,1;1.4,0.6;0.6,1.4;1.2,0.8;1,1' dur='0.4s' repeatCount='indefinite'/%3E%3C/ellipse%3E%3C!-- Spark Particles --%3E%3Ccircle cx='-1' cy='-15' r='0.3' fill='%23ffffff'%3E%3Canimate attributeName='opacity' values='0;1;0' dur='0.8s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='1' cy='-17' r='0.2' fill='%23ffff00'%3E%3Canimate attributeName='opacity' values='0;1;0' dur='1.2s' repeatCount='indefinite'/%3E%3C/circle%3E%3Ccircle cx='0' cy='-19' r='0.25' fill='%23ff69b4'%3E%3Canimate attributeName='opacity' values='0;1;0' dur='0.6s' repeatCount='indefinite'/%3E%3C/circle%3E%3C/g%3E%3C/svg%3E"), auto;
+            position: relative;
+            overflow-x: hidden;
         }
 
         /* Header Navigation */
@@ -1957,9 +1960,111 @@
                 padding: 12px 20px;
             }
         }
+
+        /* Floating Star Particles Animation */
+        .floating-stars {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .star {
+            position: absolute;
+            background: #ffd700;
+            clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
+            animation: twinkle 3s ease-in-out infinite, float 6s ease-in-out infinite;
+        }
+
+        .star.small {
+            width: 4px;
+            height: 4px;
+        }
+
+        .star.medium {
+            width: 6px;
+            height: 6px;
+        }
+
+        .star.large {
+            width: 8px;
+            height: 8px;
+        }
+
+        @keyframes twinkle {
+            0%, 100% { 
+                opacity: 0.3; 
+                transform: scale(1);
+                filter: brightness(1);
+            }
+            50% { 
+                opacity: 1; 
+                transform: scale(1.2);
+                filter: brightness(1.5) drop-shadow(0 0 5px #ffd700);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { 
+                transform: translateY(0px) rotate(0deg); 
+            }
+            25% { 
+                transform: translateY(-10px) rotate(90deg); 
+            }
+            50% { 
+                transform: translateY(-5px) rotate(180deg); 
+            }
+            75% { 
+                transform: translateY(-15px) rotate(270deg); 
+            }
+        }
+
+        /* Cosmic Dust Effect */
+        .cosmic-dust {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .dust-particle {
+            position: absolute;
+            background: rgba(255, 215, 0, 0.4);
+            border-radius: 50%;
+            animation: drift 15s linear infinite;
+        }
+
+        @keyframes drift {
+            0% {
+                transform: translateY(100vh) translateX(0px);
+                opacity: 0;
+            }
+            10% {
+                opacity: 0.6;
+            }
+            90% {
+                opacity: 0.6;
+            }
+            100% {
+                transform: translateY(-10vh) translateX(50px);
+                opacity: 0;
+            }
+        }
     </style>
 </head>
 <body>
+    <!-- Floating Stars Background -->
+    <div class="floating-stars" id="floatingStars"></div>
+    
+    <!-- Cosmic Dust Effect -->
+    <div class="cosmic-dust" id="cosmicDust"></div>
+
     <!-- Main Header Navigation -->
     <header class="main-header">
         <div class="header-container">
@@ -3026,6 +3131,61 @@
             // Navigate to the Header menu html's folder
             window.open('Header menu html\'s/', '_blank');
         }
+
+        // Create Floating Stars Animation
+        function createFloatingStars() {
+            const starsContainer = document.getElementById('floatingStars');
+            const numStars = 25;
+
+            for (let i = 0; i < numStars; i++) {
+                const star = document.createElement('div');
+                star.className = `star ${['small', 'medium', 'large'][Math.floor(Math.random() * 3)]}`;
+                
+                // Random position
+                star.style.left = Math.random() * 100 + '%';
+                star.style.top = Math.random() * 100 + '%';
+                
+                // Random animation delay
+                star.style.animationDelay = Math.random() * 3 + 's';
+                
+                starsContainer.appendChild(star);
+            }
+        }
+
+        // Create Cosmic Dust Effect
+        function createCosmicDust() {
+            const dustContainer = document.getElementById('cosmicDust');
+            
+            function addDustParticle() {
+                const dust = document.createElement('div');
+                dust.className = 'dust-particle';
+                
+                // Random size and position
+                const size = Math.random() * 3 + 1;
+                dust.style.width = size + 'px';
+                dust.style.height = size + 'px';
+                dust.style.left = Math.random() * 100 + '%';
+                dust.style.animationDuration = (Math.random() * 10 + 10) + 's';
+                
+                dustContainer.appendChild(dust);
+                
+                // Remove particle after animation
+                setTimeout(() => {
+                    if (dust.parentNode) {
+                        dust.parentNode.removeChild(dust);
+                    }
+                }, 20000);
+            }
+            
+            // Create dust particles periodically
+            setInterval(addDustParticle, 800);
+        }
+
+        // Initialize animations when page loads
+        document.addEventListener('DOMContentLoaded', function() {
+            createFloatingStars();
+            createCosmicDust();
+        });
 
 
     </script>
