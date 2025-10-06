@@ -116,6 +116,152 @@
             }
         }
 
+        /* Book Promotion Banner */
+        .book-promotion {
+            background: linear-gradient(135deg, #ffd700, #ff8c00, #ff4500);
+            margin: 20px auto;
+            max-width: 1400px;
+            border-radius: 15px;
+            padding: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(255,215,0,0.3);
+            animation: bookGlow 3s ease-in-out infinite alternate;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .book-promotion::before {
+            content: '';
+            position: absolute;
+            top: -2px;
+            left: -2px;
+            right: -2px;
+            bottom: -2px;
+            background: linear-gradient(45deg, #ffd700, #ff8c00, #ff4500, #ffd700);
+            border-radius: 17px;
+            z-index: -1;
+            animation: borderRotate 4s linear infinite;
+        }
+
+        @keyframes bookGlow {
+            0% { box-shadow: 0 10px 30px rgba(255,215,0,0.3); }
+            100% { box-shadow: 0 15px 40px rgba(255,215,0,0.6); }
+        }
+
+        @keyframes borderRotate {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        .book-content {
+            background: #000;
+            border-radius: 12px;
+            padding: 25px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .book-title {
+            color: #ffd700;
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 10px;
+            text-shadow: 0 0 20px rgba(255,215,0,0.8);
+            animation: titlePulse 2s ease-in-out infinite alternate;
+        }
+
+        @keyframes titlePulse {
+            0% { text-shadow: 0 0 20px rgba(255,215,0,0.8); }
+            100% { text-shadow: 0 0 30px rgba(255,215,0,1); }
+        }
+
+        .book-subtitle {
+            color: #fff;
+            font-size: 1.2rem;
+            margin-bottom: 15px;
+            font-weight: 600;
+        }
+
+        .book-price {
+            display: inline-block;
+            background: linear-gradient(135deg, #ff4500, #ff8c00);
+            color: #fff;
+            padding: 8px 20px;
+            border-radius: 25px;
+            font-size: 1.1rem;
+            font-weight: 700;
+            margin: 0 10px;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+        }
+
+        .book-cta {
+            display: inline-block;
+            background: linear-gradient(135deg, #32cd32, #228b22);
+            color: #fff;
+            padding: 12px 30px;
+            text-decoration: none;
+            border-radius: 30px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            margin: 15px 10px 0;
+            transition: all 0.3s ease;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+            box-shadow: 0 5px 15px rgba(50,205,50,0.4);
+        }
+
+        .book-cta:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 8px 25px rgba(50,205,50,0.6);
+            background: linear-gradient(135deg, #228b22, #32cd32);
+        }
+
+        .book-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #dc143c, #b22222);
+            color: #fff;
+            padding: 5px 15px;
+            border-radius: 20px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin: 0 5px;
+            animation: badgePulse 1.5s ease-in-out infinite;
+        }
+
+        @keyframes badgePulse {
+            0%, 100% { transform: scale(1); }
+            50% { transform: scale(1.05); }
+        }
+
+        .book-tagline {
+            color: #ccc;
+            margin-top: 15px;
+            font-size: 0.9rem;
+        }
+
+        @media (max-width: 768px) {
+            .book-promotion {
+                margin: 15px;
+                padding: 15px;
+            }
+            
+            .book-content {
+                padding: 20px;
+            }
+            
+            .book-title {
+                font-size: 1.5rem;
+            }
+            
+            .book-subtitle {
+                font-size: 1rem;
+            }
+            
+            .book-cta {
+                display: block;
+                margin: 15px 0;
+            }
+        }
+
         .container {
             max-width: 1800px;
             margin: 0 auto;
@@ -157,12 +303,12 @@
 
         .solar-system {
             background: linear-gradient(135deg, #0a0a0f 0%, #1a0f2e 50%, #2d1b3d 100%);
-            border-radius: 25px;
-            border: 3px solid #ffd700;
-            padding: 40px;
+            border-radius: 20px;
+            border: 2px solid #ffd700;
+            padding: 20px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 20px 60px rgba(255,215,0,0.1);
+            box-shadow: 0 10px 30px rgba(255,215,0,0.1);
         }
 
         .solar-system::before {
@@ -188,9 +334,9 @@
         /* Solar System Animation */
         .planets-orbit {
             position: relative;
-            width: 300px;
-            height: 300px;
-            margin: 0 auto 50px;
+            width: 200px;
+            height: 200px;
+            margin: 0 auto 25px;
             border: 2px solid rgba(255,215,0,0.3);
             border-radius: 50%;
             animation: orbit 20s linear infinite;
@@ -205,16 +351,15 @@
             position: absolute;
             top: 50%;
             left: 50%;
-            width: 60px;
-            height: 60px;
+            width: 40px;
+            height: 40px;
             background: radial-gradient(circle, #ffd700, #ff8c00, #ff4500);
             border-radius: 50%;
             transform: translate(-50%, -50%);
             box-shadow:
-                0 0 20px rgba(255,215,0,0.8),
-                0 0 40px rgba(255,215,0,0.6),
-                0 0 80px rgba(255,215,0,0.4),
-                0 0 120px rgba(255,215,0,0.2);
+                0 0 15px rgba(255,215,0,0.8),
+                0 0 30px rgba(255,215,0,0.6),
+                0 0 60px rgba(255,215,0,0.4);
             animation: sunPulse 3s ease-in-out infinite alternate;
         }
 
@@ -280,16 +425,16 @@
         /* Structure Grid */
         .structure-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
-            gap: 25px;
-            margin-top: 50px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 15px;
+            margin-top: 20px;
         }
 
         .structure-card {
             background: linear-gradient(135deg, rgba(255,255,255,0.1), rgba(255,255,255,0.05));
-            border: 2px solid rgba(255,215,0,0.3);
-            border-radius: 15px;
-            padding: 25px;
+            border: 1px solid rgba(255,215,0,0.3);
+            border-radius: 12px;
+            padding: 15px;
             -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
             transition: all 0.3s ease;
@@ -320,9 +465,9 @@
 
         .structure-name {
             color: #ffd700;
-            font-size: 1.4rem;
+            font-size: 1.2rem;
             font-weight: 700;
-            margin-bottom: 15px;
+            margin-bottom: 8px;
             text-shadow: 0 0 10px rgba(255,215,0,0.5);
             position: relative;
             z-index: 2;
@@ -330,8 +475,8 @@
 
         .structure-description {
             color: #e6e6e6;
-            line-height: 1.6;
-            font-size: 0.95rem;
+            line-height: 1.4;
+            font-size: 0.85rem;
             position: relative;
             z-index: 2;
         }
@@ -339,42 +484,42 @@
         /* Responsive Design */
         @media (max-width: 768px) {
             .cosmic-header {
-                margin: 20px auto;
+                margin: 15px auto;
             }
 
             .solar-system {
-                padding: 25px;
+                padding: 15px;
             }
 
             .planets-orbit {
-                width: 250px;
-                height: 250px;
+                width: 180px;
+                height: 180px;
             }
 
             .structure-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
-                margin-top: 30px;
+                gap: 12px;
+                margin-top: 15px;
             }
 
             .structure-card {
-                padding: 20px;
+                padding: 12px;
             }
         }
 
         @media (max-width: 480px) {
             .solar-system {
-                padding: 20px;
+                padding: 12px;
             }
 
             .planets-orbit {
-                width: 200px;
-                height: 200px;
+                width: 150px;
+                height: 150px;
             }
 
             .sun {
-                width: 50px;
-                height: 50px;
+                width: 30px;
+                height: 30px;
             }
 
             .planet.jupiter {
@@ -1409,7 +1554,7 @@
             </nav>
             
             <div class="header-social">
-                <a href="https://www.amazon.com/dp/B0FTYDZZ5X" target="_blank" rel="noopener" class="header-social-link" title="My Book on Amazon - $9">📚</a>
+                <a href="https://www.amazon.com/dp/B0FTYDZZ5X" target="_blank" rel="noopener" class="header-social-link" title="📚 NEW BOOK RELEASED TODAY! Digital Alchemy Mastery - Only $9 on Amazon">📚</a>
                 <a href="https://www.facebook.com/profile.php?id=61578595622796" target="_blank" rel="noopener" class="header-social-link" title="Facebook">📘</a>
                 <a href="https://www.instagram.com/alchemistsx0/" target="_blank" rel="noopener" class="header-social-link" title="Instagram">📷</a>
                 <a href="https://x.com/Philipp36533206" target="_blank" rel="noopener" class="header-social-link" title="X (Twitter)">🐦</a>
@@ -1420,6 +1565,25 @@
             </div>
         </div>
     </header>
+
+    <!-- Book Promotion Banner -->
+    <div class="book-promotion">
+        <div class="book-content">
+            <div class="book-badge">📅 RELEASED TODAY!</div>
+            <div class="book-badge">🔥 HOT NEW RELEASE</div>
+            <h2 class="book-title">📚 Digital Alchemy Mastery</h2>
+            <p class="book-subtitle">Unlock the Ancient Secrets of Digital Transformation</p>
+            <div class="book-price">💰 Only $9</div>
+            <div class="book-price">⭐ Launch Special Price</div>
+            <br>
+            <a href="https://www.amazon.com/dp/B0FTYDZZ5X" target="_blank" rel="noopener" class="book-cta">
+                🛒 Get Your Copy on Amazon Now!
+            </a>
+            <p class="book-tagline">
+                ✨ Perfect for aspiring digital alchemists and wisdom seekers ✨
+            </p>
+        </div>
+    </div>
 
     <div class="content-wrapper">
         <div class="container">
