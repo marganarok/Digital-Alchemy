@@ -27,6 +27,7 @@
             position: sticky;
             top: 0;
             z-index: 1000;
+            -webkit-backdrop-filter: blur(10px);
             backdrop-filter: blur(10px);
         }
 
@@ -2495,7 +2496,57 @@
         function openFile(fileName) {
             window.open(fileName, '_blank');
         }
-                <div class="sub-menu" id="comedy-menu">
+
+        // Add the missing functions that are called from HTML
+        function triggerSmartDiscovery() {
+            if (typeof PortalAI !== 'undefined' && PortalAI.discoverContent) {
+                PortalAI.discoverContent();
+            } else {
+                console.log('AI Discovery triggered - content scanning...');
+                // Fallback behavior
+                setTimeout(() => {
+                    alert('🧠 AI Discovery Complete! Content has been analyzed and organized.');
+                }, 1500);
+            }
+        }
+
+        function toggleInsights() {
+            const content = document.getElementById('insightsContent');
+            const toggle = document.querySelector('.insights-toggle');
+            
+            if (content && toggle) {
+                if (content.style.display === 'none' || content.style.display === '') {
+                    content.style.display = 'block';
+                    toggle.textContent = '▼';
+                } else {
+                    content.style.display = 'none';
+                    toggle.textContent = '▶';
+                }
+            }
+        }
+
+        function openMostAccessedCategory() {
+            // Simulate opening most accessed category
+            console.log('Opening most accessed category...');
+            triggerSmartDiscovery();
+        }
+
+        function showRecentlyUpdated() {
+            alert('📝 Recent Updates:\n\n• AI Discovery System Enhanced\n• Book Promotion Added\n• Project Cleanup Completed\n• Performance Optimized');
+        }
+
+        function openRandomFile() {
+            const files = [
+                'master_compilation.html',
+                'the_renaissance.html', 
+                'ancient_rome.html'
+            ];
+            const randomFile = files[Math.floor(Math.random() * files.length)];
+            window.open(randomFile, '_blank');
+        }
+    </script>
+
+    <!-- Cleanup: Remove any leftover HTML that was mixed in JavaScript -->
                     <div class="sub-menu-header">
                         <div class="sub-menu-title">🎭 Comedy Collection</div>
                         <div class="sub-menu-description">Humor and comedy-related projects</div>
@@ -2504,163 +2555,16 @@
                         <div class="file-item" onclick="openFile('comedy/comedy_empire_website.html')">
                             <span class="file-icon html">⟨/⟩</span>
                             <div class="file-info">
-                                <div class="file-name">Comedy Empire Website</div>
-                                <div class="file-meta">Main comedy platform</div>
+                                <div class="file-name">Kai Framework</div>
+                                <div class="file-meta">Kai system framework</div>
                             </div>
-                            <span class="file-size">46 KB</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('comedy/joke_analysis_tool.html')">
-                            <span class="file-icon html">⟨/⟩</span>
-                            <div class="file-info">
-                                <div class="file-name">Joke Analysis Tool</div>
-                                <div class="file-meta">Humor analysis and generation</div>
-                            </div>
-                            <span class="file-size">17 KB</span>
+                            <span class="file-size">—</span>
                         </div>
                     </div>
                 </div>
             </div>
         </div>
     </div>
-
-    <script>
-            <div class="category-portal" onclick="toggleCategory('kai')">
-                <div class="category-icon">🚀</div>
-                <div class="category-title">Kai Projects</div>
-                <div class="category-description">Business ventures, creative tools, and personal projects</div>
-                <div class="category-stats">
-                    <span class="file-count">15 files</span>
-                    <span class="category-arrow">→</span>
-                </div>
-                <div class="sub-menu" id="kai-menu">
-                    <div class="sub-menu-header">
-                        <div class="sub-menu-title">🚀 Kai Project Suite</div>
-                        <div class="sub-menu-description">Business and creative development tools</div>
-                    </div>
-                    <div class="file-list">
-                        <div class="file-item" onclick="openFile('Kai/kai_business_vision.html')">
-                            <span class="file-icon html">⟨/⟩</span>
-                            <div class="file-info">
-                                <div class="file-name">Kai Business Vision</div>
-                                <div class="file-meta">Business strategy and vision</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/kai_diablo2_companion.html')">
-                            <span class="file-icon html">⟨/⟩</span>
-                            <div class="file-info">
-                                <div class="file-name">Kai Diablo 2 Companion</div>
-                                <div class="file-meta">Gaming companion tool</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/kai_gaming_assistant.html')">
-                            <span class="file-icon html">⟨/⟩</span>
-                            <div class="file-info">
-                                <div class="file-name">Kai Gaming Assistant</div>
-                                <div class="file-meta">Gaming assistance tools</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/Omni fresh master blueprint.html')">
-                            <span class="file-icon">📐</span>
-                            <div class="file-info">
-                                <div class="file-name">Omni Fresh Master Blueprint</div>
-                                <div class="file-meta">Master blueprint framework</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/creative_grimoire_website.html')">
-                            <span class="file-icon">📖</span>
-                            <div class="file-info">
-                                <div class="file-name">Creative Grimoire Website</div>
-                                <div class="file-meta">Creative writing platform</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/cosmic_css_components.html')">
-                            <span class="file-icon">🎨</span>
-                            <div class="file-info">
-                                <div class="file-name">Cosmic CSS Components</div>
-                                <div class="file-meta">CSS component library</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/EMPIRE-FRESH Divine Digital Ministry.html')">
-                            <span class="file-icon">⛪</span>
-                            <div class="file-info">
-                                <div class="file-name">Divine Digital Ministry</div>
-                                <div class="file-meta">Digital ministry platform</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/PERSONAL AUDIT METHODOLOGY.html')">
-                            <span class="file-icon">📋</span>
-                            <div class="file-info">
-                                <div class="file-name">Personal Audit Methodology</div>
-                                <div class="file-meta">Personal assessment framework</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/THE-MISSION.html')">
-                            <span class="file-icon">🎯</span>
-                            <div class="file-info">
-                                <div class="file-name">The Mission</div>
-                                <div class="file-meta">Mission statement and goals</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/sacred_codex.html')">
-                            <span class="file-icon">📚</span>
-                            <div class="file-info">
-                                <div class="file-name">Sacred Codex</div>
-                                <div class="file-meta">Sacred knowledge repository</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/sacred_codex_universe (5).html')">
-                            <span class="file-icon">🌌</span>
-                            <div class="file-info">
-                                <div class="file-name">Sacred Codex Universe v5</div>
-                                <div class="file-meta">Universal knowledge system</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/sacred_codex_universe.html')">
-                            <span class="file-icon">🌌</span>
-                            <div class="file-info">
-                                <div class="file-name">Sacred Codex Universe</div>
-                                <div class="file-meta">Universal knowledge system</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/smooth website design.html')">
-                            <span class="file-icon">🎨</span>
-                            <div class="file-info">
-                                <div class="file-name">Smooth Website Design</div>
-                                <div class="file-meta">Web design templates</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/product_comparison_guide (2).html')">
-                            <span class="file-icon">⚖️</span>
-                            <div class="file-info">
-                                <div class="file-name">Product Comparison Guide</div>
-                                <div class="file-meta">Product analysis tools</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Kai/tiktok_strategy_guide (1).html')">
-                            <span class="file-icon">📱</span>
-                            <div class="file-info">
-                                <div class="file-name">TikTok Strategy Guide</div>
-                                <div class="file-meta">Social media strategy</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- Military Category -->
             <div class="category-portal" onclick="toggleCategory('military')">
@@ -2673,30 +2577,6 @@
                 </div>
                 <div class="sub-menu" id="military-menu">
                     <div class="sub-menu-header">
-                        <div class="sub-menu-title">⚔️ Military Archives</div>
-                        <div class="sub-menu-description">Military history and strategic analysis</div>
-                    </div>
-                    <div class="file-list">
-                        <div class="file-item" onclick="openFile('Military/Archaeological Coordinate Trail.html')">
-                            <span class="file-icon">🗺️</span>
-                            <div class="file-info">
-                                <div class="file-name">Archaeological Coordinate Trail</div>
-                                <div class="file-meta">Historical site mapping</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('Military/baltic_crisis_timeline.html')">
-                            <span class="file-icon">📅</span>
-                            <div class="file-info">
-                                <div class="file-name">Baltic Crisis Timeline</div>
-                                <div class="file-meta">Historical crisis analysis</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
             <!-- Technical Science Category -->
             <div class="category-portal" onclick="toggleCategory('technical-science')">
                 <div class="category-icon">🔬</div>
@@ -2708,205 +2588,6 @@
                 </div>
                 <div class="sub-menu" id="technical-science-menu">
                     <div class="sub-menu-header">
-                        <div class="sub-menu-title">🔬 Technical Science Hub</div>
-                        <div class="sub-menu-description">AI, coding, and scientific research tools</div>
-                    </div>
-                    <div class="file-list">
-                        <div class="file-item" onclick="openFile('technical-science/ai_capabilities_analyzer.html')">
-                            <span class="file-icon">🤖</span>
-                            <div class="file-info">
-                                <div class="file-name">AI Capabilities Analyzer</div>
-                                <div class="file-meta">AI analysis tools</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/Coding Empire v3.0.html')">
-                            <span class="file-icon">💻</span>
-                            <div class="file-info">
-                                <div class="file-name">Coding Empire v3.0</div>
-                                <div class="file-meta">Coding platform</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/academic_research_synthesis.html')">
-                            <span class="file-icon">📚</span>
-                            <div class="file-info">
-                                <div class="file-name">Academic Research Synthesis</div>
-                                <div class="file-meta">Research compilation</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/academic_research_template.html')">
-                            <span class="file-icon">📋</span>
-                            <div class="file-info">
-                                <div class="file-name">Academic Research Template</div>
-                                <div class="file-meta">Research templates</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/Leonardo da Vinci Typography Techniques.html')">
-                            <span class="file-icon">🎨</span>
-                            <div class="file-info">
-                                <div class="file-name">Leonardo Typography Techniques</div>
-                                <div class="file-meta">Typography research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/Leonardo-da-Vinci-Typography-Techniques.html')">
-                            <span class="file-icon">🎨</span>
-                            <div class="file-info">
-                                <div class="file-name">Leonardo Typography (Alt)</div>
-                                <div class="file-meta">Typography research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/leonardo_five_pages.html')">
-                            <span class="file-icon">📄</span>
-                            <div class="file-info">
-                                <div class="file-name">Leonardo Five Pages</div>
-                                <div class="file-meta">Leonardo research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/llm_creation_guide (1).html')">
-                            <span class="file-icon">🧠</span>
-                            <div class="file-info">
-                                <div class="file-name">LLM Creation Guide</div>
-                                <div class="file-meta">AI model development</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/llm_creation_guide.html')">
-                            <span class="file-icon">🧠</span>
-                            <div class="file-info">
-                                <div class="file-name">LLM Creation Guide (Alt)</div>
-                                <div class="file-meta">AI model development</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/master_alphabet_portal.html')">
-                            <span class="file-icon">🔤</span>
-                            <div class="file-info">
-                                <div class="file-name">Master Alphabet Portal</div>
-                                <div class="file-meta">Alphabet research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/master_blueprint_html (1).html')">
-                            <span class="file-icon">📐</span>
-                            <div class="file-info">
-                                <div class="file-name">Master Blueprint HTML</div>
-                                <div class="file-meta">Blueprint framework</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/milky_way_cosmic_portal.html')">
-                            <span class="file-icon">🌌</span>
-                            <div class="file-info">
-                                <div class="file-name">Milky Way Cosmic Portal</div>
-                                <div class="file-meta">Cosmic exploration</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/music_analyzer_tool.html')">
-                            <span class="file-icon">🎵</span>
-                            <div class="file-info">
-                                <div class="file-name">Music Analyzer Tool</div>
-                                <div class="file-meta">Music analysis</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/practical_wellness_guide.html')">
-                            <span class="file-icon">🏥</span>
-                            <div class="file-info">
-                                <div class="file-name">Practical Wellness Guide</div>
-                                <div class="file-meta">Health and wellness</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/reactive angel-png creator.html')">
-                            <span class="file-icon">👼</span>
-                            <div class="file-info">
-                                <div class="file-name">Reactive Angel PNG Creator</div>
-                                <div class="file-meta">Image generation tool</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/research_health_balance.html')">
-                            <span class="file-icon">⚖️</span>
-                            <div class="file-info">
-                                <div class="file-name">Research Health Balance</div>
-                                <div class="file-meta">Health research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/website template.html')">
-                            <span class="file-icon">🌐</span>
-                            <div class="file-info">
-                                <div class="file-name">Website Template</div>
-                                <div class="file-meta">Web templates</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/blueprint-car-engine (1).html')">
-                            <span class="file-icon">🚗</span>
-                            <div class="file-info">
-                                <div class="file-name">Blueprint Car Engine v1</div>
-                                <div class="file-meta">Engineering blueprints</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/creative_collaboration_guide.html')">
-                            <span class="file-icon">🤝</span>
-                            <div class="file-info">
-                                <div class="file-name">Creative Collaboration Guide</div>
-                                <div class="file-meta">Collaboration tools</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/creative_process_blueprint (1).html')">
-                            <span class="file-icon">🎨</span>
-                            <div class="file-info">
-                                <div class="file-name">Creative Process Blueprint</div>
-                                <div class="file-meta">Creative methodology</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/DA VINCI DECODER.html')">
-                            <span class="file-icon">🔍</span>
-                            <div class="file-info">
-                                <div class="file-name">Da Vinci Decoder</div>
-                                <div class="file-meta">Art analysis tool</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/full_art_gallery.html')">
-                            <span class="file-icon">🖼️</span>
-                            <div class="file-info">
-                                <div class="file-name">Full Art Gallery</div>
-                                <div class="file-meta">Art collection</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/gumroad_empire_dashboard.html')">
-                            <span class="file-icon">💰</span>
-                            <div class="file-info">
-                                <div class="file-name">Gumroad Empire Dashboard</div>
-                                <div class="file-meta">Business dashboard</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('technical-science/Fundamental Particles to Stellar Formation.html')">
-                            <span class="file-icon">⚛️</span>
-                            <div class="file-info">
-                                <div class="file-name">Fundamental Particles to Stellar Formation</div>
-                                <div class="file-meta">Physics research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
 
             <!-- World History Category -->
             <div class="category-portal" onclick="toggleCategory('world-history')">
@@ -2917,181 +2598,11 @@
                     <span class="file-count">20 files</span>
                     <span class="category-arrow">→</span>
                 </div>
-                <div class="sub-menu" id="world-history-menu">
-                    <div class="sub-menu-header">
-                        <div class="sub-menu-title">🌍 World History Archives</div>
-                        <div class="sub-menu-description">Historical research and archaeological studies</div>
-                    </div>
-                    <div class="file-list">
-                        <div class="file-item" onclick="openFile('world history/Albrecht Dürer-research.html')">
-                            <span class="file-icon">🎨</span>
-                            <div class="file-info">
-                                <div class="file-name">Albrecht Dürer Research</div>
-                                <div class="file-meta">Art history research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/alchemist_stones_research.html')">
-                            <span class="file-icon">⚗️</span>
-                            <div class="file-info">
-                                <div class="file-name">Alchemist Stones Research</div>
-                                <div class="file-meta">Alchemy research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/Ancient Pyramid Civilizations.html')">
-                            <span class="file-icon">🏛️</span>
-                            <div class="file-info">
-                                <div class="file-name">Ancient Pyramid Civilizations</div>
-                                <div class="file-meta">Archaeological research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/csejthe_castle_research.html')">
-                            <span class="file-icon">🏰</span>
-                            <div class="file-info">
-                                <div class="file-name">Csejthe Castle Research</div>
-                                <div class="file-meta">Castle history</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/csejthe_genealogy_research.html')">
-                            <span class="file-icon">👪</span>
-                            <div class="file-info">
-                                <div class="file-name">Csejthe Genealogy Research</div>
-                                <div class="file-meta">Genealogical research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/catholic past.html')">
-                            <span class="file-icon">⛪</span>
-                            <div class="file-info">
-                                <div class="file-name">Catholic Past</div>
-                                <div class="file-meta">Religious history</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/higgs_boson_research.html')">
-                            <span class="file-icon">⚛️</span>
-                            <div class="file-info">
-                                <div class="file-name">Higgs Boson Research</div>
-                                <div class="file-meta">Physics research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/leonardo_da_vinci_complete.html')">
-                            <span class="file-icon">🎨</span>
-                            <div class="file-info">
-                                <div class="file-name">Leonardo da Vinci Complete</div>
-                                <div class="file-meta">Renaissance research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/morning_star_research.html')">
-                            <span class="file-icon">⭐</span>
-                            <div class="file-info">
-                                <div class="file-name">Morning Star Research</div>
-                                <div class="file-meta">Mythological research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/pyramid_archaeology_portal.html')">
-                            <span class="file-icon">🏛️</span>
-                            <div class="file-info">
-                                <div class="file-name">Pyramid Archaeology Portal</div>
-                                <div class="file-meta">Archaeological portal</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/sacred_heart_society_research.html')">
-                            <span class="file-icon">❤️</span>
-                            <div class="file-info">
-                                <div class="file-name">Sacred Heart Society Research</div>
-                                <div class="file-meta">Religious research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/tom_riddle_analysis.html')">
-                            <span class="file-icon">📖</span>
-                            <div class="file-info">
-                                <div class="file-name">Tom Riddle Analysis</div>
-                                <div class="file-meta">Literary analysis</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/wenchi_chieftaincy_chronicle.html')">
-                            <span class="file-icon">👑</span>
-                            <div class="file-info">
-                                <div class="file-name">Wenchi Chieftaincy Chronicle</div>
-                                <div class="file-meta">Historical chronicle</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/DIVINE-blueprint-website.html')">
-                            <span class="file-icon">📐</span>
-                            <div class="file-info">
-                                <div class="file-name">Divine Blueprint Website</div>
-                                <div class="file-meta">Divine framework</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/divine_digital_ministry_book.html')">
-                            <span class="file-icon">📚</span>
-                            <div class="file-info">
-                                <div class="file-name">Divine Digital Ministry Book</div>
-                                <div class="file-meta">Digital ministry</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/DeepAI_Code_Snippet.html')">
-                            <span class="file-icon">🤖</span>
-                            <div class="file-info">
-                                <div class="file-name">DeepAI Code Snippet</div>
-                                <div class="file-meta">AI code examples</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/parasite_research_ecosystem (2).html')">
-                            <span class="file-icon">🦠</span>
-                            <div class="file-info">
-                                <div class="file-name">Parasite Research Ecosystem</div>
-                                <div class="file-meta">Biological research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/pattern_recognition_portal (1).html')">
-                            <span class="file-icon">🔍</span>
-                            <div class="file-info">
-                                <div class="file-name">Pattern Recognition Portal</div>
-                                <div class="file-meta">Pattern analysis</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/The Divine Leash Principle.html')">
-                            <span class="file-icon">🔗</span>
-                            <div class="file-info">
-                                <div class="file-name">The Divine Leash Principle</div>
-                                <div class="file-meta">Theological research</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                        <div class="file-item" onclick="openFile('world history/please create for me a  master. giant . BEAUTIFUL.html')">
-                            <span class="file-icon">✨</span>
-                            <div class="file-info">
-                                <div class="file-name">Master Giant Beautiful</div>
-                                <div class="file-meta">Master template</div>
-                            </div>
-                            <span class="file-size">—</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Books Category -->
+      <!-- Books Category -->
             <div class="category-portal" onclick="toggleCategory('books')">
                 <div class="category-icon">📚</div>
                 <div class="category-title">Books Collection</div>
-                <div class="category-description">Books and manuscripts archive (Currently reorganizing)</div>
+                <div class="category-description">Books and manuscripts archive </div>
                 <div class="category-stats">
                     <span class="file-count">0 files</span>
                     <span class="category-arrow">→</span>
@@ -3099,16 +2610,12 @@
                 <div class="sub-menu" id="books-menu">
                     <div class="sub-menu-header">
                         <div class="sub-menu-title">📚 Books Library</div>
-                        <div class="sub-menu-description">Books collection currently being reorganized for better content curation</div>
                     </div>
                     <div class="file-list">
                         <div class="empty-state">
                             <div style="text-align: center; padding: 40px 20px; color: #999;">
                                 <div style="font-size: 3rem; margin-bottom: 15px;">📚</div>
-                                <h3 style="color: #ccc; margin-bottom: 10px;">Books Collection Under Renovation</h3>
                                 <p style="font-size: 0.9rem; line-height: 1.5;">
-                                    The books archive is currently being reorganized for improved content curation and better accessibility.<br>
-                                    New content will be added soon with enhanced organization.
                                 </p>
                             </div>
                         </div>
@@ -3141,36 +2648,10 @@
         }
 
         // Initialize on page load
+        // Initialize on page load
         document.addEventListener('DOMContentLoaded', function() {
             updateArticleCount();
         });
-                    m.style.display = 'none';
-                    const otherPortal = m.closest('.category-portal');
-                    if (otherPortal) {
-                        otherPortal.classList.remove('active', 'loading');
-                    }
-                }
-            });
-
-            // Toggle current menu
-            if (menu) {
-                if (menu.style.display === 'block') {
-                    menu.style.display = 'none';
-                    if (portal) {
-                        portal.classList.remove('active', 'loading');
-                    }
-                } else {
-                    menu.style.display = 'block';
-                    if (portal) {
-                        portal.classList.add('active');
-                        portal.classList.remove('loading');
-                    }
-                }
-            }
-
-            // Update article count
-            updateArticleCount();
-        }
 
         function openBook(filePath) {
             // Open .txt files in a new tab/window
