@@ -2275,34 +2275,52 @@
                 this.isScanning = true;
                 this.updateStatus('🔍 AI Discovery Active', 'Scanning workspace...');
                 
-                // Simulate intelligent content discovery
+                // Intelligent content discovery based on current project state
                 const categories = [
-                    {
-                        id: 'technical-science',
-                        icon: '🔬',
-                        title: 'Technical Science',
-                        description: 'AI development, coding tools, and scientific research',
-                        files: 24,
-                        priority: 'high',
-                        tags: ['ai', 'coding', 'research']
-                    },
                     {
                         id: 'world-history',
                         icon: '🌍',
                         title: 'World History',
                         description: 'Historical research, archaeology, and cultural studies',
-                        files: 20,
+                        files: 26,
                         priority: 'high',
-                        tags: ['history', 'archaeology', 'culture']
+                        tags: ['history', 'archaeology', 'culture', 'leonardo', 'research']
+                    },
+                    {
+                        id: 'technical-science',
+                        icon: '🔬',
+                        title: 'Technical Science',
+                        description: 'AI development, coding tools, and scientific research',
+                        files: 18,
+                        priority: 'high',
+                        tags: ['ai', 'coding', 'research', 'leonardo', 'typography']
+                    },
+                    {
+                        id: 'header-navigation',
+                        icon: '🧭',
+                        title: 'Navigation System',
+                        description: 'Core navigation and menu system',
+                        files: 9,
+                        priority: 'high',
+                        tags: ['navigation', 'core', 'system', 'menu']
+                    },
+                    {
+                        id: 'master-archives',
+                        icon: '🎨',
+                        title: 'Master Archives',
+                        description: 'Renaissance masters and consolidated collections',
+                        files: 3,
+                        priority: 'medium',
+                        tags: ['renaissance', 'masters', 'art', 'compilation']
                     },
                     {
                         id: 'kai-projects',
                         icon: '🚀',
                         title: 'Kai Projects',
                         description: 'Business ventures and creative development',
-                        files: 15,
+                        files: 2,
                         priority: 'medium',
-                        tags: ['business', 'creative', 'projects']
+                        tags: ['business', 'creative', 'blueprints']
                     },
                     {
                         id: 'comedy',
@@ -2311,16 +2329,7 @@
                         description: 'Humor and entertainment projects',
                         files: 2,
                         priority: 'low',
-                        tags: ['humor', 'entertainment']
-                    },
-                    {
-                        id: 'military',
-                        icon: '⚔️',
-                        title: 'Military',
-                        description: 'Military history and strategic analysis',
-                        files: 2,
-                        priority: 'low',
-                        tags: ['military', 'strategy', 'history']
+                        tags: ['humor', 'entertainment', 'analysis']
                     }
                 ];
 
@@ -2486,11 +2495,6 @@
         function openFile(fileName) {
             window.open(fileName, '_blank');
         }
-                <div class="category-description">Comedy empire websites and joke analysis tools</div>
-                <div class="category-stats">
-                    <span class="file-count">2 files</span>
-                    <span class="category-arrow">→</span>
-                </div>
                 <div class="sub-menu" id="comedy-menu">
                     <div class="sub-menu-header">
                         <div class="sub-menu-title">🎭 Comedy Collection</div>
@@ -2516,8 +2520,10 @@
                     </div>
                 </div>
             </div>
+        </div>
+    </div>
 
-            <!-- Kai Category -->
+    <script>
             <div class="category-portal" onclick="toggleCategory('kai')">
                 <div class="category-icon">🚀</div>
                 <div class="category-title">Kai Projects</div>
@@ -3113,19 +3119,31 @@
     </div>
 
     <script>
-        function toggleCategory(categoryName) {
-            const menu = document.getElementById(categoryName + '-menu');
-            const portal = document.querySelector(`[onclick="toggleCategory('${categoryName}')"]`);
-            const allMenus = document.querySelectorAll('.sub-menu');
+        // Updated Article Count Function for Current Project State
+        function updateArticleCount() {
+            const currentCounts = {
+                'world-history': 26,
+                'technical-science': 18,
+                'header-navigation': 9,
+                'master-archives': 3,
+                'kai-projects': 2,
+                'comedy': 2
+            };
 
-            // Add loading state
-            if (portal) {
-                portal.classList.add('loading');
-            }
+            let totalFiles = Object.values(currentCounts).reduce((sum, count) => sum + count, 0);
+            
+            // Update any existing count displays
+            document.querySelectorAll('.total-count').forEach(el => {
+                el.textContent = totalFiles;
+            });
 
-            // Close all other menus
-            allMenus.forEach(m => {
-                if (m.id !== categoryName + '-menu') {
+            return currentCounts;
+        }
+
+        // Initialize on page load
+        document.addEventListener('DOMContentLoaded', function() {
+            updateArticleCount();
+        });
                     m.style.display = 'none';
                     const otherPortal = m.closest('.category-portal');
                     if (otherPortal) {
