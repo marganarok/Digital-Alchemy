@@ -1,1292 +1,241 @@
-<!DOCTYPE html><!DOCTYPE html>
-
-<html lang="en"><html lang="en">
-
-<head><head>
-
-    <meta charset="UTF-8">    <meta charset="UTF-8">
-
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-    <title>Sacred Library - Digital Alchemy Portal</title>    <meta name="robots" content="index, follow">
-
-    <link rel="icon" type="image/svg+xml" href="../favicon.svg">    <meta name="description" content="Sacred Library - Access ancient scriptures, mystical commentaries, and contemporary wisdom teachings from diverse spiritual traditions. Explore comparative spiritual studies and sacred texts.">
-
-        <meta name="keywords" content="sacred library, ancient scriptures, mystical teachings, spiritual traditions, comparative religion, sacred texts, wisdom teachings, divine knowledge">
-
-    <style>    <meta name="author" content="Sacred Codex Universe">
-
-        * {    <meta name="language" content="English">
-
-            margin: 0;    <title>Sacred Library - Ancient Scriptures & Mystical Teachings | Sacred Codex Universe</title>
-
-            padding: 0;
-
-            box-sizing: border-box;    <!-- Open Graph / Facebook -->
-
-        }    <meta property="og:type" content="website">
-
-    <meta property="og:url" content="https://sacredcodexuniverse.com/library.html">
-
-        body {    <meta property="og:title" content="Sacred Library - Ancient Scriptures & Mystical Teachings | Sacred Codex Universe">
-
-            font-family: 'Georgia', serif;    <meta property="og:description" content="Sacred Library - Access ancient scriptures, mystical commentaries, and contemporary wisdom teachings from diverse spiritual traditions. Explore comparative spiritual studies and sacred texts.">
-
-            background: linear-gradient(135deg, #191970 0%, #00bfff 100%);    <meta property="og:image" content="https://sacredcodexuniverse.com/favicon-3d-mantra.svg">
-
-            background-attachment: fixed;    <meta property="og:image:width" content="512">
-
-            color: #ffffff;    <meta property="og:image:height" content="512">
-
-            line-height: 1.6;    <meta property="og:image:alt" content="Sacred Library - Ancient Scriptures Collection">
-
-            min-height: 100vh;    <meta property="og:site_name" content="Sacred Codex Universe">
-
-        }    <meta property="og:locale" content="en_US">
-
-
-
-        .container {    <!-- Twitter -->
-
-            max-width: 1200px;    <meta property="twitter:card" content="summary_large_image">
-
-            margin: 0 auto;    <meta property="twitter:url" content="https://sacredcodexuniverse.com/library.html">
-
-            padding: 20px;    <meta property="twitter:title" content="Sacred Library - Ancient Scriptures & Mystical Teachings | Sacred Codex Universe">
-
-        }    <meta property="twitter:description" content="Sacred Library - Access ancient scriptures, mystical commentaries, and contemporary wisdom teachings from diverse spiritual traditions. Explore comparative spiritual studies and sacred texts.">
-
-    <meta property="twitter:image" content="https://sacredcodexuniverse.com/favicon-3d-mantra.svg">
-
-        /* Header */    <meta property="twitter:image:alt" content="Sacred Library - Ancient Scriptures Collection">
-
-        .header {    <meta name="twitter:creator" content="@Philipp36533206">
-
-            text-align: center;    <meta name="twitter:site" content="@Philipp36533206">
-
-            margin-bottom: 50px;
-
-            padding: 40px 0;    <!-- Canonical URL -->
-
-        }    <link rel="canonical" href="https://sacredcodexuniverse.com/library.html">
-
-
-
-        .header h1 {    <!-- Structured Data -->
-
-            font-size: 3.5em;    <script type="application/ld+json">
-
-            background: linear-gradient(45deg, #00bfff, #ffffff, #00bfff);    {
-
-            background-clip: text;        "@context": "https://schema.org",
-
-            -webkit-background-clip: text;        "@type": "WebPage",
-
-            -webkit-text-fill-color: transparent;        "name": "Sacred Library - Ancient Scriptures & Mystical Teachings",
-
-            text-shadow: 0 0 30px rgba(0, 191, 255, 0.5);        "description": "Sacred Library - Access ancient scriptures, mystical commentaries, and contemporary wisdom teachings from diverse spiritual traditions. Explore comparative spiritual studies and sacred texts.",
-
-            margin-bottom: 20px;        "url": "https://sacredcodexuniverse.com/library.html",
-
-            font-weight: bold;        "isPartOf": {
-
-        }            "@type": "WebSite",
-
-            "name": "Sacred Codex Universe",
-
-        .header p {            "url": "https://sacredcodexuniverse.com/"
-
-            font-size: 1.3em;        },
-
-            color: #e0e0e0;        "publisher": {
-
-            max-width: 600px;            "@type": "Organization",
-
-            margin: 0 auto;            "name": "Sacred Codex Universe",
-
-        }            "url": "https://sacredcodexuniverse.com/"
-
-        },
-
-        /* Navigation Back Button */        "about": {
-
-        .back-nav {            "@type": "Library",
-
-            position: fixed;            "name": "Sacred Library",
-
-            top: 20px;            "description": "Collection of ancient scriptures, mystical commentaries, and contemporary wisdom teachings"
-
-            left: 20px;        },
-
-            z-index: 1000;        "mainEntity": {
-
-        }            "@type": "ItemList",
-
-            "name": "Sacred Texts Collection",
-
-        .back-btn {            "description": "Comprehensive collection of spiritual and mystical teachings from various traditions"
-
-            background: rgba(255, 255, 255, 0.1);        }
-
-            color: #ffffff;    }
-
-            border: 2px solid rgba(0, 191, 255, 0.5);    </script>
-
-            padding: 12px 20px;
-
-            border-radius: 25px;    <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=Crimson+Text:ital,wght@0,400;0,600;1,400&family=Orbitron:wght@400;700;900&display=swap" rel="stylesheet">
-
-            text-decoration: none;    <link rel="stylesheet" href="shared-styles.css">
-
-            font-weight: bold;    <style>
-
-            backdrop-filter: blur(10px);        /* --- Enhanced Root Variables for Theming --- */
-
-            transition: all 0.3s ease;        :root {
-
-            display: flex;            --divine-gold: #FFD700;
-
-            align-items: center;            --sacred-purple: #9932CC;
-
-            gap: 10px;            --celestial-blue: #4169E1;
-
-        }            --emerald-wisdom: #50C878;
-
-            --crimson-passion: #DC143C;
-
-        .back-btn:hover {            --mystic-silver: #C0C0C0;
-
-            background: rgba(0, 191, 255, 0.2);            --star-white: #FFFACD;
-
-            border-color: #00bfff;            --shadow-deep: #000000;
-
-            transform: translateY(-2px);            --cosmic-gradient: linear-gradient(135deg, #000428 0%, #004e92 100%);
-
-            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);        }
-
-        }
-
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sacred Library - Digital Alchemy Portal</title>
+    <link rel="icon" type="image/svg+xml" href="../favicon.svg">
+    
+    <style>
         * {
-
-        /* Library Stats */            margin: 0;
-
-        .library-stats {            padding: 0;
-
-            background: rgba(255, 255, 255, 0.1);            box-sizing: border-box;
-
-            border-radius: 15px;        }
-
-            padding: 30px;
-
-            margin-bottom: 40px;        body {
-
-            text-align: center;            font-family: 'Crimson Text', serif;
-
-            backdrop-filter: blur(10px);            background: var(--shadow-deep);
-
-            border: 1px solid rgba(255, 255, 255, 0.2);            color: var(--star-white);
-
-        }            line-height: 1.6;
-
-            overflow-x: hidden;
-
-        .stats-grid {        }
-
-            display: grid;
-
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));        /* --- Enhanced Cosmic Background --- */
-
-            gap: 30px;        .cosmic-background {
-
-            margin-top: 20px;            position: fixed;
-
-        }            top: 0;
-
-            left: 0;
-
-        .stat-item {            width: 100%;
-
-            text-align: center;            height: 100%;
-
-        }            z-index: -2;
-
-            background: var(--cosmic-gradient);
-
-        .stat-number {        }
-
-            font-size: 2.5em;
-
-            font-weight: bold;        .sacred-patterns {
-
-            color: #00bfff;            position: fixed;
-
-            display: block;            top: 0;
-
-        }            left: 0;
-
-            width: 100%;
-
-        .stat-label {            height: 100%;
-
-            color: #e0e0e0;            z-index: -1;
-
-            font-size: 1.1em;            opacity: 0.08;
-
-        }            background-image: 
-
-                radial-gradient(2px 2px at 20px 30px, var(--divine-gold), transparent),
-
-        /* Books Grid */                radial-gradient(2px 2px at 40px 70px, var(--sacred-purple), transparent),
-
-        .books-grid {                radial-gradient(1px 1px at 90px 40px, var(--celestial-blue), transparent),
-
-            display: grid;                radial-gradient(1px 1px at 130px 80px, var(--emerald-wisdom), transparent),
-
-            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));                radial-gradient(2px 2px at 160px 30px, var(--crimson-passion), transparent);
-
-            gap: 30px;            background-size: 200px 100px;
-
-            margin-top: 40px;            animation: cosmicDrift 40s ease-in-out infinite alternate;
-
-        }        }
-
-
-
-        .book-card {        @keyframes cosmicDrift {
-
-            background: rgba(255, 255, 255, 0.1);            0% { transform: translateX(0px) translateY(0px); }
-
-            border-radius: 20px;            100% { transform: translateX(20px) translateY(10px); }
-
-            padding: 30px;        }
-
-            backdrop-filter: blur(10px);
-
-            border: 1px solid rgba(255, 255, 255, 0.2);        /* --- Particle System --- */
-
-            transition: all 0.3s ease;        .particle-system {
-
-            position: relative;            position: fixed;
-
-            overflow: hidden;            top: 0;
-
-        }            left: 0;
-
-            width: 100%;
-
-        .book-card::before {            height: 100%;
-
-            content: '';            pointer-events: none;
-
-            position: absolute;            z-index: 1000;
-
-            top: -50%;        }
-
-            left: -50%;
-
-            width: 200%;        .divine-particle {
-
-            height: 200%;            position: absolute;
-
-            background: linear-gradient(45deg, transparent, rgba(0, 191, 255, 0.1), transparent);            width: 4px;
-
-            transform: rotate(45deg);            height: 4px;
-
-            transition: all 0.6s ease;            background: var(--divine-gold);
-
-            opacity: 0;            border-radius: 50%;
-
-        }            animation: divineFloat 8s ease-in-out infinite;
-
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
         }
 
-        .book-card:hover::before {
-
-            opacity: 1;        @keyframes divineFloat {
-
-            animation: shimmer 2s ease-in-out infinite;            0%, 100% { 
-
-        }                transform: translateY(0px) translateX(0px) scale(1);
-
-                opacity: 0;
-
-        @keyframes shimmer {            }
-
-            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }            10% { opacity: 1; }
-
-            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }            50% { 
-
-        }                transform: translateY(-100px) translateX(50px) scale(1.5);
-
-                opacity: 0.8;
-
-        .book-card:hover {            }
-
-            transform: translateY(-10px);            90% { opacity: 1; }
-
-            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.3);        }
-
-            border-color: rgba(0, 191, 255, 0.5);
-
-        }        /* --- Scroll Progress Indicator --- */
-
-        .scroll-progress {
-
-        .book-icon {            position: fixed;
-
-            font-size: 4em;            top: 0;
-
-            text-align: center;            left: 0;
-
-            margin-bottom: 20px;            height: 4px;
-
-            filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.5));            background: linear-gradient(90deg, var(--sacred-purple), var(--divine-gold), var(--celestial-blue));
-
-        }            z-index: 10000;
-
-            transition: width 0.3s ease;
-
-        .book-title {        }
-
-            font-size: 1.8em;
-
-            font-weight: bold;        /* --- Navigation Bar --- */
-
-            color: #00bfff;        .sacred-nav {
-
-            margin-bottom: 15px;            position: fixed;
-
-            text-align: center;            top: 0;
-
-        }            width: 100%;
-
-            background: linear-gradient(45deg, rgba(0,0,0,0.8), rgba(25,25,112,0.8));
-
-        .book-description {            -webkit-backdrop-filter: blur(15px);
-
-            color: #e0e0e0;            backdrop-filter: blur(15px);
-
-            margin-bottom: 25px;            border-bottom: 3px solid var(--divine-gold);
-
-            text-align: center;            z-index: 1000;
-
-            font-style: italic;            padding: 15px 0;
-
-        }        }
-
-
-
-        .book-actions {        .nav-container {
-
-            display: flex;            max-width: 1200px;
-
-            gap: 15px;            margin: 0 auto;
-
-            justify-content: center;            display: flex;
-
-            flex-wrap: wrap;            justify-content: center;
-
-        }            flex-wrap: wrap;
-
-            gap: 1.5rem;
-
-        .btn {            padding: 0 1rem;
-
-            padding: 12px 25px;        }
-
-            border: none;
-
-            border-radius: 25px;        .nav-link {
-
-            font-weight: bold;            color: var(--star-white);
-
-            text-decoration: none;            text-decoration: none;
-
-            cursor: pointer;            font-family: 'Orbitron', monospace;
-
-            transition: all 0.3s ease;            font-weight: 600;
-
-            font-size: 1em;            font-size: 0.9rem;
-
-            display: flex;            text-transform: uppercase;
-
-            align-items: center;            letter-spacing: 1px;
-
-            gap: 8px;            transition: all 0.3s ease;
-
-        }            position: relative;
-
-            padding: 8px 16px;
-
-        .preview-btn {            border: 2px solid transparent;
-
-            background: linear-gradient(45deg, #00bfff, #0080ff);            border-radius: 8px;
-
-            color: white;        }
-
-            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3);
-
-        }        .nav-link:hover {
-
-            color: var(--shadow-deep);
-
-        .preview-btn:hover {            background: linear-gradient(45deg, var(--divine-gold), var(--sacred-purple));
-
-            background: linear-gradient(45deg, #0080ff, #0060df);            border-color: var(--star-white);
-
-            transform: translateY(-2px);            transform: translateY(-2px) scale(1.05);
-
-            box-shadow: 0 6px 20px rgba(0, 191, 255, 0.4);            box-shadow: 0 8px 20px rgba(255,215,0,0.4);
-
-        }        }
-
-
-
-        .download-btn {        /* --- Main Content & Sections --- */
-
-            background: linear-gradient(45deg, #32cd32, #228b22);        .main-content {
-
-            color: white;            padding: 100px 1rem 4rem;
-
-            box-shadow: 0 4px 15px rgba(50, 205, 50, 0.3);        }
-
-        }
-
-        .library-header {
-
-        .download-btn:hover {            text-align: center;
-
-            background: linear-gradient(45deg, #228b22, #006400);            margin-bottom: 4rem;
-
-            transform: translateY(-2px);        }
-
-            box-shadow: 0 6px 20px rgba(50, 205, 50, 0.4);
-
-        }        .section-title {
-
-            font-family: 'Cinzel', serif;
-
-        /* Preview Modal */            font-size: clamp(3rem, 8vw, 6rem);
-
-        .preview-modal {            color: var(--divine-gold);
-
-            display: none;            text-shadow: 
-
-            position: fixed;                0 0 20px var(--divine-gold),
-
-            top: 0;                0 0 40px var(--sacred-purple),
-
-            left: 0;                5px 5px 15px rgba(0,0,0,0.8);
-
-            width: 100%;            margin-bottom: 1rem;
-
-            height: 100%;            animation: sacredGlow 4s ease-in-out infinite alternate;
-
-            background: rgba(0, 0, 0, 0.8);        }
-
-            z-index: 2000;
-
-            backdrop-filter: blur(5px);        @keyframes sacredGlow {
-
-        }            from { 
-
-                text-shadow: 0 0 20px var(--divine-gold), 0 0 40px var(--holy-amber), 5px 5px 15px rgba(0,0,0,0.8);
-
-        .modal-content {                transform: scale(1);
-
-            position: absolute;            }
-
-            top: 50%;            to { 
-
-            left: 50%;                text-shadow: 0 0 30px var(--divine-gold), 0 0 60px var(--holy-amber), 5px 5px 15px rgba(0,0,0,0.8);
-
-            transform: translate(-50%, -50%);                transform: scale(1.02);
-
-            background: linear-gradient(135deg, #191970 0%, #00bfff 100%);            }
-
-            border-radius: 20px;        }
-
-            padding: 30px;
-
-            max-width: 90%;        .section-subtitle {
-
-            max-height: 90%;            font-size: 1.2rem;
-
-            overflow-y: auto;            color: #C0C0C0; /* Mystic Silver */
-
-            border: 2px solid rgba(0, 191, 255, 0.5);            max-width: 700px;
-
-            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);            margin: 0 auto;
-
-        }        }
-
-
-
-        .modal-header {        .library-section {
-
-            display: flex;            margin-bottom: 5rem;
-
-            justify-content: space-between;        }
-
-            align-items: center;
-
-            margin-bottom: 20px;        .library-section-title {
-
-            padding-bottom: 15px;            font-family: 'Cinzel', serif;
-
-            border-bottom: 2px solid rgba(255, 255, 255, 0.2);            font-size: 2.2rem;
-
-        }            color: var(--divine-gold);
-
-            text-align: center;
-
-        .modal-title {            margin-bottom: 2.5rem;
-
-            font-size: 1.8em;            position: relative;
-
-            color: #00bfff;        }
-
-            font-weight: bold;
-
-        }        .library-section-title::after {
-
-            content: '';
-
-        .close-btn {            position: absolute;
-
-            background: rgba(255, 255, 255, 0.1);            bottom: -10px;
-
-            border: none;            left: 50%;
-
-            color: white;            transform: translateX(-50%);
-
-            font-size: 1.5em;            width: 80px;
-
-            width: 40px;            height: 2px;
-
-            height: 40px;            background: linear-gradient(90deg, var(--divine-gold), var(--sacred-purple));
-
-            border-radius: 50%;            border-radius: 2px;
-
-            cursor: pointer;        }
-
-            transition: all 0.3s ease;
-
-        }        /* --- Grid and Card Styling --- */
-
-        .sacred-grid {
-
-        .close-btn:hover {            display: grid;
-
-            background: rgba(255, 0, 0, 0.3);            grid-template-columns: repeat(auto-fit, minmax(340px, 1fr));
-
-            transform: scale(1.1);            gap: 2rem;
-
-        }            max-width: 1200px;
-
-            margin: 0 auto;
-
-        .modal-text {        }
-
+        body {
+            font-family: 'Georgia', serif;
+            background: linear-gradient(135deg, #191970 0%, #00bfff 100%);
+            background-attachment: fixed;
             color: #ffffff;
-
-            line-height: 1.8;        .library-card {
-
-            font-size: 1.1em;            background: linear-gradient(135deg, rgba(25,25,112,0.3), rgba(75,0,130,0.2));
-
-            white-space: pre-wrap;            border: 3px solid var(--celestial-blue);
-
-            max-height: 60vh;            border-radius: 20px;
-
-            overflow-y: auto;            padding: 40px;
-
-            padding: 20px;            transition: all 0.4s ease;
-
-            background: rgba(0, 0, 0, 0.2);            position: relative;
-
-            border-radius: 10px;            overflow: hidden;
-
-        }            display: flex;
-
-            flex-direction: column;
-
-        /* Loading Spinner */        }
-
-        .loading {
-
-            text-align: center;        .library-card::before {
-
-            padding: 40px;            content: '';
-
-        }            position: absolute;
-
-            top: -2px;
-
-        .spinner {            left: -2px;
-
-            border: 3px solid rgba(0, 191, 255, 0.3);            right: -2px;
-
-            border-top: 3px solid #00bfff;            bottom: -2px;
-
-            border-radius: 50%;            background: linear-gradient(45deg, var(--divine-gold), var(--sacred-purple), var(--celestial-blue), var(--emerald-wisdom));
-
-            width: 40px;            border-radius: 20px;
-
-            height: 40px;            opacity: 0;
-
-            animation: spin 1s linear infinite;            transition: opacity 0.3s;
-
-            margin: 0 auto 20px;            z-index: -1;
-
-        }        }
-
-
-
-        @keyframes spin {        .library-card:hover::before {
-
-            0% { transform: rotate(0deg); }            opacity: 0.3;
-
-            100% { transform: rotate(360deg); }        }
-
+            line-height: 1.6;
+            min-height: 100vh;
         }
 
-        .library-card:hover {
-
-        /* Responsive Design */            transform: translateY(-15px) scale(1.02);
-
-        @media (max-width: 768px) {            border-color: var(--divine-gold);
-
-            .header h1 {            box-shadow: 0 25px 50px rgba(255,215,0,0.3);
-
-                font-size: 2.5em;        }
-
-            }
-
-        .library-card::after {
-
-            .books-grid {            content: '';
-
-                grid-template-columns: 1fr;            position: absolute;
-
-                gap: 20px;            top: 0;
-
-            }            left: -100%;
-
-            width: 100%;
-
-            .book-actions {            height: 100%;
-
-                flex-direction: column;            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
-
-            }            transition: left 0.6s;
-
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 20px;
         }
 
-            .modal-content {
-
-                margin: 20px;        .library-card:hover::after {
-
-                padding: 20px;            left: 100%;
-
-            }        }
-
-
-
-            .back-nav {        .card-header {
-
-                position: relative;            text-align: center;
-
-                top: 0;            margin-bottom: 1.5rem;
-
-                left: 0;        }
-
-                margin-bottom: 20px;
-
-            }        .library-icon {
-
-        }            font-size: 3rem;
-
-            line-height: 1;
-
-        /* Floating Particles Effect */        }
-
-        .particle {
-
-            position: absolute;        .library-card-title {
-
-            background: rgba(0, 191, 255, 0.6);            font-family: 'Cinzel', serif;
-
-            border-radius: 50%;            font-size: 1.6rem;
-
-            pointer-events: none;            color: var(--divine-gold);
-
-            animation: float 6s ease-in-out infinite;            margin-top: 0.5rem;
-
-        }        }
-
-
-
-        @keyframes float {        .library-description {
-
-            0%, 100% { transform: translateY(0px) rotate(0deg); opacity: 1; }            color: #C0C0C0;
-
-            50% { transform: translateY(-20px) rotate(180deg); opacity: 0.5; }            margin-bottom: 1.5rem;
-
-        }            flex-grow: 1; /* Allows description to fill space */
-
-    </style>        }
-
-</head>
-
-<body>        /* --- File Item and Download Button --- */
-
-    <!-- Floating Particles -->        .file-item {
-
-    <div class="particles-container"></div>            background: linear-gradient(45deg, rgba(255,215,0,0.1), rgba(153,50,204,0.1));
-
-            border-radius: 12px;
-
-    <!-- Navigation -->            padding: 20px;
-
-    <nav class="back-nav">            margin-bottom: 15px;
-
-        <a href="../index.html" class="back-btn">            display: flex;
-
-            ← Back to Portal            justify-content: space-between;
-
-        </a>            align-items: center;
-
-    </nav>            gap: 20px;
-
-            transition: all 0.3s ease;
-
-    <div class="container">            border: 2px solid transparent;
-
-        <!-- Header -->        }
-
-        <header class="header">
-
-            <h1>📚 Sacred Library</h1>        .file-item:hover {
-
-            <p>A curated collection of sacred wisdom and mystical knowledge from the Digital Alchemy Portal</p>            border-color: var(--divine-gold);
-
-        </header>            transform: translateX(10px);
-
-            box-shadow: 0 10px 25px rgba(255,215,0,0.2);
-
-        <!-- Library Statistics -->        }
-
-        <section class="library-stats">
-
-            <h2>Library Overview</h2>        .file-info {
-
-            <div class="stats-grid">            text-align: left;
-
-                <div class="stat-item">        }
-
-                    <span class="stat-number">2</span>
-
-                    <span class="stat-label">Sacred Texts</span>        .file-name {
-
-                </div>            font-weight: 600;
-
-                <div class="stat-item">            color: var(--star-white);
-
-                    <span class="stat-number">100%</span>        }
-
-                    <span class="stat-label">Authentic Content</span>
-
-                </div>        .file-description {
-
-                <div class="stat-item">            font-size: 0.85rem;
-
-                    <span class="stat-number">∞</span>            color: #C0C0C0;
-
-                    <span class="stat-label">Wisdom Potential</span>        }
-
-                </div>
-
-            </div>        .download-button, .preview-button {
-
-        </section>            border: none;
-
+        /* Header */
+        .header {
+            text-align: center;
+            margin-bottom: 50px;
+            padding: 40px 0;
+        }
+
+        .header h1 {
+            font-size: 3.5em;
+            background: linear-gradient(45deg, #00bfff, #ffffff, #00bfff);
+            background-clip: text;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 0 30px rgba(0, 191, 255, 0.5);
+            margin-bottom: 20px;
+            font-weight: bold;
+        }
+
+        .header p {
+            font-size: 1.3em;
+            color: #e0e0e0;
+            max-width: 600px;
+            margin: 0 auto;
+        }
+
+        /* Navigation Back Button */
+        .back-nav {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .back-btn {
+            background: rgba(255, 255, 255, 0.1);
+            color: #ffffff;
+            border: 2px solid rgba(0, 191, 255, 0.5);
+            padding: 12px 20px;
             border-radius: 25px;
-
-        <!-- Books Collection -->            padding: 12px 20px;
-
-        <section class="books-section">            font-family: 'Orbitron', monospace;
-
-            <div class="books-grid">            font-weight: 700;
-
-                <!-- As Above, So Below -->            font-size: 0.9rem;
-
-                <div class="book-card">            cursor: pointer;
-
-                    <div class="book-icon">⚡</div>            transition: all 0.3s ease;
-
-                    <h3 class="book-title">As Above, So Below</h3>            text-decoration: none;
-
-                    <p class="book-description">            white-space: nowrap;
-
-                        The fundamental hermetic principle that reveals the connection between the macrocosm and microcosm. Ancient wisdom that bridges the divine and earthly realms.            text-transform: uppercase;
-
-                    </p>            letter-spacing: 0.5px;
-
-                    <div class="book-actions">        }
-
-                        <button class="btn preview-btn" onclick="previewBook('../Books/As above, so below.txt', 'As Above, So Below')">
-
-                            👁️ Preview        .download-button {
-
-                        </button>            background: linear-gradient(45deg, var(--divine-gold), var(--holy-amber));
-
-                        <a href="../Books/As above, so below.txt" class="btn download-btn" download="As above, so below.txt">            color: var(--void-black);
-
-                            📥 Download        }
-
-                        </a>
-
-                    </div>        .preview-button {
-
-                </div>            background: linear-gradient(45deg, var(--celestial-blue), var(--sacred-purple));
-
-            color: var(--star-white);
-
-                <!-- The Sacred Mathematics Discovery -->        }
-
-                <div class="book-card">
-
-                    <div class="book-icon">🔢</div>        .download-button:hover, .preview-button:hover {
-
-                    <h3 class="book-title">The Sacred Mathematics Discovery</h3>            transform: scale(1.05) translateY(-2px);
-
-                    <p class="book-description">            box-shadow: 0 10px 25px rgba(255,215,0,0.4);
-
-                        What Terrence Howard discovered about sacred mathematics and universal patterns. Revolutionary insights into the mathematical nature of reality.        }
-
-                    </p>
-
-                    <div class="book-actions">        /* --- Footer --- */
-
-                        <button class="btn preview-btn" onclick="previewBook('../Books/The Sacred Mathematics Discovery What Terrence Howard Sense.txt', 'The Sacred Mathematics Discovery')">        .sacred-footer {
-
-                            👁️ Preview            background: rgba(0, 0, 0, 0.8);
-
-                        </button>            padding: 2.5rem 1rem;
-
-                        <a href="../Books/The Sacred Mathematics Discovery What Terrence Howard Sense.txt" class="btn download-btn" download="The Sacred Mathematics Discovery What Terrence Howard Sense.txt">            text-align: center;
-
-                            📥 Download            border-top: 2px solid var(--divine-gold);
-
-                        </a>            margin-top: 2rem;
-
-                    </div>        }
-
-                </div>
-
-            </div>        .footer-title {
-
-        </section>            font-family: 'Cinzel', serif;
-
-    </div>            font-size: 1.5rem;
-
-            color: var(--divine-gold);
-
-    <!-- Preview Modal -->            margin-bottom: 1rem;
-
-    <div id="previewModal" class="preview-modal">        }
-
-        <div class="modal-content">
-
-            <div class="modal-header">        .footer-content {
-
-                <h2 id="modalTitle" class="modal-title"></h2>            color: #C0C0C0;
-
-                <button class="close-btn" onclick="closePreview()">&times;</button>            max-width: 600px;
-
-            </div>            margin: 0 auto;
-
-            <div id="modalBody" class="modal-text">        }
-
-                <div class="loading">
-
-                    <div class="spinner"></div>        /* --- Search and Filter Functionality --- */
-
-                    <p>Loading sacred text...</p>        .library-controls {
-
-                </div>            display: flex;
-
-            </div>            justify-content: center;
-
-        </div>            align-items: center;
-
-    </div>            gap: 2rem;
-
-            margin-bottom: 3rem;
-
-    <script>            flex-wrap: wrap;
-
-        // Floating particles effect        }
-
-        function createParticle() {
-
-            const particle = document.createElement('div');        .search-container {
-
-            particle.className = 'particle';            position: relative;
-
-            particle.style.left = Math.random() * 100 + '%';            max-width: 400px;
-
-            particle.style.top = Math.random() * 100 + '%';            width: 100%;
-
-            particle.style.width = Math.random() * 4 + 2 + 'px';        }
-
-            particle.style.height = particle.style.width;
-
-            particle.style.animationDuration = (Math.random() * 3 + 3) + 's';        .search-input {
-
-            particle.style.animationDelay = Math.random() * 2 + 's';            width: 100%;
-
-                        padding: 15px 20px 15px 50px;
-
-            document.body.appendChild(particle);            border: 3px solid var(--sacred-purple);
-
-                        border-radius: 25px;
-
-            setTimeout(() => {            background: linear-gradient(135deg, rgba(25,25,112,0.3), rgba(75,0,130,0.2));
-
-                particle.remove();            color: var(--star-white);
-
-            }, 6000);            font-family: 'Crimson Text', serif;
-
-        }            font-size: 1.1rem;
-
+            text-decoration: none;
+            font-weight: bold;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
             transition: all 0.3s ease;
-
-        // Create particles periodically        }
-
-        setInterval(createParticle, 2000);
-
-        .search-input:focus {
-
-        // Preview functionality            outline: none;
-
-        function previewBook(filePath, title) {            border-color: var(--divine-gold);
-
-            const modal = document.getElementById('previewModal');            box-shadow: 0 0 25px rgba(255,215,0,0.4);
-
-            const modalTitle = document.getElementById('modalTitle');            transform: scale(1.02);
-
-            const modalBody = document.getElementById('modalBody');        }
-
-            
-
-            // Show modal and set title        .search-icon {
-
-            modal.style.display = 'block';            position: absolute;
-
-            modalTitle.textContent = title;            left: 1rem;
-
-                        top: 50%;
-
-            // Show loading state            transform: translateY(-50%);
-
-            modalBody.innerHTML = `            color: var(--sacred-purple);
-
-                <div class="loading">            font-size: 1.2rem;
-
-                    <div class="spinner"></div>        }
-
-                    <p>Loading sacred text...</p>
-
-                </div>        .filter-buttons {
-
-            `;            display: flex;
-
-                        gap: 0.5rem;
-
-            // Fetch and display content            flex-wrap: wrap;
-
-            fetch(filePath)        }
-
-                .then(response => {
-
-                    if (!response.ok) {        .filter-btn {
-
-                        throw new Error('File not found');            padding: 12px 20px;
-
-                    }            border: 2px solid var(--sacred-purple);
-
-                    return response.text();            border-radius: 20px;
-
-                })            background: linear-gradient(135deg, rgba(153,50,204,0.2), rgba(75,0,130,0.3));
-
-                .then(content => {            color: var(--star-white);
-
-                    modalBody.innerHTML = `<div class="modal-text">${content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>`;            font-family: 'Orbitron', monospace;
-
-                })            font-size: 0.9rem;
-
-                .catch(error => {            font-weight: 600;
-
-                    console.error('Error loading file:', error);            cursor: pointer;
-
-                    modalBody.innerHTML = `            transition: all 0.3s ease;
-
-                        <div style="text-align: center; padding: 40px;">            text-transform: uppercase;
-
-                            <h3 style="color: #ff6b6b; margin-bottom: 15px;">📖 Content Preview Unavailable</h3>            letter-spacing: 0.5px;
-
-                            <p>The sacred text cannot be previewed at this time.</p>        }
-
-                            <p>Please use the download button to access the full content.</p>
-
-                        </div>        .filter-btn:hover,
-
-                    `;        .filter-btn.active {
-
-                });            border-color: var(--divine-gold);
-
-        }            background: linear-gradient(45deg, var(--divine-gold), var(--holy-amber));
-
-            color: var(--void-black);
-
-        // Close preview modal            transform: translateY(-2px);
-
-        function closePreview() {            box-shadow: 0 8px 20px rgba(255,215,0,0.3);
-
-            document.getElementById('previewModal').style.display = 'none';        }
-
+            display: flex;
+            align-items: center;
+            gap: 10px;
         }
 
-        .book-stats {
+        .back-btn:hover {
+            background: rgba(0, 191, 255, 0.2);
+            border-color: #00bfff;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 191, 255, 0.3);
+        }
 
-        // Close modal when clicking outside            display: flex;
-
-        document.getElementById('previewModal').addEventListener('click', function(e) {            justify-content: center;
-
-            if (e.target === this) {            gap: 2rem;
-
-                closePreview();            margin-bottom: 2rem;
-
-            }            flex-wrap: wrap;
-
-        });        }
-
-
-
-        // Close modal with Escape key        .stat-item {
-
-        document.addEventListener('keydown', function(e) {            background: linear-gradient(135deg, rgba(25,25,112,0.3), rgba(75,0,130,0.2));
-
-            if (e.key === 'Escape') {            border: 2px solid var(--celestial-blue);
-
-                closePreview();            border-radius: 15px;
-
-            }            padding: 25px;
-
-        });            text-align: center;
-
-            min-width: 140px;
-
-        // Initialize particles on load            transition: all 0.3s ease;
-
-        document.addEventListener('DOMContentLoaded', function() {            position: relative;
-
-            for (let i = 0; i < 5; i++) {            overflow: hidden;
-
-                setTimeout(createParticle, i * 500);        }
-
-            }
-
-        });        .stat-item::before {
-
-    </script>            content: '';
-
-</body>            position: absolute;
-
-</html>            top: -2px;
-            left: -2px;
-            right: -2px;
-            bottom: -2px;
-            background: linear-gradient(45deg, var(--divine-gold), var(--sacred-purple), var(--celestial-blue), var(--emerald-wisdom));
+        /* Library Stats */
+        .library-stats {
+            background: rgba(255, 255, 255, 0.1);
             border-radius: 15px;
-            opacity: 0;
-            transition: opacity 0.3s;
-            z-index: -1;
+            padding: 30px;
+            margin-bottom: 40px;
+            text-align: center;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
         }
 
-        .stat-item:hover::before {
-            opacity: 0.3;
+        .stats-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
         }
 
-        .stat-item:hover {
-            transform: translateY(-5px) scale(1.05);
-            border-color: var(--divine-gold);
+        .stat-item {
+            text-align: center;
         }
 
         .stat-number {
-            font-size: 2.5rem;
-            font-weight: 700;
-            color: var(--divine-gold);
+            font-size: 2.5em;
+            font-weight: bold;
+            color: #00bfff;
             display: block;
-            font-family: 'Orbitron', monospace;
         }
 
         .stat-label {
-            font-size: 0.9rem;
-            color: var(--star-white);
-            margin-top: 0.5rem;
+            color: #e0e0e0;
+            font-size: 1.1em;
         }
 
-        /* --- Enhanced Card Features --- */
-        .library-card {
+        /* Books Grid */
+        .books-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(400px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+
+        .book-card {
+            background: rgba(255, 255, 255, 0.1);
+            border-radius: 20px;
+            padding: 30px;
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
         }
 
-        .card-category {
+        .book-card::before {
+            content: '';
             position: absolute;
-            top: 20px;
-            right: 20px;
-            background: linear-gradient(45deg, var(--divine-gold), var(--holy-amber));
-            color: var(--void-black);
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 0.8rem;
-            font-weight: 700;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-            font-family: 'Orbitron', monospace;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(0, 191, 255, 0.1), transparent);
+            transform: rotate(45deg);
+            transition: all 0.6s ease;
+            opacity: 0;
         }
 
-        .card-actions {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-top: 1rem;
-            padding-top: 1rem;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
+        .book-card:hover::before {
+            opacity: 1;
+            animation: shimmer 2s ease-in-out infinite;
         }
 
-        .action-buttons {
-            display: flex;
-            gap: 0.5rem;
+        @keyframes shimmer {
+            0% { transform: translateX(-100%) translateY(-100%) rotate(45deg); }
+            100% { transform: translateX(100%) translateY(100%) rotate(45deg); }
         }
 
-        .action-btn {
-            background: none;
-            border: 1px solid var(--sacred-purple);
-            border-radius: 50%;
-            width: 35px;
-            height: 35px;
-            color: var(--sacred-purple);
-            cursor: pointer;
-            transition: all 0.3s ease;
+        .book-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 40px rgba(0, 191, 255, 0.3);
+            border-color: rgba(0, 191, 255, 0.5);
+        }
+
+        .book-icon {
+            font-size: 4em;
+            text-align: center;
+            margin-bottom: 20px;
+            filter: drop-shadow(0 0 10px rgba(0, 191, 255, 0.5));
+        }
+
+        .book-title {
+            font-size: 1.8em;
+            font-weight: bold;
+            color: #00bfff;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .book-description {
+            color: #e0e0e0;
+            margin-bottom: 25px;
+            text-align: center;
+            font-style: italic;
+        }
+
+        .book-actions {
             display: flex;
-            align-items: center;
+            gap: 15px;
             justify-content: center;
-            font-size: 1rem;
+            flex-wrap: wrap;
         }
 
-        .action-btn:hover {
-            border-color: var(--divine-gold);
-            color: var(--divine-gold);
-            transform: scale(1.1);
-        }
-
-        .download-count {
-            font-size: 0.8rem;
-            color: #C0C0C0;
-        }
-
-        /* --- Recently Viewed Section --- */
-        .recently-viewed {
-            margin-bottom: 4rem;
-        }
-
-        .recent-grid {
-            display: flex;
-            gap: 1rem;
-            overflow-x: auto;
-            padding: 1rem 0;
-        }
-
-        .recent-grid::-webkit-scrollbar {
-            height: 6px;
-        }
-
-        .recent-grid::-webkit-scrollbar-track {
-            background: rgba(0, 4, 40, 0.8);
-            border-radius: 3px;
-        }
-
-        .recent-grid::-webkit-scrollbar-thumb {
-            background: var(--sacred-purple);
-            border-radius: 3px;
-        }
-
-        .recent-grid::-webkit-scrollbar-thumb:hover {
-            background: var(--divine-gold);
-        }
-
-        .hidden {
-            display: none !important;
-        }
-
-        .recent-item {
-            flex-shrink: 0;
-            background: rgba(0, 4, 40, 0.7);
-            border: 1px solid var(--sacred-purple);
-            border-radius: 10px;
-            padding: 1rem;
-            min-width: 200px;
+        .btn {
+            padding: 12px 25px;
+            border: none;
+            border-radius: 25px;
+            font-weight: bold;
+            text-decoration: none;
             cursor: pointer;
             transition: all 0.3s ease;
+            font-size: 1em;
+            display: flex;
+            align-items: center;
+            gap: 8px;
         }
 
-        .recent-item:hover {
-            border-color: var(--divine-gold);
+        .preview-btn {
+            background: linear-gradient(45deg, #00bfff, #0080ff);
+            color: white;
+            box-shadow: 0 4px 15px rgba(0, 191, 255, 0.3);
+        }
+
+        .preview-btn:hover {
+            background: linear-gradient(45deg, #0080ff, #0060df);
             transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(0, 191, 255, 0.4);
         }
 
-        .recent-title {
-            font-family: 'Cinzel', serif;
-            font-size: 1rem;
-            color: var(--divine-gold);
-            margin-bottom: 0.5rem;
+        .download-btn {
+            background: linear-gradient(45deg, #32cd32, #228b22);
+            color: white;
+            box-shadow: 0 4px 15px rgba(50, 205, 50, 0.3);
         }
 
-        .recent-desc {
-            font-size: 0.8rem;
-            color: #C0C0C0;
+        .download-btn:hover {
+            background: linear-gradient(45deg, #228b22, #006400);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 20px rgba(50, 205, 50, 0.4);
         }
 
-        /* --- Responsive Design --- */
-        @media (max-width: 768px) {
-            .section-title {
-                font-size: 2.2rem;
-            }
-            .library-section-title {
-                font-size: 1.8rem;
-            }
-            .sacred-grid {
-                grid-template-columns: 1fr;
-            }
-            .file-item {
-                flex-direction: column;
-                align-items: flex-start;
-                gap: 0.75rem;
-            }
-            .download-button {
-                width: 100%;
-                text-align: center;
-            }
-            .preview-button {
-                width: 100%;
-                text-align: center;
-            }
-        }
-
+        /* Preview Modal */
         .preview-modal {
             display: none;
             position: fixed;
@@ -1294,607 +243,271 @@
             left: 0;
             width: 100%;
             height: 100%;
-            background: rgba(0,0,0,0.9);
-            z-index: 10000;
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.8);
+            z-index: 2000;
+            backdrop-filter: blur(5px);
+            -webkit-backdrop-filter: blur(5px);
         }
 
-        .preview-modal.active {
-            display: flex;
-            align-items: center;
-            justify-content: center;
-        }
-
-        .preview-content {
-            background: linear-gradient(135deg, var(--deep-space), #1a1a2e);
-            border: 3px solid var(--divine-gold);
-            border-radius: 20px;
-            max-width: 900px;
-            max-height: 80vh;
-            width: 90%;
-            padding: 40px;
-            position: relative;
-            box-shadow: 0 0 80px rgba(255,215,0,0.5);
-        }
-
-        .preview-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            border-bottom: 2px solid var(--sacred-purple);
-            padding-bottom: 20px;
-        }
-
-        .preview-title {
-            font-family: 'Cinzel', serif;
-            font-size: 2rem;
-            color: var(--divine-gold);
-            margin: 0;
-            text-shadow: 0 0 15px var(--divine-gold);
-        }
-
-        .preview-close {
-            background: linear-gradient(45deg, var(--seraph-crimson), #ff6b6b);
-            border: none;
-            border-radius: 50%;
-            width: 50px;
-            height: 50px;
-            color: var(--star-white);
-            font-size: 1.8rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            font-weight: 700;
-        }
-
-        .preview-close:hover {
-            transform: scale(1.1) rotate(90deg);
-            box-shadow: 0 0 20px var(--seraph-crimson);
-        }
-
-        .preview-text {
-            max-height: 50vh;
-            overflow-y: auto;
-            line-height: 1.8;
-            color: var(--star-white);
-            background: rgba(0,0,0,0.3);
-            padding: 25px;
-            border-radius: 15px;
-            font-family: 'Crimson Text', serif;
-            font-size: 1.1rem;
-            white-space: pre-wrap;
-            border: 2px solid var(--sacred-purple);
-        }
-
-        .preview-text::-webkit-scrollbar {
-            width: 8px;
-        }
-
-        .preview-text::-webkit-scrollbar-track {
-            background: rgba(0,0,0,0.3);
-            border-radius: 4px;
-        }
-
-        .preview-text::-webkit-scrollbar-thumb {
-            background: var(--divine-gold);
-            border-radius: 4px;
-        }
-
-        .preview-loading {
-            text-align: center;
-            color: var(--divine-gold);
-            font-style: italic;
-        }
-
-        .preview-error {
-            text-align: center;
-            color: #FF6B6B;
-            font-style: italic;
-        }
-
-        /* --- PDF Preview Notice Styling --- */
-        .preview-pdf-notice {
-            text-align: center;
-            color: var(--star-white);
-            padding: 1rem;
-        }
-
-        .pdf-icon {
-            font-size: 3rem;
-            margin-bottom: 1rem;
-            opacity: 0.8;
-        }
-
-        .preview-pdf-notice h3 {
-            color: var(--divine-gold);
-            font-family: 'Cinzel', serif;
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-        }
-
-        .preview-pdf-notice p {
-            margin-bottom: 1rem;
-            line-height: 1.6;
-        }
-
-        .pdf-benefits {
-            background: rgba(0, 0, 0, 0.3);
-            border-radius: 8px;
-            padding: 1rem;
-            margin-top: 1.5rem;
-            text-align: left;
-        }
-
-        .pdf-benefits strong {
-            color: var(--sacred-purple);
-            display: block;
-            margin-bottom: 0.5rem;
-        }
-
-        .pdf-benefits ul {
-            margin: 0;
-            padding-left: 1.5rem;
-        }
-
-        .pdf-benefits li {
-            margin-bottom: 0.25rem;
-            color: var(--star-white);
-        }
-
-        /* --- Preview Button Styles --- */
-        .preview-button {
-            background: linear-gradient(45deg, var(--celestial-blue), var(--sacred-purple));
-            border: none;
-            border-radius: 20px;
-            padding: 0.6rem 1.2rem;
-            color: var(--star-white);
-            font-family: 'Cinzel', serif;
-            font-weight: 700;
-            font-size: 0.9rem;
-            cursor: pointer;
-            transition: all 0.3s ease;
-            text-decoration: none;
-            white-space: nowrap;
-            margin-left: 0.5rem;
-        }
-
-        .preview-button:hover {
-            transform: scale(1.05);
-            box-shadow: 0 8px 20px rgba(65, 105, 225, 0.3);
-        }
-
-        .file-item {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            gap: 0.5rem;
-        }
-
-        .button-group {
-            display: flex;
-            gap: 0.5rem;
-            flex-shrink: 0;
-        }
-
-        /* Sacred Navigation Menu */
-        #sacred-nav {
-            position: fixed;
-            top: 20px;
-            right: 20px;
-            z-index: 1000;
-        }
-
-        .nav-toggle {
-            width: 50px;
-            height: 50px;
-            background: linear-gradient(45deg, var(--divine-gold), var(--sacred-purple));
-            border-radius: 50%;
-            cursor: pointer;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            gap: 4px;
-            transition: all 0.3s ease;
-            box-shadow: 0 0 20px rgba(255, 215, 0, 0.5);
-            border: 2px solid var(--celestial-blue);
-        }
-
-        .nav-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 0 30px rgba(0, 255, 255, 0.7);
-        }
-
-        .nav-toggle span {
-            width: 25px;
-            height: 3px;
-            background: var(--shadow-deep);
-            transition: all 0.3s ease;
-            border-radius: 2px;
-        }
-
-        .nav-toggle.active span:nth-child(1) {
-            transform: rotate(45deg) translate(6px, 6px);
-        }
-
-        .nav-toggle.active span:nth-child(2) {
-            opacity: 0;
-        }
-
-        .nav-toggle.active span:nth-child(3) {
-            transform: rotate(-45deg) translate(6px, -6px);
-        }
-
-        .nav-content {
+        .modal-content {
             position: absolute;
-            top: 70px;
-            right: 0;
-            width: 280px;
-            background: rgba(0, 0, 0, 0.9);
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
-            border: 2px solid var(--celestial-blue);
-            border-radius: 15px;
-            padding: 20px;
-            opacity: 0;
-            visibility: hidden;
-            transform: translateY(-20px);
-            transition: all 0.3s ease;
-            box-shadow: 0 10px 40px rgba(0, 255, 255, 0.3);
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: linear-gradient(135deg, #191970 0%, #00bfff 100%);
+            border-radius: 20px;
+            padding: 30px;
+            max-width: 90%;
+            max-height: 90%;
+            overflow-y: auto;
+            border: 2px solid rgba(0, 191, 255, 0.5);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
         }
 
-        .nav-content.active {
-            opacity: 1;
-            visibility: visible;
-            transform: translateY(0);
-        }
-
-        .nav-header {
-            text-align: center;
+        .modal-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
             margin-bottom: 20px;
             padding-bottom: 15px;
-            border-bottom: 1px solid var(--divine-gold);
+            border-bottom: 2px solid rgba(255, 255, 255, 0.2);
         }
 
-        .nav-header h3 {
-            font-family: 'Orbitron', monospace;
-            font-size: 1.2em;
-            color: var(--celestial-blue);
-            margin: 0;
-            text-transform: uppercase;
-            letter-spacing: 1px;
+        .modal-title {
+            font-size: 1.8em;
+            color: #00bfff;
+            font-weight: bold;
         }
 
-        .nav-links {
-            list-style: none;
-            padding: 0;
-            margin: 0;
-        }
-
-        .nav-links li {
-            margin-bottom: 10px;
-        }
-
-        .nav-links a {
-            display: block;
-            color: var(--celestial-blue);
-            text-decoration: none;
-            font-family: 'Cinzel', serif;
-            font-size: 1em;
-            font-weight: 600;
-            padding: 12px 15px;
-            border-radius: 8px;
+        .close-btn {
+            background: rgba(255, 255, 255, 0.1);
+            border: none;
+            color: white;
+            font-size: 1.5em;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            cursor: pointer;
             transition: all 0.3s ease;
-            border: 1px solid transparent;
-            text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
-        .nav-links a:hover {
-            background: linear-gradient(45deg, rgba(255, 215, 0, 0.2), rgba(153, 50, 204, 0.2));
-            border-color: var(--celestial-blue);
-            color: var(--celestial-blue);
-            transform: translateX(5px);
-            box-shadow: 0 5px 15px rgba(0, 255, 255, 0.3);
+        .close-btn:hover {
+            background: rgba(255, 0, 0, 0.3);
+            transform: scale(1.1);
         }
 
-        /* Mobile Responsive */
+        .modal-text {
+            color: #ffffff;
+            line-height: 1.8;
+            font-size: 1.1em;
+            white-space: pre-wrap;
+            max-height: 60vh;
+            overflow-y: auto;
+            padding: 20px;
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 10px;
+        }
+
+        /* Loading Spinner */
+        .loading {
+            text-align: center;
+            padding: 40px;
+        }
+
+        .spinner {
+            border: 3px solid rgba(0, 191, 255, 0.3);
+            border-top: 3px solid #00bfff;
+            border-radius: 50%;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 0 auto 20px;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            #sacred-nav {
-                top: 10px;
-                right: 10px;
+            .header h1 {
+                font-size: 2.5em;
             }
 
-            .nav-content {
-                width: 250px;
-                right: -10px;
+            .books-grid {
+                grid-template-columns: 1fr;
+                gap: 20px;
             }
 
-            .nav-links a {
-                font-size: 0.9em;
-                padding: 10px 12px;
+            .book-actions {
+                flex-direction: column;
+            }
+
+            .modal-content {
+                margin: 20px;
+                padding: 20px;
+            }
+
+            .back-nav {
+                position: relative;
+                top: 0;
+                left: 0;
+                margin-bottom: 20px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Navigation -->
+    <nav class="back-nav">
+        <a href="../index.html" class="back-btn">
+            ← Back to Portal
+        </a>
+    </nav>
 
-    <div class="cosmic-background"></div>
-    <div class="sacred-patterns"></div>
-    
-    <!-- Scroll Progress Indicator -->
-    <div class="scroll-progress" id="scrollProgress"></div>
-    
-    <!-- Particle System -->
-    <div class="particle-system" id="particleSystem"></div>
+    <div class="container">
+        <!-- Header -->
+        <header class="header">
+            <h1>📚 Sacred Library</h1>
+            <p>A curated collection of sacred wisdom and mystical knowledge from the Digital Alchemy Portal</p>
+        </header>
+
+        <!-- Library Statistics -->
+        <section class="library-stats">
+            <h2>Library Overview</h2>
+            <div class="stats-grid">
+                <div class="stat-item">
+                    <span class="stat-number">2</span>
+                    <span class="stat-label">Sacred Texts</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">100%</span>
+                    <span class="stat-label">Authentic Content</span>
+                </div>
+                <div class="stat-item">
+                    <span class="stat-number">∞</span>
+                    <span class="stat-label">Wisdom Potential</span>
+                </div>
+            </div>
+        </section>
+
+        <!-- Books Collection -->
+        <section class="books-section">
+            <div class="books-grid">
+                <!-- As Above, So Below -->
+                <div class="book-card">
+                    <div class="book-icon">⚡</div>
+                    <h3 class="book-title">As Above, So Below</h3>
+                    <p class="book-description">
+                        The fundamental hermetic principle that reveals the connection between the macrocosm and microcosm. Ancient wisdom that bridges the divine and earthly realms.
+                    </p>
+                    <div class="book-actions">
+                        <button class="btn preview-btn" onclick="previewBook('../Books/As above, so below.txt', 'As Above, So Below')">
+                            👁️ Preview
+                        </button>
+                        <a href="../Books/As above, so below.txt" class="btn download-btn" download="As above, so below.txt">
+                            📥 Download
+                        </a>
+                    </div>
+                </div>
+
+                <!-- The Sacred Mathematics Discovery -->
+                <div class="book-card">
+                    <div class="book-icon">🔢</div>
+                    <h3 class="book-title">The Sacred Mathematics Discovery</h3>
+                    <p class="book-description">
+                        What Terrence Howard discovered about sacred mathematics and universal patterns. Revolutionary insights into the mathematical nature of reality.
+                    </p>
+                    <div class="book-actions">
+                        <button class="btn preview-btn" onclick="previewBook('../Books/The Sacred Mathematics Discovery What Terrence Howard Sense.txt', 'The Sacred Mathematics Discovery')">
+                            👁️ Preview
+                        </button>
+                        <a href="../Books/The Sacred Mathematics Discovery What Terrence Howard Sense.txt" class="btn download-btn" download="The Sacred Mathematics Discovery What Terrence Howard Sense.txt">
+                            📥 Download
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
 
     <!-- Preview Modal -->
     <div id="previewModal" class="preview-modal">
-        <div class="preview-content">
-            <div class="preview-header">
-                <h2 id="previewTitle" class="preview-title">Book Preview</h2>
-                <button id="previewClose" class="preview-close">×</button>
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle" class="modal-title"></h2>
+                <button class="close-btn" onclick="closePreview()">&times;</button>
             </div>
-            <div id="previewText" class="preview-text">
-                <div class="preview-loading">Loading preview...</div>
+            <div id="modalBody" class="modal-text">
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading sacred text...</p>
+                </div>
             </div>
         </div>
     </div>
 
-    <!-- Navigation Menu -->
-    <nav id="sacred-nav">
-        <div class="nav-toggle" id="nav-toggle">
-            <span></span>
-            <span></span>
-            <span></span>
-        </div>
-        <div class="nav-content" id="nav-content">
-            <div class="nav-header">
-                <h3>PORTALS OF WISDOM</h3>
-            </div>
-            <ul class="nav-links">
-                <li><a href="#library">📚 Sacred Library</a></li>
-                <li><a href="navigation-wisdom.html">🧠 Wisdom Portal</a></li>
-                <li><a href="navigation-genesis.html">🌅 Genesis Protocol</a></li>
-                <li><a href="navigation-mathematics.html">🔢 Sacred Mathematics</a></li>
-                <li><a href="navigation-geometry.html">📐 Sacred Geometry</a></li>
-                <li><a href="navigation-alchemy.html">⚗️ Sacred Alchemy</a></li>
-                <li><a href="navigation-digital.html">💻 Digital Ministry</a></li>
-                <li><a href="navigation-masters.html">👑 Masters Collection</a></li>
-                <li><a href="../index.html">🏠 Main Portal</a></li>
-            </ul>
-        </div>
-    </nav>
-
-    <main class="main-content">
-        <header class="library-header" id="library">
-            <h1 class="section-title">The Sacred Library</h1>
-            <p class="section-subtitle">An archive of ancient wisdom and transformative knowledge. Explore these texts to deepen your understanding of the universe's sacred mysteries.</p>
-        </header>
-
-        <!-- Library Controls -->
-        <div class="library-controls">
-            <div class="search-container">
-                <div class="search-icon">🔍</div>
-                <input type="text" id="librarySearch" class="search-input" placeholder="Search books by title, author, or description...">
-            </div>
-            <div class="filter-buttons">
-                <button class="filter-btn active" data-filter="all">All Books</button>
-                <button class="filter-btn" data-filter="sacred">Sacred Texts</button>
-                <button class="filter-btn" data-filter="philosophy">Philosophy</button>
-                <button class="filter-btn" data-filter="modern">Modern Wisdom</button>
-                <button class="filter-btn" data-filter="mystical">Mystical</button>
-            </div>
-        </div>
-
-        <!-- Book Statistics -->
-        <div class="book-stats">
-            <div class="stat-item">
-                <span class="stat-number" id="totalBooks">2</span>
-                <div class="stat-label">Total Books</div>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="sacredTexts">2</span>
-                <div class="stat-label">Sacred Texts</div>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="downloads">0</span>
-                <div class="stat-label">Total Downloads</div>
-            </div>
-            <div class="stat-item">
-                <span class="stat-number" id="previews">0</span>
-                <div class="stat-label">Previews Today</div>
-            </div>
-        </div>
-
-        <!-- Recently Viewed Books -->
-        <section class="recently-viewed">
-            <h2 class="library-section-title">Recently Viewed</h2>
-            <div class="recent-grid" id="recentlyViewed">
-                <div class="recent-item hidden">
-                    <div class="recent-title">No recent views</div>
-                    <div class="recent-desc">Start exploring our collection!</div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Sacred Books Section -->
-        <section class="library-section">
-            <h2 class="library-section-title">Sacred Books & Manuscripts</h2>
-
-            <!-- Search and Filter Controls -->
-            <div class="library-controls">
-                <div class="search-container">
-                    <input type="text" id="bookSearch" class="search-input" placeholder="Search sacred texts...">
-                    <span class="search-icon">🔍</span>
-                </div>
-                <div class="filter-buttons">
-                    <button class="filter-btn" data-filter="all">All</button>
-                    <button class="filter-btn" data-filter="pdf">PDFs</button>
-                    <button class="filter-btn" data-filter="txt">TXTs</button>
-                </div>
-            </div>
-
-            <div class="sacred-grid">
-                
-                <div class="library-card" data-category="sacred">
-                    <div class="card-category">Sacred Texts</div>
-                    <div class="card-header">
-                        <div class="library-icon">�</div>
-                        <h3 class="library-card-title">As Above, So Below</h3>
-                    </div>
-                    <p class="library-description">The fundamental hermetic principle that reveals the connection between the macrocosm and microcosm.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Text</div>
-                            <div class="file-description">The sacred hermetic wisdom text</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="../Books/As above, so below.txt" data-title="As Above, So Below">Preview</button>
-                            <a href="../Books/As above, so below.txt" class="download-button" download="As above, so below.txt">Download TXT</a>
-                        </div>
-                    </div>
-                    <div class="card-actions">
-                        <div class="action-buttons">
-                            <button class="action-btn favorite-btn" title="Add to Favorites">⭐</button>
-                            <button class="action-btn share-btn" title="Share Book">📤</button>
-                        </div>
-                        <div class="download-count">0 downloads</div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="sacred">
-                    <div class="card-category">Sacred Mathematics</div>
-                    <div class="card-header">
-                        <div class="library-icon">🔢</div>
-                        <h3 class="library-card-title">The Sacred Mathematics Discovery</h3>
-                    </div>
-                    <p class="library-description">What Terrence Howard discovered about sacred mathematics and universal patterns.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Discovery</div>
-                            <div class="file-description">Terrence Howard's mathematical insights</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="../Books/The Sacred Mathematics Discovery What Terrence Howard Sense.txt" data-title="The Sacred Mathematics Discovery">Preview</button>
-                            <a href="../Books/The Sacred Mathematics Discovery What Terrence Howard Sense.txt" class="download-button" download="The Sacred Mathematics Discovery What Terrence Howard Sense.txt">Download TXT</a>
-                        </div>
-                    </div>
-                    <div class="card-actions">
-                        <div class="action-buttons">
-                            <button class="action-btn favorite-btn" title="Add to Favorites">⭐</button>
-                            <button class="action-btn share-btn" title="Share Book">📤</button>
-                        </div>
-                        <div class="download-count">0 downloads</div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Study Guides Section -->
-        <section class="library-section">
-            <h2 class="library-section-title">Study Guides & Resources</h2>
-            <div class="sacred-grid">
-
-                <div class="library-card">
-                    <div class="card-header">
-                        <div class="library-icon">📚</div>
-                        <h3 class="library-card-title">Coming Soon</h3>
-                    </div>
-                    <p class="library-description">More sacred texts and resources will be added to the collection.</p>
-                </div>
-
-            </div>
-        </section>
-    </main>
-
-    <!-- Fixed Footer Navigation -->
-    <nav class="fixed-nav">
-        <div class="nav-container">
-            <div class="nav-logo">
-                <a href="../index.html" class="logo-link">🗂️ Main Portal</a>
-            </div>
-        </div>
-    </nav>
-
     <script>
-        // Library functionality for Digital Alchemy Portal
-        function searchBooks() {
-            // Simple search functionality for the 2 books
-            console.log('Searching books...');
-        }
-
-        // Preview book function
+        // Preview functionality
         function previewBook(filePath, title) {
-            // For text files, we'll fetch and display content in a modal-like popup
-            if (filePath.endsWith('.txt')) {
-                fetch(filePath)
-                    .then(response => {
-                        if (!response.ok) {
-                            throw new Error('File not found');
-                        }
-                        return response.text();
-                    })
-                    .then(content => {
-                        // Create a new window with formatted content
-                        const previewWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
-                        previewWindow.document.write(`
-                            <!DOCTYPE html>
-                            <html>
-                            <head>
-                                <title>${title} - Preview</title>
-                                <style>
-                                    body {
-                                        font-family: 'Georgia', serif;
-                                        background: linear-gradient(135deg, #191970 0%, #00bfff 100%);
-                                        color: #ffffff;
-                                        padding: 20px;
-                                        margin: 0;
-                                        line-height: 1.6;
-                                    }
-                                    .preview-container {
-                                        max-width: 800px;
-                                        margin: 0 auto;
-                                        background: rgba(255, 255, 255, 0.1);
-                                        padding: 30px;
-                                        border-radius: 15px;
-                                        backdrop-filter: blur(10px);
-                                        border: 1px solid rgba(255, 255, 255, 0.2);
-                                    }
-                                    h1 {
-                                        text-align: center;
-                                        color: #00bfff;
-                                        margin-bottom: 30px;
-                                    }
-                                    .content {
-                                        white-space: pre-wrap;
-                                        font-size: 14px;
-                                        text-align: justify;
-                                    }
-                                </style>
-                            </head>
-                            <body>
-                                <div class="preview-container">
-                                    <h1>${title}</h1>
-                                    <div class="content">${content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
-                                </div>
-                            </body>
-                            </html>
-                        `);
-                        previewWindow.document.close();
-                    })
-                    .catch(error => {
-                        console.error('Error loading file:', error);
-                        alert('Sorry, could not load the preview. The file might not be available or there may be a connection issue.');
-                    });
-            } else {
-                // For other file types, open directly
-                window.open(filePath, '_blank');
-            }
+            const modal = document.getElementById('previewModal');
+            const modalTitle = document.getElementById('modalTitle');
+            const modalBody = document.getElementById('modalBody');
+            
+            // Show modal and set title
+            modal.style.display = 'block';
+            modalTitle.textContent = title;
+            
+            // Show loading state
+            modalBody.innerHTML = `
+                <div class="loading">
+                    <div class="spinner"></div>
+                    <p>Loading sacred text...</p>
+                </div>
+            `;
+            
+            // Fetch and display content
+            fetch(filePath)
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error('File not found');
+                    }
+                    return response.text();
+                })
+                .then(content => {
+                    modalBody.innerHTML = `<div class="modal-text">${content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>`;
+                })
+                .catch(error => {
+                    console.error('Error loading file:', error);
+                    modalBody.innerHTML = `
+                        <div style="text-align: center; padding: 40px;">
+                            <h3 style="color: #ff6b6b; margin-bottom: 15px;">📖 Content Preview Unavailable</h3>
+                            <p>The sacred text cannot be previewed at this time.</p>
+                            <p>Please use the download button to access the full content.</p>
+                        </div>
+                    `;
+                });
         }
-    </script>
 
+        // Close preview modal
+        function closePreview() {
+            document.getElementById('previewModal').style.display = 'none';
+        }
+
+        // Close modal when clicking outside
+        document.getElementById('previewModal').addEventListener('click', function(e) {
+            if (e.target === this) {
+                closePreview();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                closePreview();
+            }
+        });
+    </script>
 </body>
 </html>
