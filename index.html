@@ -13,22 +13,23 @@
 
         body {
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a0f2e 50%, #2d1b3d 100%);
-            color: #fff;
+            background: linear-gradient(135deg, #191970 0%, #483d8b 25%, #6a5acd 50%, #9370db 75%, #ba55d3 100%);
+            color: #f8f8ff;
             line-height: 1.6;
             padding: 0;
         }
 
         /* Header Navigation */
         .main-header {
-            background: linear-gradient(135deg, rgba(25,25,35,0.95), rgba(45,25,55,0.95));
-            border-bottom: 2px solid #9932cc;
+            background: linear-gradient(135deg, rgba(25,25,112,0.95), rgba(72,61,139,0.95));
+            border-bottom: 3px solid #00bfff;
             padding: 15px 0;
             position: sticky;
             top: 0;
             z-index: 1000;
-            -webkit-backdrop-filter: blur(10px);
-            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(15px);
+            backdrop-filter: blur(15px);
+            box-shadow: 0 4px 20px rgba(0,191,255,0.3);
         }
 
         .header-container {
@@ -58,10 +59,11 @@
         }
 
         .header-nav-link:hover {
-            background: linear-gradient(45deg, rgba(153,50,204,0.3), rgba(138,43,226,0.3));
+            background: linear-gradient(45deg, rgba(0,191,255,0.3), rgba(30,144,255,0.3));
             border-color: #ffd700;
             color: #ffd700;
             transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0,191,255,0.4);
         }
 
         .header-social {
@@ -278,17 +280,18 @@
             max-width: 600px;
             padding: 15px 20px;
             font-size: 1.1rem;
-            background: rgba(255,255,255,0.1);
-            border: 2px solid #9932cc;
+            background: rgba(248,248,255,0.15);
+            border: 2px solid #00bfff;
             border-radius: 50px;
-            color: #fff;
+            color: #f8f8ff;
             outline: none;
             transition: all 0.3s ease;
+            box-shadow: 0 4px 15px rgba(0,191,255,0.2);
         }
 
         .search-bar input:focus {
             border-color: #ffd700;
-            box-shadow: 0 0 20px rgba(255,215,0,0.3);
+            box-shadow: 0 0 25px rgba(255,215,0,0.4), 0 0 50px rgba(0,191,255,0.3);
         }
 
         .search-bar input::placeholder {
@@ -303,13 +306,13 @@
         }
 
         .solar-system {
-            background: linear-gradient(135deg, #0a0a0f 0%, #1a0f2e 50%, #2d1b3d 100%);
+            background: linear-gradient(135deg, #191970 0%, #483d8b 25%, #6a5acd 50%, #9370db 100%);
             border-radius: 20px;
-            border: 2px solid #ffd700;
+            border: 3px solid #00bfff;
             padding: 20px;
             position: relative;
             overflow: hidden;
-            box-shadow: 0 10px 30px rgba(255,215,0,0.1);
+            box-shadow: 0 15px 40px rgba(0,191,255,0.3), 0 0 60px rgba(255,215,0,0.2);
         }
 
         .solar-system::before {
@@ -826,8 +829,8 @@
         }
 
         .category-portal {
-            background: linear-gradient(135deg, rgba(138,43,226,0.2), rgba(75,0,130,0.3));
-            border: 2px solid #9932cc;
+            background: linear-gradient(135deg, rgba(0,191,255,0.15), rgba(30,144,255,0.2), rgba(72,61,139,0.25));
+            border: 2px solid #00bfff;
             border-radius: 20px;
             padding: 30px;
             transition: all 0.3s ease;
@@ -836,6 +839,7 @@
             overflow: hidden;
             min-height: 200px;
             will-change: transform, border-color;
+            box-shadow: 0 8px 25px rgba(0,191,255,0.2);
         }
 
         .category-portal::before {
@@ -856,7 +860,7 @@
         .category-portal:hover {
             border-color: #ffd700;
             transform: translateY(-10px);
-            box-shadow: 0 15px 40px rgba(153,50,204,0.4);
+            box-shadow: 0 20px 50px rgba(0,191,255,0.4), 0 0 30px rgba(255,215,0,0.3);
         }
 
         .category-icon {
@@ -909,11 +913,14 @@
 
         .sub-menu {
             display: none;
-            background: rgba(0,0,0,0.8);
+            background: linear-gradient(135deg, rgba(25,25,112,0.9), rgba(72,61,139,0.85));
             border-radius: 15px;
             margin-top: 20px;
-            border: 1px solid #9932cc;
+            border: 2px solid #00bfff;
             overflow: hidden;
+            box-shadow: 0 10px 30px rgba(0,191,255,0.3);
+            -webkit-backdrop-filter: blur(10px);
+            backdrop-filter: blur(10px);
         }
 
         .sub-menu.show {
@@ -1265,20 +1272,21 @@
         }
 
         .smart-category-card {
-            background: linear-gradient(135deg, rgba(25,25,35,0.9), rgba(45,25,55,0.9));
-            border: 2px solid rgba(255,215,0,0.3);
+            background: linear-gradient(135deg, rgba(25,25,112,0.85), rgba(72,61,139,0.9), rgba(106,90,205,0.85));
+            border: 2px solid rgba(0,191,255,0.4);
             border-radius: 20px;
             padding: 25px;
             cursor: pointer;
             transition: all 0.3s ease;
             position: relative;
             overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0,191,255,0.2);
         }
 
         .smart-category-card:hover {
             border-color: #ffd700;
             transform: translateY(-5px);
-            box-shadow: 0 15px 40px rgba(255,215,0,0.3);
+            box-shadow: 0 20px 50px rgba(0,191,255,0.4), 0 0 30px rgba(255,215,0,0.3);
         }
 
         .category-header {
@@ -2716,22 +2724,31 @@
                         tags: ['ai', 'coding', 'research', 'leonardo', 'typography']
                     },
                     {
-                        id: 'header-navigation',
+                        id: 'header-menus',
                         icon: '🧭',
-                        title: 'Navigation System',
-                        description: 'Core navigation and menu system',
+                        title: 'Header Menu HTMLs',
+                        description: 'Navigation menu system and portal interfaces',
                         files: 9,
                         priority: 'high',
-                        tags: ['navigation', 'core', 'system', 'menu']
+                        tags: ['navigation', 'menus', 'html', 'portals']
                     },
                     {
-                        id: 'master-archives',
-                        icon: '🎨',
-                        title: 'Master Archives',
-                        description: 'Renaissance masters and consolidated collections',
-                        files: 3,
+                        id: 'books',
+                        icon: '📚',
+                        title: 'Books',
+                        description: 'Digital library and manuscript collection',
+                        files: 85,
+                        priority: 'high',
+                        tags: ['books', 'manuscripts', 'library', 'collection']
+                    },
+                    {
+                        id: 'military',
+                        icon: '⚔️',
+                        title: 'Military',
+                        description: 'Strategic warfare and tactical analysis',
+                        files: 12,
                         priority: 'medium',
-                        tags: ['renaissance', 'masters', 'art', 'compilation']
+                        tags: ['military', 'strategy', 'warfare', 'tactics']
                     },
                     {
                         id: 'kai-projects',
@@ -2871,9 +2888,9 @@
         }
 
         function showRecentlyUpdated() {
-            console.log('📚 Opening Master Archives...');
-            // Open Master Archives
-            window.open('master-archive-collection.html', '_blank');
+            console.log('📚 Opening Books collection...');
+            // Open Books directory
+            window.open('Books/', '_blank');
         }
 
         function openRandomFile() {
