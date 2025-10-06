@@ -1275,543 +1275,73 @@
 
         // Preview book function
         function previewBook(filePath, title) {
-            window.open(filePath, '_blank');
+            // For text files, we'll fetch and display content in a modal-like popup
+            if (filePath.endsWith('.txt')) {
+                fetch(filePath)
+                    .then(response => {
+                        if (!response.ok) {
+                            throw new Error('File not found');
+                        }
+                        return response.text();
+                    })
+                    .then(content => {
+                        // Create a new window with formatted content
+                        const previewWindow = window.open('', '_blank', 'width=800,height=600,scrollbars=yes,resizable=yes');
+                        previewWindow.document.write(`
+                            <!DOCTYPE html>
+                            <html>
+                            <head>
+                                <title>${title} - Preview</title>
+                                <style>
+                                    body {
+                                        font-family: 'Georgia', serif;
+                                        background: linear-gradient(135deg, #191970 0%, #00bfff 100%);
+                                        color: #ffffff;
+                                        padding: 20px;
+                                        margin: 0;
+                                        line-height: 1.6;
+                                    }
+                                    .preview-container {
+                                        max-width: 800px;
+                                        margin: 0 auto;
+                                        background: rgba(255, 255, 255, 0.1);
+                                        padding: 30px;
+                                        border-radius: 15px;
+                                        backdrop-filter: blur(10px);
+                                        border: 1px solid rgba(255, 255, 255, 0.2);
+                                    }
+                                    h1 {
+                                        text-align: center;
+                                        color: #00bfff;
+                                        margin-bottom: 30px;
+                                    }
+                                    .content {
+                                        white-space: pre-wrap;
+                                        font-size: 14px;
+                                        text-align: justify;
+                                    }
+                                </style>
+                            </head>
+                            <body>
+                                <div class="preview-container">
+                                    <h1>${title}</h1>
+                                    <div class="content">${content.replace(/</g, '&lt;').replace(/>/g, '&gt;')}</div>
+                                </div>
+                            </body>
+                            </html>
+                        `);
+                        previewWindow.document.close();
+                    })
+                    .catch(error => {
+                        console.error('Error loading file:', error);
+                        alert('Sorry, could not load the preview. The file might not be available or there may be a connection issue.');
+                    });
+            } else {
+                // For other file types, open directly
+                window.open(filePath, '_blank');
+            }
         }
     </script>
 
-</body>
-</html>
-                            <button class="action-btn share-btn" title="Share Book">📤</button>
-                        </div>
-                        <div class="download-count">0 downloads</div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="modern">
-                    <div class="card-category">Modern Wisdom</div>
-                    <div class="card-header">
-                        <div class="library-icon">🏴‍☠️</div>
-                        <h3 class="library-card-title">Captain Black Sparrow V2.1</h3>
-                    </div>
-                    <p class="library-description">A comprehensive guide to strategic thinking and tactical wisdom in the modern world.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Guide</div>
-                            <div class="file-description">Strategic insights and tactical wisdom</div>
-                        </div>
-                        <a href="./Library/Captain Black Sparrow V2.1.pdf" class="download-button" download="Captain Black Sparrow V2.1.pdf">Download PDF</a>
-                    </div>
-                    <div class="card-actions">
-                        <div class="action-buttons">
-                            <button class="action-btn favorite-btn" title="Add to Favorites">⭐</button>
-                            <button class="action-btn share-btn" title="Share Book">📤</button>
-                        </div>
-                        <div class="download-count">0 downloads</div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">🧠</div>
-                        <h3 class="library-card-title">Captain Common Sense</h3>
-                    </div>
-                    <p class="library-description">Practical wisdom and common sense principles for navigating life's challenges.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Guide</div>
-                            <div class="file-description">Common sense explanations and insights</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/Captain Common Sense explain it.pdf" data-title="Captain Common Sense">Preview</button>
-                            <a href="./Library/Captain Common Sense explain it.pdf" class="download-button" download="Captain Common Sense explain it.pdf">Download PDF</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">📚</div>
-                        <h3 class="library-card-title">Black Sparrow Collection</h3>
-                    </div>
-                    <p class="library-description">The first volume in the Black Sparrow series, exploring deep philosophical concepts.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Volume 1</div>
-                            <div class="file-description">Philosophical explorations and insights</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/First Gumroad BlackSparrow book 2.99.pdf" data-title="Black Sparrow Collection - Volume 1">Preview</button>
-                            <a href="./Library/First Gumroad BlackSparrow book 2.99.pdf" class="download-button" download="First Gumroad BlackSparrow book 2.99.pdf">Download PDF</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">🎨</div>
-                        <h3 class="library-card-title">The Earl Dürer Archetype</h3>
-                    </div>
-                    <p class="library-description">Exploring archetypal patterns and artistic wisdom inspired by Albrecht Dürer.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Study</div>
-                            <div class="file-description">Archetypal analysis and artistic insights</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/THE EARL Dürer Archetype.pdf" data-title="The Earl Dürer Archetype">Preview</button>
-                            <a href="./Library/THE EARL Dürer Archetype.pdf" class="download-button" download="THE EARL Dürer Archetype.pdf">Download PDF</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">📖</div>
-                        <h3 class="library-card-title">The Living Codex</h3>
-                    </div>
-                    <p class="library-description">A sacred journey of becoming, exploring the transformative power of knowledge and self-discovery.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Journey</div>
-                            <div class="file-description">A sacred journey of spiritual becoming</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/The Living Codex_ A Sacred Journey of Becoming.pdf" data-title="The Living Codex">Preview</button>
-                            <a href="./Library/The Living Codex_ A Sacred Journey of Becoming.pdf" class="download-button" download="The Living Codex_ A Sacred Journey of Becoming.pdf">Download PDF</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">📜</div>
-                        <h3 class="library-card-title">Curation of History</h3>
-                    </div>
-                    <p class="library-description">A comprehensive exploration of historical events, patterns, and their profound lessons for modern understanding.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Volume</div>
-                            <div class="file-description">Historical analysis and timeless wisdom</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/curation of history.txt" data-title="Curation of History">Preview</button>
-                            <a href="./Library/curation of history.txt" class="download-button" download="curation of history.txt">Download TXT</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">📿</div>
-                        <h3 class="library-card-title">Sacred Digital Ministry Bible</h3>
-                    </div>
-                    <p class="library-description">The complete guide to digital ministry, blending sacred wisdom with modern technology for spiritual guidance.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Full Book</div>
-                            <div class="file-description">Complete digital ministry teachings</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/sacred_digital_ministry_bibleFULLBOOK.txt" data-title="Sacred Digital Ministry Bible">Preview</button>
-                            <a href="./Library/sacred_digital_ministry_bibleFULLBOOK.txt" class="download-button" download="sacred_digital_ministry_bibleFULLBOOK.txt">Download TXT</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">⚗️</div>
-                        <h3 class="library-card-title">The Magnum Opus</h3>
-                    </div>
-                    <p class="library-description">The great work of alchemy and transformation, exploring the ultimate journey of spiritual evolution.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Work</div>
-                            <div class="file-description">Alchemical transformation and enlightenment</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/The Magnum Opus.txt" data-title="The Magnum Opus">Preview</button>
-                            <a href="./Library/The Magnum Opus.txt" class="download-button" download="The Magnum Opus.txt">Download TXT</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">🎭</div>
-                        <h3 class="library-card-title">Satan Comedy</h3>
-                    </div>
-                    <p class="library-description">A satirical exploration of temptation, wisdom, and the human condition through the lens of comedy and philosophy.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Satire</div>
-                            <div class="file-description">Philosophical comedy and moral insights</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/satan comedy.txt" data-title="Satan Comedy">Preview</button>
-                            <a href="./Library/satan comedy.txt" class="download-button" download="satan comedy.txt">Download TXT</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">🤖</div>
-                        <h3 class="library-card-title">AI Alchemist Adventures</h3>
-                    </div>
-                    <p class="library-description">The first volume in the AI Alchemist series, exploring the intersection of artificial intelligence and ancient alchemy.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Volume 1</div>
-                            <div class="file-description">AI and alchemy adventures</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/Ai-Alchemist-Adventures-1.pdf" data-title="AI Alchemist Adventures">Preview</button>
-                            <a href="./Library/Ai-Alchemist-Adventures-1.pdf" class="download-button" download="Ai-Alchemist-Adventures-1.pdf">Download PDF</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">🔮</div>
-                        <h3 class="library-card-title">Magi and Celestial Observations</h3>
-                    </div>
-                    <p class="library-description">Ancient wisdom and celestial insights from the magi, exploring the mysteries of the cosmos and divine knowledge.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Observations</div>
-                            <div class="file-description">Celestial wisdom and magical insights</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/Magi and Celestial Observations.txt" data-title="Magi and Celestial Observations">Preview</button>
-                            <a href="./Library/Magi and Celestial Observations.txt" class="download-button" download="Magi and Celestial Observations.txt">Download TXT</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">👁️</div>
-                        <h3 class="library-card-title">The Oracle's First Glance</h3>
-                    </div>
-                    <p class="library-description">The inaugural vision of the oracle, revealing prophetic insights and divine revelations for spiritual guidance.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">First Vision</div>
-                            <div class="file-description">Prophetic revelations and divine insights</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/The Oracle's First Glance.pdf" data-title="The Oracle's First Glance">Preview</button>
-                            <a href="./Library/The Oracle's First Glance.pdf" class="download-button" download="The Oracle's First Glance.pdf">Download PDF</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">🏛️</div>
-                        <h3 class="library-card-title">The Living Codex The Imperial Foundation</h3>
-                    </div>
-                    <p class="library-description">The imperial foundation of the living codex, establishing the sacred principles and eternal wisdom of divine governance.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Imperial Foundation</div>
-                            <div class="file-description">Sacred governance and eternal principles</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/The Living Codex The Imperial Foundation.pdf" data-title="The Living Codex The Imperial Foundation">Preview</button>
-                            <a href="./Library/The Living Codex The Imperial Foundation.pdf" class="download-button" download="The Living Codex The Imperial Foundation.pdf">Download PDF</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">🗝️</div>
-                        <h3 class="library-card-title">The Key of Solomon</h3>
-                    </div>
-                    <p class="library-description">The legendary grimoire of King Solomon, containing powerful rituals, seals, and wisdom for spiritual mastery.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Book</div>
-                            <div class="file-description">Ancient rituals and spiritual mastery</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/The Key of Solomon-BOOK.txt" data-title="The Key of Solomon">Preview</button>
-                            <a href="./Library/The Key of Solomon-BOOK.txt" class="download-button" download="The Key of Solomon-BOOK.txt">Download TXT</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">🍌</div>
-                        <h3 class="library-card-title">The Banana Conquest</h3>
-                    </div>
-                    <p class="library-description">An epic tale of conquest and discovery, exploring themes of exploration, wisdom, and the fruits of knowledge.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Epic</div>
-                            <div class="file-description">Adventure, wisdom, and discovery</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/The Banana Conquest.txt" data-title="The Banana Conquest">Preview</button>
-                            <a href="./Library/The Banana Conquest.txt" class="download-button" download="The Banana Conquest.txt">Download TXT</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">👀</div>
-                        <h3 class="library-card-title">EyesD</h3>
-                    </div>
-                    <p class="library-description">A profound exploration of perception, vision, and the deeper meanings behind what we see and understand.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Vision</div>
-                            <div class="file-description">Perception and deeper understanding</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/EyesD.txt" data-title="EyesD">Preview</button>
-                            <a href="./Library/EyesD.txt" class="download-button" download="EyesD.txt">Download TXT</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card" data-category="pdf">
-                    <div class="card-header">
-                        <div class="library-icon">🔥</div>
-                        <h3 class="library-card-title">THE DIGITAL AWAKENING SAGA</h3>
-                    </div>
-                    <p class="library-description">An epic saga of digital transformation and spiritual awakening in the modern technological age.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Complete Saga</div>
-                            <div class="file-description">Digital transformation and spiritual awakening</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/🔥 THE DIGITAL AWAKENING SAGA 🔥.txt" data-title="THE DIGITAL AWAKENING SAGA">Preview</button>
-                            <a href="./Library/🔥 THE DIGITAL AWAKENING SAGA 🔥.txt" class="download-button" download="🔥 THE DIGITAL AWAKENING SAGA 🔥.txt">Download TXT</a>
-                        </div>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-        <!-- Study Guides Section -->
-        <section class="library-section">
-            <h2 class="library-section-title">Study Guides & Resources</h2>
-            <div class="sacred-grid">
-
-                <div class="library-card">
-                    <div class="card-header">
-                        <div class="library-icon">🎨</div>
-                        <h3 class="library-card-title">Sacred Geometry</h3>
-                    </div>
-                    <p class="library-description">Printable templates and guides for sacred geometry studies and mandala creation.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Flower of Life Template</div>
-                            <div class="file-description">High-resolution printable template</div>
-                        </div>
-                        <div class="button-group">
-                            <button class="preview-button" data-file="./Library/Flower-of-Life-Template.txt" data-title="Flower of Life Template">Preview</button>
-                            <a href="./Library/Flower-of-Life-Template.txt" class="download-button" download="Flower-of-Life-Template.txt">Download TXT</a>
-                        </div>
-                    </div>
-                </div>
-
-                <div class="library-card">
-                    <div class="card-header">
-                        <div class="library-icon">🧠</div>
-                        <h3 class="library-card-title">Meditation Practices</h3>
-                    </div>
-                    <p class="library-description">Comprehensive guides for various meditation techniques and contemplative practices.</p>
-                    <div class="file-item">
-                        <div class="file-info">
-                            <div class="file-name">Beginner's Guide</div>
-                            <div class="file-description">Step-by-step instructions</div>
-                        </div>
-                        <a href="#" class="download-button" download>Download PDF</a>
-                    </div>
-                </div>
-
-            </div>
-        </section>
-
-    </main>
-
-    <footer class="sacred-footer">
-        <div class="footer-title">The Sacred Codex Universe</div>
-        <div class="footer-content">
-            <p>Embark on a journey of spiritual discovery and digital innovation. May your path be illuminated by divine wisdom.</p>
-        </div>
-    </footer>
-
-    <script>
-        // Scroll Progress Indicator
-        window.addEventListener('scroll', () => {
-            const scrollProgress = document.getElementById('scrollProgress');
-            const scrollPercent = (window.scrollY / (document.body.scrollHeight - window.innerHeight)) * 100;
-            scrollProgress.style.width = scrollPercent + '%';
-        });
-
-        // Particle System
-        function createParticle() {
-            const particle = document.createElement('div');
-            particle.className = 'divine-particle';
-            particle.style.left = Math.random() * window.innerWidth + 'px';
-            particle.style.top = window.innerHeight + 'px';
-            particle.style.animationDelay = Math.random() * 2 + 's';
-            
-            const colors = ['#ffd700', '#9932cc', '#4169e1', '#50c878', '#dc143c'];
-            particle.style.background = colors[Math.floor(Math.random() * colors.length)];
-            
-            document.getElementById('particleSystem').appendChild(particle);
-            
-            setTimeout(() => {
-                if (particle.parentNode) {
-                    particle.parentNode.removeChild(particle);
-                }
-            }, 8000);
-        }
-
-        // Create particles periodically
-        setInterval(createParticle, 2500);
-
-        // Enhanced Search with Highlighting
-        function highlightSearchTerm(text, term) {
-            if (!term) return text;
-            const regex = new RegExp(`(${term})`, 'gi');
-            return text.replace(regex, '<mark style="background: var(--divine-gold); color: var(--void-black); padding: 2px 4px; border-radius: 3px;">$1</mark>');
-        }
-
-        // Update search to include highlights
-        searchInput.addEventListener('input', (e) => {
-            const searchTerm = e.target.value.toLowerCase().trim();
-            
-            libraryCards.forEach(card => {
-                const titleElement = card.querySelector('.library-card-title');
-                const descriptionElement = card.querySelector('.library-description');
-                const originalTitle = titleElement.getAttribute('data-original') || titleElement.textContent;
-                const originalDescription = descriptionElement.getAttribute('data-original') || descriptionElement.textContent;
-                
-                // Store original text if not already stored
-                if (!titleElement.getAttribute('data-original')) {
-                    titleElement.setAttribute('data-original', originalTitle);
-                    descriptionElement.setAttribute('data-original', originalDescription);
-                }
-                
-                const title = originalTitle.toLowerCase();
-                const description = originalDescription.toLowerCase();
-                const category = card.getAttribute('data-category').toLowerCase();
-                
-                if (searchTerm && (title.includes(searchTerm) || description.includes(searchTerm) || category.includes(searchTerm))) {
-                    card.style.display = 'flex';
-                    card.classList.add('fade-in');
-                    
-                    // Add highlights
-                    titleElement.innerHTML = highlightSearchTerm(originalTitle, searchTerm);
-                    descriptionElement.innerHTML = highlightSearchTerm(originalDescription, searchTerm);
-                } else if (searchTerm) {
-                    card.style.display = 'none';
-                } else {
-                    // Show all and remove highlights when search is empty
-                    card.style.display = 'flex';
-                    titleElement.innerHTML = originalTitle;
-                    descriptionElement.innerHTML = originalDescription;
-                }
-            });
-        });
-
-        // Sacred number animation for stats
-        function animateValue(element, start, end, duration) {
-            let startTimestamp = null;
-            const step = (timestamp) => {
-                if (!startTimestamp) startTimestamp = timestamp;
-                const progress = Math.min((timestamp - startTimestamp) / duration, 1);
-                const currentValue = Math.floor(progress * (end - start) + start);
-                element.textContent = currentValue;
-                if (progress < 1) {
-                    window.requestAnimationFrame(step);
-                }
-            };
-            window.requestAnimationFrame(step);
-        }
-
-        // Animate stats on scroll
-        const statsObserver = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) {
-                    const statNumber = entry.target.querySelector('.stat-number');
-                    const targetValue = parseInt(statNumber.textContent);
-                    if (!isNaN(targetValue)) {
-                        animateValue(statNumber, 0, targetValue, 2000);
-                    }
-                    statsObserver.unobserve(entry.target);
-                }
-            });
-        });
-
-        document.querySelectorAll('.stat-item').forEach(item => {
-            statsObserver.observe(item);
-        });
-
-        // Keyboard shortcuts
-        document.addEventListener('keydown', (e) => {
-            // ESC to close modal
-            if (e.key === 'Escape' && previewModal.classList.contains('active')) {
-                previewModal.classList.remove('active');
-            }
-            
-            // Ctrl/Cmd + K to focus search
-            if ((e.ctrlKey || e.metaKey) && e.key === 'k') {
-                e.preventDefault();
-                searchInput.focus();
-                searchInput.select();
-            }
-        });
-
-        // Initialize particles on page load
-        document.addEventListener('DOMContentLoaded', () => {
-            // Create initial particles
-            for (let i = 0; i < 5; i++) {
-                setTimeout(createParticle, i * 1000);
-            }
-        });
-
-    </script>
-    <script src="sacred_codex_scripts.min.js"></script>
-    <script>
-        // Sacred Navigation Menu Toggle
-        const navToggle = document.getElementById('nav-toggle');
-        const navContent = document.getElementById('nav-content');
-
-        if (navToggle && navContent) {
-            navToggle.addEventListener('click', function() {
-                navToggle.classList.toggle('active');
-                navContent.classList.toggle('active');
-            });
-
-            // Close menu when clicking outside
-            document.addEventListener('click', function(event) {
-                if (!navToggle.contains(event.target) && !navContent.contains(event.target)) {
-                    navToggle.classList.remove('active');
-                    navContent.classList.remove('active');
-                }
-            });
-
-            // Close menu on escape key
-            document.addEventListener('keydown', function(event) {
-                if (event.key === 'Escape') {
-                    navToggle.classList.remove('active');
-                    navContent.classList.remove('active');
-                }
-            });
-        }
-    </script>
 </body>
 </html>
