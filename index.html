@@ -4,6 +4,8 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>🗂️ Master Portal - HTML Archive Navigator</title>
+    <link rel="icon" type="image/svg+xml" href="favicon.svg">
+    <link rel="alternate icon" href="favicon.ico">
     <style>
         * {
             margin: 0;
@@ -925,6 +927,10 @@
 
         .sub-menu.show {
             display: block;
+        }
+
+        .sub-menu.hidden {
+            display: none;
         }
 
         .sub-menu-header {
@@ -2267,7 +2273,7 @@
                             <span class="file-count">19 files</span>
                             <span class="category-arrow">→</span>
                         </div>
-                        <div class="sub-menu" id="world-history-menu" style="display: none;">
+                        <div class="sub-menu hidden" id="world-history-menu">
                             <div class="sub-menu-header">
                                 <div class="sub-menu-title">🌍 World History Archives</div>
                                 <div class="sub-menu-description">Historical research and archaeological studies</div>
@@ -2419,7 +2425,7 @@
                             <span class="file-count">16 files</span>
                             <span class="category-arrow">→</span>
                         </div>
-                        <div class="sub-menu" id="technical-science-menu" style="display: none;">
+                        <div class="sub-menu hidden" id="technical-science-menu">
                             <div class="sub-menu-header">
                                 <div class="sub-menu-title">🔬 Technical Science Hub</div>
                                 <div class="sub-menu-description">AI, coding, and scientific research tools</div>
@@ -2550,7 +2556,7 @@
                             <span class="file-count">2 files</span>
                             <span class="category-arrow">→</span>
                         </div>
-                        <div class="sub-menu" id="kai-menu" style="display: none;">
+                        <div class="sub-menu hidden" id="kai-menu">
                             <div class="sub-menu-header">
                                 <div class="sub-menu-title">🚀 Kai Project Suite</div>
                                 <div class="sub-menu-description">Business and creative development tools</div>
@@ -2583,7 +2589,7 @@
                             <span class="file-count">2 files</span>
                             <span class="category-arrow">→</span>
                         </div>
-                        <div class="sub-menu" id="comedy-menu" style="display: none;">
+                        <div class="sub-menu hidden" id="comedy-menu">
                             <div class="sub-menu-header">
                                 <div class="sub-menu-title">🎭 Comedy Collection</div>
                                 <div class="sub-menu-description">Humor and comedy-related projects</div>
@@ -2616,7 +2622,7 @@
                             <span class="file-count">0 files</span>
                             <span class="category-arrow">→</span>
                         </div>
-                        <div class="sub-menu" id="military-menu" style="display: none;">
+                        <div class="sub-menu hidden" id="military-menu">
                             <div class="sub-menu-header">
                                 <div class="sub-menu-title">⚔️ Military Archives</div>
                                 <div class="sub-menu-description">Military history and strategic analysis</div>
@@ -2736,10 +2742,10 @@
                         id: 'books',
                         icon: '📚',
                         title: 'Books',
-                        description: 'Digital library and manuscript collection',
-                        files: 85,
+                        description: 'Sacred texts and mystical manuscripts',
+                        files: 2,
                         priority: 'high',
-                        tags: ['books', 'manuscripts', 'library', 'collection']
+                        tags: ['books', 'sacred', 'mystical', 'terrence-howard']
                     },
                     {
                         id: 'military',
