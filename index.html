@@ -16,7 +16,104 @@
             background: linear-gradient(135deg, #0a0a0f 0%, #1a0f2e 50%, #2d1b3d 100%);
             color: #fff;
             line-height: 1.6;
+            padding: 0;
+        }
+
+        /* Header Navigation */
+        .main-header {
+            background: linear-gradient(135deg, rgba(25,25,35,0.95), rgba(45,25,55,0.95));
+            border-bottom: 2px solid #9932cc;
+            padding: 15px 0;
+            position: sticky;
+            top: 0;
+            z-index: 1000;
+            backdrop-filter: blur(10px);
+        }
+
+        .header-container {
+            max-width: 1800px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 0 20px;
+        }
+
+        .header-nav {
+            display: flex;
+            gap: 25px;
+            flex-wrap: wrap;
+        }
+
+        .header-nav-link {
+            color: #fff;
+            text-decoration: none;
+            padding: 8px 16px;
+            border-radius: 20px;
+            transition: all 0.3s ease;
+            font-size: 0.9rem;
+            font-weight: 500;
+            border: 1px solid transparent;
+        }
+
+        .header-nav-link:hover {
+            background: linear-gradient(45deg, rgba(153,50,204,0.3), rgba(138,43,226,0.3));
+            border-color: #ffd700;
+            color: #ffd700;
+            transform: translateY(-2px);
+        }
+
+        .header-social {
+            display: flex;
+            gap: 15px;
+            align-items: center;
+        }
+
+        .header-social-link {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.2rem;
+            padding: 8px;
+            border-radius: 50%;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            width: 35px;
+            height: 35px;
+            border: 1px solid rgba(255,255,255,0.2);
+        }
+
+        .header-social-link:hover {
+            background: rgba(255,215,0,0.2);
+            border-color: #ffd700;
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(255,215,0,0.3);
+        }
+
+        .content-wrapper {
             padding: 20px;
+        }
+
+        @media (max-width: 768px) {
+            .header-container {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .header-nav {
+                justify-content: center;
+                gap: 15px;
+            }
+            
+            .header-nav-link {
+                font-size: 0.8rem;
+                padding: 6px 12px;
+            }
+            
+            .header-social {
+                gap: 10px;
+            }
         }
 
         .container {
@@ -1296,7 +1393,35 @@
     </style>
 </head>
 <body>
-    <div class="container">
+    <!-- Main Header Navigation -->
+    <header class="main-header">
+        <div class="header-container">
+            <nav class="header-nav">
+                <a href="Header menu html's/index.html" class="header-nav-link">🏠 Home</a>
+                <a href="Header menu html's/genesis.html" class="header-nav-link">Genesis</a>
+                <a href="Header menu html's/geometry.html" class="header-nav-link">Geometry</a>
+                <a href="Header menu html's/mathematics.html" class="header-nav-link">Mathematics</a>
+                <a href="Header menu html's/masters.html" class="header-nav-link">Masters</a>
+                <a href="Header menu html's/alchemy.html" class="header-nav-link">Alchemy</a>
+                <a href="Header menu html's/library.html" class="header-nav-link">Library</a>
+                <a href="Header menu html's/digital.html" class="header-nav-link">Digital Ministry</a>
+                <a href="Header menu html's/wisdom.html" class="header-nav-link">Wisdom Portal</a>
+            </nav>
+            
+            <div class="header-social">
+                <a href="https://www.facebook.com/profile.php?id=61578595622796" target="_blank" rel="noopener" class="header-social-link" title="Facebook">📘</a>
+                <a href="https://www.instagram.com/alchemistsx0/" target="_blank" rel="noopener" class="header-social-link" title="Instagram">📷</a>
+                <a href="https://x.com/Philipp36533206" target="_blank" rel="noopener" class="header-social-link" title="X (Twitter)">🐦</a>
+                <a href="https://www.linkedin.com/in/philippe-b-1234567890-/" target="_blank" rel="noopener" class="header-social-link" title="LinkedIn">💼</a>
+                <a href="https://linktr.ee/alchemistsx0" target="_blank" rel="noopener" class="header-social-link" title="Linktree">🔗</a>
+                <a href="https://www.tiktok.com/@alchystones" target="_blank" rel="noopener" class="header-social-link" title="TikTok">🎵</a>
+                <a href="https://www.youtube.com/@alchemists-u1c" target="_blank" rel="noopener" class="header-social-link" title="YouTube">📺</a>
+            </div>
+        </div>
+    </header>
+
+    <div class="content-wrapper">
+        <div class="container">
         <!-- Loading Overlay -->
         <div id="loadingOverlay" class="loading-overlay">
             <div class="loading-content">
@@ -1458,20 +1583,6 @@
             </div>
         </section>
 
-        <!-- Sacred Navigation -->
-        <nav class="sacred-nav">
-            <div class="nav-container">
-                <a href="Header menu html's/index.html" class="nav-link">🏠 Home</a>
-                <a href="Header menu html's/genesis.html" class="nav-link">Genesis</a>
-                <a href="Header menu html's/geometry.html" class="nav-link">Geometry</a>
-                <a href="Header menu html's/mathematics.html" class="nav-link">Mathematics</a>
-                <a href="Header menu html's/masters.html" class="nav-link">Masters</a>
-                <a href="Header menu html's/alchemy.html" class="nav-link">Alchemy</a>
-                <a href="Header menu html's/library.html" class="nav-link">Library</a>
-                <a href="Header menu html's/digital.html" class="nav-link">Digital Ministry</a>
-                <a href="Header menu html's/wisdom.html" class="nav-link">Wisdom Portal</a>
-            </div>
-        </nav>
 
         <!-- Featured Short Video -->
         <div class="shorts-box">
@@ -2329,5 +2440,6 @@
             © 2025 OMNI-EMPIRE-FRESH | Sacred Codex Universe. All rights reserved.
         </p>
     </div>
+    </div> <!-- Close content-wrapper -->
 </body>
 </html>
